@@ -721,6 +721,20 @@
 
 - (IBAction) actionExport:(id)sender
 {
+	NSSavePanel *sp;
+	int savePanelResult;
+	
+	sp = [NSSavePanel savePanel];
+	
+	[sp setTitle:@"Export"];
+	[sp setNameFieldLabel:@"Export to:"];
+	[sp setPrompt:@"Export"];
+	
+	[sp setRequiredFileType:@"csv"];
+	[sp setCanSelectHiddenExtension:YES];
+	[sp setExtensionHidden:NO];
+	
+	savePanelResult = [sp runModalForDirectory:nil file:@"Time Tracker Data.csv"];
 }
 
 
