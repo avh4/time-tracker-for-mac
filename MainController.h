@@ -59,6 +59,7 @@
 - (IBAction)clickedChangeWorkPeriod:(id)sender;
 - (IBAction)clickedCountIdleTimeYes:(id)sender;
 - (IBAction)clickedCountIdleTimeNo:(id)sender;
+- (IBAction) actionExport:(id)sender;
 
 - (void) timerFunc: (NSTimer *) timer;
 - (void) stopTimer:(NSDate*)endTime;

@@ -3,6 +3,7 @@
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {
             ACTIONS = {
+                actionExport = id; 
                 clickedAddProject = id; 
                 clickedAddTask = id; 
                 clickedChangeWorkPeriod = id; 
