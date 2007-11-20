@@ -735,6 +735,10 @@
 	[sp setExtensionHidden:NO];
 	
 	savePanelResult = [sp runModalForDirectory:nil file:@"Time Tracker Data.csv"];
+	
+	if (savePanelResult == NSOKButton) {
+		[[NSString stringWithString:@"CSV File"] writeToFile:[sp filename] atomically:YES];
+	}
 }
 
 
