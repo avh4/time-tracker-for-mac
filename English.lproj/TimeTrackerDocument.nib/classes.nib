@@ -1,7 +1,35 @@
 {
     IBClasses = (
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
-        {CLASS = TimeTrackerDocument; LANGUAGE = ObjC; SUPERCLASS = NSDocument; }
+        {CLASS = NSDatePicker; LANGUAGE = ObjC; SUPERCLASS = NSControl; }, 
+        {
+            ACTIONS = {
+                actionExport = id; 
+                clickedAddProject = id; 
+                clickedAddTask = id; 
+                clickedChangeWorkPeriod = id; 
+                clickedCountIdleTimeNo = id; 
+                clickedCountIdleTimeYes = id; 
+                clickedDelete = id; 
+                clickedStartStopTimer = id; 
+            }; 
+            CLASS = TimeTrackerDocument; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                dtpEditWorkPeriodEndTime = NSDatePicker; 
+                dtpEditWorkPeriodStartTime = NSDatePicker; 
+                mainWindow = NSWindow; 
+                panelEditWorkPeriod = NSPanel; 
+                panelIdleNotification = NSPanel; 
+                startMenuItem = NSMenuItem; 
+                tfActiveProject = NSTextField; 
+                tfActiveTask = NSTextField; 
+                tvProjects = NSTableView; 
+                tvTasks = NSTableView; 
+                tvWorkPeriods = NSTableView; 
+            }; 
+            SUPERCLASS = NSDocument; 
+        }
     ); 
     IBVersion = 1; 
 }

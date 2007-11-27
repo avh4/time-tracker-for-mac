@@ -2,31 +2,9 @@
     IBClasses = (
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {
-            ACTIONS = {
-                actionExport = id; 
-                clickedAddProject = id; 
-                clickedAddTask = id; 
-                clickedChangeWorkPeriod = id; 
-                clickedCountIdleTimeNo = id; 
-                clickedCountIdleTimeYes = id; 
-                clickedDelete = id; 
-                clickedStartStopTimer = id; 
-            }; 
             CLASS = MainController; 
             LANGUAGE = ObjC; 
-            OUTLETS = {
-                dtpEditWorkPeriodEndTime = NSDatePicker; 
-                dtpEditWorkPeriodStartTime = NSDatePicker; 
-                mainWindow = NSWindow; 
-                panelEditWorkPeriod = NSPanel; 
-                panelIdleNotification = NSPanel; 
-                startMenuItem = NSMenuItem; 
-                tfActiveProject = NSTextField; 
-                tfActiveTask = NSTextField; 
-                tvProjects = NSTableView; 
-                tvTasks = NSTableView; 
-                tvWorkPeriods = NSTableView; 
-            }; 
+            OUTLETS = {app = NSApplication; }; 
             SUPERCLASS = NSObject; 
         }, 
         {CLASS = NSDatePicker; LANGUAGE = ObjC; SUPERCLASS = NSControl; }, 
