@@ -47,6 +47,9 @@
 		B19BDFBC0B5C953700465046 /* Time Tracker.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D1107320486CEB800E47090 /* Time Tracker.app */; };
 		B19BDFC50B5C956F00465046 /* ChangeLog.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = B19BDFC10B5C956700465046 /* ChangeLog.txt */; };
 		B19BDFC60B5C956F00465046 /* LICENSE.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = B19BDFC20B5C956700465046 /* LICENSE.txt */; };
+		B1A90CDE0CFBA852007455AF /* TimeTrackerDocument.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B1A90CDC0CFBA852007455AF /* TimeTrackerDocument.h */; };
+		B1A90CDF0CFBA852007455AF /* TimeTrackerDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A90CDD0CFBA852007455AF /* TimeTrackerDocument.m */; };
+		B1A90CFF0CFBABB8007455AF /* TimeTrackerDocument.nib in Resources */ = {isa = PBXBuildFile; fileRef = B1A90CFE0CFBABB8007455AF /* TimeTrackerDocument.nib */; };
 		B1AB15830CEBC9A50025CF12 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1AB15820CEBC9A50025CF12 /* Sparkle.framework */; };
 		B1AB159D0CEBC9FC0025CF12 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B1AB15820CEBC9A50025CF12 /* Sparkle.framework */; };
 /* End PBXBuildFile section */
@@ -83,6 +86,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				B1AB159D0CEBC9FC0025CF12 /* Sparkle.framework in CopyFiles */,
+				B1A90CDE0CFBA852007455AF /* TimeTrackerDocument.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +128,9 @@
 		B163D4050B646239007D0E2C /* LICENSE-GPL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "LICENSE-GPL.txt"; sourceTree = "<group>"; };
 		B19BDFC10B5C956700465046 /* ChangeLog.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChangeLog.txt; sourceTree = SOURCE_ROOT; };
 		B19BDFC20B5C956700465046 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = SOURCE_ROOT; };
+		B1A90CDC0CFBA852007455AF /* TimeTrackerDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeTrackerDocument.h; sourceTree = "<group>"; };
+		B1A90CDD0CFBA852007455AF /* TimeTrackerDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTrackerDocument.m; sourceTree = "<group>"; };
+		B1A90CF70CFBAA81007455AF /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/TimeTrackerDocument.nib; sourceTree = "<group>"; };
 		B1AB15820CEBC9A50025CF12 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -145,6 +152,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B1A90CDC0CFBA852007455AF /* TimeTrackerDocument.h */,
+				B1A90CDD0CFBA852007455AF /* TimeTrackerDocument.m */,
 				2C9EC9520905ABAE000651F2 /* TWorkPeriod.h */,
 				2C9EC9530905ABAE000651F2 /* TWorkPeriod.m */,
 				2C9EC93D0905A9F6000651F2 /* TimeIntervalFormatter.h */,
@@ -213,6 +222,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B1A90CFE0CFBABB8007455AF /* TimeTrackerDocument.nib */,
 				B163D4040B646239007D0E2C /* AUTHORS.txt */,
 				B163D4050B646239007D0E2C /* LICENSE-GPL.txt */,
 				B19BDFC10B5C956700465046 /* ChangeLog.txt */,
@@ -303,6 +313,7 @@
 				2C9DB94A090675EB0039C62A /* playtool.png in Resources */,
 				2C9DB94B090675EB0039C62A /* stoptool.png in Resources */,
 				2C9DB974090677B20039C62A /* Icon.icns in Resources */,
+				B1A90CFF0CFBABB8007455AF /* TimeTrackerDocument.nib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +330,7 @@
 				2C9EC8D70905A5FE000651F2 /* TProject.m in Sources */,
 				2C9EC93F0905A9F6000651F2 /* TimeIntervalFormatter.m in Sources */,
 				2C9EC9540905ABAE000651F2 /* TWorkPeriod.m in Sources */,
+				B1A90CDF0CFBA852007455AF /* TimeTrackerDocument.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,6 +359,14 @@
 				29B97319FDCFA39411CA2CEA /* English */,
 			);
 			name = MainMenu.nib;
+			sourceTree = "<group>";
+		};
+		B1A90CFE0CFBABB8007455AF /* TimeTrackerDocument.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B1A90CF70CFBAA81007455AF /* English */,
+			);
+			name = TimeTrackerDocument.nib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

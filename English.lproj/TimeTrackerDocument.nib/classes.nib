@@ -1,0 +1,7 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = TimeTrackerDocument; LANGUAGE = ObjC; SUPERCLASS = NSDocument; }
+    ); 
+    IBVersion = 1; 
+}
