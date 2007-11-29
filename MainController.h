@@ -7,7 +7,6 @@
 
 @interface MainController : NSObject
 {
-	NSUserDefaults *defaults;
 	IBOutlet NSApplication *app;	
 }
 

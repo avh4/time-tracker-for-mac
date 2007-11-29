@@ -140,12 +140,15 @@
 	[tvWorkPeriods setDoubleAction: @selector(doubleClickWorkPeriod:)];
 	
 	[tvProjects reloadData];
+	
+	[mainWindow makeKeyAndOrderFront:self];
 }
 
 - (void)windowWillClose:(NSNotification *)notification
 {
-	if ([notification object] == mainWindow)
-		[self close];
+	NSLog(@"Window will close");
+	//if ([notification object] == mainWindow)
+	//	[self close];
 	if ([notification object] == panelEditWorkPeriod)
 		[NSApp stopModal];
 }
@@ -158,6 +161,7 @@
 	
 	[[NSStatusBar systemStatusBar] removeStatusItem:statusItem];
 	[statusItem release];
+	statusItem = nil;
 }
 
 /************************************************************************************
