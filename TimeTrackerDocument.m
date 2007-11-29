@@ -38,6 +38,10 @@
     return self;
 }
 
+- (NSString *)displayName {
+	return @"Time Tracker";
+}
+
 - (NSString *)windowNibName {
     // Implement this to return a nib to load OR implement -makeWindowControllers to manually create your controllers.
     return @"TimeTrackerDocument";
