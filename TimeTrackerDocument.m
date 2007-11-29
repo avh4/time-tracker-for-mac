@@ -47,6 +47,11 @@
     return @"TimeTrackerDocument";
 }
 
+- (void)windowControllerWillLoadNib:(NSWindowController *) aController
+{
+	[aController setShouldCascadeWindows:NO];
+}
+
 - (void)windowControllerDidLoadNib:(NSWindowController *) aController
 {
 	[super windowControllerDidLoadNib:aController];
