@@ -6,6 +6,7 @@
                 clickedAddProject = id; 
                 clickedAddTask = id; 
                 clickedDelete = id; 
+                clickedStartStopTimer = id; 
             }; 
             CLASS = FirstResponder; 
             LANGUAGE = ObjC; 
