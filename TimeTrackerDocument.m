@@ -50,6 +50,7 @@
 - (void)windowControllerWillLoadNib:(NSWindowController *) aController
 {
 	[aController setShouldCascadeWindows:NO];
+	[aController setWindowFrameAutosaveName:@"TimeTrackerWindow"];
 }
 
 - (void)windowControllerDidLoadNib:(NSWindowController *) aController
