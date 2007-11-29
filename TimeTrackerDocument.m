@@ -144,16 +144,20 @@
 
 - (void)windowWillClose:(NSNotification *)notification
 {
-	//if ([notification object] == mainWindow)
-	//	[self close];
+	if ([notification object] == mainWindow)
+		[self close];
 	if ([notification object] == panelEditWorkPeriod)
 		[NSApp stopModal];
 }
 
 - (void) close {
+	NSLog(@"Close");
 	if (timer != nil)
 		[self stopTimer];
 	[self saveData];
+	
+	[[NSStatusBar systemStatusBar] removeStatusItem:statusItem];
+	[statusItem release];
 }
 
 /************************************************************************************
@@ -489,6 +493,7 @@
 		[tvWorkPeriods reloadData];
 		[tvTasks reloadData];
 		[tvProjects reloadData];
+		[self updateProminentDisplay];
 	}
 	if ([mainWindow firstResponder] == tvTasks) {
 		// assert _selTask != nil
@@ -502,6 +507,7 @@
 		[_selProject updateTotalTime];
 		[tvTasks reloadData];
 		[tvProjects reloadData];
+		[self updateProminentDisplay];
 	}
 	if ([mainWindow firstResponder] == tvProjects) {
 		// assert _selProject != nil
@@ -512,6 +518,7 @@
 		[tvProjects deselectAll: self];
 		[_projects removeObject: delProject];
 		[tvProjects reloadData];
+		[self updateProminentDisplay];
 	}
 }
 
