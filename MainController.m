@@ -16,6 +16,11 @@
 {
 }
 
+- (void)showMainWindow:(id)sender
+{
+	[[NSDocumentController sharedDocumentController] newDocument:self];
+}
+
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
 {
     return NSTerminateNow;	

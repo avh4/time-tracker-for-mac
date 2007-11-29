@@ -13,6 +13,7 @@
             SUPERCLASS = NSObject; 
         }, 
         {
+            ACTIONS = {showMainWindow = id; }; 
             CLASS = MainController; 
             LANGUAGE = ObjC; 
             OUTLETS = {app = NSApplication; }; 

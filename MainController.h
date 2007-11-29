@@ -10,4 +10,6 @@
 	IBOutlet NSApplication *app;	
 }
 
+- (IBAction)showMainWindow:(id)sender;
+
 @end
