@@ -159,9 +159,11 @@
 		[self stopTimer];
 	[self saveData];
 	
-	[[NSStatusBar systemStatusBar] removeStatusItem:statusItem];
-	[statusItem release];
-	statusItem = nil;
+	if (statusItem != nil) {
+		[[NSStatusBar systemStatusBar] removeStatusItem:statusItem];
+		//[statusItem release];
+		statusItem = nil;
+	}
 }
 
 /************************************************************************************
