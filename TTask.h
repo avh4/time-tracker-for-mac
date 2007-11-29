@@ -8,8 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 #import "TWorkPeriod.h"
+#import "ITask.h"
 
-@interface TTask : NSObject <NSCoding> {
+@interface TTask : NSObject <NSCoding, ITask> {
 	NSString *_name;
 	int _totalTime;
 	NSMutableArray *_workPeriods;
@@ -23,6 +24,6 @@
 
 - (int) totalTime;
 - (void) updateTotalTime;
-
-
+- (NSString*) serializeData:(NSString*) prefix;
+- (id<ITask>) removeWorkPeriod:(TWorkPeriod*)period;
 @end

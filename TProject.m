@@ -73,7 +73,7 @@
     //self = [super initWithCoder:coder];
     if ( [coder allowsKeyedCoding] ) {
         // Can decode keys in any order
-        _name = [[coder decodeObjectForKey:@"TName"] retain];
+        _name = [[coder decodeObjectForKey:@"PName"] retain];
         _tasks = [[NSMutableArray arrayWithArray: [coder decodeObjectForKey:@"PTasks"]] retain];
     } else {
         // Must decode keys in same order as encodeWithCoder:
@@ -84,4 +84,21 @@
     return self;
 }
 
+- (NSString*)serializeData
+{
+	NSMutableString* result = [NSMutableString string];
+	NSEnumerator *enumerator = [_tasks objectEnumerator];
+	id anObject;
+	NSString *prefix = [NSString stringWithFormat:@"\"%@\"", _name];
+	while (anObject = [enumerator nextObject])
+	{
+		[result appendString:[anObject serializeData:prefix]];
+	}
+	return [[result retain] autorelease];
+}
+
+- (id<IProject>) removeTask:(TTask*)task {
+	[[self tasks] removeObject:task];
+	return self;
+}
 @end

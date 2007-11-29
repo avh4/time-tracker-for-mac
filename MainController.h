@@ -4,9 +4,16 @@
 #import "TProject.h"
 #import "TTask.h"
 #import "TWorkPeriod.h"
+#import "TMetaProject.h"
+#import "IProject.h"
+#import "ITask.h"
+#import "TMetaTask.h"
 
 @interface MainController : NSObject
 {
+	NSColor *_normalCol;
+	NSColor *_highlightCol;
+
 	NSUserDefaults *defaults;
 	NSTimer *timer;
 	NSStatusItem *statusItem;
@@ -33,22 +40,27 @@
     
 	IBOutlet NSDatePicker *dtpEditWorkPeriodStartTime;
 	IBOutlet NSDatePicker *dtpEditWorkPeriodEndTime;
+	IBOutlet NSTextView *dtpEditWorkPeriodComment;
 	
 	IBOutlet NSMenuItem *startMenuItem;
+	IBOutlet NSMenuItem *flatModeMenuItem;
 	
 	NSToolbarItem *startstopToolbarItem;
 	
 	NSMutableArray *_projects;
+	TMetaProject *_metaProject;
+	TMetaTask *_metaTask;
 	NSMutableDictionary *_projects_lastTask;
-	TProject *_selProject;
-	TTask *_selTask;
+	id<IProject> _selProject;
+	id<ITask> _selTask;
 	TWorkPeriod *_curWorkPeriod;
-	TProject *_curProject;
-	TTask *_curTask;
+	id<IProject> _curProject;
+	id<ITask> _curTask;
 	NSDateFormatter *_dateFormatter;
 	
 	NSDate *_lastNonIdleTime;
 	int timeSinceSave;
+	BOOL _flatMode;
 }
 
 // actions
@@ -59,6 +71,9 @@
 - (IBAction)clickedChangeWorkPeriod:(id)sender;
 - (IBAction)clickedCountIdleTimeYes:(id)sender;
 - (IBAction)clickedCountIdleTimeNo:(id)sender;
+- (IBAction)clickedFlatMode:(id)sender;
+- (IBAction)okClicked:(id) sender;
+- (IBAction)cancelClicked:(id) sender;
 
 - (void) timerFunc: (NSTimer *) timer;
 - (void) stopTimer:(NSDate*)endTime;
@@ -73,5 +88,5 @@
 - (void) updateProminentDisplay;
 
 - (BOOL) validateUserInterfaceItem:(id)anItem;
-
+- (TTask*) taskForWorkTimeIndex: (int) rowIndex timeIndex:(int*)resultIndex;
 @end

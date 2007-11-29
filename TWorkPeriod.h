@@ -13,10 +13,12 @@
 	int _totalTime;
 	NSDate *_startTime;
 	NSDate *_endTime;
+	NSAttributedString* _comment;
 }
 
 - (void) setStartTime: (NSDate *) startTime;
 - (void) setEndTime: (NSDate *) endTime;
+- (void) setComment:(NSAttributedString*) aComment;
 
 - (void) updateTotalTime;
 
@@ -25,5 +27,6 @@
 
 - (NSDate *) startTime;
 - (NSDate *) endTime;
-
+- (NSAttributedString *) comment;
+- (NSString*) serializeData: (NSString*) prefix;
 @end

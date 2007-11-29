@@ -85,4 +85,22 @@
     return self;
 }
 
+- (NSString*)serializeData:(NSString*) prefix
+{
+	NSMutableString* result = [NSMutableString string];
+	NSEnumerator *enumerator = [_workPeriods objectEnumerator];
+	id anObject;
+	NSString *addPrefix = [NSString stringWithFormat:@"%@;\"%@\"", prefix, _name];
+ 
+	while (anObject = [enumerator nextObject])
+	{
+		[result appendString:[anObject serializeData:addPrefix]];
+	}
+	return result;
+}
+
+- (id<ITask>) removeWorkPeriod:(TWorkPeriod*)period {
+	[[self workPeriods] removeObject:period];
+	return self;
+}
 @end
