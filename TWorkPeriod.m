@@ -76,6 +76,11 @@
 	return [[[NSAttributedString alloc] initWithString:@""] autorelease];
 }
 
+- (NSString *) strComment
+{
+	return [[self comment] string];
+}
+
 - (void)encodeWithCoder:(NSCoder *)coder
 {
     //[super encodeWithCoder:coder];

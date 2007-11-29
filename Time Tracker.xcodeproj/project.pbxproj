@@ -49,6 +49,8 @@
 		B19BDFC60B5C956F00465046 /* LICENSE.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = B19BDFC20B5C956700465046 /* LICENSE.txt */; };
 		B1AB15830CEBC9A50025CF12 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1AB15820CEBC9A50025CF12 /* Sparkle.framework */; };
 		B1AB159D0CEBC9FC0025CF12 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B1AB15820CEBC9A50025CF12 /* Sparkle.framework */; };
+		D581A8140CFF3BBA006A0DC1 /* TMetaProject.m in Sources */ = {isa = PBXBuildFile; fileRef = D581A8110CFF3BBA006A0DC1 /* TMetaProject.m */; };
+		D581A8150CFF3BBA006A0DC1 /* TMetaTask.m in Sources */ = {isa = PBXBuildFile; fileRef = D581A8130CFF3BBA006A0DC1 /* TMetaTask.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +127,11 @@
 		B19BDFC10B5C956700465046 /* ChangeLog.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChangeLog.txt; sourceTree = SOURCE_ROOT; };
 		B19BDFC20B5C956700465046 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = SOURCE_ROOT; };
 		B1AB15820CEBC9A50025CF12 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		D581A8100CFF3BBA006A0DC1 /* TMetaProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMetaProject.h; sourceTree = "<group>"; };
+		D581A8110CFF3BBA006A0DC1 /* TMetaProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMetaProject.m; sourceTree = "<group>"; };
+		D581A8120CFF3BBA006A0DC1 /* TMetaTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMetaTask.h; sourceTree = "<group>"; };
+		D581A8130CFF3BBA006A0DC1 /* TMetaTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMetaTask.m; sourceTree = "<group>"; };
+		D59DC2090CFF63CA000F08A8 /* TDateTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDateTransformer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +152,11 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D59DC2090CFF63CA000F08A8 /* TDateTransformer.h */,
+				D581A8100CFF3BBA006A0DC1 /* TMetaProject.h */,
+				D581A8110CFF3BBA006A0DC1 /* TMetaProject.m */,
+				D581A8120CFF3BBA006A0DC1 /* TMetaTask.h */,
+				D581A8130CFF3BBA006A0DC1 /* TMetaTask.m */,
 				2C9EC9520905ABAE000651F2 /* TWorkPeriod.h */,
 				2C9EC9530905ABAE000651F2 /* TWorkPeriod.m */,
 				2C9EC93D0905A9F6000651F2 /* TimeIntervalFormatter.h */,
@@ -277,9 +289,11 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 2CFAEE2509042EE900131DD6 /* Build configuration list for PBXProject "Time Tracker" */;
+			compatibilityVersion = "Xcode 2.4";
 			hasScannedForEncodings = 1;
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Time Tracker */;
 			projectDirPath = "";
+			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* Time Tracker */,
 				B19BDFB30B5C94F200465046 /* Release Package */,
@@ -319,6 +333,8 @@
 				2C9EC8D70905A5FE000651F2 /* TProject.m in Sources */,
 				2C9EC93F0905A9F6000651F2 /* TimeIntervalFormatter.m in Sources */,
 				2C9EC9540905ABAE000651F2 /* TWorkPeriod.m in Sources */,
+				D581A8140CFF3BBA006A0DC1 /* TMetaProject.m in Sources */,
+				D581A8150CFF3BBA006A0DC1 /* TMetaTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,7 @@
 #import "TimeIntervalFormatter.h"
 #import "TWorkPeriod.h"
 #import "TMetaProject.h"
+#import "TDateTransformer.h"
 
 @implementation MainController
 
@@ -29,6 +30,12 @@
 	_dateFormatter = [[NSDateFormatter alloc] init];
 	[_dateFormatter setDateStyle:NSDateFormatterShortStyle];
 	[_dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+	_timeValueFormatter = [[TTimeTransformer alloc] init];
+	_dateValueFormatter = [[TDateTransformer alloc] init];
+	_intervalValueFormatter = [[TimeIntervalFormatter alloc] init];
+	[NSValueTransformer setValueTransformer:_timeValueFormatter forName:@"TimeToStringFormatter"];
+	[NSValueTransformer setValueTransformer:_dateValueFormatter forName:@"DateToStringFormatter"];
+	[NSValueTransformer setValueTransformer:_intervalValueFormatter forName:@"TimeIntervalToStringFormatter"];
 	
 	return self;
 }
@@ -184,18 +191,57 @@
 		[toolbarItem setTarget:self];
 		[toolbarItem setAction:@selector(clickedAddTask:)];
     }
+    	
+	if ([itemIdentifier isEqual: @"Day"]) {
+		[toolbarItem setLabel:@"Day"];
+		[toolbarItem setPaletteLabel:@"Day"];
+		[toolbarItem setToolTip:@"Filter Day"];
+//		[toolbarItem setImage: addTaskToolImage];
+		[toolbarItem setTarget:self];
+		[toolbarItem setAction:@selector(clickedFilterDay:)];
+    }
+
+	if ([itemIdentifier isEqual: @"Week"]) {
+		[toolbarItem setLabel:@"Week"];
+		[toolbarItem setPaletteLabel:@"Week"];
+		[toolbarItem setToolTip:@"Filter Week"];
+//		[toolbarItem setImage: addTaskToolImage];
+		[toolbarItem setTarget:self];
+		[toolbarItem setAction:@selector(clickedFilterWeek:)];
+    }
+
+	if ([itemIdentifier isEqual: @"Month"]) {
+		[toolbarItem setLabel:@"Month"];
+		[toolbarItem setPaletteLabel:@"Month"];
+		[toolbarItem setToolTip:@"Filter Month"];
+//		[toolbarItem setImage: addTaskToolImage];
+		[toolbarItem setTarget:self];
+		[toolbarItem setAction:@selector(clickedFilterMonth:)];
+    }
+
+	if ([itemIdentifier isEqual: @"PickDate"]) {
+		[toolbarItem setLabel:@"PickDate"];
+		[toolbarItem setPaletteLabel:@"PickDate"];
+		[toolbarItem setToolTip:@"PickDate to filter"];
+//		[toolbarItem setImage: addTaskToolImage];
+		[toolbarItem setTarget:self];
+		[toolbarItem setAction:@selector(clickedFilterPickDate:)];
+		_tbPickDateItem = toolbarItem;
+    }
     
     return toolbarItem;
 }
 
 - (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar *)toolbar
 {
-	return [NSArray arrayWithObjects: @"Startstop", NSToolbarSeparatorItemIdentifier, @"AddProject", @"AddTask", nil];
+	return [NSArray arrayWithObjects: @"Startstop", NSToolbarSeparatorItemIdentifier, @"AddProject", @"AddTask", 
+			NSToolbarSeparatorItemIdentifier, @"Day", @"Week", @"Month", @"PickDate", nil];
 }
 
 - (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar *)toolbar
 {
-	return [NSArray arrayWithObjects: @"Startstop", NSToolbarSeparatorItemIdentifier, @"AddProject", @"AddTask", nil];
+	return [NSArray arrayWithObjects: @"Startstop", NSToolbarSeparatorItemIdentifier, @"AddProject", @"AddTask", 
+			NSToolbarSeparatorItemIdentifier, @"Day", @"Week", @"Month", @"PickDate", nil];
 }
 
 - (NSArray *)toolbarSelectableItemIdentifiers:(NSToolbar *)toolbar
@@ -660,6 +706,47 @@
 	[tvTasks editColumn:[tvTasks columnWithIdentifier:@"TaskName"] row:index withEvent:nil select:YES];
 }
 
+- (IBAction)clickedFilterDay:(id)sender 
+{
+	NSLog(@"Day filter clicked");
+}
+
+- (IBAction)clickedFilterWeek:(id)sender 
+{
+	NSLog(@"Day filter clicked");
+}
+
+- (IBAction)clickedFilterMonth:(id)sender 
+{
+	NSLog(@"Day filter clicked");
+}
+
+- (IBAction)clickedFilterPickDate:(id)sender 
+{
+	NSLog(@"Pick Date filter clicked");
+	[dtpFilterDate setDateValue:[NSDate date]];
+	[NSApp beginSheet:panelPickFilterDate modalForWindow:mainWindow modalDelegate:self 
+			didEndSelector:@selector(sheetDidEnd:returnCode:contextInfo:) contextInfo:nil];
+}
+
+
+- (IBAction)clickedFilterDateOk:(id) sender
+{
+	[NSApp endSheet:panelPickFilterDate returnCode:NSOKButton];
+	[_filterDate release];
+	_filterDate = [[dtpFilterDate dateValue] retain];
+	[_tbPickDateItem setLabel:[_filterDate description]];
+}
+
+- (IBAction)clickedFilterDateCancel:(id)sender 
+{
+	[_filterDate release];
+	_filterDate = nil;
+	[NSApp endSheet:panelPickFilterDate returnCode:NSCancelButton];
+	[_tbPickDateItem setLabel:@"Pick Date"];
+
+}
+
 - (void)createTask
 {
 	// assert _selProject != nil
@@ -722,6 +809,7 @@
 			// assert _selProject != nil
 			_selTask = [[_selProject tasks] objectAtIndex: [self selectedTaskRow]];
 		}
+		[workPeriodController setContent:[_selTask workPeriods]];
 		[tvWorkPeriods reloadData];
 		[self updateProminentDisplay];
 	}
@@ -883,11 +971,9 @@
 		if (timer != nil) return YES;
 		if (_selTask != nil && [_selTask isKindOfClass:[TTask class]]) return YES;
 		return NO;
-	} else
-	if ([anItem action] == @selector(clickedAddProject:)) {
+	} else if ([anItem action] == @selector(clickedAddProject:)) {
 		return YES;
-	} else
-	if ([anItem action] == @selector(clickedAddTask:)) {
+	} else if ([anItem action] == @selector(clickedAddTask:)) {
 		if (_selProject != nil && [_selProject isKindOfClass:[TProject class]]) {
 			return YES;
 		}

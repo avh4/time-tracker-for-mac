@@ -37,6 +37,10 @@
 				<string>id</string>
 				<key>clickedDelete</key>
 				<string>id</string>
+				<key>clickedFilterDateCancel</key>
+				<string>id</string>
+				<key>clickedFilterDateOk</key>
+				<string>id</string>
 				<key>clickedFlatMode</key>
 				<string>id</string>
 				<key>clickedStartStopTimer</key>
@@ -56,6 +60,8 @@
 				<string>NSDatePicker</string>
 				<key>dtpEditWorkPeriodStartTime</key>
 				<string>NSDatePicker</string>
+				<key>dtpFilterDate</key>
+				<string>NSDatePicker</string>
 				<key>flatModeMenuItem</key>
 				<string>NSMenuItem</string>
 				<key>mainWindow</key>
@@ -63,6 +69,8 @@
 				<key>panelEditWorkPeriod</key>
 				<string>NSPanel</string>
 				<key>panelIdleNotification</key>
+				<string>NSPanel</string>
+				<key>panelPickFilterDate</key>
 				<string>NSPanel</string>
 				<key>startMenuItem</key>
 				<string>NSMenuItem</string>
@@ -76,6 +84,8 @@
 				<string>NSTableView</string>
 				<key>tvWorkPeriods</key>
 				<string>NSTableView</string>
+				<key>workPeriodController</key>
+				<string>NSArrayController</string>
 			</dict>
 			<key>SUPERCLASS</key>
 			<string>NSObject</string>

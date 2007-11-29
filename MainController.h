@@ -1,6 +1,7 @@
 /* MainController */
 
 #import <Cocoa/Cocoa.h>
+#import <Appkit/NSArrayController.h>
 #import "TProject.h"
 #import "TTask.h"
 #import "TWorkPeriod.h"
@@ -8,6 +9,8 @@
 #import "IProject.h"
 #import "ITask.h"
 #import "TMetaTask.h"
+#import "TDateTransformer.h"
+#import "TimeIntervalFormatter.h"
 
 @interface MainController : NSObject
 {
@@ -37,13 +40,16 @@
     IBOutlet NSWindow *mainWindow;
     IBOutlet NSPanel *panelEditWorkPeriod;
     IBOutlet NSPanel *panelIdleNotification;
+	IBOutlet NSPanel *panelPickFilterDate;
     
 	IBOutlet NSDatePicker *dtpEditWorkPeriodStartTime;
 	IBOutlet NSDatePicker *dtpEditWorkPeriodEndTime;
+	IBOutlet NSDatePicker *dtpFilterDate;
 	IBOutlet NSTextView *dtpEditWorkPeriodComment;
 	
 	IBOutlet NSMenuItem *startMenuItem;
 	IBOutlet NSMenuItem *flatModeMenuItem;
+	IBOutlet NSArrayController *workPeriodController;
 	
 	NSToolbarItem *startstopToolbarItem;
 	
@@ -54,11 +60,16 @@
 	id<IProject> _selProject;
 	id<ITask> _selTask;
 	TWorkPeriod *_curWorkPeriod;
+	TTimeTransformer *_timeValueFormatter;
+	TDateTransformer *_dateValueFormatter;
+	TimeIntervalFormatter *_intervalValueFormatter;
 	id<IProject> _curProject;
 	id<ITask> _curTask;
 	NSDateFormatter *_dateFormatter;
+	NSToolbarItem *_tbPickDateItem;
 	
 	NSDate *_lastNonIdleTime;
+	NSDate *_filterDate;
 	int timeSinceSave;
 	BOOL _flatMode;
 }
@@ -74,6 +85,8 @@
 - (IBAction)clickedFlatMode:(id)sender;
 - (IBAction)okClicked:(id) sender;
 - (IBAction)cancelClicked:(id) sender;
+- (IBAction)clickedFilterDateOk:(id) sender;
+- (IBAction)clickedFilterDateCancel:(id) sender;
 
 - (void) timerFunc: (NSTimer *) timer;
 - (void) stopTimer:(NSDate*)endTime;
