@@ -1,7 +1,12 @@
 {
     IBClasses = (
         {
-            ACTIONS = {actionExport = id; clickedAddProject = id; clickedAddTask = id; }; 
+            ACTIONS = {
+                actionExport = id; 
+                clickedAddProject = id; 
+                clickedAddTask = id; 
+                clickedDelete = id; 
+            }; 
             CLASS = FirstResponder; 
             LANGUAGE = ObjC; 
             SUPERCLASS = NSObject; 
