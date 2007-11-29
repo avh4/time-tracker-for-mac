@@ -198,6 +198,52 @@
 	timeSinceSave = 0;
 }
 
+- (NSData *)dataOfType:(NSString *)aType error:(NSError **)outError
+{
+
+	NSMutableData* data = [[NSMutableData alloc] init];
+	[data autorelease];
+    // Insert code here to write your document from the given data.
+	// You can also choose to override -writeToURL:ofType:error:, -fileWrapperOfType:error:, 
+	// or -writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
+	
+	// Write the CSV column headers
+	[data appendData:[@"Date,Start time,End time,Duration,Project,Task\n" dataUsingEncoding:NSASCIIStringEncoding]];
+
+	NSEnumerator *proje = [_projects objectEnumerator];
+	TProject *proj;
+	while ( proj = [proje nextObject] )
+	{
+		NSEnumerator *taske = [[proj tasks] objectEnumerator];
+		TTask *task;
+		while (task = [taske nextObject])
+		{
+			NSEnumerator *wpe = [[task workPeriods] objectEnumerator];
+			TWorkPeriod *wp;
+			while (wp = [wpe nextObject])
+			{
+				[data appendData:[@"2007-11-01" dataUsingEncoding:NSASCIIStringEncoding]];
+				[data appendData:[@"," dataUsingEncoding:NSASCIIStringEncoding]];
+				[data appendData:[@"16:03" dataUsingEncoding:NSASCIIStringEncoding]];
+				[data appendData:[@"," dataUsingEncoding:NSASCIIStringEncoding]];
+				[data appendData:[@"16:09" dataUsingEncoding:NSASCIIStringEncoding]];
+				
+				[data appendData:[@"," dataUsingEncoding:NSASCIIStringEncoding]];
+				[data appendData:[[NSString stringWithFormat:@"%d", [wp totalTime]] dataUsingEncoding:NSASCIIStringEncoding]];
+				[data appendData:[@"," dataUsingEncoding:NSASCIIStringEncoding]];
+				
+				[data appendData:[[proj name] dataUsingEncoding:NSASCIIStringEncoding]];
+				[data appendData:[@"," dataUsingEncoding:NSASCIIStringEncoding]];
+				[data appendData:[[task name] dataUsingEncoding:NSASCIIStringEncoding]];
+				[data appendData:[@"\n" dataUsingEncoding:NSASCIIStringEncoding]];
+			}
+		}
+		
+	}
+
+    return data;
+}
+
 
 /************************************************************************************
  *  Controller Actions
@@ -572,7 +618,10 @@
 	savePanelResult = [sp runModalForDirectory:nil file:@"Time Tracker Data.csv"];
 	
 	if (savePanelResult == NSOKButton) {
-		[[NSString stringWithString:@"CSV File"] writeToFile:[sp filename] atomically:YES];
+		NSError **err;
+		NSData *data = [[self dataOfType:@"CSV" error:err] retain];
+		[data writeToFile:[sp filename] atomically:YES];
+		[data release];
 	}
 }
 
