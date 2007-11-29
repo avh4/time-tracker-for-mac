@@ -18,7 +18,17 @@
 
 - (void)showMainWindow:(id)sender
 {
-	[[NSDocumentController sharedDocumentController] newDocument:self];
+	NSDocumentController *dc = [NSDocumentController sharedDocumentController];
+
+	if ( [[dc documents] count] > 0) {
+		// if the window is still open, give it focus
+		NSDocument *doc = [[dc documents] objectAtIndex:0];
+		NSWindowController *wc = [[doc windowControllers] objectAtIndex:0];
+		[[wc window] makeKeyAndOrderFront:self];
+	} else {
+		// if there are no windows open, create a new one
+		[dc newDocument:self];
+	}
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
