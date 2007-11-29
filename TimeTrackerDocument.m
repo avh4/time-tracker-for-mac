@@ -156,7 +156,6 @@
 
 - (void)windowWillClose:(NSNotification *)notification
 {
-	NSLog(@"Window will close");
 	//if ([notification object] == mainWindow)
 	//	[self close];
 	if ([notification object] == panelEditWorkPeriod)
@@ -164,7 +163,6 @@
 }
 
 - (void) close {
-	NSLog(@"Close");
 	if (timer != nil)
 		[self stopTimer];
 	[self saveData];
