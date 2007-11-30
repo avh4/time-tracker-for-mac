@@ -7,3 +7,11 @@ Tracker.  To use this to test the Sparkle updating, edit Info.plist and change
 "SUFeedURL" to point to "timetracker-test.xml" instead of
 "timetracker-stable.xml"
 
+== Using rooSwitch ==
+
+rooSwitch is a commercial application ($15) that makes it easy to save and swap
+application data files.  <http://www.roobasoft.com/rooSwitch/>  The file "Time
+Tracker.rooSwitch" contains some sample TimeTracker data that can be used for
+testing if you have a copy of rooSwitch.  You should make a local copy of the
+rooSwitch file, and open the local copy so that you avoid committing trivial
+changes to the rooSwitch file.
