@@ -62,6 +62,10 @@
 				<string>NSDatePicker</string>
 				<key>dtpFilterDate</key>
 				<string>NSDatePicker</string>
+				<key>filterEndDate</key>
+				<string>NSDate</string>
+				<key>filterStartDate</key>
+				<string>NSDate</string>
 				<key>flatModeMenuItem</key>
 				<string>NSMenuItem</string>
 				<key>mainWindow</key>

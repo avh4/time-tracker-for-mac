@@ -383,8 +383,23 @@
 
 - (void)sheetDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
 {
-	if (returnCode == NSOKButton) {
-		[self clickedChangeWorkPeriod: nil];
+	if (sheet == panelPickFilterDate) {
+		NSLog(@"sheetDidEnd Before release _filterDate");
+		[_filterDate release];
+		_filterDate = nil;
+		if (returnCode == NSOKButton) {			
+			NSLog(@"updatgin filter date");
+			_filterDate = [[dtpFilterDate dateValue] retain];
+			[_tbPickDateItem setLabel:[_filterDate description]];
+		} else {
+			[_tbPickDateItem setLabel:@"Pick Date"];
+			[workPeriodController setFilterPredicate:nil];
+		}
+		NSLog(@"done endsheet");
+	} else {
+		if (returnCode == NSOKButton) {
+			[self clickedChangeWorkPeriod: nil];
+		}
 	}
 	// hide the window
 	[sheet orderOut:nil];
@@ -706,19 +721,58 @@
 	[tvTasks editColumn:[tvTasks columnWithIdentifier:@"TaskName"] row:index withEvent:nil select:YES];
 }
 
+-(NSDate*) determineFilterStartDate 
+{
+	if (_filterDate == nil) 
+	{
+		return nil;
+	}
+	[filterStartDate release];
+	filterStartDate = nil;
+	NSCalendar *cal = [NSCalendar currentCalendar];
+	NSDateComponents *comps = [cal components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:_filterDate];
+	filterStartDate = [[cal dateFromComponents:comps] retain];
+	return filterStartDate;
+}
+
 - (IBAction)clickedFilterDay:(id)sender 
 {
 	NSLog(@"Day filter clicked");
+	[self determineFilterStartDate];
+	filterEndDate = [[[NSDate alloc] initWithTimeInterval:60*60*24 sinceDate:filterStartDate] autorelease];
+	NSLog(@"startTime >= %@ AND endTime <= %@", filterStartDate, filterEndDate);
+	NSPredicate *pred = [NSPredicate predicateWithFormat:@"startTime >= %@ AND endTime <= %@", filterStartDate, filterEndDate];
+	[workPeriodController setFilterPredicate:pred];
+	NSLog(@"day filter done");
 }
 
 - (IBAction)clickedFilterWeek:(id)sender 
 {
-	NSLog(@"Day filter clicked");
+	NSLog(@"week filter clicked %@", _filterDate);
+	[self determineFilterStartDate];
+	NSDateComponents *comps = [[[NSDateComponents alloc] init] autorelease];
+	[comps setWeek:1];
+	filterEndDate = [[[NSCalendar currentCalendar] dateByAddingComponents:comps toDate:filterStartDate options:0] retain];
+	NSLog(@"startTime >= %@ AND endTime <= %@", filterStartDate, filterEndDate);
+	NSLog(@"objects %@", [workPeriodController content]);
+	NSPredicate *pred = [NSPredicate predicateWithFormat:@"startTime >= %@ AND endTime <= %@", filterStartDate, filterEndDate];
+	NSLog(@"afterobjects %@", [workPeriodController content]);
+	[workPeriodController setFilterPredicate:pred];
+	NSLog(@"Week filter done");
 }
 
 - (IBAction)clickedFilterMonth:(id)sender 
 {
-	NSLog(@"Day filter clicked");
+	NSLog(@"Month filter clicked %@", _filterDate);
+	[self determineFilterStartDate];
+	NSDateComponents *comps = [[[NSDateComponents alloc] init] autorelease];
+	[comps setMonth:1];
+	filterEndDate = [[NSCalendar currentCalendar] dateByAddingComponents:comps toDate:filterStartDate options:0];
+	NSLog(@"startTime >= %@ AND endTime <= %@", filterStartDate, filterEndDate);
+	NSPredicate *pred = [NSPredicate predicateWithFormat:@"startTime >= %@ AND endTime <= %@", filterStartDate, filterEndDate];
+	[workPeriodController setFilterPredicate:pred];
+	NSLog(@"month filter done");
+
 }
 
 - (IBAction)clickedFilterPickDate:(id)sender 
@@ -733,15 +787,10 @@
 - (IBAction)clickedFilterDateOk:(id) sender
 {
 	[NSApp endSheet:panelPickFilterDate returnCode:NSOKButton];
-	[_filterDate release];
-	_filterDate = [[dtpFilterDate dateValue] retain];
-	[_tbPickDateItem setLabel:[_filterDate description]];
 }
 
 - (IBAction)clickedFilterDateCancel:(id)sender 
 {
-	[_filterDate release];
-	_filterDate = nil;
 	[NSApp endSheet:panelPickFilterDate returnCode:NSCancelButton];
 	[_tbPickDateItem setLabel:@"Pick Date"];
 
@@ -809,6 +858,7 @@
 			// assert _selProject != nil
 			_selTask = [[_selProject tasks] objectAtIndex: [self selectedTaskRow]];
 		}
+		NSLog(@"Updating workperiods...........");
 		[workPeriodController setContent:[_selTask workPeriods]];
 		[tvWorkPeriods reloadData];
 		[self updateProminentDisplay];

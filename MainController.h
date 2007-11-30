@@ -50,6 +50,8 @@
 	IBOutlet NSMenuItem *startMenuItem;
 	IBOutlet NSMenuItem *flatModeMenuItem;
 	IBOutlet NSArrayController *workPeriodController;
+	IBOutlet NSDate *filterStartDate;
+	IBOutlet NSDate *filterEndDate;
 	
 	NSToolbarItem *startstopToolbarItem;
 	
