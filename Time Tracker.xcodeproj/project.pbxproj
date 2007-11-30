@@ -52,6 +52,8 @@
 		B1A90CFF0CFBABB8007455AF /* TimeTrackerDocument.nib in Resources */ = {isa = PBXBuildFile; fileRef = B1A90CFE0CFBABB8007455AF /* TimeTrackerDocument.nib */; };
 		B1AB15830CEBC9A50025CF12 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1AB15820CEBC9A50025CF12 /* Sparkle.framework */; };
 		B1AB159D0CEBC9FC0025CF12 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B1AB15820CEBC9A50025CF12 /* Sparkle.framework */; };
+		B1AD42D50CFFE1CB001E4A49 /* TestTWorkPeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = B1AD42D40CFFE1CB001E4A49 /* TestTWorkPeriod.m */; };
+		B1AD43040CFFE3D3001E4A49 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1AD43030CFFE3D3001E4A49 /* SenTestingKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +134,11 @@
 		B1A90CDD0CFBA852007455AF /* TimeTrackerDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTrackerDocument.m; sourceTree = "<group>"; };
 		B1A90CF70CFBAA81007455AF /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/TimeTrackerDocument.nib; sourceTree = "<group>"; };
 		B1AB15820CEBC9A50025CF12 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		B1AD42BC0CFFE0A8001E4A49 /* Unit Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Unit Tests-Info.plist"; sourceTree = "<group>"; };
+		B1AD42C60CFFE10B001E4A49 /* Unit Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1AD42D30CFFE1CB001E4A49 /* TestTWorkPeriod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTWorkPeriod.h; sourceTree = "<group>"; };
+		B1AD42D40CFFE1CB001E4A49 /* TestTWorkPeriod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTWorkPeriod.m; sourceTree = "<group>"; };
+		B1AD43030CFFE3D3001E4A49 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = /System/Library/Frameworks/SenTestingKit.framework; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +150,14 @@
 				2C4528A70909AACB003C0369 /* Carbon.framework in Frameworks */,
 				2C4528B20909AAE5003C0369 /* IOKit.framework in Frameworks */,
 				B1AB15830CEBC9A50025CF12 /* Sparkle.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1AD42C30CFFE10B001E4A49 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1AD43040CFFE3D3001E4A49 /* SenTestingKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,6 +196,7 @@
 		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B1AD43030CFFE3D3001E4A49 /* SenTestingKit.framework */,
 				2C4528B10909AAE5003C0369 /* IOKit.framework */,
 				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
 				13E42FB307B3F0F600E4EEF1 /* CoreData.framework */,
@@ -193,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				8D1107320486CEB800E47090 /* Time Tracker.app */,
+				B1AD42C60CFFE10B001E4A49 /* Unit Tests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -202,10 +219,12 @@
 			children = (
 				2C9DD7100905824100AA5C6E /* Graphics */,
 				080E96DDFE201D6D7F000001 /* Classes */,
+				B1AD42D60CFFE1D8001E4A49 /* Tests */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				B1AD42BC0CFFE0A8001E4A49 /* Unit Tests-Info.plist */,
 			);
 			name = "Time Tracker";
 			sourceTree = "<group>";
@@ -259,6 +278,15 @@
 			name = Graphics;
 			sourceTree = "<group>";
 		};
+		B1AD42D60CFFE1D8001E4A49 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				B1AD42D30CFFE1CB001E4A49 /* TestTWorkPeriod.h */,
+				B1AD42D40CFFE1CB001E4A49 /* TestTWorkPeriod.m */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -281,6 +309,24 @@
 			productReference = 8D1107320486CEB800E47090 /* Time Tracker.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B1AD42C50CFFE10B001E4A49 /* Unit Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B1AD42C80CFFE110001E4A49 /* Build configuration list for PBXNativeTarget "Unit Tests" */;
+			buildPhases = (
+				B1AD42C10CFFE10B001E4A49 /* Resources */,
+				B1AD42C20CFFE10B001E4A49 /* Sources */,
+				B1AD42C30CFFE10B001E4A49 /* Frameworks */,
+				B1AD42C40CFFE10B001E4A49 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Unit Tests";
+			productName = "Unit Tests";
+			productReference = B1AD42C60CFFE10B001E4A49 /* Unit Tests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -293,6 +339,7 @@
 			targets = (
 				8D1107260486CEB800E47090 /* Time Tracker */,
 				B19BDFB30B5C94F200465046 /* Release Package */,
+				B1AD42C50CFFE10B001E4A49 /* Unit Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -317,7 +364,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B1AD42C10CFFE10B001E4A49 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B1AD42C40CFFE10B001E4A49 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8D11072C0486CEB800E47090 /* Sources */ = {
@@ -331,6 +401,14 @@
 				2C9EC93F0905A9F6000651F2 /* TimeIntervalFormatter.m in Sources */,
 				2C9EC9540905ABAE000651F2 /* TWorkPeriod.m in Sources */,
 				B1A90CDF0CFBA852007455AF /* TimeTrackerDocument.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1AD42C20CFFE10B001E4A49 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1AD42D50CFFE1CB001E4A49 /* TestTWorkPeriod.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,6 +582,96 @@
 			};
 			name = Default;
 		};
+		B1AD42C90CFFE110001E4A49 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(DEVELOPER_FRAMEWORKS_DIR)\"";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "Unit Tests-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "Unit Tests";
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Debug;
+		};
+		B1AD42CA0CFFE110001E4A49 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(DEVELOPER_FRAMEWORKS_DIR)\"";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "Unit Tests-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "Unit Tests";
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		B1AD42CB0CFFE110001E4A49 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(DEVELOPER_FRAMEWORKS_DIR)\"";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "Unit Tests-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "Unit Tests";
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Default;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -533,6 +701,16 @@
 				B19BDFBE0B5C955500465046 /* Debug */,
 				B19BDFBF0B5C955500465046 /* Release */,
 				B19BDFC00B5C955500465046 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		B1AD42C80CFFE110001E4A49 /* Build configuration list for PBXNativeTarget "Unit Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1AD42C90CFFE110001E4A49 /* Debug */,
+				B1AD42CA0CFFE110001E4A49 /* Release */,
+				B1AD42CB0CFFE110001E4A49 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;
