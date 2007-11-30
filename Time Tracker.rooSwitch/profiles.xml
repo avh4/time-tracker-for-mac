@@ -1,0 +1,494 @@
+<?xml version="1.0"?>
+<!DOCTYPE database SYSTEM "file:///System/Library/DTDs/CoreData.dtd">
+
+<database>
+    <databaseInfo>
+        <version>134481920</version>
+        <UUID>C31B28C0-7400-40A1-83FC-1DF6622AB5E0</UUID>
+        <nextObjectID>175</nextObjectID>
+        <metadata></metadata>
+    </databaseInfo>
+    <object type="LOGENTRY" id="z107">
+        <attribute name="date" type="date">218100971.90509000420570373535</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Application Support/Time Tracker' to '/Users/avh4/Library/Application Support/rooSwitch/Time Tracker-1.rooSwitch/1196408168.876542/Application Support_Time Tracker.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z110"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z108">
+        <attribute name="date" type="date">218100971.90853300690650939941</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Preferences/com.slooz.timetracker.plist' to '/Users/avh4/Library/Application Support/rooSwitch/Time Tracker-1.rooSwitch/1196408168.876542/Preferences_com.slooz.timetracker.plist.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z110"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z109">
+        <attribute name="date" type="date">218100971.90429300069808959961</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Caches/Time Tracker' to '/Users/avh4/Library/Application Support/rooSwitch/Time Tracker-1.rooSwitch/1196408168.876542/Caches_Time Tracker.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z110"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z110">
+        <attribute name="date" type="date">218100968.92549499869346618652</attribute>
+        <attribute name="details" type="string">Initial copy for application 'Time Tracker'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY" idrefs="z107 z108 z109"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z116">
+        <attribute name="date" type="date">218100984.04230099916458129883</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Application Support/rooSwitch/Time Tracker-1.rooSwitch/1196408180.214924/Caches_Time Tracker' to '/Users/avh4/Library/Caches/Time Tracker.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z115"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z117">
+        <attribute name="date" type="date">218100984.04125699400901794434</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Caches/Time Tracker' to '/Users/avh4/Library/Application Support/rooSwitch/Time Tracker-1.rooSwitch/1196408168.876542/Caches_Time Tracker.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z115"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z118">
+        <attribute name="date" type="date">218100984.04067799448966979980</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Preferences/com.slooz.timetracker.plist' to '/Users/avh4/Library/Application Support/rooSwitch/Time Tracker-1.rooSwitch/1196408168.876542/Preferences_com.slooz.timetracker.plist.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z115"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z119">
+        <attribute name="date" type="date">218100984.04551601409912109375</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Application Support/rooSwitch/Time Tracker-1.rooSwitch/1196408180.214924/Preferences_com.slooz.timetracker.plist' to '/Users/avh4/Library/Preferences/com.slooz.timetracker.plist.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z115"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z120">
+        <attribute name="date" type="date">218100984.04181599617004394531</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Application Support/Time Tracker' to '/Users/avh4/Library/Application Support/rooSwitch/Time Tracker-1.rooSwitch/1196408168.876542/Application Support_Time Tracker.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z115"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z121">
+        <attribute name="date" type="date">218100984.04276400804519653320</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Application Support/rooSwitch/Time Tracker-1.rooSwitch/1196408180.214924/Application Support_Time Tracker' to '/Users/avh4/Library/Application Support/Time Tracker.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z115"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z115">
+        <attribute name="date" type="date">218100982.55801400542259216309</attribute>
+        <attribute name="details" type="string">Switching to profile, 'Untitled', from 'default'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY" idrefs="z120 z117 z116 z121 z119 z118"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z123">
+        <attribute name="date" type="date">218101049.37647500634193420410</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Application Support/Time Tracker' to '/Users/avh4/Library/Application Support/rooSwitch/Time Tracker-1.rooSwitch/1196408180.214924/Application Support_Time Tracker.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z122"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z124">
+        <attribute name="date" type="date">218101049.36492899060249328613</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Caches/Time Tracker' to '/Users/avh4/Library/Application Support/rooSwitch/Time Tracker-1.rooSwitch/1196408180.214924/Caches_Time Tracker.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z122"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z125">
+        <attribute name="date" type="date">218101049.37838399410247802734</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Application Support/rooSwitch/Time Tracker-1.rooSwitch/1196408168.876542/Preferences_com.slooz.timetracker.plist' to '/Users/avh4/Library/Preferences/com.slooz.timetracker.plist.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z122"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z126">
+        <attribute name="date" type="date">218101049.37902700901031494141</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Application Support/rooSwitch/Time Tracker-1.rooSwitch/1196408168.876542/Caches_Time Tracker' to '/Users/avh4/Library/Caches/Time Tracker.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z122"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z127">
+        <attribute name="date" type="date">218101049.37706899642944335938</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Preferences/com.slooz.timetracker.plist' to '/Users/avh4/Library/Application Support/rooSwitch/Time Tracker-1.rooSwitch/1196408180.214924/Preferences_com.slooz.timetracker.plist.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z122"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z128">
+        <attribute name="date" type="date">218101049.37953001260757446289</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Application Support/rooSwitch/Time Tracker-1.rooSwitch/1196408168.876542/Application Support_Time Tracker' to '/Users/avh4/Library/Application Support/Time Tracker.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z122"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z122">
+        <attribute name="date" type="date">218101047.62215000391006469727</attribute>
+        <attribute name="details" type="string">Switching to profile, 'default', from 'Untitled'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY" idrefs="z124 z123 z125 z126 z128 z127"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z130">
+        <attribute name="date" type="date">218101072.31714901328086853027</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Application Support/rooSwitch/Time Tracker-1.rooSwitch/1196408180.214924/Preferences_com.slooz.timetracker.plist' to '/Users/avh4/Library/Preferences/com.slooz.timetracker.plist.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z129"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z131">
+        <attribute name="date" type="date">218101072.29183900356292724609</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Application Support/Time Tracker' to '/Users/avh4/Library/Application Support/rooSwitch/Time Tracker-1.rooSwitch/1196408168.876542/Application Support_Time Tracker.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z129"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z132">
+        <attribute name="date" type="date">218101072.25928699970245361328</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Preferences/com.slooz.timetracker.plist' to '/Users/avh4/Library/Application Support/rooSwitch/Time Tracker-1.rooSwitch/1196408168.876542/Preferences_com.slooz.timetracker.plist.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z129"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z133">
+        <attribute name="date" type="date">218101072.31502300500869750977</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Application Support/rooSwitch/Time Tracker-1.rooSwitch/1196408180.214924/Caches_Time Tracker' to '/Users/avh4/Library/Caches/Time Tracker.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z129"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z134">
+        <attribute name="date" type="date">218101072.31548300385475158691</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Application Support/rooSwitch/Time Tracker-1.rooSwitch/1196408180.214924/Application Support_Time Tracker' to '/Users/avh4/Library/Application Support/Time Tracker.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z129"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z135">
+        <attribute name="date" type="date">218101072.29129999876022338867</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Caches/Time Tracker' to '/Users/avh4/Library/Application Support/rooSwitch/Time Tracker-1.rooSwitch/1196408168.876542/Caches_Time Tracker.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z129"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z129">
+        <attribute name="date" type="date">218101070.75860300660133361816</attribute>
+        <attribute name="details" type="string">Switching to profile, 'Untitled', from 'default'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY" idrefs="z135 z131 z134 z133 z132 z130"></relationship>
+    </object>
+    <object type="FILE" id="z111">
+        <attribute name="isdeletedfile" type="bool">0</attribute>
+        <attribute name="path" type="string">~/Library/Application Support/Time Tracker</attribute>
+        <attribute name="storedpath" type="string">Application Support_Time Tracker</attribute>
+        <relationship name="application" type="1/1" destination="APPLICATION" idrefs="z106"></relationship>
+        <relationship name="profile" type="1/1" destination="PROFILE" idrefs="z112"></relationship>
+    </object>
+    <object type="FILE" id="z113">
+        <attribute name="isdeletedfile" type="bool">0</attribute>
+        <attribute name="path" type="string">~/Library/Caches/Time Tracker</attribute>
+        <attribute name="storedpath" type="string">Caches_Time Tracker</attribute>
+        <relationship name="application" type="1/1" destination="APPLICATION" idrefs="z106"></relationship>
+        <relationship name="profile" type="1/1" destination="PROFILE" idrefs="z112"></relationship>
+    </object>
+    <object type="FILE" id="z114">
+        <attribute name="isdeletedfile" type="bool">0</attribute>
+        <attribute name="path" type="string">~/Library/Preferences/com.slooz.timetracker.plist</attribute>
+        <attribute name="storedpath" type="string">Preferences_com.slooz.timetracker.plist</attribute>
+        <relationship name="application" type="1/1" destination="APPLICATION" idrefs="z106"></relationship>
+        <relationship name="profile" type="1/1" destination="PROFILE" idrefs="z112"></relationship>
+    </object>
+    <object type="FILE" id="z103">
+        <attribute name="isdeletedfile" type="bool">0</attribute>
+        <attribute name="path" type="string">~/Library/Preferences/com.slooz.timetracker.plist</attribute>
+        <attribute name="storedpath" type="string">Preferences_com.slooz.timetracker.plist</attribute>
+        <relationship name="application" type="1/1" destination="APPLICATION" idrefs="z106"></relationship>
+        <relationship name="profile" type="1/1" destination="PROFILE" idrefs="z105"></relationship>
+    </object>
+    <object type="FILE" id="z104">
+        <attribute name="isdeletedfile" type="bool">0</attribute>
+        <attribute name="path" type="string">~/Library/Application Support/Time Tracker</attribute>
+        <attribute name="storedpath" type="string">Application Support_Time Tracker</attribute>
+        <relationship name="application" type="1/1" destination="APPLICATION" idrefs="z106"></relationship>
+        <relationship name="profile" type="1/1" destination="PROFILE" idrefs="z105"></relationship>
+    </object>
+    <object type="FILE" id="z102">
+        <attribute name="isdeletedfile" type="bool">0</attribute>
+        <attribute name="path" type="string">~/Library/Caches/Time Tracker</attribute>
+        <attribute name="storedpath" type="string">Caches_Time Tracker</attribute>
+        <relationship name="application" type="1/1" destination="APPLICATION" idrefs="z106"></relationship>
+        <relationship name="profile" type="1/1" destination="PROFILE" idrefs="z105"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z136">
+        <attribute name="date" type="date">218101125.98568901419639587402</attribute>
+        <attribute name="details" type="string">Copying profile, 'default', to a new profile named 'default copy'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY" idrefs="z138 z142 z139"></relationship>
+    </object>
+    <object type="FILE" id="z137">
+        <attribute name="isdeletedfile" type="bool">0</attribute>
+        <attribute name="path" type="string">~/Library/Application Support/Time Tracker</attribute>
+        <attribute name="storedpath" type="string">Application Support_Time Tracker</attribute>
+        <relationship name="application" type="1/1" destination="APPLICATION" idrefs="z106"></relationship>
+        <relationship name="profile" type="1/1" destination="PROFILE" idrefs="z140"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z138">
+        <attribute name="date" type="date">218101128.65988299250602722168</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Application Support/rooSwitch/Time Tracker-1.rooSwitch/1196408168.876542/Caches_Time Tracker' to '/Users/avh4/Library/Application Support/rooSwitch/Time Tracker-1.rooSwitch/1196408325.824559/Caches_Time Tracker.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z136"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z139">
+        <attribute name="date" type="date">218101128.60933199524879455566</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Application Support/rooSwitch/Time Tracker-1.rooSwitch/1196408168.876542/Preferences_com.slooz.timetracker.plist' to '/Users/avh4/Library/Application Support/rooSwitch/Time Tracker-1.rooSwitch/1196408325.824559/Preferences_com.slooz.timetracker.plist.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z136"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z142">
+        <attribute name="date" type="date">218101128.66042700409889221191</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Application Support/rooSwitch/Time Tracker-1.rooSwitch/1196408168.876542/Application Support_Time Tracker' to '/Users/avh4/Library/Application Support/rooSwitch/Time Tracker-1.rooSwitch/1196408325.824559/Application Support_Time Tracker.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z136"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="FILE" id="z141">
+        <attribute name="isdeletedfile" type="bool">0</attribute>
+        <attribute name="path" type="string">~/Library/Caches/Time Tracker</attribute>
+        <attribute name="storedpath" type="string">Caches_Time Tracker</attribute>
+        <relationship name="application" type="1/1" destination="APPLICATION" idrefs="z106"></relationship>
+        <relationship name="profile" type="1/1" destination="PROFILE" idrefs="z140"></relationship>
+    </object>
+    <object type="FILE" id="z143">
+        <attribute name="isdeletedfile" type="bool">0</attribute>
+        <attribute name="path" type="string">~/Library/Preferences/com.slooz.timetracker.plist</attribute>
+        <attribute name="storedpath" type="string">Preferences_com.slooz.timetracker.plist</attribute>
+        <relationship name="application" type="1/1" destination="APPLICATION" idrefs="z106"></relationship>
+        <relationship name="profile" type="1/1" destination="PROFILE" idrefs="z140"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z145">
+        <attribute name="date" type="date">218101160.44210699200630187988</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Caches/Time Tracker' to '/Users/avh4/Library/Application Support/rooSwitch/Time Tracker-1.rooSwitch/1196408180.214924/Caches_Time Tracker.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z144"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z146">
+        <attribute name="date" type="date">218101160.44766798615455627441</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Preferences/com.slooz.timetracker.plist' to '/Users/avh4/Library/Application Support/rooSwitch/Time Tracker-1.rooSwitch/1196408180.214924/Preferences_com.slooz.timetracker.plist.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z144"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z147">
+        <attribute name="date" type="date">218101160.47992900013923645020</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Application Support/rooSwitch/Time Tracker-1.rooSwitch/1196408168.876542/Application Support_Time Tracker' to '/Users/avh4/Library/Application Support/Time Tracker.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z144"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z148">
+        <attribute name="date" type="date">218101160.45823100209236145020</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Application Support/rooSwitch/Time Tracker-1.rooSwitch/1196408168.876542/Preferences_com.slooz.timetracker.plist' to '/Users/avh4/Library/Preferences/com.slooz.timetracker.plist.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z144"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z149">
+        <attribute name="date" type="date">218101160.44715899229049682617</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Application Support/Time Tracker' to '/Users/avh4/Library/Application Support/rooSwitch/Time Tracker-1.rooSwitch/1196408180.214924/Application Support_Time Tracker.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z144"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z150">
+        <attribute name="date" type="date">218101160.47938698530197143555</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Application Support/rooSwitch/Time Tracker-1.rooSwitch/1196408168.876542/Caches_Time Tracker' to '/Users/avh4/Library/Caches/Time Tracker.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z144"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z144">
+        <attribute name="date" type="date">218101158.75796398520469665527</attribute>
+        <attribute name="details" type="string">Switching to profile, 'default', from 'Blank'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY" idrefs="z145 z149 z146 z147 z148 z150"></relationship>
+    </object>
+    <object type="APPLICATION" id="z106">
+        <attribute name="bundleid" type="string">com.slooz.timetracker</attribute>
+        <attribute name="iconpath" type="string">/Applications/Time Tracker.app/Contents/Resources/Icon.icns</attribute>
+        <attribute name="isdefaultvalues" type="bool">0</attribute>
+        <attribute name="issystempreference" type="bool">0</attribute>
+        <attribute name="launchafterswitch" type="bool">0</attribute>
+        <attribute name="movefiles" type="bool">0</attribute>
+        <attribute name="name" type="string">Time Tracker</attribute>
+        <attribute name="path" type="string">/Applications/Time Tracker.app</attribute>
+        <attribute name="prompttoquit" type="bool">1</attribute>
+        <attribute name="rooswitchpath" type="string">/Users/avh4/Projects/+time-tracker-mac/git-svn/Time Tracker.rooSwitch</attribute>
+        <relationship name="files" type="0/0" destination="FILE" idrefs="z137 z152 z111 z141 z104 z143 z154 z103 z102 z153 z114 z113"></relationship>
+        <relationship name="profiles" type="0/0" destination="PROFILE" idrefs="z105 z112 z140 z151"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z156">
+        <attribute name="date" type="date">218103200.79893401265144348145</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Projects/+time-tracker-mac/git-svn/Time Tracker.rooSwitch/1196410398.974956/Caches_Time Tracker' to '/Users/avh4/Library/Caches/Time Tracker.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z155"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z157">
+        <attribute name="date" type="date">218103200.79701599478721618652</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Projects/+time-tracker-mac/git-svn/Time Tracker.rooSwitch/1196410398.974956/Preferences_com.slooz.timetracker.plist' to '/Users/avh4/Library/Preferences/com.slooz.timetracker.plist.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z155"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z158">
+        <attribute name="date" type="date">218103200.73494198918342590332</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Preferences/com.slooz.timetracker.plist' to '/Users/avh4/Projects/+time-tracker-mac/git-svn/Time Tracker.rooSwitch/1196408168.876542/Preferences_com.slooz.timetracker.plist.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z155"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z159">
+        <attribute name="date" type="date">218103200.79756599664688110352</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Projects/+time-tracker-mac/git-svn/Time Tracker.rooSwitch/1196410398.974956/Application Support_Time Tracker' to '/Users/avh4/Library/Application Support/Time Tracker.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z155"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z160">
+        <attribute name="date" type="date">218103200.73273301124572753906</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Caches/Time Tracker' to '/Users/avh4/Projects/+time-tracker-mac/git-svn/Time Tracker.rooSwitch/1196408168.876542/Caches_Time Tracker.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z155"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z161">
+        <attribute name="date" type="date">218103200.73342201113700866699</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Application Support/Time Tracker' to '/Users/avh4/Projects/+time-tracker-mac/git-svn/Time Tracker.rooSwitch/1196408168.876542/Application Support_Time Tracker.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z155"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z155">
+        <attribute name="date" type="date">218103200.66836100816726684570</attribute>
+        <attribute name="details" type="string">Switching to profile, 'Untitled', from 'default'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY" idrefs="z161 z158 z159 z156 z157 z160"></relationship>
+    </object>
+    <object type="FILE" id="z152">
+        <attribute name="isdeletedfile" type="bool">0</attribute>
+        <attribute name="path" type="string">~/Library/Preferences/com.slooz.timetracker.plist</attribute>
+        <attribute name="storedpath" type="string">Preferences_com.slooz.timetracker.plist</attribute>
+        <relationship name="application" type="1/1" destination="APPLICATION" idrefs="z106"></relationship>
+        <relationship name="profile" type="1/1" destination="PROFILE" idrefs="z151"></relationship>
+    </object>
+    <object type="FILE" id="z153">
+        <attribute name="isdeletedfile" type="bool">0</attribute>
+        <attribute name="path" type="string">~/Library/Application Support/Time Tracker</attribute>
+        <attribute name="storedpath" type="string">Application Support_Time Tracker</attribute>
+        <relationship name="application" type="1/1" destination="APPLICATION" idrefs="z106"></relationship>
+        <relationship name="profile" type="1/1" destination="PROFILE" idrefs="z151"></relationship>
+    </object>
+    <object type="FILE" id="z154">
+        <attribute name="isdeletedfile" type="bool">0</attribute>
+        <attribute name="path" type="string">~/Library/Caches/Time Tracker</attribute>
+        <attribute name="storedpath" type="string">Caches_Time Tracker</attribute>
+        <relationship name="application" type="1/1" destination="APPLICATION" idrefs="z106"></relationship>
+        <relationship name="profile" type="1/1" destination="PROFILE" idrefs="z151"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z163">
+        <attribute name="date" type="date">218103706.48851698637008666992</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Application Support/Time Tracker' to '/Users/avh4/Projects/+time-tracker-mac/git-svn/Time Tracker.rooSwitch/1196410398.974956/Application Support_Time Tracker.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z162"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z164">
+        <attribute name="date" type="date">218103706.47631999850273132324</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Preferences/com.slooz.timetracker.plist' to '/Users/avh4/Projects/+time-tracker-mac/git-svn/Time Tracker.rooSwitch/1196410398.974956/Preferences_com.slooz.timetracker.plist.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z162"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z165">
+        <attribute name="date" type="date">218103706.48966598510742187500</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Projects/+time-tracker-mac/git-svn/Time Tracker.rooSwitch/1196408180.214924/Caches_Time Tracker' to '/Users/avh4/Library/Caches/Time Tracker.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z162"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z166">
+        <attribute name="date" type="date">218103706.49068498611450195312</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Projects/+time-tracker-mac/git-svn/Time Tracker.rooSwitch/1196408180.214924/Preferences_com.slooz.timetracker.plist' to '/Users/avh4/Library/Preferences/com.slooz.timetracker.plist.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z162"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z167">
+        <attribute name="date" type="date">218103706.48915898799896240234</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Caches/Time Tracker' to '/Users/avh4/Projects/+time-tracker-mac/git-svn/Time Tracker.rooSwitch/1196410398.974956/Caches_Time Tracker.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z162"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z168">
+        <attribute name="date" type="date">218103706.49017199873924255371</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Projects/+time-tracker-mac/git-svn/Time Tracker.rooSwitch/1196408180.214924/Application Support_Time Tracker' to '/Users/avh4/Library/Application Support/Time Tracker.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z162"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z162">
+        <attribute name="date" type="date">218103706.23677799105644226074</attribute>
+        <attribute name="details" type="string">Switching to profile, 'Blank', from 'Untitled'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY" idrefs="z165 z164 z166 z168 z167 z163"></relationship>
+    </object>
+    <object type="PROFILE" id="z140">
+        <attribute name="canberestored" type="bool">1</attribute>
+        <attribute name="createdate" type="date">218101125.82300901412963867188</attribute>
+        <attribute name="isactive" type="bool">0</attribute>
+        <attribute name="isdeletedprofile" type="bool">0</attribute>
+        <attribute name="name" type="string">default copy</attribute>
+        <attribute name="storedpath" type="string">1196408325.824559</attribute>
+        <relationship name="application" type="1/1" destination="APPLICATION" idrefs="z106"></relationship>
+        <relationship name="files" type="0/0" destination="FILE" idrefs="z141 z143 z137"></relationship>
+    </object>
+    <object type="PROFILE" id="z105">
+        <attribute name="canberestored" type="bool">1</attribute>
+        <attribute name="createdate" type="date">218100968.87787100672721862793</attribute>
+        <attribute name="isactive" type="bool">0</attribute>
+        <attribute name="isdeletedprofile" type="bool">0</attribute>
+        <attribute name="lastactivateddate" type="date">218101160.48305898904800415039</attribute>
+        <attribute name="name" type="string">default</attribute>
+        <attribute name="storedpath" type="string">1196408168.876542</attribute>
+        <relationship name="application" type="1/1" destination="APPLICATION" idrefs="z106"></relationship>
+        <relationship name="files" type="0/0" destination="FILE" idrefs="z102 z104 z103"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z170">
+        <attribute name="date" type="date">218103708.04802399873733520508</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Application Support/Time Tracker' to '/Users/avh4/Projects/+time-tracker-mac/git-svn/Time Tracker.rooSwitch/1196408180.214924/Application Support_Time Tracker.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z169"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z171">
+        <attribute name="date" type="date">218103708.05020999908447265625</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Projects/+time-tracker-mac/git-svn/Time Tracker.rooSwitch/1196410398.974956/Caches_Time Tracker' to '/Users/avh4/Library/Caches/Time Tracker.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z169"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z172">
+        <attribute name="date" type="date">218103708.04865300655364990234</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Preferences/com.slooz.timetracker.plist' to '/Users/avh4/Projects/+time-tracker-mac/git-svn/Time Tracker.rooSwitch/1196408180.214924/Preferences_com.slooz.timetracker.plist.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z169"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z173">
+        <attribute name="date" type="date">218103708.04967999458312988281</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Projects/+time-tracker-mac/git-svn/Time Tracker.rooSwitch/1196410398.974956/Application Support_Time Tracker' to '/Users/avh4/Library/Application Support/Time Tracker.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z169"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z174">
+        <attribute name="date" type="date">218103708.03682601451873779297</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Library/Caches/Time Tracker' to '/Users/avh4/Projects/+time-tracker-mac/git-svn/Time Tracker.rooSwitch/1196408180.214924/Caches_Time Tracker.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z169"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z175">
+        <attribute name="date" type="date">218103708.04917299747467041016</attribute>
+        <attribute name="details" type="string">Copied file '/Users/avh4/Projects/+time-tracker-mac/git-svn/Time Tracker.rooSwitch/1196410398.974956/Preferences_com.slooz.timetracker.plist' to '/Users/avh4/Library/Preferences/com.slooz.timetracker.plist.rooSwitching_'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY" idrefs="z169"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY"></relationship>
+    </object>
+    <object type="PROFILE" id="z151">
+        <attribute name="canberestored" type="bool">1</attribute>
+        <attribute name="createdate" type="date">218103198.97332799434661865234</attribute>
+        <attribute name="isactive" type="bool">1</attribute>
+        <attribute name="isdeletedprofile" type="bool">0</attribute>
+        <attribute name="lastactivateddate" type="date">218103708.05314698815345764160</attribute>
+        <attribute name="name" type="string">Untitled</attribute>
+        <attribute name="storedpath" type="string">1196410398.974956</attribute>
+        <relationship name="application" type="1/1" destination="APPLICATION" idrefs="z106"></relationship>
+        <relationship name="files" type="0/0" destination="FILE" idrefs="z152 z153 z154"></relationship>
+    </object>
+    <object type="PROFILE" id="z112">
+        <attribute name="canberestored" type="bool">1</attribute>
+        <attribute name="createdate" type="date">218100980.21357700228691101074</attribute>
+        <attribute name="isactive" type="bool">0</attribute>
+        <attribute name="isdeletedprofile" type="bool">0</attribute>
+        <attribute name="lastactivateddate" type="date">218103706.49388200044631958008</attribute>
+        <attribute name="name" type="string">Blank</attribute>
+        <attribute name="storedpath" type="string">1196408180.214924</attribute>
+        <relationship name="application" type="1/1" destination="APPLICATION" idrefs="z106"></relationship>
+        <relationship name="files" type="0/0" destination="FILE" idrefs="z113 z111 z114"></relationship>
+    </object>
+    <object type="LOGENTRY" id="z169">
+        <attribute name="date" type="date">218103708.01197800040245056152</attribute>
+        <attribute name="details" type="string">Switching to profile, 'Untitled', from 'Blank'</attribute>
+        <relationship name="parent" type="1/1" destination="LOGENTRY"></relationship>
+        <relationship name="children" type="0/0" destination="LOGENTRY" idrefs="z172 z173 z175 z174 z171 z170"></relationship>
+    </object>
+</database>
