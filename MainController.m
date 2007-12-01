@@ -54,7 +54,8 @@
 
 - (int)selectedWorkPeriodRow
 {
-	return [tvWorkPeriods selectedRow];
+	
+	return [workPeriodController selectionIndex];
 }
 
 
@@ -368,7 +369,8 @@
 
 - (TWorkPeriod*) selectedWorkPeriod 
 {
-	return [self workPeriodAtIndex:[self selectedWorkPeriodRow]];
+	return [[workPeriodController arrangedObjects] objectAtIndex:[tvWorkPeriods selectedRow]];
+//	return [self workPeriodAtIndex:[self selectedWorkPeriodRow]];
 }
 
 - (IBAction)okClicked:(id) sender
