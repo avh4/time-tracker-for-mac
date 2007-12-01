@@ -41,8 +41,6 @@
 				<string>id</string>
 				<key>clickedFilterDateOk</key>
 				<string>id</string>
-				<key>clickedFlatMode</key>
-				<string>id</string>
 				<key>clickedStartStopTimer</key>
 				<string>id</string>
 				<key>okClicked</key>
@@ -66,8 +64,6 @@
 				<string>NSDate</string>
 				<key>filterStartDate</key>
 				<string>NSDate</string>
-				<key>flatModeMenuItem</key>
-				<string>NSMenuItem</string>
 				<key>mainWindow</key>
 				<string>NSWindow</string>
 				<key>panelEditWorkPeriod</key>
