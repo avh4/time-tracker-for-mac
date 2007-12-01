@@ -55,6 +55,31 @@
 	}
 }
 
+- (NSMutableArray *) matchingTasks:(NSPredicate*) filter
+{
+	NSMutableArray *result = [[[NSMutableArray alloc] init] autorelease];
+	// this needs to be performance tuned but it does the job for now
+	NSEnumerator *enumTasks = [_tasks objectEnumerator];
+	id task;
+	while ((task = [enumTasks nextObject]) != nil) {
+		if ([[task matchingWorkPeriods:filter] count] > 0) {
+			[result addObject:task];
+		}
+	}
+	return result;
+}
+
+- (int) filteredTime:(NSPredicate*) filter
+{
+	int result = 0;
+	NSEnumerator *enumTasks = [_tasks objectEnumerator];
+	id task;
+	while ((task = [enumTasks nextObject]) != nil) {
+		result += [task filteredTime:filter];
+	}
+	return result;
+}
+
 - (void)encodeWithCoder:(NSCoder *)coder
 {
     //[super encodeWithCoder:coder];

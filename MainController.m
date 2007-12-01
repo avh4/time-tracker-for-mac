@@ -59,12 +59,6 @@
 }
 
 
-- (void)applyFlatMode:(bool) flatMode {
-	_flatMode = flatMode;
-	[[[tvWorkPeriods tableColumns] objectAtIndex:4] setHidden:!flatMode];
-	[tvWorkPeriods reloadData];
-}
-
 - (IBAction)clickedStartStopTimer:(id)sender
 {
 	if (timer == nil) {
@@ -76,10 +70,6 @@
 
 
 - (BOOL)validateMenuItem:(NSMenuItem *) anItem {
-	if ([anItem action] == @selector(clickedFlatMode:)) {
-		// todo toggle state in the model / controller
-		[flatModeMenuItem setState: _flatMode? NSOnState : NSOffState];
-	}
 	return YES;
 }
 
@@ -349,21 +339,15 @@
 	[tvWorkPeriods setDoubleAction: @selector(doubleClickWorkPeriod:)];
 	
 	[tvProjects reloadData];
-	BOOL flat = [[NSUserDefaults standardUserDefaults] boolForKey:@"flatMode"];
-	[self applyFlatMode: flat == YES];
 }
 
 - (TWorkPeriod*) workPeriodAtIndex:(int) index
 {
 	TWorkPeriod *wp = nil;
 	
-	if (!_flatMode) {
-		wp = [[_selTask workPeriods] objectAtIndex: index];
-	} else {
-		int result = [self selectedWorkPeriodRow];
-		TTask *task = [self taskForWorkTimeIndex:index timeIndex:&result];
-		wp = [[task workPeriods] objectAtIndex:result];
-	}
+	int result = [self selectedWorkPeriodRow];
+	TTask *task = [self taskForWorkTimeIndex:index timeIndex:&result];
+	wp = [[task workPeriods] objectAtIndex:result];
 	return wp;	
 }
 
@@ -386,18 +370,15 @@
 - (void)sheetDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
 {
 	if (sheet == panelPickFilterDate) {
-		NSLog(@"sheetDidEnd Before release _filterDate");
 		[_filterDate release];
 		_filterDate = nil;
 		if (returnCode == NSOKButton) {			
-			NSLog(@"updatgin filter date");
 			_filterDate = [[dtpFilterDate dateValue] retain];
-			[_tbPickDateItem setLabel:[_filterDate description]];
+			[_tbPickDateItem setLabel:[_dateFormatter stringFromDate:_filterDate]];
 		} else {
 			[_tbPickDateItem setLabel:@"Pick Date"];
 			[workPeriodController setFilterPredicate:nil];
 		}
-		NSLog(@"done endsheet");
 	} else {
 		if (returnCode == NSOKButton) {
 			[self clickedChangeWorkPeriod: nil];
@@ -437,13 +418,6 @@
 	[tvWorkPeriods reloadData];
 	[NSApp stopModal];
 	[panelEditWorkPeriod orderOut: self];
-}
-
-
-- (IBAction)clickedFlatMode:(id)sender;
-{
-	bool flatMode = !_flatMode;
-	[self applyFlatMode:flatMode];
 }
 
 - (void) showIdleNotification
@@ -523,7 +497,6 @@
 {
 	NSData *theData=[NSKeyedArchiver archivedDataWithRootObject:_projects];
 	[[NSUserDefaults standardUserDefaults] setObject:theData forKey:@"ProjectTimes"];
-	[[NSUserDefaults standardUserDefaults] setBool:_flatMode forKey:@"flatMode"];
 	[[NSUserDefaults standardUserDefaults] synchronize];
 	timeSinceSave = 0;
 	
@@ -568,7 +541,6 @@
 
 - (int)numberOfRowsInTableView:(NSTableView *)tableView
 {
-	bool flatView = _flatMode;
 	if (tableView == tvProjects) {
 		return [_projects count] + 1;
 	}
@@ -579,20 +551,6 @@
 			return [[_selProject tasks] count] + 1;
 	}
 	if (tableView == tvWorkPeriods) {
-		if (flatView) {
-			int count = 0;
-			if (_selProject == nil) 
-				return 0;
-				
-			NSEnumerator *enumerator = [[_selProject tasks] objectEnumerator];
-			id anObject;
-			
-			while (anObject = [enumerator nextObject])
-			{
-				count += [[anObject workPeriods] count];
-			}
-			return count;
-		}
 		if (_selTask == nil)
 			return 0;
 		else
@@ -649,25 +607,21 @@
 	}
 	
 	if (tableView == tvWorkPeriods) {
-		bool flatView = _flatMode;
 		TWorkPeriod *period = nil;
 		
-		if (!flatView) {
-			period = [[_selTask workPeriods] objectAtIndex: rowIndex];
-		} else {
-			// find out which task contains the correct period
-			if (_selProject == nil) 
-				// should not happen
-				return nil;
-			int workIndex = rowIndex;
-			
-			id aTask;
-			aTask = [self taskForWorkTimeIndex:rowIndex timeIndex:&workIndex];
-			if ([[tableColumn identifier] isEqualToString:@"Task"]) {
-				return [aTask name];
-			}
-			period = [[aTask workPeriods] objectAtIndex:workIndex];
+		// find out which task contains the correct period
+		if (_selProject == nil) 
+			// should not happen
+			return nil;
+		int workIndex = rowIndex;
+		
+		id aTask;
+		aTask = [self taskForWorkTimeIndex:rowIndex timeIndex:&workIndex];
+		if ([[tableColumn identifier] isEqualToString:@"Task"]) {
+			return [aTask name];
 		}
+		period = [[aTask workPeriods] objectAtIndex:workIndex];
+		
 		if ([[tableColumn identifier] isEqualToString: @"Date"]) {
 			// assert _dateFormatter != nil
 			return [_dateFormatter stringFromDate:[period startTime]];
@@ -794,7 +748,7 @@
 - (IBAction)clickedFilterDateCancel:(id)sender 
 {
 	[NSApp endSheet:panelPickFilterDate returnCode:NSCancelButton];
-	[_tbPickDateItem setLabel:@"Pick Date"];
+//	[_tbPickDateItem setLabel:@"Pick Date"];
 
 }
 

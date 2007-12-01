@@ -22,6 +22,9 @@
 - (NSMutableArray *) tasks;
 - (void) addTask: (TTask *) task;
 
+- (NSMutableArray *) matchingTasks:(NSPredicate*) filter;
+- (int) filteredTime:(NSPredicate*) filter;
+
 - (int) totalTime;
 - (void) updateTotalTime;
 - (NSString*) serializeData;

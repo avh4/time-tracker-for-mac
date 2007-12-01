@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <Foundation/NSPredicate.h>
 #import "TWorkPeriod.h"
 #import "ITask.h"
 
@@ -21,8 +22,10 @@
 
 - (void) addWorkPeriod: (TWorkPeriod *) workPeriod;
 - (NSMutableArray *) workPeriods;
+- (NSMutableArray *) matchingWorkPeriods:(NSPredicate*) filter;
 
 - (int) totalTime;
+- (int) filteredTime:(NSPredicate*) filter;
 - (void) updateTotalTime;
 - (NSString*) serializeData:(NSString*) prefix;
 - (id<ITask>) removeWorkPeriod:(TWorkPeriod*)period;

@@ -48,7 +48,6 @@
 	IBOutlet NSTextView *dtpEditWorkPeriodComment;
 	
 	IBOutlet NSMenuItem *startMenuItem;
-	IBOutlet NSMenuItem *flatModeMenuItem;
 	IBOutlet NSArrayController *workPeriodController;
 	IBOutlet NSDate *filterStartDate;
 	IBOutlet NSDate *filterEndDate;
@@ -73,7 +72,6 @@
 	NSDate *_lastNonIdleTime;
 	NSDate *_filterDate;
 	int timeSinceSave;
-	BOOL _flatMode;
 }
 
 // actions
@@ -84,7 +82,6 @@
 - (IBAction)clickedChangeWorkPeriod:(id)sender;
 - (IBAction)clickedCountIdleTimeYes:(id)sender;
 - (IBAction)clickedCountIdleTimeNo:(id)sender;
-- (IBAction)clickedFlatMode:(id)sender;
 - (IBAction)okClicked:(id) sender;
 - (IBAction)cancelClicked:(id) sender;
 - (IBAction)clickedFilterDateOk:(id) sender;

@@ -55,6 +55,35 @@
 	return _totalTime;
 }
 
+- (NSMutableArray *) matchingWorkPeriods:(NSPredicate*) filter
+{
+	NSMutableArray* result = [[[NSMutableArray alloc] init] autorelease];
+	NSEnumerator *enumerator = [_workPeriods objectEnumerator];
+	id anObject;
+ 
+	while (anObject = [enumerator nextObject])
+	{
+		if ([filter evaluateWithObject:anObject]) {
+			[result addObject:anObject];
+		}
+	}
+	return result;
+	
+}
+
+- (int) filteredTime:(NSPredicate*) filter
+{
+	NSEnumerator *enumPeriods = [[self matchingWorkPeriods:filter] objectEnumerator];
+	id anObject;
+	int result = 0;
+ 
+	while (anObject = [enumPeriods nextObject])
+	{
+		result += [anObject totalTime];
+	}
+	return result;
+
+}
 
 - (void)encodeWithCoder:(NSCoder *)coder
 {
