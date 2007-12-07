@@ -16,4 +16,5 @@
 - (NSArray *) workPeriods;
 - (NSString*) name;
 - (id<ITask>) removeWorkPeriod:(TWorkPeriod*)period;
+- (int) filteredTime:(NSPredicate*) filter;
 @end

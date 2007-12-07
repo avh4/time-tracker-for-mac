@@ -34,6 +34,7 @@
 - (void) addWorkPeriod: (TWorkPeriod *) workPeriod
 {
 	[_workPeriods addObject: workPeriod];
+	[workPeriod setParentTask:self];
 }
 
 - (NSMutableArray *) workPeriods
@@ -73,6 +74,9 @@
 
 - (int) filteredTime:(NSPredicate*) filter
 {
+	if (filter == nil) {
+		return [self totalTime];
+	}
 	NSEnumerator *enumPeriods = [[self matchingWorkPeriods:filter] objectEnumerator];
 	id anObject;
 	int result = 0;
@@ -110,6 +114,14 @@
         _name = [[coder decodeObject] retain];
         _workPeriods = [[NSMutableArray arrayWithArray: [coder decodeObject]] retain];
     }
+	// update back links
+	NSEnumerator *enumerator = [_workPeriods objectEnumerator];
+	id anObject;
+	while (anObject = [enumerator nextObject])
+	{
+		[anObject setParentTask:self];
+	}
+
 	[self updateTotalTime];
     return self;
 }
@@ -130,6 +142,19 @@
 
 - (id<ITask>) removeWorkPeriod:(TWorkPeriod*)period {
 	[[self workPeriods] removeObject:period];
+	[period setParentTask:nil];
 	return self;
+}
+
+- (void) setParentProject:(TProject*) project
+{
+	[_parent release];
+	_parent = nil;
+	_parent = [project retain];
+}
+
+- (TProject*) parentProject
+{
+	return _parent;
 }
 @end

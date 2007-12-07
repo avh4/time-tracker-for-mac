@@ -11,14 +11,18 @@
 #import "TWorkPeriod.h"
 #import "ITask.h"
 
+@class TProject;
+
 @interface TTask : NSObject <NSCoding, ITask> {
 	NSString *_name;
 	int _totalTime;
 	NSMutableArray *_workPeriods;
+	TProject* _parent;
 }
 
 - (NSString *) name;
 - (void) setName: (NSString *) name;
+- (void) setParentProject: (TProject*) project;
 
 - (void) addWorkPeriod: (TWorkPeriod *) workPeriod;
 - (NSMutableArray *) workPeriods;
@@ -29,4 +33,5 @@
 - (void) updateTotalTime;
 - (NSString*) serializeData:(NSString*) prefix;
 - (id<ITask>) removeWorkPeriod:(TWorkPeriod*)period;
+- (TProject*) parentProject;
 @end

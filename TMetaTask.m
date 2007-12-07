@@ -24,6 +24,22 @@
 	return result;
 }
 
+- (NSMutableArray *) matchingWorkPeriods:(NSPredicate*) filter
+{
+	NSMutableArray* result = [[[NSMutableArray alloc] init] autorelease];
+	NSEnumerator *enumerator = [[self workPeriods] objectEnumerator];
+	id anObject;
+ 
+	while (anObject = [enumerator nextObject])
+	{
+		if ([filter evaluateWithObject:anObject]) {
+			[result addObject:anObject];
+		}
+	}
+	return result;
+	
+}
+
 - (int) totalTime {
 	NSEnumerator *enumTasks = [_tasks objectEnumerator];
 	TTask *task = nil;
@@ -72,5 +88,21 @@
 	return self;
 }
 
+- (int) filteredTime:(NSPredicate*) filter
+{
+	if (filter == nil) {
+		return [self totalTime];
+	}
+	NSEnumerator *enumPeriods = [[self matchingWorkPeriods:filter] objectEnumerator];
+	id anObject;
+	int result = 0;
+ 
+	while (anObject = [enumPeriods nextObject])
+	{
+		result += [anObject totalTime];
+	}
+	return result;
+
+}
 
 @end

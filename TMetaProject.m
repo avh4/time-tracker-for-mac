@@ -81,4 +81,18 @@
 	return self;
 }
 
+- (int) filteredTime:(NSPredicate*) filter
+{
+	if (filter == nil) {
+		return [self totalTime];
+	}
+	int result = 0;
+	NSEnumerator *enumProjects = [_projects objectEnumerator];
+	id project;
+	while ((project = [enumProjects nextObject]) != nil) {
+		result += [project filteredTime:filter];
+	}
+	return result;
+}
+
 @end

@@ -19,4 +19,5 @@
 - (NSArray *) tasks;
 - (void) setProjects:(NSMutableArray*) projects;
 - (NSString*) name;
+- (int) filteredTime:(NSPredicate*) filter;
 @end

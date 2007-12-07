@@ -7,18 +7,21 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
+//forward declaration
+@class TTask;
 
 @interface TWorkPeriod : NSObject <NSCoding> {
 	int _totalTime;
 	NSDate *_startTime;
 	NSDate *_endTime;
 	NSAttributedString* _comment;
+	TTask *_parent;
 }
 
 - (void) setStartTime: (NSDate *) startTime;
 - (void) setEndTime: (NSDate *) endTime;
 - (void) setComment:(NSAttributedString*) aComment;
+- (void) setParentTask:(TTask*) task;
 
 - (void) updateTotalTime;
 
@@ -29,4 +32,5 @@
 - (NSDate *) endTime;
 - (NSAttributedString *) comment;
 - (NSString*) serializeData: (NSString*) prefix;
+- (TTask*) parentTask;
 @end

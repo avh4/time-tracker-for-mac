@@ -135,4 +135,16 @@
 		hours, minutes, [self comment]];
 	return result;
 }
+
+- (void)setParentTask:(TTask*) task 
+{
+	[_parent release];
+	_parent = nil;
+	_parent = [task retain];
+}
+
+- (TTask*)parentTask 
+{
+	return _parent;
+}
 @end

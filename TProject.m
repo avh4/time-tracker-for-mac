@@ -39,6 +39,7 @@
 - (void) addTask: (TTask *) task
 {
 	[_tasks addObject: task];
+	[task setParentProject:self];
 }
 
 - (int) totalTime
@@ -71,6 +72,9 @@
 
 - (int) filteredTime:(NSPredicate*) filter
 {
+	if (filter == nil) {
+		return [self totalTime];
+	}
 	int result = 0;
 	NSEnumerator *enumTasks = [_tasks objectEnumerator];
 	id task;
@@ -106,6 +110,15 @@
         _tasks = [[NSMutableArray arrayWithArray: [coder decodeObject]] retain];
     }
 	[self updateTotalTime];
+	
+		// update back links
+	NSEnumerator *enumerator = [_tasks objectEnumerator];
+	id anObject;
+	while (anObject = [enumerator nextObject])
+	{
+		[anObject setParentProject:self];
+	}
+
     return self;
 }
 
@@ -124,6 +137,7 @@
 
 - (id<IProject>) removeTask:(TTask*)task {
 	[[self tasks] removeObject:task];
+	[task setParentProject:nil];
 	return self;
 }
 @end

@@ -41,6 +41,27 @@
 }
 
 
+- (void) applyFilter:(NSDate*)startDate endDate:(NSDate*)anEndDate 
+{
+	[_currentPredicate release];
+	_currentPredicate = nil;
+	NSLog(@"startTime >= %@ AND endTime <= %@", _filterStartDate, _filterEndDate);
+
+	_currentPredicate = [[NSPredicate predicateWithFormat:@"startTime >= %@ AND endTime <= %@", _filterStartDate, _filterEndDate] retain];
+	[workPeriodController setFilterPredicate:_currentPredicate];	
+	[tvTasks reloadData];
+	[tvProjects reloadData];
+}
+
+- (void) clearFilter
+{
+	[_tbPickDateItem setLabel:@"Pick Date"];
+	[workPeriodController setFilterPredicate:nil];
+	[tvTasks reloadData];
+	[tvProjects reloadData];
+	[_currentPredicate release];
+	_currentPredicate = nil;
+}
 
 - (int)selectedTaskRow 
 {
@@ -99,6 +120,8 @@
 	
 	[(TTask*)_selTask addWorkPeriod: _curWorkPeriod];
 	[tvWorkPeriods reloadData];	
+	// make sure the controller knows about the new object
+	[workPeriodController rearrangeObjects];
 	_curProject = _selProject;
 	_curTask = _selTask;
 	
@@ -370,14 +393,13 @@
 - (void)sheetDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
 {
 	if (sheet == panelPickFilterDate) {
-		[_filterDate release];
-		_filterDate = nil;
+		[_selectedfilterDate release];
+		_selectedfilterDate = nil;
 		if (returnCode == NSOKButton) {			
-			_filterDate = [[dtpFilterDate dateValue] retain];
-			[_tbPickDateItem setLabel:[_dateFormatter stringFromDate:_filterDate]];
+			_selectedfilterDate = [[dtpFilterDate dateValue] retain];
+			[_tbPickDateItem setLabel:[_dateFormatter stringFromDate:_selectedfilterDate]];
 		} else {
-			[_tbPickDateItem setLabel:@"Pick Date"];
-			[workPeriodController setFilterPredicate:nil];
+			[self clearFilter];
 		}
 	} else {
 		if (returnCode == NSOKButton) {
@@ -530,7 +552,8 @@
 	if (aTableView != tvWorkPeriods) {
 		return;
 	}
-	TWorkPeriod *wp = [self workPeriodAtIndex:rowIndex];
+	TWorkPeriod *wp = [[workPeriodController arrangedObjects] objectAtIndex:rowIndex];
+	// if we are showing the current task, apply different text color
 	if (wp == _curWorkPeriod) {
 		[aCell setTextColor:_highlightCol];
 	}
@@ -587,7 +610,7 @@
 			return [project name];
 		}
 		if ([[tableColumn identifier] isEqualToString: @"TotalTime"]) {
-			return [TimeIntervalFormatter secondsToString: [project totalTime]];
+			return [TimeIntervalFormatter secondsToString: [project filteredTime:_currentPredicate]];
 		}
 	}
 	
@@ -602,10 +625,10 @@
 			return [task name];
 		}
 		if ([[tableColumn identifier] isEqualToString: @"TotalTime"]) {
-			return [TimeIntervalFormatter secondsToString: [task totalTime]];
+			return [TimeIntervalFormatter secondsToString: [task filteredTime:_currentPredicate]];
 		}
 	}
-	
+	/*
 	if (tableView == tvWorkPeriods) {
 		TWorkPeriod *period = nil;
 		
@@ -647,7 +670,7 @@
 			return [period comment];
 		}
 	}
-	
+	*/
 	return nil;
 }
 
@@ -655,7 +678,7 @@
 {
 	[self createProject];
 
-	int index = [_projects count] - 1;
+	int index = [_projects count];
 	[tvProjects editColumn:[tvProjects columnWithIdentifier:@"ProjectName"] row:index withEvent:nil select:YES];
 }
 
@@ -673,60 +696,59 @@
 {
 	[self createTask];
 
-	int index = [[_selProject tasks] count] - 1;
+	int index = [[_selProject tasks] count];
 	[tvTasks editColumn:[tvTasks columnWithIdentifier:@"TaskName"] row:index withEvent:nil select:YES];
 }
 
 -(NSDate*) determineFilterStartDate 
 {
-	if (_filterDate == nil) 
+	if (_selectedfilterDate == nil) 
 	{
 		return nil;
 	}
-	[filterStartDate release];
-	filterStartDate = nil;
+	[_filterStartDate release];
+	_filterStartDate = nil;
 	NSCalendar *cal = [NSCalendar currentCalendar];
-	NSDateComponents *comps = [cal components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:_filterDate];
-	filterStartDate = [[cal dateFromComponents:comps] retain];
-	return filterStartDate;
+	NSDateComponents *comps = [cal components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:_selectedfilterDate];
+	_filterStartDate = [[cal dateFromComponents:comps] retain];
+	return _filterStartDate;
 }
+
 
 - (IBAction)clickedFilterDay:(id)sender 
 {
 	NSLog(@"Day filter clicked");
 	[self determineFilterStartDate];
-	filterEndDate = [[[NSDate alloc] initWithTimeInterval:60*60*24 sinceDate:filterStartDate] autorelease];
-	NSLog(@"startTime >= %@ AND endTime <= %@", filterStartDate, filterEndDate);
-	NSPredicate *pred = [NSPredicate predicateWithFormat:@"startTime >= %@ AND endTime <= %@", filterStartDate, filterEndDate];
-	[workPeriodController setFilterPredicate:pred];
+	_filterEndDate = [[[NSDate alloc] initWithTimeInterval:60*60*24 sinceDate:_filterStartDate] autorelease];
+	NSLog(@"startTime >= %@ AND endTime <= %@", _filterStartDate, _filterEndDate);
+	[self applyFilter:_filterStartDate endDate:_filterEndDate];
 	NSLog(@"day filter done");
 }
 
 - (IBAction)clickedFilterWeek:(id)sender 
 {
-	NSLog(@"week filter clicked %@", _filterDate);
+	NSLog(@"week filter clicked %@", _selectedfilterDate);
 	[self determineFilterStartDate];
 	NSDateComponents *comps = [[[NSDateComponents alloc] init] autorelease];
 	[comps setWeek:1];
-	filterEndDate = [[[NSCalendar currentCalendar] dateByAddingComponents:comps toDate:filterStartDate options:0] retain];
-	NSLog(@"startTime >= %@ AND endTime <= %@", filterStartDate, filterEndDate);
+	_filterEndDate = [[[NSCalendar currentCalendar] dateByAddingComponents:comps toDate:_filterStartDate options:0] retain];
+	NSLog(@"startTime >= %@ AND endTime <= %@", _filterStartDate, _filterEndDate);
 	NSLog(@"objects %@", [workPeriodController content]);
-	NSPredicate *pred = [NSPredicate predicateWithFormat:@"startTime >= %@ AND endTime <= %@", filterStartDate, filterEndDate];
+	[self applyFilter:_filterStartDate endDate:_filterEndDate];
+/*	NSPredicate *pred = [NSPredicate predicateWithFormat:@"startTime >= %@ AND endTime <= %@", _filterStartDate, _filterEndDate];
 	NSLog(@"afterobjects %@", [workPeriodController content]);
-	[workPeriodController setFilterPredicate:pred];
+	[workPeriodController setFilterPredicate:pred];*/
 	NSLog(@"Week filter done");
 }
 
 - (IBAction)clickedFilterMonth:(id)sender 
 {
-	NSLog(@"Month filter clicked %@", _filterDate);
+	NSLog(@"Month filter clicked %@", _selectedfilterDate);
 	[self determineFilterStartDate];
 	NSDateComponents *comps = [[[NSDateComponents alloc] init] autorelease];
 	[comps setMonth:1];
-	filterEndDate = [[NSCalendar currentCalendar] dateByAddingComponents:comps toDate:filterStartDate options:0];
-	NSLog(@"startTime >= %@ AND endTime <= %@", filterStartDate, filterEndDate);
-	NSPredicate *pred = [NSPredicate predicateWithFormat:@"startTime >= %@ AND endTime <= %@", filterStartDate, filterEndDate];
-	[workPeriodController setFilterPredicate:pred];
+	_filterEndDate = [[NSCalendar currentCalendar] dateByAddingComponents:comps toDate:_filterStartDate options:0];
+	[self applyFilter:_filterStartDate endDate:_filterEndDate];
 	NSLog(@"month filter done");
 
 }
@@ -748,6 +770,7 @@
 - (IBAction)clickedFilterDateCancel:(id)sender 
 {
 	[NSApp endSheet:panelPickFilterDate returnCode:NSCancelButton];
+
 //	[_tbPickDateItem setLabel:@"Pick Date"];
 
 }
@@ -768,6 +791,13 @@
 - (void)selectAndUpdateMetaTask {
 	[_metaTask setTasks:[_selProject tasks]];
 	_selTask = _metaTask;
+}
+
+- (void)reloadWorkPeriods
+{
+	NSLog(@"Updating workperiods...........");
+	[workPeriodController setContent:[_selTask workPeriods]];
+	[tvWorkPeriods reloadData];
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification
@@ -814,9 +844,7 @@
 			// assert _selProject != nil
 			_selTask = [[_selProject tasks] objectAtIndex: [self selectedTaskRow]];
 		}
-		NSLog(@"Updating workperiods...........");
-		[workPeriodController setContent:[_selTask workPeriods]];
-		[tvWorkPeriods reloadData];
+		[self reloadWorkPeriods];
 		[self updateProminentDisplay];
 	}
 
@@ -841,22 +869,44 @@
 
 - (IBAction)clickedDelete:(id)sender
 {
+	int iResponse = 
+        NSRunAlertPanel(@"Delete selection", 
+                        @"Are you sure to delete the selected item(s)?",
+                        @"YES", @"NO", /*ThirdButtonHere:*/nil
+                        /*, args for a printf-style msg go here */);
+	switch(iResponse) {
+    case NSAlertDefaultReturn:    /* user pressed OK */
+		break;
+    case NSAlertAlternateReturn:  /* user pressed Cancel */
+		return;
+	case NSAlertErrorReturn:      /* an error occurred */
+		return;
+	}
 	if ([mainWindow firstResponder] == tvWorkPeriods) {
 		// assert _selTask != nil
 		// assert _selProject != nil
-		TWorkPeriod *selWorkPeriod = [self selectedWorkPeriod];
-		// assert _selWorkPeriod != nil
-		if (selWorkPeriod == _curWorkPeriod) {
-			[self stopTimer];
-		}
 		
-		[_selTask removeWorkPeriod:selWorkPeriod];
+		/*
+		NSIndexSet* selectedSet = [workPeriodController selectionIndexes];
+		int count = [selectedSet count];*/
+//		NSArray* array = [workPeriodController selectedObjects];
+//		NSEnumerator *enumPeriod = [array objectEnumerator];
+		TWorkPeriod *selPeriod = [self selectedWorkPeriod];
+//		while ( (selPeriod = [enumPeriod nextObject]) != nil) {
+			if (selPeriod == _curWorkPeriod) {
+				[self stopTimer];
+			}
+			TTask* parentTask = [selPeriod parentTask];			
+			[parentTask removeWorkPeriod:selPeriod];
+//		}
 		[_selTask updateTotalTime];
 		[_selProject updateTotalTime];
 		[tvWorkPeriods deselectAll: self];
 		[tvWorkPeriods reloadData];
 		[tvTasks reloadData];
 		[tvProjects reloadData];
+		
+		[self reloadWorkPeriods];
 	}
 	if ([mainWindow firstResponder] == tvTasks) {
 		if ([_selProject isKindOfClass: [TProject class]]) {

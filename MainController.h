@@ -49,8 +49,11 @@
 	
 	IBOutlet NSMenuItem *startMenuItem;
 	IBOutlet NSArrayController *workPeriodController;
-	IBOutlet NSDate *filterStartDate;
-	IBOutlet NSDate *filterEndDate;
+	// the start of the filtered interval
+	IBOutlet NSDate *_filterStartDate;
+	// the end of the filtered interval
+	IBOutlet NSDate *_filterEndDate;
+	IBOutlet NSPredicate *_currentPredicate;
 	
 	NSToolbarItem *startstopToolbarItem;
 	
@@ -70,7 +73,7 @@
 	NSToolbarItem *_tbPickDateItem;
 	
 	NSDate *_lastNonIdleTime;
-	NSDate *_filterDate;
+	NSDate *_selectedfilterDate;
 	int timeSinceSave;
 }
 

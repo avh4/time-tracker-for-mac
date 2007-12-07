@@ -52,6 +52,12 @@
 			<string>ObjC</string>
 			<key>OUTLETS</key>
 			<dict>
+				<key>_currentPredicate</key>
+				<string>NSPredicate</string>
+				<key>_filterEndDate</key>
+				<string>NSDate</string>
+				<key>_filterStartDate</key>
+				<string>NSDate</string>
 				<key>dtpEditWorkPeriodComment</key>
 				<string>NSTextView</string>
 				<key>dtpEditWorkPeriodEndTime</key>
@@ -60,10 +66,6 @@
 				<string>NSDatePicker</string>
 				<key>dtpFilterDate</key>
 				<string>NSDatePicker</string>
-				<key>filterEndDate</key>
-				<string>NSDate</string>
-				<key>filterStartDate</key>
-				<string>NSDate</string>
 				<key>mainWindow</key>
 				<string>NSWindow</string>
 				<key>panelEditWorkPeriod</key>

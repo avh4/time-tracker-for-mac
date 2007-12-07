@@ -14,4 +14,5 @@
 - (NSArray *) tasks;
 - (NSString*) name;
 - (id<IProject>) removeTask:(TTask*)task;
+- (int) filteredTime:(NSPredicate*) filter;
 @end
