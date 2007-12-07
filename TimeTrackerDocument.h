@@ -75,6 +75,8 @@
 - (void) updateStartStopState;
 - (void) updateProminentDisplay;
 
+- (NSArray *) projects;
+
 - (BOOL) validateUserInterfaceItem:(id)anItem;
 
 @end

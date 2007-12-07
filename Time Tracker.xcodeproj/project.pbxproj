@@ -42,6 +42,12 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		B111F66B0D0A0EDE00074BDA /* TestTimeTrackerDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = B111F66A0D0A0EDE00074BDA /* TestTimeTrackerDocument.m */; };
+		B111F68D0D0A113E00074BDA /* TimeTrackerDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A90CDD0CFBA852007455AF /* TimeTrackerDocument.m */; };
+		B111F6920D0A115100074BDA /* TimeIntervalFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EC93E0905A9F6000651F2 /* TimeIntervalFormatter.m */; };
+		B111F6930D0A115200074BDA /* TTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EC8D10905A5F2000651F2 /* TTask.m */; };
+		B111F6940D0A115300074BDA /* TProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EC8D60905A5FE000651F2 /* TProject.m */; };
+		B111F6990D0A117500074BDA /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C4528B10909AAE5003C0369 /* IOKit.framework */; };
 		B133F83D0CFFE8A400A77C40 /* TWorkPeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EC9530905ABAE000651F2 /* TWorkPeriod.m */; };
 		B163D4080B646240007D0E2C /* AUTHORS.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = B163D4040B646239007D0E2C /* AUTHORS.txt */; };
 		B163D4090B646240007D0E2C /* LICENSE-GPL.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = B163D4050B646239007D0E2C /* LICENSE-GPL.txt */; };
@@ -127,6 +133,8 @@
 		32CA4F630368D1EE00C91783 /* Time Tracker_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Time Tracker_Prefix.pch"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Time Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Time Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B111F6690D0A0EDE00074BDA /* TestTimeTrackerDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTimeTrackerDocument.h; sourceTree = "<group>"; };
+		B111F66A0D0A0EDE00074BDA /* TestTimeTrackerDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTimeTrackerDocument.m; sourceTree = "<group>"; };
 		B163D4040B646239007D0E2C /* AUTHORS.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AUTHORS.txt; sourceTree = "<group>"; };
 		B163D4050B646239007D0E2C /* LICENSE-GPL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "LICENSE-GPL.txt"; sourceTree = "<group>"; };
 		B19BDFC10B5C956700465046 /* ChangeLog.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChangeLog.txt; sourceTree = SOURCE_ROOT; };
@@ -159,6 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1AD43040CFFE3D3001E4A49 /* SenTestingKit.framework in Frameworks */,
+				B111F6990D0A117500074BDA /* IOKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +291,8 @@
 		B1AD42D60CFFE1D8001E4A49 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				B111F6690D0A0EDE00074BDA /* TestTimeTrackerDocument.h */,
+				B111F66A0D0A0EDE00074BDA /* TestTimeTrackerDocument.m */,
 				B1AD42D30CFFE1CB001E4A49 /* TestTWorkPeriod.h */,
 				B1AD42D40CFFE1CB001E4A49 /* TestTWorkPeriod.m */,
 			);
@@ -411,6 +422,11 @@
 			files = (
 				B1AD42D50CFFE1CB001E4A49 /* TestTWorkPeriod.m in Sources */,
 				B133F83D0CFFE8A400A77C40 /* TWorkPeriod.m in Sources */,
+				B111F66B0D0A0EDE00074BDA /* TestTimeTrackerDocument.m in Sources */,
+				B111F68D0D0A113E00074BDA /* TimeTrackerDocument.m in Sources */,
+				B111F6920D0A115100074BDA /* TimeIntervalFormatter.m in Sources */,
+				B111F6930D0A115200074BDA /* TTask.m in Sources */,
+				B111F6940D0A115300074BDA /* TProject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
