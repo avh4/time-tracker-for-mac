@@ -16,9 +16,16 @@
 	doc = [[TimeTrackerDocument alloc] init];
 }
 
-- (void) testInstance
+- (void) testBlankDocumentCsvExport
 {
-	STAssertNotNil([doc projects], nil);
+	NSData *expected = [
+		@"Date,Start time,End time,Duration,Project,Task\n"
+		dataUsingEncoding:NSASCIIStringEncoding];
+	NSError *err = nil;
+	NSData *data = [doc dataOfType:@"CSV" error:&err];
+	// STFail(@"%@", [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding]);
+	STAssertEqualObjects(expected, data, nil);
+	STAssertNil(err, nil);
 }
 
 - (void) tearDown

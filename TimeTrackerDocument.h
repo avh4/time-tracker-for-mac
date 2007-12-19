@@ -67,8 +67,8 @@
 - (void) stopTimer:(NSDate*)endTime;
 - (void) stopTimer;
 - (void) startTimer;
-- (void) createTask;
-- (void) createProject;
+// - (void) createTask;
+// - (void) createProject;
 - (int)idleTime;
 - (void) saveData;
 
@@ -76,6 +76,8 @@
 - (void) updateProminentDisplay;
 
 - (NSArray *) projects;
+- (TProject *) createProject:(NSString*)aName;
+- (TTask *) createTask:(NSString*)aName inProject:(TProject *)aProject;
 
 - (BOOL) validateUserInterfaceItem:(id)anItem;
 

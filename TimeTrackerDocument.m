@@ -254,14 +254,19 @@
  *  Controller Actions
  ************************************************************************************/
 
-- (void)createProject
+- (TProject *)createProject:(NSString*)aName
 {
 	TProject *proj = [TProject new];
 	[_projects addObject: proj];
+	if (aName != nil) 
+	{
+		[proj setName:[NSString stringWithString:aName]];
+	}
 	[tvProjects reloadData];
 	int index = [_projects count] - 1;
 	[tvProjects selectRowIndexes:[NSIndexSet indexSetWithIndex:index] byExtendingSelection:NO];
 	[mainWindow makeFirstResponder:tvProjects];
+	return proj;
 }
 
 - (void)createTask
@@ -529,7 +534,7 @@
 
 - (IBAction)clickedAddProject:(id)sender
 {
-	[self createProject];
+	[self createProject:nil];
 
 	int index = [_projects count] - 1;
 	[tvProjects editColumn:[tvProjects columnWithIdentifier:@"ProjectName"] row:index withEvent:nil select:YES];
@@ -623,8 +628,8 @@
 	savePanelResult = [sp runModalForDirectory:nil file:@"Time Tracker Data.csv"];
 	
 	if (savePanelResult == NSOKButton) {
-		NSError **err;
-		NSData *data = [[self dataOfType:@"CSV" error:err] retain];
+		NSError *err;
+		NSData *data = [[self dataOfType:@"CSV" error:&err] retain];
 		[data writeToFile:[sp filename] atomically:YES];
 		[data release];
 	}
@@ -684,7 +689,7 @@
 	
 	// if there is no project selected, create a new one
 	if (_selProject == nil)
-		[self createProject];
+		[self createProject:nil];
 
 	// if there is no task selected, create a new one
 	if (_selTask == nil)
