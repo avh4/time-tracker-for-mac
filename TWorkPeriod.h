@@ -11,11 +11,14 @@
 @class TTask;
 
 @interface TWorkPeriod : NSObject <NSCoding> {
-	int _totalTime;
-	NSDate *_startTime;
-	NSDate *_endTime;
-	NSAttributedString* _comment;
-	TTask *_parent;
+	// Attributes
+	NSDate *startTime;
+	NSDate *endTime;
+	NSAttributedString* comment;
+
+	// Relationships
+	TTask *parentTask;
+	
 }
 
 // Mutable Attributes
@@ -40,6 +43,5 @@
 
 // Other functions
 
-- (void) updateTotalTime;
 - (NSString*) serializeData: (NSString*) prefix;
 @end

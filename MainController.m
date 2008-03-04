@@ -532,8 +532,8 @@
 	[dtpEditWorkPeriodEndTime setDateValue: [wp endTime]];
 	[dtpEditWorkPeriodComment setString: [[wp comment] string]];
 	[changeProjectController setSelectionIndex:[_projects indexOfObject:[[wp parentTask] parentProject]]];
-	[self provideProjectsForEditWpDialog:[[wp parentTask] parentProject]];
-	[self provideTasksForEditWpDialog:[[wp parentTask] parentProject]];
+	//[self provideProjectsForEditWpDialog:[[wp parentTask] parentProject]];
+	//[self provideTasksForEditWpDialog:[[wp parentTask] parentProject]];
 	[_taskPopupButton selectItemWithTitle:[[wp parentTask] name]];
 
 /*	[panelEditWorkPeriod makeKeyAndOrderFront: self];
@@ -1118,6 +1118,7 @@
 
 - (void) provideProjectsForEditWpDialog:(TProject*) selectedProject
 {
+	assert(false); // Depricated 2008-03-04 Aaron VonderHaar
 	[_projectPopupButton removeAllItems];
 	NSEnumerator *enumProjects = [_projects objectEnumerator];
 	TProject *project = nil;
@@ -1134,6 +1135,7 @@
 
 - (void) provideTasksForEditWpDialog:(TProject*)project 
 {
+	assert(false); // Depricated 2008-03-04 Aaron VonderHaar
 	[_taskPopupButton removeAllItems];
 	NSEnumerator *enumTasks = [[project tasks] objectEnumerator];
 	TTask *task = nil;

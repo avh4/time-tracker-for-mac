@@ -13,85 +13,85 @@
 
 - (id) init
 {
-	_startTime = nil;
-	_endTime = nil;
-	_comment = [[NSAttributedString alloc] init];
+	startTime = nil;
+	endTime = nil;
+	comment = [[NSAttributedString alloc] init];
 	return self;
 }
 
-- (void) setStartTime: (NSDate *) startTime
+- (NSDate *)startTime
 {
-	[startTime retain];
-	[_startTime release];
-	_startTime = startTime;
-	[self updateTotalTime];
+	return startTime;
 }
 
-- (void) setEndTime: (NSDate *) endTime
+- (void)setStartTime:(NSDate *)aStartTime
 {
-	[endTime retain];
-	[_endTime release];
-	_endTime = endTime;
-	[self updateTotalTime];
+	if (startTime != aStartTime) {
+		[startTime release];
+		startTime = [aStartTime copy];
+	}
+}
+
+- (NSDate *)endTime
+{
+	return endTime;
+}
+
+- (void)setEndTime:(NSDate *)anEndTime
+{
+	if (endTime != anEndTime) {
+		[endTime release];
+		endTime = [anEndTime copy];
+	}
+}
+
+- (NSAttributedString *)comment
+{
+	return comment;
 }
 
 - (void) setComment:(NSAttributedString*) aComment
 {
-	if (_comment == aComment) {
-		return;
+	if (comment != aComment) {
+		[comment release];
+		comment = [aComment copy];
 	}
-	[_comment release];
-	_comment = [aComment retain];
-}
-
-- (void) updateTotalTime
-{
-	if (_endTime == nil || _startTime == nil) {
-		_totalTime = 0;
-		return;
-	}
-	double timeInterval = [_endTime timeIntervalSinceDate: _startTime];
-	_totalTime = (int) timeInterval;
 }
 
 - (int) totalTime
 {
-	return _totalTime;
+	if (endTime == nil || startTime == nil) {
+		return 0;
+	}
+	
+	double timeInterval = [endTime timeIntervalSinceDate: startTime];
+	return (int) timeInterval;
 }
 
-- (NSDate *) startTime
+- (TTask *)parentTask 
 {
-	return _startTime;
+	return parentTask;
 }
 
-- (NSDate *) endTime
+- (void)setParentTask:(TTask *)aParentTask 
 {
-	return _endTime;
-}
-
-- (NSAttributedString *) comment
-{
-	if (_comment != nil) 
-		return _comment;
-	return [[[NSAttributedString alloc] initWithString:@""] autorelease];
-}
-
-- (NSString *) strComment
-{
-	return [[self comment] string];
+	if (parentTask != aParentTask) {
+		[parentTask release];
+		parentTask = [aParentTask retain];
+	}
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder
 {
     //[super encodeWithCoder:coder];
     if ( [coder allowsKeyedCoding] ) {
-        [coder encodeObject:_startTime forKey:@"WPStartTime"];
-        [coder encodeObject:_endTime forKey:@"WPEndTime"];
-		[coder encodeObject:_comment forKey:@"AttributedComment"];
+        [coder encodeObject:startTime forKey:@"WPStartTime"];
+        [coder encodeObject:endTime forKey:@"WPEndTime"];
+		[coder encodeObject:comment forKey:@"AttributedComment"];
 		
     } else {
-        [coder encodeObject:_startTime];
-		[coder encodeObject:_endTime];
+        [coder encodeObject:startTime];
+		[coder encodeObject:endTime];
 		// comment not supported here for data file compability reasons.
     }
     return;
@@ -102,8 +102,8 @@
     //self = [super initWithCoder:coder];
     if ( [coder allowsKeyedCoding] ) {
         // Can decode keys in any order
-        _startTime = [[coder decodeObjectForKey:@"WPStartTime"] retain];
-        _endTime = [[coder decodeObjectForKey:@"WPEndTime"] retain];
+        startTime = [[coder decodeObjectForKey:@"WPStartTime"] retain];
+        endTime = [[coder decodeObjectForKey:@"WPEndTime"] retain];
 		id attribComment = [[coder decodeObjectForKey:@"AttributedComment"] retain];
 		
 		if ([attribComment isKindOfClass:[NSString class]]) {
@@ -112,39 +112,28 @@
 		if (attribComment == nil) {
 			attribComment = [[NSAttributedString alloc] initWithString:[coder decodeObjectForKey:@"Comment"]];
 		}
-		_comment = attribComment;
+		comment = attribComment;
     } else {
         // Must decode keys in same order as encodeWithCoder:
-        _startTime = [[coder decodeObject] retain];
-        _endTime = [[coder decodeObject] retain];
+        startTime = [[coder decodeObject] retain];
+        endTime = [[coder decodeObject] retain];
 		// comment not supported here for data file compability reasons.
     }
-	[self updateTotalTime];
     return self;
 }
 
 - (NSString*)serializeData:(NSString*) prefix
 {
-	int hours = _totalTime / 3600;
-	int minutes = _totalTime % 3600 / 60;
+	int totalTime = [self totalTime];
+	int hours = totalTime / 3600;
+	int minutes = totalTime % 3600 / 60;
 	NSDateFormatter *formatter = [[[NSDateFormatter alloc] initWithDateFormat:@"%Y-%m-%d %H:%M" allowNaturalLanguage:NO]  autorelease];
 	NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] initWithDateFormat:@"%Y-%m-%d" allowNaturalLanguage:NO]  autorelease];
 	NSString* result = [NSString stringWithFormat:@"%@;\"%@\";\"%@\";\"%@\";\"%02d:%02d\";\"%@\"\n", prefix, 
-		[dateFormatter stringFromDate:_startTime],
-		[formatter stringFromDate:_startTime], [formatter stringFromDate:_endTime], 
+		[dateFormatter stringFromDate:startTime],
+		[formatter stringFromDate:startTime], [formatter stringFromDate:endTime], 
 		hours, minutes, [self comment]];
 	return result;
 }
 
-- (void)setParentTask:(TTask*) task 
-{
-	[_parent release];
-	_parent = nil;
-	_parent = [task retain];
-}
-
-- (TTask*)parentTask 
-{
-	return _parent;
-}
 @end
