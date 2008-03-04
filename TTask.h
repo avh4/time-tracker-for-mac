@@ -20,18 +20,31 @@
 	TProject* _parent;
 }
 
+// Mutable Attributes
+
 - (NSString *) name;
 - (void) setName: (NSString *) name;
-- (void) setParentProject: (TProject*) project;
 
-- (void) addWorkPeriod: (TWorkPeriod *) workPeriod;
-- (NSMutableArray *) workPeriods;
-- (NSMutableArray *) matchingWorkPeriods:(NSPredicate*) filter;
+// Immutable Attributes
 
 - (int) totalTime;
 - (int) filteredTime:(NSPredicate*) filter;
+
+// To-one Relationships
+
+- (TProject*) parentProject;
+- (void) setParentProject: (TProject*) project;
+
+// To-many Relationships
+
+- (void) addWorkPeriod: (TWorkPeriod *) workPeriod;
+- (id<ITask>) removeWorkPeriod:(TWorkPeriod*)period;
+- (NSMutableArray *) workPeriods;
+- (NSMutableArray *) matchingWorkPeriods:(NSPredicate*) filter;
+
+// Other functions
+
 - (void) updateTotalTime;
 - (NSString*) serializeData:(NSString*) prefix;
-- (id<ITask>) removeWorkPeriod:(TWorkPeriod*)period;
-- (TProject*) parentProject;
+
 @end

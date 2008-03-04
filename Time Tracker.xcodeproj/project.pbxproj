@@ -173,14 +173,8 @@
 				D581A8110CFF3BBA006A0DC1 /* TMetaProject.m */,
 				D581A8120CFF3BBA006A0DC1 /* TMetaTask.h */,
 				D581A8130CFF3BBA006A0DC1 /* TMetaTask.m */,
-				D58EEB640D09D2830043384C /* TWorkPeriod.h */,
-				2C9EC9530905ABAE000651F2 /* TWorkPeriod.m */,
 				2C9EC93D0905A9F6000651F2 /* TimeIntervalFormatter.h */,
 				2C9EC93E0905A9F6000651F2 /* TimeIntervalFormatter.m */,
-				2C9EC8D00905A5F2000651F2 /* TTask.h */,
-				2C9EC8D10905A5F2000651F2 /* TTask.m */,
-				2C9EC8D50905A5FE000651F2 /* TProject.h */,
-				2C9EC8D60905A5FE000651F2 /* TProject.m */,
 				2CFAEE2B09042FC000131DD6 /* MainController.h */,
 				2CFAEE2C09042FC000131DD6 /* MainController.m */,
 			);
@@ -219,8 +213,9 @@
 		29B97314FDCFA39411CA2CEA /* Time Tracker */ = {
 			isa = PBXGroup;
 			children = (
-				2C9DD7100905824100AA5C6E /* Graphics */,
+				B1A5C5420D7E0DE400977BC3 /* Models */,
 				080E96DDFE201D6D7F000001 /* Classes */,
+				2C9DD7100905824100AA5C6E /* Graphics */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -283,6 +278,19 @@
 				2C9DD71A0905824F00AA5C6E /* stopitem.png */,
 			);
 			name = Graphics;
+			sourceTree = "<group>";
+		};
+		B1A5C5420D7E0DE400977BC3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2C9EC8D50905A5FE000651F2 /* TProject.h */,
+				2C9EC8D60905A5FE000651F2 /* TProject.m */,
+				2C9EC8D00905A5F2000651F2 /* TTask.h */,
+				2C9EC8D10905A5F2000651F2 /* TTask.m */,
+				D58EEB640D09D2830043384C /* TWorkPeriod.h */,
+				2C9EC9530905ABAE000651F2 /* TWorkPeriod.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

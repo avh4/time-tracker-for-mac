@@ -16,17 +16,26 @@
 	int _totalTime;
 }
 
+// Mutable Attributes
+
 - (NSString *) name;
 - (void) setName: (NSString *) name;
 
+// Immutable Attributes
+
+- (int) totalTime;
+
+// To-many Relationships
+
 - (NSMutableArray *) tasks;
 - (void) addTask: (TTask *) task;
+- (id<IProject>) removeTask:(TTask*)task;
 
 - (NSMutableArray *) matchingTasks:(NSPredicate*) filter;
 - (int) filteredTime:(NSPredicate*) filter;
 
-- (int) totalTime;
+// Other functions
+
 - (void) updateTotalTime;
 - (NSString*) serializeData;
-- (id<IProject>) removeTask:(TTask*)task;
 @end
