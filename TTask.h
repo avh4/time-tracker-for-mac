@@ -3,21 +3,23 @@
 //  Time Tracker
 //
 //  Created by Ivan Dramaliev on 10/18/05.
-//  Copyright 2005 __MyCompanyName__. All rights reserved.
+//  Copyright 2005 Ivan Dramaliev, 2008 Aaron VonderHaar. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
 #import <Foundation/NSPredicate.h>
 #import "TWorkPeriod.h"
-#import "ITask.h"
 
 @class TProject;
 
-@interface TTask : NSObject <NSCoding, ITask> {
-	NSString *_name;
-	int _totalTime;
-	NSMutableArray *_workPeriods;
-	TProject* _parent;
+@interface TTask : NSObject <NSCoding> {
+
+	// Attributes
+	NSString *name;
+	
+	// Relationships
+	NSMutableSet *workPeriods;
+	TProject *parentProject;
 }
 
 // Mutable Attributes
@@ -28,7 +30,6 @@
 // Immutable Attributes
 
 - (int) totalTime;
-- (int) filteredTime:(NSPredicate*) filter;
 
 // To-one Relationships
 
@@ -37,14 +38,18 @@
 
 // To-many Relationships
 
-- (void) addWorkPeriod: (TWorkPeriod *) workPeriod;
-- (id<ITask>) removeWorkPeriod:(TWorkPeriod*)period;
-- (NSMutableArray *) workPeriods;
-- (NSMutableArray *) matchingWorkPeriods:(NSPredicate*) filter;
+- (NSSet *)workPeriods;
+- (void)setWorkPeriods:(NSSet *)newWorkPeriods;
+- (void)addWorkPeriodsObject:(TWorkPeriod *)aWorkPeriod;
+- (void)addWorkPeriods:(NSSet *)workPeriodsToAdd;
+- (void)removeWorkPeriodsObject:(TWorkPeriod *)aWorkPeriod;
+- (void)removeWorkPeriods:(NSSet *)workPeriodsToRemove;
+- (void)intersectWorkPeriods:(NSSet *)workPeriodsToIntersect;
 
 // Other functions
 
-- (void) updateTotalTime;
+- (int) filteredTime:(NSPredicate*) filter;
 - (NSString*) serializeData:(NSString*) prefix;
+- (NSMutableArray *) matchingWorkPeriods:(NSPredicate*) filter;
 
 @end

@@ -160,7 +160,7 @@
 	[_curWorkPeriod setStartTime: [NSDate date]];
 	[_curWorkPeriod setEndTime: [NSDate date]];
 	
-	[(TTask*)_selTask addWorkPeriod: _curWorkPeriod];
+	[(TTask*)_selTask addWorkPeriodsObject: _curWorkPeriod];
 	[tvWorkPeriods reloadData];	
 	// make sure the controller knows about the new object
 	[workPeriodController rearrangeObjects];
@@ -547,8 +547,8 @@
 {
 	// first remove the workperiod from the old parent
 	TTask *oldParent = [wp parentTask];
-	[oldParent removeWorkPeriod:wp];
-	[newParent addWorkPeriod:wp];
+	[oldParent removeWorkPeriodsObject:wp];
+	[newParent addWorkPeriodsObject:wp];
 }
  
 - (IBAction)clickedChangeWorkPeriod:(id)sender
@@ -1176,7 +1176,7 @@
 			[self stopTimer];
 		}
 		TTask* parentTask = [selPeriod parentTask];			
-		[parentTask removeWorkPeriod:selPeriod];
+		[parentTask removeWorkPeriodsObject:selPeriod];
 		[_selTask updateTotalTime];
 		[_selProject updateTotalTime];
 		[tvWorkPeriods deselectAll: self];

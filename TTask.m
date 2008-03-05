@@ -14,52 +14,89 @@
 - (id) init
 {
 	[self setName: @"New Task"];
-	_totalTime = 0;
-	_workPeriods = [NSMutableArray new];
+	workPeriods = [NSMutableSet new];
 	return self;
 }
 
-- (NSString *) name
+- (NSString *)name
 {
-	return _name;
+	return name;
 }
 
-- (void) setName: (NSString *) name
+- (void)setName:(NSString *)aName
 {
-	[name retain];
-	[_name release];
-	_name = name;
-}
-
-- (void) addWorkPeriod: (TWorkPeriod *) workPeriod
-{
-	[_workPeriods addObject: workPeriod];
-	[workPeriod setParentTask:self];
-}
-
-- (NSMutableArray *) workPeriods
-{
-	return _workPeriods;
-}
-
-- (void) updateTotalTime
-{
-	_totalTime = 0;
-	int i;
-	for (i = 0; i < [_workPeriods count]; i++) {
-		_totalTime += [[_workPeriods objectAtIndex: i] totalTime];
+	if (name != aName) {
+		[name release];
+		name = [aName copy];
 	}
 }
 
 - (int) totalTime
 {
-	return _totalTime;
+	int totalTime = 0;
+	NSEnumerator * e = [workPeriods objectEnumerator];
+	TWorkPeriod *wp;
+	while ((wp = [e nextObject])) {
+		totalTime += [wp totalTime];
+	}
+	return totalTime;
+}
+
+- (TProject*)parentProject
+{
+	return parentProject;
+}
+
+- (void)setParentProject:(TProject*)aParentProject
+{
+	if (parentProject != aParentProject) {
+		[parentProject release];
+		parentProject = [aParentProject retain];
+	}
+}
+
+- (NSSet *)workPeriods
+{
+	return workPeriods;
+}
+
+- (void)setWorkPeriods:(NSSet *)newWorkPeriods
+{
+	if (workPeriods != newWorkPeriods) {
+		[workPeriods autorelease];
+		workPeriods = [newWorkPeriods mutableCopy];
+	}
+}
+
+- (void)addWorkPeriodsObject:(TWorkPeriod *)aWorkPeriod
+{
+	[workPeriods addObject:aWorkPeriod];
+}
+
+- (void)addWorkPeriods:(NSSet *)workPeriodsToAdd
+{
+	[workPeriods unionSet:workPeriodsToAdd];
+}
+
+- (void)removeWorkPeriodsObject:(TWorkPeriod *)aWorkPeriod
+{
+	[workPeriods removeObject:aWorkPeriod];
+}
+
+- (void)removeWorkPeriods:(NSSet *)workPeriodsToRemove
+{
+	[workPeriods minusSet:workPeriodsToRemove];
+}
+
+- (void)intersectWorkPeriods:(NSSet *)workPeriodsToIntersect
+{
+	[workPeriods intersectSet:workPeriodsToIntersect];
 }
 
 - (NSMutableArray *) matchingWorkPeriods:(NSPredicate*) filter
 {
 	NSMutableArray* result = [[[NSMutableArray alloc] init] autorelease];
-	NSEnumerator *enumerator = [_workPeriods objectEnumerator];
+	NSEnumerator *enumerator = [workPeriods objectEnumerator];
 	id anObject;
  
 	while (anObject = [enumerator nextObject])
@@ -93,11 +130,11 @@
 {
     //[super encodeWithCoder:coder];
     if ( [coder allowsKeyedCoding] ) {
-        [coder encodeObject:_name forKey:@"TName"];
-        [coder encodeObject:_workPeriods forKey:@"TWorkPeriods"];
+        [coder encodeObject:name forKey:@"TName"];
+        [coder encodeObject:workPeriods forKey:@"TWorkPeriods"];
     } else {
-        [coder encodeObject:_name];
-		[coder encodeObject:_workPeriods];
+        [coder encodeObject:name];
+		[coder encodeObject:workPeriods];
     }
     return;
 }
@@ -107,31 +144,30 @@
     //self = [super initWithCoder:coder];
     if ( [coder allowsKeyedCoding] ) {
         // Can decode keys in any order
-        _name = [[coder decodeObjectForKey:@"TName"] retain];
-        _workPeriods = [[NSMutableArray arrayWithArray: [coder decodeObjectForKey:@"TWorkPeriods"]] retain];
+        name = [[coder decodeObjectForKey:@"TName"] retain];
+        workPeriods = [[NSMutableArray arrayWithArray: [coder decodeObjectForKey:@"TWorkPeriods"]] retain];
     } else {
         // Must decode keys in same order as encodeWithCoder:
-        _name = [[coder decodeObject] retain];
-        _workPeriods = [[NSMutableArray arrayWithArray: [coder decodeObject]] retain];
+        name = [[coder decodeObject] retain];
+        workPeriods = [[NSMutableArray arrayWithArray: [coder decodeObject]] retain];
     }
 	// update back links
-	NSEnumerator *enumerator = [_workPeriods objectEnumerator];
+	NSEnumerator *enumerator = [workPeriods objectEnumerator];
 	id anObject;
 	while (anObject = [enumerator nextObject])
 	{
 		[anObject setParentTask:self];
 	}
 
-	[self updateTotalTime];
     return self;
 }
 
 - (NSString*)serializeData:(NSString*) prefix
 {
 	NSMutableString* result = [NSMutableString string];
-	NSEnumerator *enumerator = [_workPeriods objectEnumerator];
+	NSEnumerator *enumerator = [workPeriods objectEnumerator];
 	id anObject;
-	NSString *addPrefix = [NSString stringWithFormat:@"%@;\"%@\"", prefix, _name];
+	NSString *addPrefix = [NSString stringWithFormat:@"%@;\"%@\"", prefix, name];
  
 	while (anObject = [enumerator nextObject])
 	{
@@ -140,21 +176,4 @@
 	return result;
 }
 
-- (id<ITask>) removeWorkPeriod:(TWorkPeriod*)period {
-	[[self workPeriods] removeObject:period];
-	[period setParentTask:nil];
-	return self;
-}
-
-- (void) setParentProject:(TProject*) project
-{
-	[_parent release];
-	_parent = nil;
-	_parent = [project retain];
-}
-
-- (TProject*) parentProject
-{
-	return _parent;
-}
 @end
