@@ -8,12 +8,14 @@
 
 #import <Cocoa/Cocoa.h>
 #import "TTask.h"
-#import "IProject.h"
 
-@interface TProject : NSObject <NSCoding, IProject> {
-	NSString *_name;
-	NSMutableArray *_tasks;
-	int _totalTime;
+@interface TProject : NSObject <NSCoding> {
+
+	//Attributes
+	NSString *name;
+	
+	// Relationships
+	NSMutableSet *tasks;
 }
 
 // Mutable Attributes
@@ -27,15 +29,18 @@
 
 // To-many Relationships
 
-- (NSMutableArray *) tasks;
-- (void) addTask: (TTask *) task;
-- (id<IProject>) removeTask:(TTask*)task;
-
-- (NSMutableArray *) matchingTasks:(NSPredicate*) filter;
-- (int) filteredTime:(NSPredicate*) filter;
+- (NSSet *)tasks;
+- (void)setTasks:(NSSet *)newTasks;
+- (void)addTasksObject:(TTask *)aTask;
+- (void)addTasks:(NSSet *)tasksToAdd;
+- (void)removeTasksObject:(TTask *)aTask;
+- (void)removeTasks:(NSSet *)tasksToRemove;
+- (void)intersectTasks:(NSSet *)tasksToIntersect;
 
 // Other functions
 
-- (void) updateTotalTime;
+- (NSMutableArray *) matchingTasks:(NSPredicate*) filter;
+- (int) filteredTime:(NSPredicate*) filter;
 - (NSString*) serializeData;
+
 @end

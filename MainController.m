@@ -984,7 +984,7 @@
 	if (_selProject == nil) return;
 	
 	TTask *task = [TTask new];
-	[(TProject*)_selProject addTask: task];
+	[(TProject*)_selProject addTasksObject: task];
 	[tvTasks reloadData];
 	int index = [[_selProject tasks] count];
 	[tvTasks selectRowIndexes:[NSIndexSet indexSetWithIndex:index] byExtendingSelection:NO];
@@ -1199,8 +1199,7 @@
 			}
 			TTask *delTask = (TTask*)_selTask;
 			[tvTasks deselectAll: self];
-			[[project tasks] removeObject: delTask];
-			[project updateTotalTime];
+			[project removeTasksObject:delTask];
 			[tvTasks reloadData];
 			[tvProjects reloadData];
 		}

@@ -14,56 +14,78 @@
 - (id) init
 {
 	[self setName: @"New Project"];
-	_tasks = [NSMutableArray new];
-	_totalTime = 0;
+	tasks = [NSMutableSet new];
 	return self;
 }
 
-- (NSString *) name
+- (NSString *)name
 {
-	if (_name == nil) {
-		return [@"no name" autorelease];
+	return name;
+}
+
+- (void)setName:(NSString *)aName
+{
+	if (name != aName) {
+		[name release];
+		name = [aName copy];
 	}
-	return _name;
-}
-
-- (void) setName: (NSString *) name
-{
-	[name retain];
-	[_name release];
-	_name = name;
-}
-
-- (NSMutableArray *) tasks
-{
-	return _tasks;
-}
-
-- (void) addTask: (TTask *) task
-{
-	[_tasks addObject: task];
-	[task setParentProject:self];
 }
 
 - (int) totalTime
 {
-	return _totalTime;
+	int totalTime = 0;
+	NSEnumerator *e = [tasks objectEnumerator];
+	TTask *t;
+	while ((t = [e nextObject])) {
+		totalTime += [t totalTime];
+	}
+	return totalTime;
 }
 
-- (void) updateTotalTime
+- (NSSet *)tasks
 {
-	_totalTime = 0;
-	int i;
-	for (i = 0; i < [_tasks count]; i++) {
-		_totalTime += [[_tasks objectAtIndex: i] totalTime];
+	return tasks;
+}
+
+- (void)setTasks:(NSSet *)newTasks
+{
+	if (tasks != newTasks) {
+		[tasks release];
+		tasks = [newTasks mutableCopy];
 	}
 }
+
+- (void)addTasksObject:(TTask *)aTask
+{
+	[tasks addObject:aTask];
+}
+
+- (void)addTasks:(NSSet *)tasksToAdd
+{
+	[tasks unionSet:tasksToAdd];
+}
+
+- (void)removeTasksObject:(TTask *)aTask
+{
+	[tasks removeObject:aTask];
+}
+
+- (void)removeTasks:(NSSet *)tasksToRemove
+{
+	[tasks minusSet:tasksToRemove];
+}
+
+- (void)intersectTasks:(NSSet *)tasksToIntersect
+{
+	[tasks intersectSet:tasksToIntersect];
+}
+
 
 - (NSMutableArray *) matchingTasks:(NSPredicate*) filter
 {
 	NSMutableArray *result = [[[NSMutableArray alloc] init] autorelease];
 	// this needs to be performance tuned but it does the job for now
-	NSEnumerator *enumTasks = [_tasks objectEnumerator];
+	NSEnumerator *enumTasks = [tasks objectEnumerator];
 	id task;
 	while ((task = [enumTasks nextObject]) != nil) {
 		if ([[task matchingWorkPeriods:filter] count] > 0) {
@@ -79,7 +101,7 @@
 		return [self totalTime];
 	}
 	int result = 0;
-	NSEnumerator *enumTasks = [_tasks objectEnumerator];
+	NSEnumerator *enumTasks = [tasks objectEnumerator];
 	id task;
 	while ((task = [enumTasks nextObject]) != nil) {
 		result += [task filteredTime:filter];
@@ -91,11 +113,11 @@
 {
     //[super encodeWithCoder:coder];
     if ( [coder allowsKeyedCoding] ) {
-        [coder encodeObject:_name forKey:@"PName"];
-        [coder encodeObject:_tasks forKey:@"PTasks"];
+        [coder encodeObject:name forKey:@"PName"];
+        [coder encodeObject:tasks forKey:@"PTasks"];
     } else {
-        [coder encodeObject:_name];
-		[coder encodeObject:_tasks];
+        [coder encodeObject:name];
+		[coder encodeObject:tasks];
     }
     return;
 }
@@ -105,17 +127,16 @@
     //self = [super initWithCoder:coder];
     if ( [coder allowsKeyedCoding] ) {
         // Can decode keys in any order
-        _name = [[coder decodeObjectForKey:@"PName"] retain];
-        _tasks = [[NSMutableArray arrayWithArray: [coder decodeObjectForKey:@"PTasks"]] retain];
+        name = [[coder decodeObjectForKey:@"PName"] retain];
+        tasks = [[NSMutableArray arrayWithArray: [coder decodeObjectForKey:@"PTasks"]] retain];
     } else {
         // Must decode keys in same order as encodeWithCoder:
-        _name = [[coder decodeObject] retain];
-        _tasks = [[NSMutableArray arrayWithArray: [coder decodeObject]] retain];
+        name = [[coder decodeObject] retain];
+        tasks = [[NSMutableArray arrayWithArray: [coder decodeObject]] retain];
     }
-	[self updateTotalTime];
 	
 		// update back links
-	NSEnumerator *enumerator = [_tasks objectEnumerator];
+	NSEnumerator *enumerator = [tasks objectEnumerator];
 	id anObject;
 	while (anObject = [enumerator nextObject])
 	{
@@ -128,9 +149,9 @@
 - (NSString*)serializeData
 {
 	NSMutableString* result = [NSMutableString string];
-	NSEnumerator *enumerator = [_tasks objectEnumerator];
+	NSEnumerator *enumerator = [tasks objectEnumerator];
 	id anObject;
-	NSString *prefix = [NSString stringWithFormat:@"\"%@\"", _name];
+	NSString *prefix = [NSString stringWithFormat:@"\"%@\"", name];
 	while (anObject = [enumerator nextObject])
 	{
 		[result appendString:[anObject serializeData:prefix]];
@@ -138,9 +159,4 @@
 	return [[result retain] autorelease];
 }
 
-- (id<IProject>) removeTask:(TTask*)task {
-	[[self tasks] removeObject:task];
-	[task setParentProject:nil];
-	return self;
-}
 @end
