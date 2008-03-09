@@ -127,8 +127,15 @@
     //self = [super initWithCoder:coder];
     if ( [coder allowsKeyedCoding] ) {
         // Can decode keys in any order
+		[name release];
         name = [[coder decodeObjectForKey:@"PName"] retain];
-        tasks = [[NSMutableArray arrayWithArray: [coder decodeObjectForKey:@"PTasks"]] retain];
+		[tasks release];
+		id tasksArrayOrSet = [coder decodeObjectForKey:@"PTasks"];
+		if ([tasksArrayOrSet isKindOfClass:[NSSet class]]) {
+			tasks = [(NSSet*)tasksArrayOrSet mutableCopy];
+		} else if ([tasksArrayOrSet isKindOfClass:[NSArray class]]) {
+			tasks = [NSMutableSet setWithArray:tasksArrayOrSet];
+		}
     } else {
         // Must decode keys in same order as encodeWithCoder:
         name = [[coder decodeObject] retain];

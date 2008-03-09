@@ -7,15 +7,24 @@
 //
 
 #import "TMetaProject.h"
-
+#import "TProject.h"
 
 @implementation TMetaProject
 
+- (NSString*) name
+{
+	return @"All Projects";
+}
+
+- (void)setName:(NSString *)aName
+{
+	return;
+}
 
 - (int) totalTime
 {
 	int result = 0;
-	NSEnumerator *enumProjects = [_projects objectEnumerator];
+	NSEnumerator *enumProjects = [projects objectEnumerator];
 	TProject *project = nil;
 	while ((project = [enumProjects nextObject]) != nil) {
 		result += [project totalTime];
@@ -24,61 +33,88 @@
 
 }
 
-- (void) updateTotalTime
+- (NSSet *)tasks
 {
-	NSEnumerator *enumProjects = [_projects objectEnumerator];
+	NSMutableSet *result = [[NSMutableSet set] autorelease];
+	NSEnumerator *enumProjects = [projects objectEnumerator];
 	TProject *project = nil;
 	while ((project = [enumProjects nextObject]) != nil) {
-		[project updateTotalTime];
-	}
-}
-
-- (NSArray *) tasks
-{
-	NSEnumerator *enumProjects = [_projects objectEnumerator];
-	TProject *project = nil;
-	NSMutableArray *result = [[[NSMutableArray alloc] init] autorelease];
-	while ((project = [enumProjects nextObject]) != nil) {
-		[result addObjectsFromArray:[project tasks]];
+		[result unionSet:[project tasks]];
 	}
 	return result;
 }
 
-- (NSString*) name
+- (void)setTasks:(NSSet *)newTasks
 {
-	return @"All Projects";
+	return;
 }
 
-- (void) setProjects:(NSMutableArray*) projects
+- (void)addTasksObject:(TTask *)aTask
 {
-	if (_projects != nil) {
-		[_projects release];
-	}
-	_projects = [projects retain];
+	return;
 }
 
-- (TProject*) projectForTask:(TTask*)task returnIndex:(int*)taskIndex {
-	NSEnumerator *enumerator = [_projects objectEnumerator];
-	id aProject;
-	*taskIndex = -1;
-	
-	while (aProject = [enumerator nextObject])
-	{
-		unsigned result = [[aProject tasks] indexOfObject:task];
-		if (result != NSNotFound) {
-			*taskIndex = result;
-			return aProject;
-		}
-	}
-	*taskIndex = -1;
-	return nil;
+- (void)addTasks:(NSSet *)tasksToAdd
+{
+	return;
 }
 
-- (id<IProject>) removeTask:(TTask*)task {
-	int index = -1;
-	TProject *project = [self projectForTask:task returnIndex:&index];
-	[[project tasks] removeObject:task];
-	return self;
+- (void)removeTasksObject:(TTask *)aTask
+{
+	NSEnumerator *e = [projects objectEnumerator];
+	TProject *project;
+	while ((project = [e nextObject])) {
+		[project removeTasksObject:aTask];
+	}
+	return;
+}
+
+- (void)removeTasks:(NSSet *)tasksToRemove
+{
+	NSEnumerator *e = [projects objectEnumerator];
+	TProject *project;
+	while ((project = [e nextObject])) {
+		[project removeTasks:tasksToRemove];
+	}
+	return;
+}
+
+- (NSSet *)projects
+{
+	return projects;
+}
+
+- (void)setProjects:(NSSet*)newProjects
+{
+	if (projects != newProjects) {
+		[projects release];
+		projects = [newProjects mutableCopy];
+	}
+}
+
+- (void)addProjectsObject:(TProject *)aTask
+{
+	[projects addObject:aTask];
+}
+
+- (void)addProjects:(NSSet *)projectsToAdd
+{
+	[projects unionSet:projectsToAdd];
+}
+
+- (void)removeProjectsObject:(TProject *)aTask
+{
+	[projects removeObject:aTask];
+}
+
+- (void)removeProjects:(NSSet *)projectsToRemove
+{
+	[projects minusSet:projectsToRemove];
+}
+
+- (void)intersectProjects:(NSSet *)projectsToIntersect
+{
+	[projects intersectSet:projectsToIntersect];
 }
 
 - (int) filteredTime:(NSPredicate*) filter
@@ -87,7 +123,7 @@
 		return [self totalTime];
 	}
 	int result = 0;
-	NSEnumerator *enumProjects = [_projects objectEnumerator];
+	NSEnumerator *enumProjects = [projects objectEnumerator];
 	id project;
 	while ((project = [enumProjects nextObject]) != nil) {
 		result += [project filteredTime:filter];
@@ -96,16 +132,15 @@
 }
 
 
-- (NSMutableArray *) matchingTasks:(NSPredicate*) filter //  : (bool) includeEmptyTasks
+- (NSSet *) matchingTasks:(NSPredicate*) filter //  : (bool) includeEmptyTasks
 {
 	if (filter == nil) {
 		return [self tasks];
 	}
-	NSEnumerator *enumProjects = [_projects objectEnumerator];
-	NSMutableArray *result = [[[NSMutableArray alloc] init] autorelease];
+	NSEnumerator *enumProjects = [projects objectEnumerator];
+	NSMutableSet *result = [[[NSMutableArray alloc] init] autorelease];
 
 	id project;
-	NSMutableArray *projectTasks = nil;
 	while ((project = [enumProjects nextObject]) != nil) {
 		[result addObjectsFromArray: [project matchingTasks:filter]];
 	}
