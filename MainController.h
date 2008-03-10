@@ -11,6 +11,7 @@
 #import "TMetaTask.h"
 #import "TDateTransformer.h"
 #import "TimeIntervalFormatter.h"
+#import "TimeTrackerDocument.h"
 
 #define FILTER_MODE_NONE 0
 #define FILTER_MODE_DAY 1
@@ -77,7 +78,6 @@
 	NSToolbarItem *_dayToolbarItem;
 	NSToolbarItem *_weekToolbarItem;	
 	NSToolbarItem *_monthToolbarItem;
-	NSMutableArray *_projects;
 	IBOutlet TMetaProject *_metaProject;
 	TMetaTask *_metaTask;
 	NSMutableDictionary *_projects_lastTask;
@@ -97,6 +97,9 @@
 	NSDate *_selectedfilterDate;
 	int timeSinceSave;
 	int _filterMode;
+	
+	// Models
+	TimeTrackerDocument *document;
 }
 
 // actions

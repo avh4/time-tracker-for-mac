@@ -20,7 +20,6 @@
 
 - (id) init
 {
-	_projects = [NSMutableArray new];
 	_selProject = nil;
 	_selTask = nil;
 	_curTask = nil;
@@ -28,10 +27,8 @@
 	_curWorkPeriod = nil;
 	timer = nil;
 	timeSinceSave = 0;
-	_metaProject = [[TMetaProject alloc] init];
-	_metaTask = [[TMetaTask alloc] init];
-	[_metaProject setProjects: _projects];
-	[_metaTask setTasks: [_metaProject tasks]];
+	
+	document = [[TimeTrackerDocument alloc] init];
 	
 	[NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
 	_dateFormatter = [[NSDateFormatter alloc] init];
@@ -350,34 +347,8 @@
 
 - (void)awakeFromNib
 {
-	NSData *theData = nil;
-	NSMutableArray *projects = nil;
-	
-	if ([self dataFileExists]) {
-		NSString * path = [self pathForDataFile]; 
-		NSDictionary * rootObject; 
-		rootObject = [NSKeyedUnarchiver unarchiveObjectWithFile:path]; 
-		theData = [rootObject  valueForKey:@"ProjectTimes"];
-		if (theData != nil) {
-			projects = (NSMutableArray *)[[NSMutableArray arrayWithArray: [NSKeyedUnarchiver unarchiveObjectWithData:theData]] retain];
-		}
-	} else {
-		// use the old unarchiver
-		defaults = [NSUserDefaults standardUserDefaults];
-	
-		theData=[[NSUserDefaults standardUserDefaults] dataForKey:@"ProjectTimes"];
-		if (theData != nil) {
-			projects = (NSMutableArray *)[[NSMutableArray arrayWithArray: [NSUnarchiver unarchiveObjectWithData:theData]] retain];
-		}
-	}
-	if (projects != nil) {
-		[_projects release];
-		// projects is already retained
-		_projects = projects;
-		[_metaProject setProjects:_projects];
-		[_metaTask setTasks:[_metaProject tasks]];
-	}
-	_projects_lastTask = [[NSMutableDictionary alloc] initWithCapacity:[_projects count]];
+	[document release];
+	document = [[TimeTrackerDocument alloc] initFromStorage];
 	
 	//NSNumber *numTotalTime = [defaults objectForKey: @"TotalTime"];
 	
@@ -478,16 +449,6 @@
 	[tvProjects reloadData];
 }
 
-- (TWorkPeriod*) workPeriodAtIndex:(int) index
-{
-	TWorkPeriod *wp = nil;
-	
-	int result = [self selectedWorkPeriodRow];
-	TTask *task = [self taskForWorkTimeIndex:index timeIndex:&result];
-	wp = [[task workPeriods] objectAtIndex:result];
-	return wp;
-}
-
 - (TWorkPeriod*) selectedWorkPeriod 
 {
 	return [[workPeriodController arrangedObjects] objectAtIndex:[tvWorkPeriods selectedRow]];
@@ -531,7 +492,9 @@
 	[dtpEditWorkPeriodStartTime setDateValue: [wp startTime]];
 	[dtpEditWorkPeriodEndTime setDateValue: [wp endTime]];
 	[dtpEditWorkPeriodComment setString: [[wp comment] string]];
-	[changeProjectController setSelectionIndex:[_projects indexOfObject:[[wp parentTask] parentProject]]];
+	NSArray *selection = [NSArray arrayWithObject:[[wp parentTask] parentProject]];
+	[changeProjectController setSelectedObjects:selection];
+	[selection release];
 	//[self provideProjectsForEditWpDialog:[[wp parentTask] parentProject]];
 	//[self provideTasksForEditWpDialog:[[wp parentTask] parentProject]];
 	[_taskPopupButton selectItemWithTitle:[[wp parentTask] name]];
@@ -562,9 +525,9 @@
 	
 	// move the workperiod to a different task / project
 	if ([_taskPopupButton indexOfSelectedItem] > 0) {
-		TProject *selectedProject = [_projects objectAtIndex:[_projectPopupButton indexOfSelectedItem]];
-		TTask *selectedTask = [[selectedProject tasks] objectAtIndex:([_taskPopupButton indexOfSelectedItem] - 1)];
-		[self moveWorkPeriodToNewTask:wp task:selectedTask];
+		//TProject *selectedProject = [[document projects] objectAtIndex:[_projectPopupButton indexOfSelectedItem]];
+		//TTask *selectedTask = [[selectedProject tasks] objectAtIndex:([_taskPopupButton indexOfSelectedItem] - 1)];
+		//[self moveWorkPeriodToNewTask:wp task:selectedTask];
 	}
 	
 	[_selTask updateTotalTime];
@@ -660,37 +623,13 @@
 	return [fm fileExistsAtPath:dataFile];
 }
 
-- (NSString*)serializeData 
-{
-	NSMutableString *result = [NSMutableString stringWithString:@"\"Project\";\"Task\";\"Date\";\"Start\";\"End\";\"Duration\";\"Comment\"\n"];
-	NSEnumerator *enumerator = [_projects objectEnumerator];
-	id anObject;
- 
-	while (anObject = [enumerator nextObject])
-	{
-		[result appendString:[anObject serializeData]];
-	}
-	return result;
-}
-
 - (void)saveData
 {
-	NSData *theData=[NSKeyedArchiver archivedDataWithRootObject:_projects];
-	NSString * path = [self pathForDataFile]; 
-	NSMutableDictionary * rootObject; 
-	rootObject = [NSMutableDictionary dictionary]; 
-	//[rootObject setValue: [self mailboxes] forKey:@"mailboxes"]; 
-	[rootObject setObject:theData forKey:@"ProjectTimes"];
-	[NSKeyedArchiver archiveRootObject: rootObject toFile: path];
-	
-	// not necessary to store in the old format
-	/*[[NSUserDefaults standardUserDefaults] setObject:theData forKey:@"ProjectTimes"];
-	[[NSUserDefaults standardUserDefaults] synchronize];
-	*/
+	[document saveData:[self pathForDataFile]];
 	
 	timeSinceSave = 0;
 	
-	NSString *data = [self serializeData];
+	NSString *data = [document serializeData];
 	[data writeToFile:[@"~/times.csv" stringByExpandingTildeInPath] atomically:YES];
 /*	NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:@"data.txt"];
 	[fileHandle writ]
@@ -734,7 +673,7 @@
 - (int)numberOfRowsInTableView:(NSTableView *)tableView
 {
 	if (tableView == tvProjects) {
-		return [_projects count] + 1;
+		return [[document projects] count] + 1;
 	}
 	if (tableView == tvTasks) {
 		if (_selProject == nil)

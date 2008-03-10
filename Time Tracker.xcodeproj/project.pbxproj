@@ -49,6 +49,8 @@
 		B19BDFC60B5C956F00465046 /* LICENSE.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = B19BDFC20B5C956700465046 /* LICENSE.txt */; };
 		B1AB15830CEBC9A50025CF12 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1AB15820CEBC9A50025CF12 /* Sparkle.framework */; };
 		B1AB159D0CEBC9FC0025CF12 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B1AB15820CEBC9A50025CF12 /* Sparkle.framework */; };
+		B1DA82410D836A7300B3FB9D /* TimeTrackerDocument.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B1DA823F0D836A7300B3FB9D /* TimeTrackerDocument.h */; };
+		B1DA82420D836A7300B3FB9D /* TimeTrackerDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = B1DA82400D836A7300B3FB9D /* TimeTrackerDocument.m */; };
 		D581A8140CFF3BBA006A0DC1 /* TMetaProject.m in Sources */ = {isa = PBXBuildFile; fileRef = D581A8110CFF3BBA006A0DC1 /* TMetaProject.m */; };
 		D581A8150CFF3BBA006A0DC1 /* TMetaTask.m in Sources */ = {isa = PBXBuildFile; fileRef = D581A8130CFF3BBA006A0DC1 /* TMetaTask.m */; };
 		D5B0A2C80D24D15A004DBF70 /* pickdateofftool.png in Resources */ = {isa = PBXBuildFile; fileRef = D5B0A2C60D24D15A004DBF70 /* pickdateofftool.png */; };
@@ -93,6 +95,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				B1AB159D0CEBC9FC0025CF12 /* Sparkle.framework in CopyFiles */,
+				B1DA82410D836A7300B3FB9D /* TimeTrackerDocument.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,6 +137,8 @@
 		B19BDFC10B5C956700465046 /* ChangeLog.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChangeLog.txt; sourceTree = SOURCE_ROOT; };
 		B19BDFC20B5C956700465046 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = SOURCE_ROOT; };
 		B1AB15820CEBC9A50025CF12 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		B1DA823F0D836A7300B3FB9D /* TimeTrackerDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeTrackerDocument.h; sourceTree = "<group>"; };
+		B1DA82400D836A7300B3FB9D /* TimeTrackerDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTrackerDocument.m; sourceTree = "<group>"; };
 		D581A8100CFF3BBA006A0DC1 /* TMetaProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMetaProject.h; sourceTree = "<group>"; };
 		D581A8110CFF3BBA006A0DC1 /* TMetaProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMetaProject.m; sourceTree = "<group>"; };
 		D581A8120CFF3BBA006A0DC1 /* TMetaTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMetaTask.h; sourceTree = "<group>"; };
@@ -289,6 +294,8 @@
 				2C9EC8D10905A5F2000651F2 /* TTask.m */,
 				D58EEB640D09D2830043384C /* TWorkPeriod.h */,
 				2C9EC9530905ABAE000651F2 /* TWorkPeriod.m */,
+				B1DA823F0D836A7300B3FB9D /* TimeTrackerDocument.h */,
+				B1DA82400D836A7300B3FB9D /* TimeTrackerDocument.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -375,6 +382,7 @@
 				2C9EC9540905ABAE000651F2 /* TWorkPeriod.m in Sources */,
 				D581A8140CFF3BBA006A0DC1 /* TMetaProject.m in Sources */,
 				D581A8150CFF3BBA006A0DC1 /* TMetaTask.m in Sources */,
+				B1DA82420D836A7300B3FB9D /* TimeTrackerDocument.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
