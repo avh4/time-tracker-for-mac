@@ -218,6 +218,7 @@
 		29B97314FDCFA39411CA2CEA /* Time Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				B1DA82E20D84F7BD00B3FB9D /* Controllers */,
 				B1A5C5420D7E0DE400977BC3 /* Models */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -298,6 +299,13 @@
 				B1DA82400D836A7300B3FB9D /* TimeTrackerDocument.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		B1DA82E20D84F7BD00B3FB9D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

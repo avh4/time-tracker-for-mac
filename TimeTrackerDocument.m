@@ -17,35 +17,6 @@
 	return self;
 }
 
-- (id)initFromStorage
-{
-	if ([self dataFileExists]) {
-		NSString * path = [self pathForDataFile]; 
-		NSDictionary * rootObject; 
-		rootObject = [NSKeyedUnarchiver unarchiveObjectWithFile:path]; 
-		NSData *theData = nil;
-		theData = [rootObject  valueForKey:@"ProjectTimes"];
-		if (theData != nil) {
-			projects = (NSMutableArray *)[[NSMutableArray arrayWithArray: [NSKeyedUnarchiver unarchiveObjectWithData:theData]] retain];
-		}
-	} else {
-		// use the old unarchiver
-		defaults = [NSUserDefaults standardUserDefaults];
-	
-		NSData *theData = nil;
-		theData=[[NSUserDefaults standardUserDefaults] dataForKey:@"ProjectTimes"];
-		if (theData != nil) {
-			projects = (NSMutableArray *)[[NSMutableArray arrayWithArray: [NSUnarchiver unarchiveObjectWithData:theData]] retain];
-		}
-	}
-	if (_projects == nil) {
-		_projects = [NSMutableArray array];
-	}
-	_projects_lastTask = [[NSMutableDictionary alloc] initWithCapacity:[_projects count]];
-	
-	return self;
-}
-
 - (NSSet *)projects
 {
 	return projects;
@@ -84,32 +55,80 @@
 	[projects intersectSet:projectsToIntersect];
 }
 
-- (void)saveData:(NSString *)path
+- (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
 {
-	NSData *theData=[NSKeyedArchiver archivedDataWithRootObject:projects];
-	NSMutableDictionary * rootObject; 
-	rootObject = [NSMutableDictionary dictionary]; 
-	//[rootObject setValue: [self mailboxes] forKey:@"mailboxes"]; 
-	[rootObject setObject:theData forKey:@"ProjectTimes"];
-	[NSKeyedArchiver archiveRootObject: rootObject toFile: path];
+	if ([typeName isEqualToString:CSV_TYPE]) {
 	
-	// not necessary to store in the old format
-	/*[[NSUserDefaults standardUserDefaults] setObject:theData forKey:@"ProjectTimes"];
-	[[NSUserDefaults standardUserDefaults] synchronize];
-	*/	
+		NSMutableString *result = [NSMutableString stringWithString:@"\"Project\";\"Task\";\"Date\";\"Start\";\"End\";\"Duration\";\"Comment\"\n"];
+		NSEnumerator *enumerator = [projects objectEnumerator];
+		id anObject;
+		
+		while (anObject = [enumerator nextObject])
+		{
+			[result appendString:[anObject serializeData]];
+		}
+		return [result dataUsingEncoding:NSUnicodeStringEncoding];
+		
+	} else if ([typeName isEqualToString:TT_V2_TYPE]) {
+	
+		NSData *documentData = nil;
+		NSData *projectData=[NSKeyedArchiver archivedDataWithRootObject:projects];
+	
+		NSMutableDictionary *rootObject = [NSMutableDictionary dictionary]; 
+		[rootObject setObject:projectData forKey:@"ProjectTimes"];
+
+		documentData = [NSKeyedArchiver archivedDataWithRootObject:rootObject];
+		return documentData;
+
+	} else if ([typeName isEqualToString:TT_V1_TYPE]) {
+		// not necessary to store in the old format
+		/*[[NSUserDefaults standardUserDefaults] setObject:theData forKey:@"ProjectTimes"];
+		[[NSUserDefaults standardUserDefaults] synchronize];
+		*/
+		return nil;
+		
+	} else {
+	
+		return nil;
+		
+	}
+	
 }
 
-- (NSString *)serializeData 
+- (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError
 {
-	NSMutableString *result = [NSMutableString stringWithString:@"\"Project\";\"Task\";\"Date\";\"Start\";\"End\";\"Duration\";\"Comment\"\n"];
-	NSEnumerator *enumerator = [_projects objectEnumerator];
-	id anObject;
- 
-	while (anObject = [enumerator nextObject])
-	{
-		[result appendString:[anObject serializeData]];
+	if ([typeName isEqualToString:CSV_TYPE]) {
+	
+		// Cannot read CSV files (can only export them)
+		if (outError) {
+			// XXX Need to figure out the correct way to fill in these arguments:
+			*outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileWriteUnsupportedSchemeError userInfo:nil];
+		}
+		return FALSE;
+		
+	} else if ([typeName isEqualToString:TT_V2_TYPE]) {
+
+		NSDictionary *rootObject = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+		NSData *projectData = nil;
+		projectData = [rootObject  valueForKey:@"ProjectTimes"];
+		if (projectData != nil) {
+			NSArray *projectArray = [NSKeyedUnarchiver unarchiveObjectWithData:projectData];
+			[projects release];
+			projects = [NSMutableSet setWithArray:projectArray];
+		}
+		return TRUE;
+		
+	} else if ([typeName isEqualToString:TT_V1_TYPE]) {
+	
+		NSArray *projectArray = [NSUnarchiver unarchiveObjectWithData:data];
+		[projects release];
+		projects = [NSMutableSet setWithArray:projectArray];
+		return TRUE;
+		
 	}
-	return result;
+
+	// XXX should indicate that the requested type is not supported
+	return FALSE;
 }
 
 @end
