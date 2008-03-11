@@ -51,6 +51,7 @@
 		B1AB159D0CEBC9FC0025CF12 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B1AB15820CEBC9A50025CF12 /* Sparkle.framework */; };
 		B1DA82410D836A7300B3FB9D /* TimeTrackerDocument.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B1DA823F0D836A7300B3FB9D /* TimeTrackerDocument.h */; };
 		B1DA82420D836A7300B3FB9D /* TimeTrackerDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = B1DA82400D836A7300B3FB9D /* TimeTrackerDocument.m */; };
+		B1DA83740D862AF300B3FB9D /* TimeTrackerMainWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = B1DA83730D862AF300B3FB9D /* TimeTrackerMainWindow.nib */; };
 		D581A8140CFF3BBA006A0DC1 /* TMetaProject.m in Sources */ = {isa = PBXBuildFile; fileRef = D581A8110CFF3BBA006A0DC1 /* TMetaProject.m */; };
 		D581A8150CFF3BBA006A0DC1 /* TMetaTask.m in Sources */ = {isa = PBXBuildFile; fileRef = D581A8130CFF3BBA006A0DC1 /* TMetaTask.m */; };
 		D5B0A2C80D24D15A004DBF70 /* pickdateofftool.png in Resources */ = {isa = PBXBuildFile; fileRef = D5B0A2C60D24D15A004DBF70 /* pickdateofftool.png */; };
@@ -139,6 +140,7 @@
 		B1AB15820CEBC9A50025CF12 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		B1DA823F0D836A7300B3FB9D /* TimeTrackerDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeTrackerDocument.h; sourceTree = "<group>"; };
 		B1DA82400D836A7300B3FB9D /* TimeTrackerDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTrackerDocument.m; sourceTree = "<group>"; };
+		B1DA83670D862ADA00B3FB9D /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/TimeTrackerMainWindow.nib; sourceTree = "<group>"; };
 		D581A8100CFF3BBA006A0DC1 /* TMetaProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMetaProject.h; sourceTree = "<group>"; };
 		D581A8110CFF3BBA006A0DC1 /* TMetaProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMetaProject.m; sourceTree = "<group>"; };
 		D581A8120CFF3BBA006A0DC1 /* TMetaTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMetaTask.h; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B1DA83730D862AF300B3FB9D /* TimeTrackerMainWindow.nib */,
 				B163D4040B646239007D0E2C /* AUTHORS.txt */,
 				B163D4050B646239007D0E2C /* LICENSE-GPL.txt */,
 				B19BDFC10B5C956700465046 /* ChangeLog.txt */,
@@ -372,6 +375,7 @@
 				D5E58E450D243A21003020AA /* weektool.png in Resources */,
 				D5B0A2C80D24D15A004DBF70 /* pickdateofftool.png in Resources */,
 				D5B0A2C90D24D15A004DBF70 /* pickdatetool.png in Resources */,
+				B1DA83740D862AF300B3FB9D /* TimeTrackerMainWindow.nib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +423,14 @@
 				29B97319FDCFA39411CA2CEA /* English */,
 			);
 			name = MainMenu.nib;
+			sourceTree = "<group>";
+		};
+		B1DA83730D862AF300B3FB9D /* TimeTrackerMainWindow.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B1DA83670D862ADA00B3FB9D /* English */,
+			);
+			name = TimeTrackerMainWindow.nib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
