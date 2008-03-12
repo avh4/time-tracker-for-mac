@@ -134,7 +134,7 @@
 		if ([tasksArrayOrSet isKindOfClass:[NSSet class]]) {
 			tasks = [(NSSet*)tasksArrayOrSet mutableCopy];
 		} else if ([tasksArrayOrSet isKindOfClass:[NSArray class]]) {
-			tasks = [NSMutableSet setWithArray:tasksArrayOrSet];
+			tasks = [[NSMutableSet alloc] initWithArray:tasksArrayOrSet];
 		}
     } else {
         // Must decode keys in same order as encodeWithCoder:
