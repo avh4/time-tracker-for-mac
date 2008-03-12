@@ -75,7 +75,7 @@
 		if (projectData != nil) {
 			NSArray *projectArray = [NSKeyedUnarchiver unarchiveObjectWithData:projectData];
 			[projects release];
-			projects = [NSMutableSet setWithArray:projectArray];
+			projects = [[NSMutableSet alloc] initWithArray:projectArray];
 		}
 		return TRUE;
 		
@@ -83,7 +83,7 @@
 	
 		NSArray *projectArray = [NSUnarchiver unarchiveObjectWithData:data];
 		[projects release];
-		projects = [NSMutableSet setWithArray:projectArray];
+		projects = [[NSMutableSet alloc] initWithArray:projectArray];
 		return TRUE;
 		
 	}
@@ -114,6 +114,7 @@
 
 - (void)setProjects:(NSSet*)newProjects
 {
+	assert(newProjects != nil);
 	if (projects != newProjects) {
 		[projects release];
 		projects = [newProjects mutableCopy];
