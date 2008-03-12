@@ -18,30 +18,30 @@
 
 	// Relationships
 	TTask *parentTask;
-	
 }
 
 // Mutable Attributes
 
-- (NSDate *) startTime;
-- (void) setStartTime: (NSDate *) startTime;
+- (NSDate *)startTime;
+- (void)setStartTime:(NSDate *)aStartTime;
 
-- (NSDate *) endTime;
-- (void) setEndTime: (NSDate *) endTime;
+- (NSDate *)endTime;
+- (void)setEndTime:(NSDate *)anEndTime;
 
-- (NSAttributedString *) comment;
-- (void) setComment:(NSAttributedString*) aComment;
+- (NSAttributedString *)comment;
+- (void)setComment:(NSAttributedString*)aComment;
 
 // Immutable Attributes
 
-- (int) totalTime;
+- (int)totalTime;
 
 // To-one Relationships
 
-- (TTask*) parentTask;
-- (void) setParentTask:(TTask*) task;
+- (TTask*)parentTask;
+- (void)setParentTask:(TTask*)aTask;
 
 // Other functions
 
-- (NSString*) serializeData: (NSString*) prefix;
+- (NSString*)serializeData:(NSString*)prefix;
+
 @end
