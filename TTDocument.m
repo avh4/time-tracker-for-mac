@@ -17,14 +17,79 @@
     return @"TimeTrackerMainWindow";
 }
 
-- (NSData *)dataRepresentationOfType:(NSString *)type {
-    // Implement to provide a persistent data representation of your document OR remove this and implement the file-wrapper or file path based save methods.
-    return nil;
+- (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
+{
+	if ([typeName isEqualToString:CSV_TYPE]) {
+	
+		NSMutableString *result = [NSMutableString stringWithString:@"\"Project\";\"Task\";\"Date\";\"Start\";\"End\";\"Duration\";\"Comment\"\n"];
+		NSEnumerator *enumerator = [projects objectEnumerator];
+		id anObject;
+		
+		while (anObject = [enumerator nextObject])
+		{
+			[result appendString:[anObject serializeData]];
+		}
+		return [result dataUsingEncoding:NSUnicodeStringEncoding];
+		
+	} else if ([typeName isEqualToString:TT_V2_TYPE]) {
+	
+		NSData *documentData = nil;
+		NSData *projectData=[NSKeyedArchiver archivedDataWithRootObject:projects];
+	
+		NSMutableDictionary *rootObject = [NSMutableDictionary dictionary]; 
+		[rootObject setObject:projectData forKey:@"ProjectTimes"];
+
+		documentData = [NSKeyedArchiver archivedDataWithRootObject:rootObject];
+		return documentData;
+
+	} else if ([typeName isEqualToString:TT_V1_TYPE]) {
+		// not necessary to store in the old format
+		/*[[NSUserDefaults standardUserDefaults] setObject:theData forKey:@"ProjectTimes"];
+		[[NSUserDefaults standardUserDefaults] synchronize];
+		*/
+		return nil;
+		
+	} else {
+	
+		return nil;
+		
+	}
+	
 }
 
-- (BOOL)loadDataRepresentation:(NSData *)data ofType:(NSString *)type {
-    // Implement to load a persistent data representation of your document OR remove this and implement the file-wrapper or file path based load methods.
-    return YES;
+- (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError
+{
+	if ([typeName isEqualToString:CSV_TYPE]) {
+	
+		// Cannot read CSV files (can only export them)
+		if (outError) {
+			// XXX Need to figure out the correct way to fill in these arguments:
+			*outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileWriteUnsupportedSchemeError userInfo:nil];
+		}
+		return FALSE;
+		
+	} else if ([typeName isEqualToString:TT_V2_TYPE]) {
+
+		NSDictionary *rootObject = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+		NSData *projectData = [rootObject  valueForKey:@"ProjectTimes"];
+		if (projectData != nil) {
+			NSArray *projectArray = [NSKeyedUnarchiver unarchiveObjectWithData:projectData];
+			[projects release];
+			projects = [NSMutableSet setWithArray:projectArray];
+		}
+		return TRUE;
+		
+	} else if ([typeName isEqualToString:TT_V1_TYPE]) {
+	
+		NSArray *projectArray = [NSUnarchiver unarchiveObjectWithData:data];
+		[projects release];
+		projects = [NSMutableSet setWithArray:projectArray];
+		return TRUE;
+		
+	}
+
+	// XXX should indicate that the requested type is not supported
+	return FALSE;
 }
 
 - (id)init
