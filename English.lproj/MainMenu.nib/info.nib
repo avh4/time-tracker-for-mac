@@ -3,17 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>IBDocumentLocation</key>
-	<string>69 52 356 240 0 0 1280 778 </string>
+	<string>26 51 356 240 0 0 1280 778 </string>
 	<key>IBFramework Version</key>
 	<string>489.0</string>
 	<key>IBLastKnownRelativeProjectPath</key>
 	<string>../../Time Tracker.xcodeproj</string>
 	<key>IBOldestOS</key>
 	<integer>4</integer>
-	<key>IBOpenObjects</key>
-	<array>
-		<integer>21</integer>
-	</array>
 	<key>IBSystem Version</key>
 	<string>8S2167</string>
 	<key>targetFramework</key>
