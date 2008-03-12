@@ -13,6 +13,7 @@
 
 - (id)init
 {
+	NSLog(@"TimeTrackerDocument.init");
 	projects = [NSMutableSet set];
 	return self;
 }

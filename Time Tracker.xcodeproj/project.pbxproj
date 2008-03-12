@@ -48,11 +48,12 @@
 		B19BDFC60B5C956F00465046 /* LICENSE.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = B19BDFC20B5C956700465046 /* LICENSE.txt */; };
 		B1AB15830CEBC9A50025CF12 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1AB15820CEBC9A50025CF12 /* Sparkle.framework */; };
 		B1AB159D0CEBC9FC0025CF12 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B1AB15820CEBC9A50025CF12 /* Sparkle.framework */; };
-		B1DA82410D836A7300B3FB9D /* TimeTrackerDocument.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B1DA823F0D836A7300B3FB9D /* TimeTrackerDocument.h */; };
 		B1DA82420D836A7300B3FB9D /* TimeTrackerDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = B1DA82400D836A7300B3FB9D /* TimeTrackerDocument.m */; };
 		B1DA83740D862AF300B3FB9D /* TimeTrackerMainWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = B1DA83730D862AF300B3FB9D /* TimeTrackerMainWindow.nib */; };
 		B1DA83950D877D8900B3FB9D /* TTAppDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B1DA83930D877D8900B3FB9D /* TTAppDelegate.h */; };
 		B1DA83960D877D8900B3FB9D /* TTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B1DA83940D877D8900B3FB9D /* TTAppDelegate.m */; };
+		B1DA84C30D878FBD00B3FB9D /* TTDocument.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B1DA84C10D878FBD00B3FB9D /* TTDocument.h */; };
+		B1DA84C40D878FBD00B3FB9D /* TTDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = B1DA84C20D878FBD00B3FB9D /* TTDocument.m */; };
 		D581A8140CFF3BBA006A0DC1 /* TMetaProject.m in Sources */ = {isa = PBXBuildFile; fileRef = D581A8110CFF3BBA006A0DC1 /* TMetaProject.m */; };
 		D581A8150CFF3BBA006A0DC1 /* TMetaTask.m in Sources */ = {isa = PBXBuildFile; fileRef = D581A8130CFF3BBA006A0DC1 /* TMetaTask.m */; };
 		D5B0A2C80D24D15A004DBF70 /* pickdateofftool.png in Resources */ = {isa = PBXBuildFile; fileRef = D5B0A2C60D24D15A004DBF70 /* pickdateofftool.png */; };
@@ -97,8 +98,8 @@
 			dstSubfolderSpec = 10;
 			files = (
 				B1AB159D0CEBC9FC0025CF12 /* Sparkle.framework in CopyFiles */,
-				B1DA82410D836A7300B3FB9D /* TimeTrackerDocument.h in CopyFiles */,
 				B1DA83950D877D8900B3FB9D /* TTAppDelegate.h in CopyFiles */,
+				B1DA84C30D878FBD00B3FB9D /* TTDocument.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +146,8 @@
 		B1DA83670D862ADA00B3FB9D /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/TimeTrackerMainWindow.nib; sourceTree = "<group>"; };
 		B1DA83930D877D8900B3FB9D /* TTAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTAppDelegate.h; sourceTree = "<group>"; };
 		B1DA83940D877D8900B3FB9D /* TTAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTAppDelegate.m; sourceTree = "<group>"; };
+		B1DA84C10D878FBD00B3FB9D /* TTDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTDocument.h; sourceTree = "<group>"; };
+		B1DA84C20D878FBD00B3FB9D /* TTDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTDocument.m; sourceTree = "<group>"; };
 		D581A8100CFF3BBA006A0DC1 /* TMetaProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMetaProject.h; sourceTree = "<group>"; };
 		D581A8110CFF3BBA006A0DC1 /* TMetaProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMetaProject.m; sourceTree = "<group>"; };
 		D581A8120CFF3BBA006A0DC1 /* TMetaTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMetaTask.h; sourceTree = "<group>"; };
@@ -304,6 +307,8 @@
 				2C9EC9530905ABAE000651F2 /* TWorkPeriod.m */,
 				B1DA823F0D836A7300B3FB9D /* TimeTrackerDocument.h */,
 				B1DA82400D836A7300B3FB9D /* TimeTrackerDocument.m */,
+				B1DA84C10D878FBD00B3FB9D /* TTDocument.h */,
+				B1DA84C20D878FBD00B3FB9D /* TTDocument.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -401,6 +406,7 @@
 				D581A8150CFF3BBA006A0DC1 /* TMetaTask.m in Sources */,
 				B1DA82420D836A7300B3FB9D /* TimeTrackerDocument.m in Sources */,
 				B1DA83960D877D8900B3FB9D /* TTAppDelegate.m in Sources */,
+				B1DA84C40D878FBD00B3FB9D /* TTDocument.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
