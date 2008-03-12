@@ -11,11 +11,17 @@
 
 @implementation TTask
 
-- (id) init
+- (id)init
 {
 	[self setName: @"New Task"];
-	workPeriods = [NSMutableSet new];
+	workPeriods = [[NSMutableSet alloc] init];
 	return self;
+}
+
+- (void)dealloc
+{
+	[workPeriods release];
+	[super dealloc];
 }
 
 - (NSString *)name
@@ -145,7 +151,12 @@
     if ( [coder allowsKeyedCoding] ) {
         // Can decode keys in any order
         name = [[coder decodeObjectForKey:@"TName"] retain];
-        workPeriods = [[NSMutableArray arrayWithArray: [coder decodeObjectForKey:@"TWorkPeriods"]] retain];
+		id workPeriodsArrayOrSet = [coder decodeObjectForKey:@"TWorkPeriods"];
+		if ([workPeriodsArrayOrSet isKindOfClass:[NSSet class]]) {
+			workPeriods = [(NSSet*)workPeriodsArrayOrSet mutableCopy];
+		} else if ([workPeriodsArrayOrSet isKindOfClass:[NSArray class]]) {
+			workPeriods = [[NSMutableSet alloc] initWithArray:workPeriodsArrayOrSet];
+		}
     } else {
         // Must decode keys in same order as encodeWithCoder:
         name = [[coder decodeObject] retain];
