@@ -18,17 +18,24 @@
 	// Time Tracker Document.
 	NSLog(@"TTAppDelegate.applicationDidFinishLaunching:");
 	
+	NSDocumentController *docC = [NSDocumentController sharedDocumentController];
 	NSString *docPath = [@"~/Library/Application Support/TimeTracker/data.plist" stringByExpandingTildeInPath];
 	NSURL *docURL = [NSURL fileURLWithPath:docPath];
-	NSDocumentController *docC = [NSDocumentController sharedDocumentController];
+
+	assert([docC documentForURL:docURL] == nil);
+	
 	NSError *outError = nil;
 	TimeTrackerDocument *doc = 
-		[docC openDocumentWithContentsOfURL:docURL display:YES error:&outError];
+		[docC makeDocumentWithContentsOfURL:docURL ofType:TT_V2_TYPE error:&outError];
 	
 	if (doc == nil && outError != nil) {
 		NSLog(@"Failed to open default document: %@", [outError localizedDescription] );
 		[[NSApplication sharedApplication] terminate:self];
 	}
+	
+	[docC addDocument:doc];
+	[doc makeWindowControllers];
+	[doc showWindows];
 }
 
 @end
