@@ -7,6 +7,7 @@
 //
 
 #import "TTAppDelegate.h"
+#import "TimeTrackerDocument.h"
 
 
 @implementation TTAppDelegate
@@ -16,6 +17,18 @@
 	// Create the NSDocumentController and cause it to load the singleton
 	// Time Tracker Document.
 	NSLog(@"TTAppDelegate.applicationDidFinishLaunching:");
+	
+	NSString *docPath = [@"~/Library/Application Support/TimeTracker/data.plist" stringByExpandingTildeInPath];
+	NSURL *docURL = [NSURL fileURLWithPath:docPath];
+	NSDocumentController *docC = [NSDocumentController sharedDocumentController];
+	NSError *outError = nil;
+	TimeTrackerDocument *doc = 
+		[docC openDocumentWithContentsOfURL:docURL display:YES error:&outError];
+	
+	if (doc == nil && outError != nil) {
+		NSLog(@"Failed to open default document: %@", [outError localizedDescription] );
+		[[NSApplication sharedApplication] terminate:self];
+	}
 }
 
 @end
