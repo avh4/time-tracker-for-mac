@@ -53,7 +53,8 @@
             LANGUAGE = ObjC; 
             SUPERCLASS = NSObject; 
         }, 
-        {CLASS = TMetaProject; LANGUAGE = ObjC; SUPERCLASS = NSObject; }
+        {CLASS = TMetaProject; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = TTAppDelegate; LANGUAGE = ObjC; SUPERCLASS = NSObject; }
     ); 
     IBVersion = 1; 
 }
