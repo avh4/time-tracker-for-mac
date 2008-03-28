@@ -4,3 +4,5 @@ When Time Tracker starts
 
 The Time Tracker document window
  - should not be allowed to close.
+ - should have the title "Time Tracker" in the title bar
+ - should have the title "Time Tracker" in the window menu
