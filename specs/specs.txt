@@ -1,8 +1,13 @@
 
 When Time Tracker starts
  - The default document window should be shown.
+ 
+The Time Tracker application
+ - should quit with Cmd-Q
+ - should quit with Time Tracker > Quit Time Tracker
 
 The Time Tracker document window
- - should not be allowed to close.
+ - should not be allowed to close with Cmd-W
+ - should not be allowed to close with the window close button
  - should have the title "Time Tracker" in the title bar
  - should have the title "Time Tracker" in the window menu
