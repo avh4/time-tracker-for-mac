@@ -11,3 +11,35 @@ The Time Tracker document window
  - should not be allowed to close with the window close button
  - should have the title "Time Tracker" in the title bar
  - should have the title "Time Tracker" in the window menu
+ ! should dislay the toolbar
+
+ ! when the user selects File > New Project, a new project is created
+ ! when the user types Cmd-Shift-N, a new project is created
+ 
+The Time Tracker document window when a single project is selected
+ ! when the user selects File > New Task, a new task is created in the selected project
+ ! when the user types Cmd-N, a new task is created in the selected project
+ 
+The projects table in the Time Tracker document window
+ - should display a line for every project in the document
+ - should display each project's name
+ ! should display each project's total time (0:00:00)
+ 
+The tasks table in the Time Tracker document window when no project is selected
+ - should be empty
+ 
+The tasks table in the Time Tracker document window when a single project is selected
+ - should display a line for every task in the selected project
+ - should display each task's name
+ ! should display each task's total time (0:00:00)
+ 
+The work periods table in the Time Tracker document window when no task is selected
+ - should be empty
+ 
+The work periods table in the Time Tracker document window when a single task is selected
+ ! should display a line for every work period in the selected task
+ ! should display each work period's start date (3/18/08)
+ ! should display each work period's start time (12:34:30)
+ ! should display each work period's end time (12:34:30)
+ ! should display each work period's total time (0:00:00)
+ 
