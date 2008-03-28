@@ -1,0 +1,4 @@
+
+Joe wants to keep track of how much time he spends doing work at home and how much time he spends with his family so that he can see if the way he spends his time is consistent with his priorities in life.
+
+He creates a project called "Work", and a project called "Family".  He starts the timer running on "Family" and goes to drive his son to his baseball game.  When he returns, he stops the "Family" timer and starts the "Work" timer.  He makes a few business calls, and then stops the "Work" timer.  Then he goes to sleep.

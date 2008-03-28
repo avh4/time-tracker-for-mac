@@ -41,6 +41,7 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		B12611020D9D95E200A5660B /* US1 - Joe tracks Work and Family time.txt in Resources */ = {isa = PBXBuildFile; fileRef = B12611010D9D95E200A5660B /* US1 - Joe tracks Work and Family time.txt */; };
 		B163D4080B646240007D0E2C /* AUTHORS.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = B163D4040B646239007D0E2C /* AUTHORS.txt */; };
 		B163D4090B646240007D0E2C /* LICENSE-GPL.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = B163D4050B646239007D0E2C /* LICENSE-GPL.txt */; };
 		B19BDFBC0B5C953700465046 /* Time Tracker.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D1107320486CEB800E47090 /* Time Tracker.app */; };
@@ -136,6 +137,7 @@
 		32CA4F630368D1EE00C91783 /* Time Tracker_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Time Tracker_Prefix.pch"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Time Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Time Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B12611010D9D95E200A5660B /* US1 - Joe tracks Work and Family time.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "US1 - Joe tracks Work and Family time.txt"; path = "stories/US1 - Joe tracks Work and Family time.txt"; sourceTree = "<group>"; };
 		B163D4040B646239007D0E2C /* AUTHORS.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AUTHORS.txt; sourceTree = "<group>"; };
 		B163D4050B646239007D0E2C /* LICENSE-GPL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "LICENSE-GPL.txt"; sourceTree = "<group>"; };
 		B19BDFC10B5C956700465046 /* ChangeLog.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChangeLog.txt; sourceTree = SOURCE_ROOT; };
@@ -227,6 +229,7 @@
 		29B97314FDCFA39411CA2CEA /* Time Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				B12611000D9D95CA00A5660B /* Stories */,
 				B1DA82E20D84F7BD00B3FB9D /* Controllers */,
 				B1A5C5420D7E0DE400977BC3 /* Models */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -294,6 +297,14 @@
 				2C9DD71A0905824F00AA5C6E /* stopitem.png */,
 			);
 			name = Graphics;
+			sourceTree = "<group>";
+		};
+		B12611000D9D95CA00A5660B /* Stories */ = {
+			isa = PBXGroup;
+			children = (
+				B12611010D9D95E200A5660B /* US1 - Joe tracks Work and Family time.txt */,
+			);
+			name = Stories;
 			sourceTree = "<group>";
 		};
 		B1A5C5420D7E0DE400977BC3 /* Models */ = {
@@ -387,6 +398,7 @@
 				D5B0A2C80D24D15A004DBF70 /* pickdateofftool.png in Resources */,
 				D5B0A2C90D24D15A004DBF70 /* pickdatetool.png in Resources */,
 				B1DA83740D862AF300B3FB9D /* TimeTrackerMainWindow.nib in Resources */,
+				B12611020D9D95E200A5660B /* US1 - Joe tracks Work and Family time.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
