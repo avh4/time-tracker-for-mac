@@ -1,0 +1,6 @@
+
+When Time Tracker starts
+ - The default document window should be shown.
+
+The Time Tracker document window
+ - should not be allowed to close.
