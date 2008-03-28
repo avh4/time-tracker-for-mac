@@ -8,13 +8,16 @@
 
 #import "TTDocument.h"
 #import "TProject.h"
+#import "TTDocumentWindowController.h"
 
 
 @implementation TTDocument
 
-- (NSString *)windowNibName {
-    // Implement this to return a nib to load OR implement -makeWindowControllers to manually create your controllers.
-    return @"TimeTrackerMainWindow";
+- (void)makeWindowControllers
+{
+	NSWindowController *documentWindow = [[TTDocumentWindowController alloc] init];
+	[documentWindow autorelease];
+	[self addWindowController:documentWindow];
 }
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
