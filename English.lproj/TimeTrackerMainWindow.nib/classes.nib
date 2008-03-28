@@ -1,7 +1,8 @@
 {
     IBClasses = (
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
-        {CLASS = TTDocument; LANGUAGE = ObjC; SUPERCLASS = NSDocument; }
+        {CLASS = TTDocument; LANGUAGE = ObjC; SUPERCLASS = NSDocument; }, 
+        {CLASS = TTDocumentWindowDelegate; LANGUAGE = ObjC; SUPERCLASS = NSObject; }
     ); 
     IBVersion = 1; 
 }

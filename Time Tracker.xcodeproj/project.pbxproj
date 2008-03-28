@@ -43,6 +43,8 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		B12611020D9D95E200A5660B /* US1 - Joe tracks Work and Family time.txt in Resources */ = {isa = PBXBuildFile; fileRef = B12611010D9D95E200A5660B /* US1 - Joe tracks Work and Family time.txt */; };
 		B12611090D9D979600A5660B /* specs.txt in Resources */ = {isa = PBXBuildFile; fileRef = B12611080D9D979600A5660B /* specs.txt */; };
+		B12611150D9D98D600A5660B /* TTDocumentWindowDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B12611130D9D98D600A5660B /* TTDocumentWindowDelegate.h */; };
+		B12611160D9D98D600A5660B /* TTDocumentWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B12611140D9D98D600A5660B /* TTDocumentWindowDelegate.m */; };
 		B163D4080B646240007D0E2C /* AUTHORS.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = B163D4040B646239007D0E2C /* AUTHORS.txt */; };
 		B163D4090B646240007D0E2C /* LICENSE-GPL.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = B163D4050B646239007D0E2C /* LICENSE-GPL.txt */; };
 		B19BDFBC0B5C953700465046 /* Time Tracker.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D1107320486CEB800E47090 /* Time Tracker.app */; };
@@ -102,6 +104,7 @@
 				B1AB159D0CEBC9FC0025CF12 /* Sparkle.framework in CopyFiles */,
 				B1DA83950D877D8900B3FB9D /* TTAppDelegate.h in CopyFiles */,
 				B1DA84C30D878FBD00B3FB9D /* TTDocument.h in CopyFiles */,
+				B12611150D9D98D600A5660B /* TTDocumentWindowDelegate.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +143,8 @@
 		8D1107320486CEB800E47090 /* Time Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Time Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B12611010D9D95E200A5660B /* US1 - Joe tracks Work and Family time.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "US1 - Joe tracks Work and Family time.txt"; path = "stories/US1 - Joe tracks Work and Family time.txt"; sourceTree = "<group>"; };
 		B12611080D9D979600A5660B /* specs.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = specs.txt; path = specs/specs.txt; sourceTree = "<group>"; };
+		B12611130D9D98D600A5660B /* TTDocumentWindowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTDocumentWindowDelegate.h; sourceTree = "<group>"; };
+		B12611140D9D98D600A5660B /* TTDocumentWindowDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTDocumentWindowDelegate.m; sourceTree = "<group>"; };
 		B163D4040B646239007D0E2C /* AUTHORS.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AUTHORS.txt; sourceTree = "<group>"; };
 		B163D4050B646239007D0E2C /* LICENSE-GPL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "LICENSE-GPL.txt"; sourceTree = "<group>"; };
 		B19BDFC10B5C956700465046 /* ChangeLog.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChangeLog.txt; sourceTree = SOURCE_ROOT; };
@@ -340,6 +345,8 @@
 			children = (
 				B1DA83930D877D8900B3FB9D /* TTAppDelegate.h */,
 				B1DA83940D877D8900B3FB9D /* TTAppDelegate.m */,
+				B12611130D9D98D600A5660B /* TTDocumentWindowDelegate.h */,
+				B12611140D9D98D600A5660B /* TTDocumentWindowDelegate.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -431,6 +438,7 @@
 				B1DA82420D836A7300B3FB9D /* TimeTrackerDocument.m in Sources */,
 				B1DA83960D877D8900B3FB9D /* TTAppDelegate.m in Sources */,
 				B1DA84C40D878FBD00B3FB9D /* TTDocument.m in Sources */,
+				B12611160D9D98D600A5660B /* TTDocumentWindowDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
