@@ -17,4 +17,9 @@
 	return self;
 }
 
+- (NSString *)windowTitleForDocumentDisplayName:(NSString *)displayName
+{
+	return @"Time Tracker";
+}
+
 @end
