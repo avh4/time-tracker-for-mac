@@ -42,10 +42,22 @@ Story: the user creates a new project
         When the user types Cmd-Shift-N
         Then a new project should be created (!)
         
-The Time Tracker document window when a single project is selected
- ! when the user selects File > New Task, a new task is created in the selected project
- ! when the user types Cmd-N, a new task is created in the selected project
- 
+Story: the user creates a new task
+
+    Scenario: using the menu
+        Given a document window
+        And a project exists
+        And a single project is selected
+        When the user selects the menu item File > New Task
+        Then a new task should be created in the selected project (!)
+        
+    Scenario: using the keyboard
+        Given a document window
+        And a project exists
+        And a single project is selected
+        When the user types Cmd-N
+        Then a new task should be created in the selected project (!)
+
 The projects table in the Time Tracker document window
  - should display a line for every project in the document
  - should display each project's name
