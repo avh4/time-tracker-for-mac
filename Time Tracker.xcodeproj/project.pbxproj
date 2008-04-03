@@ -50,6 +50,7 @@
 		B15A68E50DA46C7500FE7EAE /* TTDurationFormatter.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B15A68E30DA46C7500FE7EAE /* TTDurationFormatter.h */; };
 		B15A68E60DA46C7500FE7EAE /* TTDurationFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = B15A68E40DA46C7500FE7EAE /* TTDurationFormatter.m */; };
 		B15A694B0DA48E4600FE7EAE /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B15A694A0DA48E4600FE7EAE /* SenTestingKit.framework */; };
+		B15A69560DA48EEB00FE7EAE /* TTDurationFormatterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B15A69550DA48EEB00FE7EAE /* TTDurationFormatterTest.m */; };
 		B163D4080B646240007D0E2C /* AUTHORS.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = B163D4040B646239007D0E2C /* AUTHORS.txt */; };
 		B163D4090B646240007D0E2C /* LICENSE-GPL.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = B163D4050B646239007D0E2C /* LICENSE-GPL.txt */; };
 		B19BDFBC0B5C953700465046 /* Time Tracker.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D1107320486CEB800E47090 /* Time Tracker.app */; };
@@ -159,6 +160,8 @@
 		B15A69420DA48E1700FE7EAE /* Test.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B15A69430DA48E1700FE7EAE /* Test-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Test-Info.plist"; sourceTree = "<group>"; };
 		B15A694A0DA48E4600FE7EAE /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = /System/Library/Frameworks/SenTestingKit.framework; sourceTree = "<absolute>"; };
+		B15A69540DA48EEB00FE7EAE /* TTDurationFormatterTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTDurationFormatterTest.h; sourceTree = "<group>"; };
+		B15A69550DA48EEB00FE7EAE /* TTDurationFormatterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTDurationFormatterTest.m; sourceTree = "<group>"; };
 		B163D4040B646239007D0E2C /* AUTHORS.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AUTHORS.txt; sourceTree = "<group>"; };
 		B163D4050B646239007D0E2C /* LICENSE-GPL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "LICENSE-GPL.txt"; sourceTree = "<group>"; };
 		B19BDFC10B5C956700465046 /* ChangeLog.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChangeLog.txt; sourceTree = SOURCE_ROOT; };
@@ -354,6 +357,8 @@
 		B15A694F0DA48E6000FE7EAE /* Test Cases */ = {
 			isa = PBXGroup;
 			children = (
+				B15A69540DA48EEB00FE7EAE /* TTDurationFormatterTest.h */,
+				B15A69550DA48EEB00FE7EAE /* TTDurationFormatterTest.m */,
 			);
 			name = "Test Cases";
 			sourceTree = "<group>";
@@ -527,6 +532,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B15A69560DA48EEB00FE7EAE /* TTDurationFormatterTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
