@@ -61,7 +61,7 @@ Story: the user creates a new task
 The projects table in the Time Tracker document window
  - should display a line for every project in the document
  - should display each project's name
- ! should display each project's total time (0:00:00)
+ - should display each project's total time (0:00:00)
  
 The tasks table in the Time Tracker document window when no project is selected
  - should be empty
