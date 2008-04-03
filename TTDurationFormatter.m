@@ -11,4 +11,13 @@
 
 @implementation TTDurationFormatter
 
+- (NSString *)stringForObjectValue:(id)anObject
+{
+	if ([anObject isKindOfClass:[NSNumber class]]) {
+		return @"Number";
+	} else {
+		return [anObject description];
+	}
+}
+
 @end
