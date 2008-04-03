@@ -1,21 +1,47 @@
+Story: user starts Time Tracker
+    The user is immediately given an interface where he is ready to take action.
+    
+    Scenario: 
+        When Time Tracker starts
+        Then the default document window should be shown
+        
+    Scenario: the user quits Time Tracker
+        Given a document window
+        When the user types Cmd-Q
+        Then Time Tracker should close
+        
+        Given a document window
+        When the user selects the menu item Time Tracker > Quit Time Tracker
+        Then Time Tracker should close
+        
+    Scenario: a new document window
+        When a new document window is created
+        Then the window should be displayed
+        And the window should have the title "Time Tracker" in the title bar
+        And the window should have the title "Time Tracker" in the Window menu
+        And the window should display the toolbar (!)
+        
+    Scenario: the main document window cannot close
+        Given a document window
+        When the user types Cmd-W
+        Then the window should not close
+        
+        Given a document window
+        When the user clicks the window's close button
+        Then the window should not close
+        
+Story: the user creates a new project
 
-When Time Tracker starts
- - The default document window should be shown.
- 
-The Time Tracker application
- - should quit with Cmd-Q
- - should quit with Time Tracker > Quit Time Tracker
-
-The Time Tracker document window
- - should not be allowed to close with Cmd-W
- - should not be allowed to close with the window close button
- - should have the title "Time Tracker" in the title bar
- - should have the title "Time Tracker" in the window menu
- ! should dislay the toolbar
-
- ! when the user selects File > New Project, a new project is created
- ! when the user types Cmd-Shift-N, a new project is created
- 
+    Scenario: using the menu
+        Given a document window
+        When the user selects the menu item File > New Project
+        Then a new project should be created (!)
+    
+    Scenario: using the keyboard
+        Given a document window
+        When the user types Cmd-Shift-N
+        Then a new project should be created (!)
+        
 The Time Tracker document window when a single project is selected
  ! when the user selects File > New Task, a new task is created in the selected project
  ! when the user types Cmd-N, a new task is created in the selected project

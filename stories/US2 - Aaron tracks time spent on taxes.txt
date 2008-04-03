@@ -1,0 +1,3 @@
+Aaron wants to track the time he is spending on his tax return.  He doesn't
+know yet what project he wants to put it under.  He opens Time Tracker, creates
+a new task called "2008 Taxes", and startes the timer.
