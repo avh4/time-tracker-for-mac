@@ -47,6 +47,8 @@
 		B12611160D9D98D600A5660B /* TTDocumentWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B12611140D9D98D600A5660B /* TTDocumentWindowDelegate.m */; };
 		B126112C0D9D9F6000A5660B /* TTDocumentWindowController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B126112A0D9D9F6000A5660B /* TTDocumentWindowController.h */; };
 		B126112D0D9D9F6000A5660B /* TTDocumentWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = B126112B0D9D9F6000A5660B /* TTDocumentWindowController.m */; };
+		B15A68E50DA46C7500FE7EAE /* TTDurationFormatter.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B15A68E30DA46C7500FE7EAE /* TTDurationFormatter.h */; };
+		B15A68E60DA46C7500FE7EAE /* TTDurationFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = B15A68E40DA46C7500FE7EAE /* TTDurationFormatter.m */; };
 		B163D4080B646240007D0E2C /* AUTHORS.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = B163D4040B646239007D0E2C /* AUTHORS.txt */; };
 		B163D4090B646240007D0E2C /* LICENSE-GPL.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = B163D4050B646239007D0E2C /* LICENSE-GPL.txt */; };
 		B19BDFBC0B5C953700465046 /* Time Tracker.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D1107320486CEB800E47090 /* Time Tracker.app */; };
@@ -108,6 +110,7 @@
 				B1DA84C30D878FBD00B3FB9D /* TTDocument.h in CopyFiles */,
 				B12611150D9D98D600A5660B /* TTDocumentWindowDelegate.h in CopyFiles */,
 				B126112C0D9D9F6000A5660B /* TTDocumentWindowController.h in CopyFiles */,
+				B15A68E50DA46C7500FE7EAE /* TTDurationFormatter.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,6 +153,8 @@
 		B12611140D9D98D600A5660B /* TTDocumentWindowDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTDocumentWindowDelegate.m; sourceTree = "<group>"; };
 		B126112A0D9D9F6000A5660B /* TTDocumentWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTDocumentWindowController.h; sourceTree = "<group>"; };
 		B126112B0D9D9F6000A5660B /* TTDocumentWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTDocumentWindowController.m; sourceTree = "<group>"; };
+		B15A68E30DA46C7500FE7EAE /* TTDurationFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTDurationFormatter.h; sourceTree = "<group>"; };
+		B15A68E40DA46C7500FE7EAE /* TTDurationFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTDurationFormatter.m; sourceTree = "<group>"; };
 		B163D4040B646239007D0E2C /* AUTHORS.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AUTHORS.txt; sourceTree = "<group>"; };
 		B163D4050B646239007D0E2C /* LICENSE-GPL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "LICENSE-GPL.txt"; sourceTree = "<group>"; };
 		B19BDFC10B5C956700465046 /* ChangeLog.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChangeLog.txt; sourceTree = SOURCE_ROOT; };
@@ -205,6 +210,8 @@
 				2C9EC93E0905A9F6000651F2 /* TimeIntervalFormatter.m */,
 				2CFAEE2B09042FC000131DD6 /* MainController.h */,
 				2CFAEE2C09042FC000131DD6 /* MainController.m */,
+				B15A68E30DA46C7500FE7EAE /* TTDurationFormatter.h */,
+				B15A68E40DA46C7500FE7EAE /* TTDurationFormatter.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -447,6 +454,7 @@
 				B1DA84C40D878FBD00B3FB9D /* TTDocument.m in Sources */,
 				B12611160D9D98D600A5660B /* TTDocumentWindowDelegate.m in Sources */,
 				B126112D0D9D9F6000A5660B /* TTDocumentWindowController.m in Sources */,
+				B15A68E60DA46C7500FE7EAE /* TTDurationFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
