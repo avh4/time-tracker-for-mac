@@ -28,4 +28,11 @@
 	}
 }
 
+- (BOOL)getObjectValue:(id *)anObject forString:(NSString *)string errorDescription:(NSString **)error
+{
+	anObject = nil;
+	if (error != nil) (*error) = @"Reverse conversion is not supported.";
+	return NO;
+}
+
 @end

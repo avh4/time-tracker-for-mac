@@ -84,4 +84,20 @@
 	STAssertTrue([returnValue isKindOfClass:[NSString class]], @"", nil);
 }
 
+- (void)testItShouldNotProvideAnAttributedString
+{
+	STAssertNil([formatter attributedStringForObjectValue:[NSNumber numberWithInt:0] withDefaultAttributes:nil], @"", nil);
+}
+
+- (void)testItShouldNotProvideStringToObjectConversion
+{
+	id returnedObject = nil;
+	NSString *returnedError = nil;
+	STAssertFalse(
+		[formatter getObjectValue:&returnedObject forString:@"00:00:00"
+			errorDescription:&returnedError],
+		@"", nil);
+	STAssertNotNil(returnedError, @"should provide an error message", nil);
+}
+
 @end
