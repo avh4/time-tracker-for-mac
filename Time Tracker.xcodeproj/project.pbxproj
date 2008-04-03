@@ -51,6 +51,7 @@
 		B15A68E60DA46C7500FE7EAE /* TTDurationFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = B15A68E40DA46C7500FE7EAE /* TTDurationFormatter.m */; };
 		B15A694B0DA48E4600FE7EAE /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B15A694A0DA48E4600FE7EAE /* SenTestingKit.framework */; };
 		B15A69560DA48EEB00FE7EAE /* TTDurationFormatterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B15A69550DA48EEB00FE7EAE /* TTDurationFormatterTest.m */; };
+		B15A69730DA490E300FE7EAE /* TTDurationFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = B15A68E40DA46C7500FE7EAE /* TTDurationFormatter.m */; };
 		B163D4080B646240007D0E2C /* AUTHORS.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = B163D4040B646239007D0E2C /* AUTHORS.txt */; };
 		B163D4090B646240007D0E2C /* LICENSE-GPL.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = B163D4050B646239007D0E2C /* LICENSE-GPL.txt */; };
 		B19BDFBC0B5C953700465046 /* Time Tracker.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D1107320486CEB800E47090 /* Time Tracker.app */; };
@@ -533,6 +534,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B15A69560DA48EEB00FE7EAE /* TTDurationFormatterTest.m in Sources */,
+				B15A69730DA490E300FE7EAE /* TTDurationFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

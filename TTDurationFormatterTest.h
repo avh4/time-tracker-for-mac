@@ -7,9 +7,12 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
+#import "TTDurationFormatter.h"
 
 
 @interface TTDurationFormatterTest : SenTestCase {
+
+	TTDurationFormatter *formatter;
 
 }
 
