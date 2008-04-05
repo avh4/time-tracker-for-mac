@@ -30,6 +30,32 @@
 	[[self window] setToolbar:toolbar];	
 }
 
+- (void)_updateStartStopState
+{
+	// Update the toolbar item if it exists
+	if (toolbarItemStartStop != nil) {
+		
+		// Create the toolbar images if they haven't been already
+		if (toolbarImageStart == nil) {
+			assert(toolbarImageStop == nil);
+			toolbarImageStart = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"playtool" ofType:@"png"]];
+			toolbarImageStop = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"stoptool" ofType:@"png"]];
+		}
+		
+		if (true) {
+			[toolbarItemStartStop setImage:toolbarImageStart];
+			[toolbarItemStartStop setLabel:@"Start timer"];
+			[toolbarItemStartStop setPaletteLabel:@"Start timer"];
+			[toolbarItemStartStop setToolTip:@"Start timer"];
+		} else {
+			[toolbarItemStartStop setImage:toolbarImageStop];
+			[toolbarItemStartStop setLabel:@"Stop timer"];
+			[toolbarItemStartStop setPaletteLabel:@"Stop timer"];
+			[toolbarItemStartStop setToolTip:@"Stop timer"];
+		}
+	}
+}
+
 - (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar *)toolbar
 {
 	return [NSArray arrayWithObjects:
@@ -59,12 +85,13 @@
 	assert(bundle != nil);
 
 	if ([item isEqualToString:TTDocumentStartStopItemIdentifier]) {
-		NSToolbarItem *toolbarItem = [[[NSToolbarItem alloc] initWithItemIdentifier:TTDocumentStartStopItemIdentifier] autorelease];
-		//startstopToolbarItem = toolbarItem;
-		[toolbarItem setTarget:nil];
-		[toolbarItem setAction:@selector(toggleIsTimerActive:)];
-		//[self updateStartStopState];
-		return toolbarItem;
+		if (toolbarItemStartStop == nil) {
+			toolbarItemStartStop = [[[NSToolbarItem alloc] initWithItemIdentifier:TTDocumentStartStopItemIdentifier] autorelease];
+			[self _updateStartStopState];
+			[toolbarItemStartStop setTarget:nil];
+			[toolbarItemStartStop setAction:@selector(toggleIsTimerActive:)];
+		}
+		return toolbarItemStartStop;
     }
 	
 	if ([item isEqualToString:TTDocumentNewProjectItemIdentifier]) {

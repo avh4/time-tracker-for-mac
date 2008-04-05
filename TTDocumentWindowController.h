@@ -16,6 +16,10 @@
 @interface TTDocumentWindowController : NSWindowController {
 
 	NSBundle *bundle;
+	
+	NSToolbarItem *toolbarItemStartStop;
+	NSImage *toolbarImageStart;
+	NSImage *toolbarImageStop;
 
 }
 
