@@ -48,8 +48,6 @@
 	STAssertTrue([allowedIdentifiers containsObject:NSToolbarFlexibleSpaceItemIdentifier], @"", nil);
 	STAssertTrue([allowedIdentifiers containsObject:NSToolbarSpaceItemIdentifier], @"", nil);
 	STAssertTrue([allowedIdentifiers containsObject:NSToolbarSeparatorItemIdentifier], @"", nil);
-	// Check that the toolbar items list ends with nil
-	STAssertNil([allowedIdentifiers lastObject], @"", nil);
 }
 
 - (void)testItShouldProvideTheStartStopItem
