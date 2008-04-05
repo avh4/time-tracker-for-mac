@@ -20,6 +20,7 @@ Story: user starts Time Tracker
         And the window should have the title "Time Tracker" in the title bar
         And the window should have the title "Time Tracker" in the Window menu
         And the window should display the toolbar (!)
+		And the menu bar item should be displayed (!)
         
     Scenario: the main document window cannot close
         Given a document window
@@ -57,6 +58,38 @@ Story: the user creates a new task
         And a single project is selected
         When the user types Cmd-N
         Then a new task should be created in the selected project (!)
+		
+Story: starting the timer
+
+	Scenario: starting the time with the menu bar item (!)
+		Given a document window
+		And a project exists
+		And a single project is selected
+		And a single task in the selected project is selected
+
+	Scenario: starting the time with the keyboard (!)
+		Given a document window
+		And a project exists
+		And a single project is selected
+		And a single task in the selected project is selected
+
+	Scenario: starting the time with the menu (!)
+		Given a document window
+		And a project exists
+		And a single project is selected
+		And a single task in the selected project is selected
+		
+	Scenario: no project is selected (!)
+		Given a document window
+		And no project is selected
+	
+	Scenario: a project is selected and no task is selected (!)
+		Given a document window
+		And a single project is selected
+		And no task is selected
+		
+Story: stopping the timer (!)
+	
 
 The projects table in the Time Tracker document window
  - should display a line for every project in the document
