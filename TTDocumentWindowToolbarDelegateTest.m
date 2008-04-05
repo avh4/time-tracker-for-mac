@@ -42,9 +42,18 @@
 {
 	NSArray *allowedIdentifiers;
 	allowedIdentifiers = [delegate toolbarAllowedItemIdentifiers:toolbar];
+	// Time Tracker toolbar items
 	STAssertTrue([allowedIdentifiers containsObject:TTDocumentStartStopItemIdentifier], @"", nil);
 	STAssertTrue([allowedIdentifiers containsObject:TTDocumentNewProjectItemIdentifier], @"", nil);
 	STAssertTrue([allowedIdentifiers containsObject:TTDocumentNewTaskItemIdentifier], @"", nil);
+	// Default toolbar items
+	STAssertTrue([allowedIdentifiers containsObject:NSToolbarPrintItemIdentifier], @"", nil);
+	STAssertTrue([allowedIdentifiers containsObject:NSToolbarCustomizeToolbarItemIdentifier], @"", nil);
+	STAssertTrue([allowedIdentifiers containsObject:NSToolbarFlexibleSpaceItemIdentifier], @"", nil);
+	STAssertTrue([allowedIdentifiers containsObject:NSToolbarSpaceItemIdentifier], @"", nil);
+	STAssertTrue([allowedIdentifiers containsObject:NSToolbarSeparatorItemIdentifier], @"", nil);
+	// Check that the toolbar items list ends with nil
+	STAssertNil([allowedIdentifiers lastObject], @"", nil);
 }
 
 - (void)testItShouldProvideTheStartStopItem
