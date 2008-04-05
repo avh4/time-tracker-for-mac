@@ -7,18 +7,14 @@
 //
 
 #import "TTDocumentWindowToolbarDelegateTest.h"
+#import "TTDocumentWindowController.h"
 
 
 @implementation TTDocumentWindowToolbarDelegateTest
 
-// XXX move these to the delegate header
-#define TTDocumentToolbarIdentifier @"TimeTrackerToolbar"
-#define TTDocumentStartStopItemIdentifier @"Startstop"
-#define TTDocumentNewProjectItemIdentifier @"AddProject"
-#define TTDocumentNewTaskItemIdentifier @"AddTask"
-
 - (void)setUp
 {
+	delegate = [[TTDocumentWindowController alloc] init];
 	toolbar = [[NSToolbar alloc] initWithIdentifier: TTDocumentToolbarIdentifier];
 }
 

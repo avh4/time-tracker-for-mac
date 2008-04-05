@@ -8,6 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
+#define TTDocumentToolbarIdentifier @"TimeTrackerToolbar"
+#define TTDocumentStartStopItemIdentifier @"Startstop"
+#define TTDocumentNewProjectItemIdentifier @"AddProject"
+#define TTDocumentNewTaskItemIdentifier @"AddTask"
 
 @interface TTDocumentWindowController : NSWindowController {
 
