@@ -11,10 +11,15 @@
 
 @implementation TTDocumentWindowToolbarDelegateTest
 
+// XXX move these to the delegate header
+#define TTDocumentToolbarIdentifier @"TimeTrackerToolbar"
+#define TTDocumentStartStopItemIdentifier @"Start/Stop"
+#define TTDocumentNewProjectItemIdentifier @"New Project"
+#define TTDocumentNewTaskItemIdentifier @"New Task"
+
 - (void)setUp
 {
-	// XXX factor out @"TimeTrackerToolbar" to a constant in the delegate
-	toolbar = [[NSToolbar alloc] initWithIdentifier: @"TimeTrackerToolbar"];
+	toolbar = [[NSToolbar alloc] initWithIdentifier: TTDocumentToolbarIdentifier];
 }
 
 - (void)tearDown
@@ -25,16 +30,21 @@
 
 - (void)testItShouldProvideTheDefaultToolbar
 {
-	// (Start/Stop) (Separator) (New Project) (New Task)
+	NSArray *defaultToolbar;
+	defaultToolbar = [delegate toolbarDefaultItemIdentifiers:toolbar];
+	STAssertEqualObjects(TTDocumentStartStopItemIdentifier, [defaultToolbar objectAtIndex:0], @"", nil);
+	STAssertEqualObjects(NSToolbarSeparatorItemIdentifier, [defaultToolbar objectAtIndex:1], @"", nil);
+	STAssertEqualObjects(TTDocumentNewProjectItemIdentifier, [defaultToolbar objectAtIndex:2], @"", nil);
+	STAssertEqualObjects(TTDocumentNewTaskItemIdentifier, [defaultToolbar objectAtIndex:3], @"", nil);
 }
 
 - (void)testItShouldProvideTheAvailableToolbarItems
 {
 	NSArray *allowedIdentifiers;
 	allowedIdentifiers = [delegate toolbarAllowedItemIdentifiers:toolbar];
-	STAssertTrue([allowedIdentifiers containsObject:@"Start/Stop"], @"", nil);
-	STAssertTrue([allowedIdentifiers containsObject:@"New Project"], @"", nil);
-	STAssertTrue([allowedIdentifiers containsObject:@"New Task"], @"", nil);
+	STAssertTrue([allowedIdentifiers containsObject:TTDocumentStartStopItemIdentifier], @"", nil);
+	STAssertTrue([allowedIdentifiers containsObject:TTDocumentNewProjectItemIdentifier], @"", nil);
+	STAssertTrue([allowedIdentifiers containsObject:TTDocumentNewTaskItemIdentifier], @"", nil);
 }
 
 - (void)testItShouldProvideTheStartStopItem
