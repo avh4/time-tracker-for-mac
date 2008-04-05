@@ -24,6 +24,7 @@
 
 - (void)awakeFromNib
 {
+	// XXX factor out @"TimeTrackerToolbar" to a constant in the delegate
 	NSToolbar *toolbar = [[NSToolbar alloc] initWithIdentifier: @"TimeTrackerToolbar"];
 	[[self window] setToolbar:toolbar];
 }

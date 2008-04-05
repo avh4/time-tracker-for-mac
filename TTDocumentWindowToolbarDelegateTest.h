@@ -11,6 +11,9 @@
 
 @interface TTDocumentWindowToolbarDelegateTest : SenTestCase {
 
+	id delegate;
+	NSToolbar *toolbar;
+
 }
 
 @end
