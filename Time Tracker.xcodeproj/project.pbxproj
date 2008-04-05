@@ -61,6 +61,7 @@
 		B1AB159D0CEBC9FC0025CF12 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B1AB15820CEBC9A50025CF12 /* Sparkle.framework */; };
 		B1AD7A6E0DA70548001880FA /* TTDocumentWindowToolbarDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B1AD7A6D0DA70548001880FA /* TTDocumentWindowToolbarDelegateTest.m */; };
 		B1AD7AF50DA73BC9001880FA /* TTDocumentWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = B126112B0D9D9F6000A5660B /* TTDocumentWindowController.m */; };
+		B1AD7BA90DA76091001880FA /* Time Tracker.app in Resources */ = {isa = PBXBuildFile; fileRef = 8D1107320486CEB800E47090 /* Time Tracker.app */; };
 		B1DA82420D836A7300B3FB9D /* TimeTrackerDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = B1DA82400D836A7300B3FB9D /* TimeTrackerDocument.m */; };
 		B1DA83740D862AF300B3FB9D /* TimeTrackerMainWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = B1DA83730D862AF300B3FB9D /* TimeTrackerMainWindow.nib */; };
 		B1DA83950D877D8900B3FB9D /* TTAppDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B1DA83930D877D8900B3FB9D /* TTAppDelegate.h */; };
@@ -493,6 +494,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1AD7BA90DA76091001880FA /* Time Tracker.app in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
