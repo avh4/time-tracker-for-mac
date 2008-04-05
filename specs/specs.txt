@@ -19,7 +19,10 @@ Story: user starts Time Tracker
         Then the window should be displayed
         And the window should have the title "Time Tracker" in the title bar
         And the window should have the title "Time Tracker" in the Window menu
-        And the window should display the toolbar (!)
+        And the window should display the toolbar
+		And the toolbar should show the Start/Stop item (!)
+		And the toolbar should show the New Project item (!)
+		And the toolbar should show the New Task item (!)
 		And the menu bar item should be displayed (!)
         
     Scenario: the main document window cannot close

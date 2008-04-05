@@ -22,4 +22,10 @@
 	return @"Time Tracker";
 }
 
+- (void)awakeFromNib
+{
+	NSToolbar *toolbar = [[NSToolbar alloc] initWithIdentifier: @"TimeTrackerToolbar"];
+	[[self window] setToolbar:toolbar];
+}
+
 @end
