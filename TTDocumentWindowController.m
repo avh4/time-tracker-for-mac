@@ -14,6 +14,7 @@
 - (id)init
 {
 	[self initWithWindowNibName:@"TimeTrackerMainWindow"];
+	bundle = [NSBundle mainBundle];
 	return self;
 }
 
@@ -24,8 +25,6 @@
 
 - (void)awakeFromNib
 {
-	bundle = [NSBundle mainBundle];
-
 	NSToolbar *toolbar = [[NSToolbar alloc] initWithIdentifier:TTDocumentToolbarIdentifier];
 	[toolbar setDelegate:self];
 	[[self window] setToolbar:toolbar];	
