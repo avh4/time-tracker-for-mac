@@ -76,8 +76,8 @@ The work periods table in the Time Tracker document window when no task is selec
  
 The work periods table in the Time Tracker document window when a single task is selected
  - should display a line for every work period in the selected task
- ! should display each work period's start date (3/18/08)
- ! should display each work period's start time (12:34:30)
- ! should display each work period's end time (12:34:30)
+ - should display each work period's start date (3/18/08)
+ - should display each work period's start time (12:34:30)
+ - should display each work period's end time (12:34:30)
  - should display each work period's total time (0:00:00)
  
