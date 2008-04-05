@@ -59,6 +59,7 @@
 		B19BDFC60B5C956F00465046 /* LICENSE.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = B19BDFC20B5C956700465046 /* LICENSE.txt */; };
 		B1AB15830CEBC9A50025CF12 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1AB15820CEBC9A50025CF12 /* Sparkle.framework */; };
 		B1AB159D0CEBC9FC0025CF12 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B1AB15820CEBC9A50025CF12 /* Sparkle.framework */; };
+		B1AD7A6E0DA70548001880FA /* TTDocumentWindowToolbarDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B1AD7A6D0DA70548001880FA /* TTDocumentWindowToolbarDelegateTest.m */; };
 		B1DA82420D836A7300B3FB9D /* TimeTrackerDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = B1DA82400D836A7300B3FB9D /* TimeTrackerDocument.m */; };
 		B1DA83740D862AF300B3FB9D /* TimeTrackerMainWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = B1DA83730D862AF300B3FB9D /* TimeTrackerMainWindow.nib */; };
 		B1DA83950D877D8900B3FB9D /* TTAppDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B1DA83930D877D8900B3FB9D /* TTAppDelegate.h */; };
@@ -168,6 +169,8 @@
 		B19BDFC10B5C956700465046 /* ChangeLog.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChangeLog.txt; sourceTree = SOURCE_ROOT; };
 		B19BDFC20B5C956700465046 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = SOURCE_ROOT; };
 		B1AB15820CEBC9A50025CF12 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		B1AD7A6C0DA70548001880FA /* TTDocumentWindowToolbarDelegateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTDocumentWindowToolbarDelegateTest.h; sourceTree = "<group>"; };
+		B1AD7A6D0DA70548001880FA /* TTDocumentWindowToolbarDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTDocumentWindowToolbarDelegateTest.m; sourceTree = "<group>"; };
 		B1DA823F0D836A7300B3FB9D /* TimeTrackerDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeTrackerDocument.h; sourceTree = "<group>"; };
 		B1DA82400D836A7300B3FB9D /* TimeTrackerDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTrackerDocument.m; sourceTree = "<group>"; };
 		B1DA83670D862ADA00B3FB9D /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/TimeTrackerMainWindow.nib; sourceTree = "<group>"; };
@@ -360,6 +363,8 @@
 			children = (
 				B15A69540DA48EEB00FE7EAE /* TTDurationFormatterTest.h */,
 				B15A69550DA48EEB00FE7EAE /* TTDurationFormatterTest.m */,
+				B1AD7A6C0DA70548001880FA /* TTDocumentWindowToolbarDelegateTest.h */,
+				B1AD7A6D0DA70548001880FA /* TTDocumentWindowToolbarDelegateTest.m */,
 			);
 			name = "Test Cases";
 			sourceTree = "<group>";
@@ -535,6 +540,7 @@
 			files = (
 				B15A69560DA48EEB00FE7EAE /* TTDurationFormatterTest.m in Sources */,
 				B15A69730DA490E300FE7EAE /* TTDurationFormatter.m in Sources */,
+				B1AD7A6E0DA70548001880FA /* TTDocumentWindowToolbarDelegateTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
