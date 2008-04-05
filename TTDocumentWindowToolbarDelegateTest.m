@@ -13,9 +13,9 @@
 
 // XXX move these to the delegate header
 #define TTDocumentToolbarIdentifier @"TimeTrackerToolbar"
-#define TTDocumentStartStopItemIdentifier @"Start/Stop"
-#define TTDocumentNewProjectItemIdentifier @"New Project"
-#define TTDocumentNewTaskItemIdentifier @"New Task"
+#define TTDocumentStartStopItemIdentifier @"Startstop"
+#define TTDocumentNewProjectItemIdentifier @"AddProject"
+#define TTDocumentNewTaskItemIdentifier @"AddTask"
 
 - (void)setUp
 {
