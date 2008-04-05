@@ -219,31 +219,6 @@
 - (NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag
 {
 	NSToolbarItem *toolbarItem = [[[NSToolbarItem alloc] initWithItemIdentifier: itemIdentifier] autorelease];
-    
-	if ([itemIdentifier isEqualToString: @"Startstop"]) {
-		startstopToolbarItem = toolbarItem;
-		[toolbarItem setTarget:self];
-		[toolbarItem setAction:@selector(clickedStartStopTimer:)];
-		[self updateStartStopState];
-    }
-	
-	if ([itemIdentifier isEqualToString: @"AddProject"]) {
-		[toolbarItem setLabel:@"New project"];
-		[toolbarItem setPaletteLabel:@"New project"];
-		[toolbarItem setToolTip:@"New project"];
-		[toolbarItem setImage: addProjectToolImage];
-		[toolbarItem setTarget:self];
-		[toolbarItem setAction:@selector(clickedAddProject:)];
-    }
-	
-	if ([itemIdentifier isEqualToString: @"AddTask"]) {
-		[toolbarItem setLabel:@"New task"];
-		[toolbarItem setPaletteLabel:@"New task"];
-		[toolbarItem setToolTip:@"New task"];
-		[toolbarItem setImage: addTaskToolImage];
-		[toolbarItem setTarget:self];
-		[toolbarItem setAction:@selector(clickedAddTask:)];
-    }
     	
 	if ([itemIdentifier isEqualToString: @"Day"]) {
 		_dayToolbarItem = [toolbarItem retain];
@@ -416,8 +391,6 @@
 
 	playToolImage = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"playtool" ofType:@"png"]];
 	stopToolImage = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"stoptool" ofType:@"png"]];
-	addTaskToolImage = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"addtasktool" ofType:@"png"]];
-	addProjectToolImage = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"addprojecttool" ofType:@"png"]];
 	
 	dayToolImage = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"daytool" ofType:@"png"]];
 	weekToolImage = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"weektool" ofType:@"png"]];

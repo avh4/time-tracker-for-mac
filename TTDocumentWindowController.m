@@ -24,9 +24,11 @@
 
 - (void)awakeFromNib
 {
+	bundle = [NSBundle mainBundle];
+
 	NSToolbar *toolbar = [[NSToolbar alloc] initWithIdentifier:TTDocumentToolbarIdentifier];
 	[toolbar setDelegate:self];
-	[[self window] setToolbar:toolbar];
+	[[self window] setToolbar:toolbar];	
 }
 
 - (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar *)toolbar
@@ -55,6 +57,8 @@
 
 - (NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)item willBeInsertedIntoToolbar:(BOOL)willBeInserted
 {
+	assert(bundle != nil);
+
 	if ([item isEqualToString:TTDocumentStartStopItemIdentifier]) {
 		NSToolbarItem *toolbarItem = [[[NSToolbarItem alloc] initWithItemIdentifier:TTDocumentStartStopItemIdentifier] autorelease];
 		//startstopToolbarItem = toolbarItem;
@@ -69,7 +73,9 @@
 		[toolbarItem setLabel:@"New project"];
 		[toolbarItem setPaletteLabel:@"New project"];
 		[toolbarItem setToolTip:@"New project"];
-		//[toolbarItem setImage: addProjectToolImage];
+		NSImage *addProjectToolImage = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"addprojecttool" ofType:@"png"]];
+		[toolbarItem setImage: addProjectToolImage];
+		[addProjectToolImage release];
 		[toolbarItem setTarget:self];
 		[toolbarItem setAction:@selector(clickedAddProject:)];
 		return toolbarItem;
@@ -80,7 +86,9 @@
 		[toolbarItem setLabel:@"New task"];
 		[toolbarItem setPaletteLabel:@"New task"];
 		[toolbarItem setToolTip:@"New task"];
-		//[toolbarItem setImage: addTaskToolImage];
+		NSImage	*addTaskToolImage = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"addtasktool" ofType:@"png"]];
+		[toolbarItem setImage: addTaskToolImage];
+		[addTaskToolImage release];
 		[toolbarItem setTarget:self];
 		[toolbarItem setAction:@selector(clickedAddTask:)];
 		return toolbarItem;

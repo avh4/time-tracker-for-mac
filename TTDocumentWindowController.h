@@ -15,6 +15,8 @@
 
 @interface TTDocumentWindowController : NSWindowController {
 
+	NSBundle *bundle;
+
 }
 
 @end
