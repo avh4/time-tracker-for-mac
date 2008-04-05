@@ -11,4 +11,26 @@
 
 @implementation TTDocumentWindowToolbarDelegateTest
 
+- (void)testItShouldProvideTheDefaultToolbar
+{
+	// (Start/Stop) (Separator) (New Project) (New Task)
+}
+
+- (void)testItShouldProvideTheAvailableToolbarItems
+{
+	// Start/Stop; New Project; New Task
+}
+
+- (void)testItShouldProvideTheStartStopItem
+{
+}
+
+- (void)testItShouldProvideTheNewProjectItem
+{
+}
+
+- (void)testItShouldProvideTheNewTaskItem
+{
+}
+
 @end
