@@ -61,8 +61,8 @@
 	if ([item isEqualToString:TTDocumentStartStopItemIdentifier]) {
 		NSToolbarItem *toolbarItem = [[[NSToolbarItem alloc] initWithItemIdentifier:TTDocumentStartStopItemIdentifier] autorelease];
 		//startstopToolbarItem = toolbarItem;
-		[toolbarItem setTarget:self];
-		[toolbarItem setAction:@selector(clickedStartStopTimer:)];
+		[toolbarItem setTarget:nil];
+		[toolbarItem setAction:@selector(toggleIsTimerActive:)];
 		//[self updateStartStopState];
 		return toolbarItem;
     }
@@ -75,8 +75,8 @@
 		NSImage *addProjectToolImage = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"addprojecttool" ofType:@"png"]];
 		[toolbarItem setImage: addProjectToolImage];
 		[addProjectToolImage release];
-		[toolbarItem setTarget:self];
-		[toolbarItem setAction:@selector(clickedAddProject:)];
+		[toolbarItem setTarget:nil];
+		[toolbarItem setAction:@selector(newProject:)];
 		return toolbarItem;
     }
 	
@@ -88,8 +88,8 @@
 		NSImage	*addTaskToolImage = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"addtasktool" ofType:@"png"]];
 		[toolbarItem setImage: addTaskToolImage];
 		[addTaskToolImage release];
-		[toolbarItem setTarget:self];
-		[toolbarItem setAction:@selector(clickedAddTask:)];
+		[toolbarItem setTarget:nil];
+		[toolbarItem setAction:@selector(newTask:)];
 		return toolbarItem;
     }
 	return nil;
