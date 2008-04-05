@@ -49,14 +49,23 @@
 
 - (void)testItShouldProvideTheStartStopItem
 {
+	NSToolbarItem *startStopItem;
+	startStopItem = [delegate toolbar:toolbar itemForItemIdentifier:TTDocumentStartStopItemIdentifier willBeInsertedIntoToolbar:YES];
+	STAssertNotNil(startStopItem, @"", nil);
 }
 
 - (void)testItShouldProvideTheNewProjectItem
 {
+	NSToolbarItem *newProjectItem;
+	newProjectItem = [delegate toolbar:toolbar itemForItemIdentifier:TTDocumentNewProjectItemIdentifier willBeInsertedIntoToolbar:YES];
+	STAssertNotNil(newProjectItem, @"", nil);
 }
 
 - (void)testItShouldProvideTheNewTaskItem
 {
+	NSToolbarItem *newTaskItem;
+	newTaskItem = [delegate toolbar:toolbar itemForItemIdentifier:TTDocumentNewTaskItemIdentifier willBeInsertedIntoToolbar:YES];
+	STAssertNotNil(newTaskItem, @"", nil);
 }
 
 @end
