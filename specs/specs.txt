@@ -74,7 +74,7 @@ Story: the user creates a new task
 		When the user clicks the "New task" toolbar item
 		Then a new task should be created in the selected project
 		
-	Scenario: no project is selected (!)
+	Scenario: no project is selected
 		Given a document window
 		And no project is selected
 		When the New Task action is fired

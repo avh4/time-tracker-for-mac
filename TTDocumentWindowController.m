@@ -133,11 +133,20 @@
 
 - (void)newTask:(id)sender
 {
-	if ([[projectsController selectionIndexes] count] == 1) {
+	NSIndexSet *selection = [projectsController selectionIndexes];
+	if (selection == nil || [selection count] == 0) {
+		
+		TProject *newProj = [projectsController newObject];
+		[projectsController addObject:newProj];
+		[projectsController setSelectedObjects:[NSArray arrayWithObject:newProj]];
+		
+		[tasksController insert:sender];
+		
+	} else if ([selection count] == 1) {
 		[tasksController insert:sender];
 	} else {
 		NSLog(@"TTDocumentWindowController.newTask called with project selection %@",
-			[projectsController selectionIndexes]);
+			selection);
 		return;
 	}
 }
