@@ -22,6 +22,7 @@
 	NSImage *toolbarImageStop;
 	
 	IBOutlet NSArrayController *projectsController;
+	IBOutlet NSArrayController *tasksController;
 
 }
 

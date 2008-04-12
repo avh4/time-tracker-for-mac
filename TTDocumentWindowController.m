@@ -27,6 +27,7 @@
 - (void)awakeFromNib
 {
 	assert(projectsController != nil);
+	assert(tasksController != nil);
 
 	NSToolbar *toolbar = [[NSToolbar alloc] initWithIdentifier:TTDocumentToolbarIdentifier];
 	[toolbar setDelegate:self];
@@ -128,6 +129,17 @@
 - (void)newProject:(id)sender
 {
 	[projectsController insert:sender];
+}
+
+- (void)newTask:(id)sender
+{
+	if ([[projectsController selectionIndexes] count] == 1) {
+		[tasksController insert:sender];
+	} else {
+		NSLog(@"TTDocumentWindowController.newTask called with project selection %@",
+			[projectsController selectionIndexes]);
+		return;
+	}
 }
 
 @end

@@ -48,7 +48,7 @@ Story: the user creates a new project
 		
 	Scenario: using the toolbar
 		Given a document window
-		When the user clicks the "New Project" toolbar item
+		When the user clicks the "New project" toolbar item
 		Then a new project should be created
         
 Story: the user creates a new task
@@ -58,14 +58,29 @@ Story: the user creates a new task
         And a project exists
         And a single project is selected
         When the user selects the menu item File > New Task
-        Then a new task should be created in the selected project (!)
+        Then a new task should be created in the selected project
         
     Scenario: using the keyboard
         Given a document window
         And a project exists
         And a single project is selected
         When the user types Cmd-N
-        Then a new task should be created in the selected project (!)
+        Then a new task should be created in the selected project
+		
+	Scenario: using the toolbar
+		Given a document window
+		And a project exists
+		And a single project is selected
+		When the user clicks the "New task" toolbar item
+		Then a new task should be created in the selected project
+		
+	Scenario: no project is selected (!)
+		Given a document window
+		And no project is selected
+		When the New Task action is fired
+		Then a new project should be created
+		And the new project should be selected
+		And a new task should be created in the new project
 		
 Story: starting the timer
 
