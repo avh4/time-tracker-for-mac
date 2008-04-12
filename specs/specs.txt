@@ -39,12 +39,17 @@ Story: the user creates a new project
     Scenario: using the menu
         Given a document window
         When the user selects the menu item File > New Project
-        Then a new project should be created (!)
+        Then a new project should be created
     
     Scenario: using the keyboard
         Given a document window
         When the user types Cmd-Shift-N
-        Then a new project should be created (!)
+        Then a new project should be created
+		
+	Scenario: using the toolbar
+		Given a document window
+		When the user clicks the "New Project" toolbar item
+		Then a new project should be created
         
 Story: the user creates a new task
 
