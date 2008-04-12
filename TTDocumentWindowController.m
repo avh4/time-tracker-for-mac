@@ -7,6 +7,7 @@
 //
 
 #import "TTDocumentWindowController.h"
+#import "TProject.h"
 
 
 @implementation TTDocumentWindowController
@@ -120,6 +121,13 @@
 		return toolbarItem;
     }
 	return nil;
+}
+
+- (void)newProject:(id)sender
+{
+	TProject *newProj = [[TProject alloc] init];
+	[[self document] addProjectsObject:newProj];
+	[newProj release];
 }
 
 @end
