@@ -89,18 +89,29 @@ Story: starting the timer
 		And a project exists
 		And a single project is selected
 		And a single task in the selected project is selected
+		And the timer is not running
+		Then the timer should be started
+		And the timer should be bound to the end time of the selected task
 
 	Scenario: starting the time with the keyboard (!)
 		Given a document window
 		And a project exists
 		And a single project is selected
 		And a single task in the selected project is selected
+		And the timer is not running
+		When the user types Cmd-T
+		Then the timer should be started
+		And the timer should be bound to the end time of the selected task
 
 	Scenario: starting the time with the menu (!)
 		Given a document window
 		And a project exists
 		And a single project is selected
 		And a single task in the selected project is selected
+		And the timer is not running
+		When the user selects the menu item Project/Task > Start Timer
+		Then the timer should be started
+		And the timer should be bound to the end time of the selected task
 		
 	Scenario: no project is selected (!)
 		Given a document window
