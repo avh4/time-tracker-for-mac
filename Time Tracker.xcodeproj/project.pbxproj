@@ -68,6 +68,10 @@
 		B1DA83960D877D8900B3FB9D /* TTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B1DA83940D877D8900B3FB9D /* TTAppDelegate.m */; };
 		B1DA84C30D878FBD00B3FB9D /* TTDocument.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B1DA84C10D878FBD00B3FB9D /* TTDocument.h */; };
 		B1DA84C40D878FBD00B3FB9D /* TTDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = B1DA84C20D878FBD00B3FB9D /* TTDocument.m */; };
+		B1F0734E0DB15A17006CA1E4 /* TTTimer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B1F0734C0DB15A17006CA1E4 /* TTTimer.h */; };
+		B1F0734F0DB15A17006CA1E4 /* TTTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F0734D0DB15A17006CA1E4 /* TTTimer.m */; };
+		B1F073500DB15A17006CA1E4 /* TTTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F0734D0DB15A17006CA1E4 /* TTTimer.m */; };
+		B1F073530DB15A39006CA1E4 /* TTTimerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F073520DB15A39006CA1E4 /* TTTimerTest.m */; };
 		D581A8140CFF3BBA006A0DC1 /* TMetaProject.m in Sources */ = {isa = PBXBuildFile; fileRef = D581A8110CFF3BBA006A0DC1 /* TMetaProject.m */; };
 		D581A8150CFF3BBA006A0DC1 /* TMetaTask.m in Sources */ = {isa = PBXBuildFile; fileRef = D581A8130CFF3BBA006A0DC1 /* TMetaTask.m */; };
 		D5B0A2C80D24D15A004DBF70 /* pickdateofftool.png in Resources */ = {isa = PBXBuildFile; fileRef = D5B0A2C60D24D15A004DBF70 /* pickdateofftool.png */; };
@@ -117,6 +121,7 @@
 				B12611150D9D98D600A5660B /* TTDocumentWindowDelegate.h in CopyFiles */,
 				B126112C0D9D9F6000A5660B /* TTDocumentWindowController.h in CopyFiles */,
 				B15A68E50DA46C7500FE7EAE /* TTDurationFormatter.h in CopyFiles */,
+				B1F0734E0DB15A17006CA1E4 /* TTTimer.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,6 +185,10 @@
 		B1DA83940D877D8900B3FB9D /* TTAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTAppDelegate.m; sourceTree = "<group>"; };
 		B1DA84C10D878FBD00B3FB9D /* TTDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTDocument.h; sourceTree = "<group>"; };
 		B1DA84C20D878FBD00B3FB9D /* TTDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTDocument.m; sourceTree = "<group>"; };
+		B1F0734C0DB15A17006CA1E4 /* TTTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTimer.h; sourceTree = "<group>"; };
+		B1F0734D0DB15A17006CA1E4 /* TTTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTimer.m; sourceTree = "<group>"; };
+		B1F073510DB15A39006CA1E4 /* TTTimerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTimerTest.h; sourceTree = "<group>"; };
+		B1F073520DB15A39006CA1E4 /* TTTimerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTimerTest.m; sourceTree = "<group>"; };
 		D581A8100CFF3BBA006A0DC1 /* TMetaProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMetaProject.h; sourceTree = "<group>"; };
 		D581A8110CFF3BBA006A0DC1 /* TMetaProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMetaProject.m; sourceTree = "<group>"; };
 		D581A8120CFF3BBA006A0DC1 /* TMetaTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMetaTask.h; sourceTree = "<group>"; };
@@ -233,6 +242,8 @@
 				2CFAEE2C09042FC000131DD6 /* MainController.m */,
 				B15A68E30DA46C7500FE7EAE /* TTDurationFormatter.h */,
 				B15A68E40DA46C7500FE7EAE /* TTDurationFormatter.m */,
+				B1F0734C0DB15A17006CA1E4 /* TTTimer.h */,
+				B1F0734D0DB15A17006CA1E4 /* TTTimer.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -367,6 +378,8 @@
 				B15A69550DA48EEB00FE7EAE /* TTDurationFormatterTest.m */,
 				B1AD7A6C0DA70548001880FA /* TTDocumentWindowToolbarDelegateTest.h */,
 				B1AD7A6D0DA70548001880FA /* TTDocumentWindowToolbarDelegateTest.m */,
+				B1F073510DB15A39006CA1E4 /* TTTimerTest.h */,
+				B1F073520DB15A39006CA1E4 /* TTTimerTest.m */,
 			);
 			name = "Test Cases";
 			sourceTree = "<group>";
@@ -534,6 +547,7 @@
 				B12611160D9D98D600A5660B /* TTDocumentWindowDelegate.m in Sources */,
 				B126112D0D9D9F6000A5660B /* TTDocumentWindowController.m in Sources */,
 				B15A68E60DA46C7500FE7EAE /* TTDurationFormatter.m in Sources */,
+				B1F0734F0DB15A17006CA1E4 /* TTTimer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,6 +559,8 @@
 				B15A69730DA490E300FE7EAE /* TTDurationFormatter.m in Sources */,
 				B1AD7A6E0DA70548001880FA /* TTDocumentWindowToolbarDelegateTest.m in Sources */,
 				B1AD7AF50DA73BC9001880FA /* TTDocumentWindowController.m in Sources */,
+				B1F073500DB15A17006CA1E4 /* TTTimer.m in Sources */,
+				B1F073530DB15A39006CA1E4 /* TTTimerTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
