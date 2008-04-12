@@ -20,6 +20,8 @@
 	NSToolbarItem *toolbarItemStartStop;
 	NSImage *toolbarImageStart;
 	NSImage *toolbarImageStop;
+	
+	IBOutlet NSArrayController *projectsController;
 
 }
 

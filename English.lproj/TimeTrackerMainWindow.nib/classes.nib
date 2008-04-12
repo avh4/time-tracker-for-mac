@@ -5,6 +5,7 @@
         {
             CLASS = TTDocumentWindowController; 
             LANGUAGE = ObjC; 
+            OUTLETS = {projectsController = NSArrayController; }; 
             SUPERCLASS = NSWindowController; 
         }, 
         {CLASS = TTDocumentWindowDelegate; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 

@@ -26,6 +26,8 @@
 
 - (void)awakeFromNib
 {
+	assert(projectsController != nil);
+
 	NSToolbar *toolbar = [[NSToolbar alloc] initWithIdentifier:TTDocumentToolbarIdentifier];
 	[toolbar setDelegate:self];
 	[[self window] setToolbar:toolbar];	
@@ -125,9 +127,7 @@
 
 - (void)newProject:(id)sender
 {
-	TProject *newProj = [[TProject alloc] init];
-	[[self document] addProjectsObject:newProj];
-	[newProj release];
+	[projectsController insert:sender];
 }
 
 @end
