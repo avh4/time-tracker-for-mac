@@ -85,17 +85,25 @@
 
 - (void)testItShouldAllowKvoOfTime
 {
-	//assert(false);
+	STAssertNoThrow([timer addObserver:mockObserver forKeyPath:@"time" options:nil context:nil], @"", nil);
 }
 
 - (void)testItShouldUpdateKvoTimeEverySecond
 {
-	//assert(false);
+	STAssertNoThrow([timer addObserver:mockObserver forKeyPath:@"time" options:nil context:nil], @"", nil);
+	
+	[NSThread sleepUntilDate:[NSDate dateWithTimeIntervalSinceNow:1]];
+
+	STAssertTrue(false, @"PENDING: Need to check that the mock object is called", nil);
 }
 
 - (void)testItShouldUpdateKvoWhenStopped
 {
-	//assert(false);
+	STAssertNoThrow([timer addObserver:mockObserver forKeyPath:@"time" options:nil context:nil], @"", nil);
+	
+	[timer stop];
+
+	STAssertTrue(false, @"PENDING: Need to check that the mock object is called", nil);
 }
 
 @end

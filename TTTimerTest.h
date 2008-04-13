@@ -13,6 +13,7 @@
 @interface TTTimerTest : SenTestCase {
 
 	TTTimer *timer;
+	id mockObserver;
 
 }
 
