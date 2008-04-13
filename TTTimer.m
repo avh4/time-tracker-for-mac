@@ -11,4 +11,22 @@
 
 @implementation TTTimer
 
+- (void)start
+{
+}
+
+- (void)stop
+{
+}
+
+- (BOOL)isRunning
+{
+	return TRUE;
+}
+
+- (NSDate *)time
+{
+	return nil;
+}
+
 @end
