@@ -11,6 +11,9 @@
 
 @interface TTTimer : NSObject {
 
+	BOOL _isRunning;
+	NSDate *_savedTime;
+
 }
 
 - (void)start;

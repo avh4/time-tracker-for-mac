@@ -59,10 +59,11 @@
 	NSDate *now_time, *timer_time;
 	
 	int i;
-	for (i = 0; i < 5; i++) {
+	for (i = 0; i < 3; i++) {
 		now_time = [NSDate date];
 		timer_time = [timer time];
-		STAssertEqualObjects(now_time, timer_time, @"", nil);
+		
+		STAssertTrue(fabs([now_time timeIntervalSinceDate:timer_time]) < 0.05, @"%@", timer_time);
 	
 		[NSThread sleepUntilDate:[NSDate dateWithTimeIntervalSinceNow:1]];
 	}
@@ -78,8 +79,8 @@
 	[timer stop];
 	[NSThread sleepUntilDate:[NSDate dateWithTimeIntervalSinceNow:1]];
 	timer_time = [timer time];
-	
-	STAssertEqualObjects(stop_time, timer_time, @"", nil);
+
+	STAssertTrue(fabs([stop_time timeIntervalSinceDate:timer_time]) < 0.05, @"%@", timer_time);	
 }
 
 - (void)testItShouldAllowKvoOfTime
