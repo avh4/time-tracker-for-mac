@@ -7,6 +7,7 @@
 //
 
 #import "TTTimerTest.h"
+#import <OCMock/OCMock.h>
 
 
 @implementation TTTimerTest
@@ -14,6 +15,7 @@
 - (void)setUp
 {
 	timer = [[TTTimer alloc] init];
+	mockObserver = [OCMockObject mockForClass:[NSObject class]];
 }
 
 - (void)tearDown
@@ -92,9 +94,11 @@
 {
 	STAssertNoThrow([timer addObserver:mockObserver forKeyPath:@"time" options:nil context:nil], @"", nil);
 	
+	[[mockObserver expect] observeValueForKeyPath:@"time" ofObject:timer change:[OCMConstraint any] context:nil];
+	
 	[NSThread sleepUntilDate:[NSDate dateWithTimeIntervalSinceNow:1]];
 
-	STAssertTrue(false, @"PENDING: Need to check that the mock object is called", nil);
+	[mockObserver verify];
 }
 
 - (void)testItShouldUpdateKvoWhenStopped
