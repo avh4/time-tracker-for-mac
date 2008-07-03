@@ -1,3 +1,7 @@
+
+  * Added auto-updating support via appcasts using Sparkle 1.5b2.
+    < http://sparkle.andymatuschak.org/ >
+
 === Version 1.2.1 === 2007-01-22
 Packaged by Aaron VonderHaar <gruen0aermel@gmail.com>
 
