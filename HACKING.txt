@@ -1,5 +1,33 @@
 This file contains information for developing and testing Time Tracker.
 
+== Release Packaging ==
+
+1. Make sure the version number is updated:
+    1a. Update CURRENT_PROJECT_VERSION for "All Configurations" in the Project Info.
+    1b. Update the "Bundle Version" in Info.plist.
+    1c. Update "CFBundleVersion" in InfoPlist.strings.
+
+2. Update the ChangeLog.txt.
+
+3. Build the Time Tracker.dmg release file:
+    3a. Open the Xcode project.
+    3b. Change the "Active Configuration" to "Release".
+    3c. Change the "Active Target" to "Release Package".
+    3d. Build the target.  This will create "build/Release/Time Tracker-$(CURRENT_PROJECT_VERSION).dmg".
+
+4. Create appcast/timetracker-$(CURRENT_PROJECT_VERSION).html using the information from ChangeLog.txt.
+
+5. Update appcast/timetracker-stable.xml
+
+6. Publish the release:
+    6a. Upload Time Tracker-$(CURRENT_PROJECT_VERSION).dmg to http://time-tracker-mac.googlecode.com
+    6b. Upload timetracker-$(CURRENT_PROJECT_VERSION).html to http://time-tracker-mac.googlecode.com
+    6c. Upload timetracker-stable.xml to http://www.avh4.net/appcast/
+
+7. Update the website:
+    7a. Update the homepage http://time-tracker-mac.googlecode.com
+    7b. Make the new release the featured download http://time-tracker-mac.googlecode.com
+
 == Appcast updates with Sparkle ==
 
 There is a dummy appcast which will alway contain a fake "update" for Time
