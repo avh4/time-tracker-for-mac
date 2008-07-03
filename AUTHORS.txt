@@ -1,5 +1,5 @@
 Changes since Time Tracker 1.1 were written by
-Aaron VonderHaar <gruen0aermel@gmail.com> (2007)
+Aaron VonderHaar <gruen0aermel@gmail.com> (2007-2008)
 
 Time Tracker 1.0 was written by
 Ivan Dramaliev <junker@slooz.com> (2005-2006)

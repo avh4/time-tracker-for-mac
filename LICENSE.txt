@@ -2,8 +2,8 @@ This release has been built and packaged by Aaron VonderHaar.
 Please see http://code.google.com/p/time-tracker-mac for details.
 
 Time Tracker is licensed under the GPL v2 (see LICENSE-GPL.txt).
-(c) 2006, Ivan Dramaliev
-(c) 2007, Aaron VonderHaar
+(c) 2007-2008, Aaron VonderHaar
+(c) 2005, Ivan Dramaliev
 
 See AUTHORS.txt and ChangeLog.txt for authorship information. 
 
