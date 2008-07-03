@@ -65,7 +65,7 @@
 		B19BDFB20B5C94F200465046 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = Release;
+			dstPath = "Release-$(CURRENT_PROJECT_VERSION)";
 			dstSubfolderSpec = 16;
 			files = (
 				B163D4080B646240007D0E2C /* AUTHORS.txt in CopyFiles */,
@@ -434,6 +434,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(NATIVE_ARCH)";
+				CURRENT_PROJECT_VERSION = 1.2.2;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 				ZERO_LINK = YES;
 			};
