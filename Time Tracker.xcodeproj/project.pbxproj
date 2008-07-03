@@ -12,6 +12,7 @@
 			buildConfigurationList = B19BDFBD0B5C955500465046 /* Build configuration list for PBXAggregateTarget "Release Package" */;
 			buildPhases = (
 				B19BDFB20B5C94F200465046 /* CopyFiles */,
+				B1B159BD0E1D8A7100B113F8 /* ShellScript */,
 			);
 			dependencies = (
 				B19BDFB50B5C94FA00465046 /* PBXTargetDependency */,
@@ -309,6 +310,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B1B159BD0E1D8A7100B113F8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "hdiutil create -ov \\\n\t-srcfolder \"$TARGET_BUILD_DIR/Release-$CURRENT_PROJECT_VERSION/\" \\\n\t-volname \"$PROJECT_NAME $CURRENT_PROJECT_VERSION\" \\\n\t\"$TARGET_BUILD_DIR/$PROJECT_NAME-$CURRENT_PROJECT_VERSION.dmg\"\n\necho \"Disk image created at $TARGET_BUILD_DIR/$PROJECT_NAME-$CURRENT_PROJECT_VERSION.dmg\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8D11072C0486CEB800E47090 /* Sources */ = {
