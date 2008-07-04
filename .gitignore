@@ -2,3 +2,4 @@ build
 .DS_Store
 *.xcodeproj/*.mode1v3
 *.xcodeproj/*.pbxuser
+.*.swp
