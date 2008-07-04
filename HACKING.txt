@@ -27,6 +27,10 @@ This file contains information for developing and testing Time Tracker.
 7. Update the website:
     7a. Update the homepage http://time-tracker-mac.googlecode.com
     7b. Make the new release the featured download http://time-tracker-mac.googlecode.com
+    7c. Update iusethis.com
+    7d. Update versiontracker.com
+
+8. Tag the release with "v$(CURRENT_PROJECT_VERSION)" and push the commit.
 
 == Appcast updates with Sparkle ==
 

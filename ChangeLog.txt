@@ -1,3 +1,4 @@
+=== Version 1.2.2 === 2008-07-03
 
   * Added auto-updating support via appcasts using Sparkle 1.5b2.
     < http://sparkle.andymatuschak.org/ >
