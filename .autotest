@@ -8,7 +8,7 @@ class String
 end
 
 Autotest.add_hook :initialize do |at|
-  at.add_mapping(/Classes\/(.*)\.[mh]/) do |_, m|
+  at.add_mapping(/\.\/(.*)\.[mh]/) do |_, m|
     ["test/test_#{m[1].underscore}.rb"]
   end
 end
