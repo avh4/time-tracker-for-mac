@@ -38,13 +38,13 @@ steps_for(:misc) do
     @proj.addTask(task)
   end
   
-  Then "the project's total time is $min minutes" do |min|
+  Then "the project's total time should be $min minutes" do |min|
     @proj.tasks[0].totalTime.should == min.to_i * 60
     @proj.updateTotalTime # FIXME Shouldn't need to call this
     @proj.totalTime.should == min.to_i * 60
   end
   
-  Then "the number of projects is $n" do |n|
+  Then "the number of projects should be $n" do |n|
     @doc.size.should == n.to_i
   end
   
