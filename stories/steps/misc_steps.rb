@@ -29,18 +29,15 @@ steps_for(:misc) do
     time_end = OSX::NSDate.alloc.initWithTimeInterval_sinceDate(min.to_i*60, time_start)
     wp.setStartTime(time_start)
     wp.setEndTime(time_end)
-    wp.updateTotalTime # FIXME Shouldn't need to call this
     
     task = OSX::TTask.alloc.init
     task.addWorkPeriod(wp)
-    task.updateTotalTime # FIXME Shouldn't need to call this
     
     @proj.addTask(task)
   end
   
   Then "the project's total time should be $min minutes" do |min|
     @proj.tasks[0].totalTime.should == min.to_i * 60
-    @proj.updateTotalTime # FIXME Shouldn't need to call this
     @proj.totalTime.should == min.to_i * 60
   end
   
