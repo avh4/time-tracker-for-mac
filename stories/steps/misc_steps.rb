@@ -7,17 +7,8 @@ OSX::ns_import :TWorkPeriod
 
 steps_for(:misc) do
   
-  Given "a new document" do
-    @doc = []
-  end
-  
   Given "a new project" do
     @proj = OSX::TProject.alloc.init
-  end
-  
-  When "a new project is created" do
-    @proj = OSX::TProject.alloc.init
-    @doc.push @proj
   end
   
   When "the project is selected" do
@@ -39,10 +30,6 @@ steps_for(:misc) do
   Then "the project's total time should be $min minutes" do |min|
     @proj.tasks[0].totalTime.should == min.to_i * 60
     @proj.totalTime.should == min.to_i * 60
-  end
-  
-  Then "the number of projects should be $n" do |n|
-    @doc.size.should == n.to_i
   end
   
 end

@@ -14,7 +14,7 @@ Story: Track time for multiple projects
 	Scenario: Creating a new project
 		Given a new document
 		
-		When a new project is created
+		When a new project is created in the document
 		
-		Then the number of projects should be 1
+		Then the number of projects in the document should be 1
 	
