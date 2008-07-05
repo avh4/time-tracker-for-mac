@@ -11,7 +11,6 @@
 
 @interface TTask : NSObject <NSCoding> {
 	NSString *_name;
-	int _totalTime;
 	NSMutableArray *_workPeriods;
 }
 
@@ -22,8 +21,6 @@
 - (NSMutableArray *) workPeriods;
 
 - (int) totalTime;
-- (void) updateTotalTime; // FIXME Remove this method
-- (void) _updateTotalTime;
 
 
 @end

@@ -47,4 +47,19 @@ describe OSX::TTask do
     task.totalTime.should == seconds[0] + seconds[1]
   end
   
+  it "should sum the time correctly after the timer has updated a work period" do
+    seconds = 10*60
+    seconds_later = 20*60
+    task = OSX::TTask.alloc.init
+    
+    wp = MockWorkPeriod.new
+    wp.stub!(:totalTime).and_return(seconds)
+    task.addWorkPeriod(wp)
+    
+    # Now the timer runs for a while...
+    wp.stub!(:totalTime).and_return(seconds_later)
+    
+    task.totalTime.should == seconds_later
+  end
+  
 end

@@ -14,7 +14,6 @@
 - (id) init
 {
 	[self setName: @"Untitled"];
-	_totalTime = 0;
 	_workPeriods = [NSMutableArray new];
 	return self;
 }
@@ -34,7 +33,6 @@
 - (void) addWorkPeriod: (TWorkPeriod *) workPeriod
 {
 	[_workPeriods addObject: workPeriod];
-	[self _updateTotalTime];
 }
 
 - (NSMutableArray *) workPeriods
@@ -42,22 +40,13 @@
 	return _workPeriods;
 }
 
-- (void) updateTotalTime
+- (int) totalTime
 {
-	; // FIXME Remove this method
-}
-
-- (void) _updateTotalTime
-{
-	_totalTime = 0;
+	int _totalTime = 0;
 	int i;
 	for (i = 0; i < [_workPeriods count]; i++) {
 		_totalTime += [[_workPeriods objectAtIndex: i] totalTime];
 	}
-}
-
-- (int) totalTime
-{
 	return _totalTime;
 }
 
@@ -87,7 +76,6 @@
         _name = [[coder decodeObject] retain];
         _workPeriods = [[NSMutableArray arrayWithArray: [coder decodeObject]] retain];
     }
-	[self updateTotalTime];
     return self;
 }
 

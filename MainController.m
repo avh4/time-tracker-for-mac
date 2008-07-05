@@ -72,7 +72,6 @@
 	timer = nil;
 	
 	[_curWorkPeriod setEndTime:endTime];
-	[_curTask updateTotalTime];
 	[_curProject updateTotalTime];
 	_curWorkPeriod = nil;
 	_curProject = nil;
@@ -264,7 +263,6 @@
 	TWorkPeriod *wp = [[_selTask workPeriods] objectAtIndex: [tvWorkPeriods selectedRow]];
 	[wp setStartTime: [dtpEditWorkPeriodStartTime dateValue]];
 	[wp setEndTime: [dtpEditWorkPeriodEndTime dateValue]];
-	[_selTask updateTotalTime];
 	[_selProject updateTotalTime];
 	[tvProjects reloadData];
 	[tvTasks reloadData];
@@ -280,7 +278,6 @@
 	if (timer != atimer) return;
 	
 	[_curWorkPeriod setEndTime: [NSDate date]];
-	[_curTask updateTotalTime];
 	[_curProject updateTotalTime];
 	[tvProjects reloadData];
 	[tvTasks reloadData];
@@ -486,7 +483,6 @@
 			[self stopTimer];
 		}
 		[[_selTask workPeriods] removeObjectAtIndex: [tvWorkPeriods selectedRow]];
-		[_selTask updateTotalTime];
 		[_selProject updateTotalTime];
 		[tvWorkPeriods deselectAll: self];
 		[tvWorkPeriods reloadData];
