@@ -6,7 +6,7 @@ require "spec/rake/spectask"
 
 
 
-task :default => :compile
+task :default => :spec
 
 
 Rake::TestTask.new do |t|
@@ -29,6 +29,7 @@ end
 task :compile => "objc:compile"
 
 task :test => :compile
+task :spec => :compile
 
 namespace :objc do
   # look for Classes/*.m files containing a line "void Init_ClassName"
