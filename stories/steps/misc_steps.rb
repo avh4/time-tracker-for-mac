@@ -25,8 +25,8 @@ steps_for(:misc) do
   
   When "the timer is run for $min minutes" do |min|
     wp = OSX::TWorkPeriod.alloc.init
-    time_start = OSX::NSDate.dateWithTimeIntervalSinceReferenceDate(0)
-    time_end = OSX::NSDate.dateWithTimeIntervalSinceReferenceDate(min.to_i*60)
+    time_start = OSX::NSDate.alloc.init
+    time_end = OSX::NSDate.alloc.initWithTimeInterval_sinceDate(min.to_i*60, time_start)
     wp.setStartTime(time_start)
     wp.setEndTime(time_end)
     wp.updateTotalTime # FIXME Shouldn't need to call this
