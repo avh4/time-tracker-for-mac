@@ -1,0 +1,20 @@
+Story: Track time for multiple projects
+	As a consultant
+	I want to keep track of the time spent on five projects
+	So that I can bill my clients the correct amount
+	
+	Scenario: Run the timer for 10 minutes on a new project
+		Given a new project
+		
+		When the project is selected
+		And the timer is run for 10 minutes
+		
+		Then the project's total is 0:10
+		
+	Scenario: Creating a new project
+		Given a new document
+		
+		When a new project is created
+		
+		Then the number of projects is 1
+	
