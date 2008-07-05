@@ -1,3 +1,5 @@
+require "TTDocument.bundle"
+OSX::ns_import :TTDocument
 require "TProject.bundle"
 OSX::ns_import :TProject
 require "TTask.bundle"
@@ -7,8 +9,17 @@ OSX::ns_import :TWorkPeriod
 
 steps_for(:misc) do
   
+  Given "a new document" do
+    @doc = OSX::TTDocument.alloc.init
+  end
+  
   Given "a new project" do
     @proj = OSX::TProject.alloc.init
+  end
+  
+  When "a new project is created in the document" do
+    proj = OSX::TProject.alloc.init
+    @doc.addProject(proj)
   end
   
   When "the project is selected" do
@@ -30,6 +41,10 @@ steps_for(:misc) do
   Then "the project's total time should be $min minutes" do |min|
     @proj.tasks[0].totalTime.should == min.to_i * 60
     @proj.totalTime.should == min.to_i * 60
+  end
+  
+  Then "the number of projects in the document should be $n" do |n|
+    @doc.projects.size.should == n.to_i
   end
   
 end
