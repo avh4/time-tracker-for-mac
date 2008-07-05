@@ -17,4 +17,30 @@ Story: Track time for multiple projects
 		When a new project is created in the document
 		
 		Then the number of projects in the document should be 1
+		
+	Scenario: Create five projects, log some time and see the totals
+		Given a new document
+		
+		When a new project is created called "Project A"
+		And a new project is created called "Project B"
+		And a new project is created called "Project C"
+		And a new project is created called "Project D"
+		And a new project is created called "Project E"
+		
+		And project 1 is selected
+		And the timer is run for 5 minutes
+		And project 2 is selected
+		And the timer is run for 15 minutes
+		And project 3 is selected
+		And the timer is run for 25 minutes
+		And project 4 is selected
+		And the timer is run for 35 minutes
+		And project 5 is selected
+		And the timer is run for 45 minutes
+		
+		Then the total time for project 1 should be 5 minutes
+		And the total time for project 2 should be 15 minutes
+		And the total time for project 3 should be 25 minutes
+		And the total time for project 4 should be 35 minutes
+		And the total time for project 5 should be 45 minutes
 	
