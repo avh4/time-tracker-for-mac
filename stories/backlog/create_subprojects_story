@@ -1,0 +1,30 @@
+Story: Create subprojects (TT-16)
+	As a consultant
+	I want to create projects within projects
+	So that I can see grouped totals for a hierarchy deeper than two levels
+	
+	Scenario: 
+		Given a new document
+		
+		When a project is created called "Income work"
+		And a project is created in project "Income work" called "Piano students"
+		And a project is created in project "Income work" called "Recording work"
+		And a project is created in project "Income work" called "Church job"
+		
+		And a task is created in project "Piano students" called "Teach lessons"
+		And a task is created in project "Piano students" called "Extra time"
+		And a task is created in project "Piano students" called "Write arrangements"
+		And a task is created in project "Piano students" called "Correspondence"
+		And a task is created in project "Recording work" called "Studio time"
+		
+		And task "Income work > Piano students > Teach lessons" is selected
+		And the timer is run for 10 minutes
+		And task "Income work > Piano students > Extra time" is selected
+		And the timer is run for 2 minutes
+		And task "Income work > Recording work > Studio time" is selected
+		And the timer is run for 15 minutes
+		
+		Then the total time for project "Piano students" is 12 minutes
+		And the total time for project "Recording work" is 15 minutes
+		And the total time for project "Income work" is 27 minutes
+		

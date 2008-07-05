@@ -1,0 +1,11 @@
+Story: Edit total time for a project (TT-15)
+	As a consultant
+	I want to enter the time I spent working on a task
+	So that Time Tracker accurately reflects the work I did away from the computer
+	
+	Scenario: Create a new task with manually-entered time
+	
+	Scenario: Add time to an existing task
+	
+	# Is this a real use-case?
+	Scenario: Subtract time from an existing task

@@ -1,0 +1,8 @@
+Story: Apply colors (TT-18)
+	As a consultant
+	I want to apply colors
+	So that they stand out to the eye
+	
+	Scenario: Apply color to a project
+	
+	Scenario: Apply color to a task

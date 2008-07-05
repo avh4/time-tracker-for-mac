@@ -1,0 +1,56 @@
+Story: Rearrange projects and tasks (TT-17)
+	As a consultant
+	I want to rearrange the list of projects and tasks
+	So that I can organize a large list of projects and tasks in a way that makes sense to me
+	
+	Scenario: Rearrange projects alphabetically
+		Given a new document
+		
+		When a project is created called "Project A"
+		And a project is created called "Project C"
+		And a project is created called "Project B"
+		And projects a sorted alphabetically
+		
+		Then the name of project 1 should be "Project A"
+		And the name of project 2 should be "Project B"
+		And the name of project 3 should be "Project C"
+		
+	Scenario: Rearrange tasks alphabetically
+		Given a new document
+		And the document has a project called "New Project"
+		
+		When a task is created in project 1 called "Task A"
+		And a task is created in project 1 called "Task C"
+		And a task is created in project 1 called "Task B"
+		And the tasks in project 1 are sorted alphabetically
+		
+		Then the name of task 1 in project 1 should be "Task A"
+		And the name of task 2 in project 1 should be "Task B"
+		And the name of task 3 in project 1 should be "Task C"
+		
+	
+	Scenario: Rearrange projects
+		Given a new document
+		And the document has a project called "Project One"
+		And the document has a project called "Project Three"
+		And the document has a project called "Project Two"
+		
+		And the project "Project Two" is moved to before project "Project Three"
+		
+		Then the name of project 1 should be "Project One"
+		And the name of project 2 should be "Project Two"
+		And the name of project 3 should be "Project Three"
+	
+	Scenario: Rearrange tasks
+		Given a new document
+		And the document has a project called "New Project"
+		And project 1 has a task called "Task One"
+		And project 1 has a task called "Task Three"
+		And project 1 has a task called "Task Two"
+		
+		And the task in project "New Project" called "Task Two" is moved to before task "Task Three"
+		
+		Then the name of task 1 in project 1 should be "Task One"
+		And the name of task 2 in project 1 should be "Task Two"
+		And the name of task 3 in project 1 should be "Task Three"
+		
