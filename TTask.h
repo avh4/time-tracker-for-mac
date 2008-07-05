@@ -22,7 +22,8 @@
 - (NSMutableArray *) workPeriods;
 
 - (int) totalTime;
-- (void) updateTotalTime;
+- (void) updateTotalTime; // FIXME Remove this method
+- (void) _updateTotalTime;
 
 
 @end

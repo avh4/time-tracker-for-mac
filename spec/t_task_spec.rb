@@ -29,7 +29,6 @@ describe OSX::TTask do
     wp = MockWorkPeriod.new
     wp.stub!(:totalTime).and_return(seconds)
     task.addWorkPeriod(wp)
-    task.updateTotalTime # FIXME Shouldn't need to call this
     
     task.totalTime.should == seconds
   end
@@ -44,7 +43,6 @@ describe OSX::TTask do
     
     task.addWorkPeriod(wps[0])
     task.addWorkPeriod(wps[1])
-    task.updateTotalTime # FIXME Shouldn't need to call this
     
     task.totalTime.should == seconds[0] + seconds[1]
   end

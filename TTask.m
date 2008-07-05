@@ -34,6 +34,7 @@
 - (void) addWorkPeriod: (TWorkPeriod *) workPeriod
 {
 	[_workPeriods addObject: workPeriod];
+	[self _updateTotalTime];
 }
 
 - (NSMutableArray *) workPeriods
@@ -42,6 +43,11 @@
 }
 
 - (void) updateTotalTime
+{
+	; // FIXME Remove this method
+}
+
+- (void) _updateTotalTime
 {
 	_totalTime = 0;
 	int i;
