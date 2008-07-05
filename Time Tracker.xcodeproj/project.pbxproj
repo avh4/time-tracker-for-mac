@@ -50,6 +50,7 @@
 		B19BDFC60B5C956F00465046 /* LICENSE.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = B19BDFC20B5C956700465046 /* LICENSE.txt */; };
 		B1AB15830CEBC9A50025CF12 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1AB15820CEBC9A50025CF12 /* Sparkle.framework */; };
 		B1AB159D0CEBC9FC0025CF12 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B1AB15820CEBC9A50025CF12 /* Sparkle.framework */; };
+		B1CDA8500E1F65EB009DCA18 /* TTDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = B1CDA84F0E1F65EB009DCA18 /* TTDocument.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +127,8 @@
 		B19BDFC10B5C956700465046 /* ChangeLog.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChangeLog.txt; sourceTree = SOURCE_ROOT; };
 		B19BDFC20B5C956700465046 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = SOURCE_ROOT; };
 		B1AB15820CEBC9A50025CF12 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		B1CDA84E0E1F65EB009DCA18 /* TTDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTDocument.h; sourceTree = "<group>"; };
+		B1CDA84F0E1F65EB009DCA18 /* TTDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTDocument.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +159,8 @@
 				2C9EC8D60905A5FE000651F2 /* TProject.m */,
 				2CFAEE2B09042FC000131DD6 /* MainController.h */,
 				2CFAEE2C09042FC000131DD6 /* MainController.m */,
+				B1CDA84E0E1F65EB009DCA18 /* TTDocument.h */,
+				B1CDA84F0E1F65EB009DCA18 /* TTDocument.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -338,6 +343,7 @@
 				2C9EC8D70905A5FE000651F2 /* TProject.m in Sources */,
 				2C9EC93F0905A9F6000651F2 /* TimeIntervalFormatter.m in Sources */,
 				2C9EC9540905ABAE000651F2 /* TWorkPeriod.m in Sources */,
+				B1CDA8500E1F65EB009DCA18 /* TTDocument.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
