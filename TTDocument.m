@@ -14,6 +14,7 @@
 - (id) init
 {
 	_projects = [[NSMutableArray alloc] init];
+	return self;
 }
 
 - (NSArray *) projects
@@ -21,9 +22,19 @@
 	return _projects;
 }
 
+- (void) setProjects:(NSArray *)projs
+{
+	_projects = [[NSMutableArray alloc] initWithArray:projs];
+}
+
 - (void) addProject:(TProject *)proj
 {
 	[_projects addObject:proj];
+}
+
+- (void) removeProject:(TProject *)proj
+{
+	[_projects removeObject:proj];
 }
 
 @end

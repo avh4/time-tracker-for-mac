@@ -10,7 +10,7 @@
 
 - (id) init
 {
-	_projects = [NSMutableArray new];
+	document = [[TTDocument init] alloc];
 	_selProject = nil;
 	_selTask = nil;
 	_curTask = nil;
@@ -153,9 +153,12 @@
 	
 	NSData *theData=[[NSUserDefaults standardUserDefaults] dataForKey:@"ProjectTimes"];
 	if (theData != nil)
-		_projects = (NSMutableArray *)[[NSMutableArray arrayWithArray: [NSUnarchiver unarchiveObjectWithData:theData]] retain];
+	{
+		NSMutableArray *projects = (NSMutableArray *)[NSMutableArray arrayWithArray: [NSUnarchiver unarchiveObjectWithData:theData]];
+		[document setProjects:projects];
+	}
 	
-	_projects_lastTask = [[NSMutableDictionary alloc] initWithCapacity:[_projects count]];
+	_projects_lastTask = [[NSMutableDictionary alloc] initWithCapacity:[[document projects] count]];
 	
 	//NSNumber *numTotalTime = [defaults objectForKey: @"TotalTime"];
 	
@@ -308,7 +311,7 @@
 
 - (void)saveData
 {
-	NSData *theData=[NSArchiver archivedDataWithRootObject:_projects];
+	NSData *theData=[NSArchiver archivedDataWithRootObject:[document projects]];
 	[[NSUserDefaults standardUserDefaults] setObject:theData forKey:@"ProjectTimes"];
 	[[NSUserDefaults standardUserDefaults] synchronize];
 	timeSinceSave = 0;
@@ -325,7 +328,7 @@
 - (int)numberOfRowsInTableView:(NSTableView *)tableView
 {
 	if (tableView == tvProjects) {
-		return [_projects count];
+		return [[document projects] count];
 	}
 	if (tableView == tvTasks) {
 		if (_selProject == nil)
@@ -346,10 +349,10 @@
 {
 	if (tableView == tvProjects) {
 		if ([[tableColumn identifier] isEqualToString: @"ProjectName"]) {
-			return [[_projects objectAtIndex: rowIndex] name];
+			return [[[document projects] objectAtIndex: rowIndex] name];
 		}
 		if ([[tableColumn identifier] isEqualToString: @"TotalTime"]) {
-			return [TimeIntervalFormatter secondsToString: [[_projects objectAtIndex: rowIndex] totalTime]];
+			return [TimeIntervalFormatter secondsToString: [[[document projects] objectAtIndex: rowIndex] totalTime]];
 		}
 	}
 	
@@ -393,9 +396,9 @@
 - (IBAction)clickedAddProject:(id)sender
 {
 	TProject *proj = [TProject new];
-	[_projects addObject: proj];
+	[document addProject:proj];
 	[tvProjects reloadData];
-	int index = [_projects count] - 1;
+	int index = [[document projects] count] - 1;
 	[tvProjects selectRowIndexes:[NSIndexSet indexSetWithIndex:index] byExtendingSelection:NO];
 	[tvProjects editColumn:[tvProjects columnWithIdentifier:@"ProjectName"] row:index withEvent:nil select:YES];
 }
@@ -426,7 +429,7 @@
 		if ([tvProjects selectedRow] == -1) {
 			_selProject = nil;
 		} else {
-			_selProject = [_projects objectAtIndex: [tvProjects selectedRow]];
+			_selProject = [[document projects] objectAtIndex: [tvProjects selectedRow]];
 		}
 
 		[tvTasks deselectAll: self];
@@ -504,7 +507,7 @@
 		}
 		TProject *delProject = _selProject;
 		[tvProjects deselectAll: self];
-		[_projects removeObject: delProject];
+		[document removeProject:delProject];
 		[tvProjects reloadData];
 	}
 }

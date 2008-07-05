@@ -1,6 +1,7 @@
 /* MainController */
 
 #import <Cocoa/Cocoa.h>
+#import "TTDocument.h"
 #import "TProject.h"
 #import "TTask.h"
 #import "TWorkPeriod.h"
@@ -37,7 +38,7 @@
 	
 	NSToolbarItem *startstopToolbarItem;
 	
-	NSMutableArray *_projects;
+	TTDocument *document;
 	NSMutableDictionary *_projects_lastTask;
 	TProject *_selProject;
 	TTask *_selTask;

@@ -21,6 +21,11 @@ describe OSX::TTDocument do
     doc.projects.size.should == 1
   end
   
-    
-  
+  it "should allow projects to be removed" do
+    doc = OSX::TTDocument.alloc.init
+    proj = mock("a project")
+    doc.addProject(proj)
+    doc.removeProject(proj)
+    doc.projects.size.should == 0
+  end
 end

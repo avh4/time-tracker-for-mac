@@ -14,6 +14,8 @@
 }
 
 - (NSArray *) projects;
+- (void) setProjects:(NSArray *)projs;
 - (void) addProject:(TProject *)proj;
+- (void) removeProject:(TProject *)proj;
 
 @end
