@@ -15,7 +15,6 @@
 {
 	[self setName: @"Untitled"];
 	_tasks = [NSMutableArray new];
-	_totalTime = 0;
 	return self;
 }
 
@@ -43,16 +42,12 @@
 
 - (int) totalTime
 {
-	return _totalTime;
-}
-
-- (void) updateTotalTime
-{
-	_totalTime = 0;
+	int _totalTime = 0;
 	int i;
 	for (i = 0; i < [_tasks count]; i++) {
 		_totalTime += [[_tasks objectAtIndex: i] totalTime];
 	}
+	return _totalTime;
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder
@@ -80,7 +75,6 @@
         _name = [[coder decodeObject] retain];
         _tasks = [[NSMutableArray arrayWithArray: [coder decodeObject]] retain];
     }
-	[self updateTotalTime];
     return self;
 }
 

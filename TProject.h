@@ -12,7 +12,6 @@
 @interface TProject : NSObject <NSCoding> {
 	NSString *_name;
 	NSMutableArray *_tasks;
-	int _totalTime;
 }
 
 - (NSString *) name;
@@ -22,6 +21,5 @@
 - (void) addTask: (TTask *) task;
 
 - (int) totalTime;
-- (void) updateTotalTime;
 
 @end
