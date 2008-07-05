@@ -9,7 +9,7 @@ Story: Track time for multiple projects
 		When the project is selected
 		And the timer is run for 10 minutes
 		
-		Then the project's total is 0:10
+		Then the project's total time is 10 minutes
 		
 	Scenario: Creating a new project
 		Given a new document
