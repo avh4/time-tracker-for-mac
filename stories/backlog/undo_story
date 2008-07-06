@@ -1,0 +1,28 @@
+Story: Undo (TT-10)
+	As a consultant
+	I want to undo changes to my projects and tasks
+	So that I can correct my errors
+	
+	Scenario: undo delete project
+		Given a new document
+		And a project called "Project X"
+		
+		When project 1 is deleted
+		And undo is performed
+		
+		Then the document has 1 project
+		And the name of project 1 is "Project X"
+		
+	Scenario: undo delete task
+	
+	Scenario: undo delete work period
+	
+	Scenario: undo edit project title
+	
+	Scenario: undo edit task title
+	
+	Scenario: undo edit work period start and end times
+	
+	Scenario: undo rearrange projects
+	
+	Scenario: undo rearrange tasks
