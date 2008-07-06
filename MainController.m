@@ -279,9 +279,14 @@
 	if (timer != atimer) return;
 	
 	[_curWorkPeriod setEndTime: [NSDate date]];
-	[tvProjects reloadData];
-	[tvTasks reloadData];
+	
+	// Redraw just the TotalTime columns so that editing doesn't get cancelled if the user
+	// is currently editing a different cell.
+	[tvProjects setNeedsDisplayInRect:[tvProjects rectOfColumn:[tvProjects columnWithIdentifier:@"TotalTime"]]];
+	[tvTasks setNeedsDisplayInRect:[tvTasks rectOfColumn:[tvTasks columnWithIdentifier:@"TotalTime"]]];
+	
 	[tvWorkPeriods reloadData];
+	
 	int idleTime = [self idleTime];
 	if (idleTime == 0) {
 		[_lastNonIdleTime release];
