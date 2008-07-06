@@ -1,25 +1,7 @@
 require "rubygems"
 require "rake"
-require "rake/testtask"
 
-require "spec/rake/spectask"
-
-
-
-task :default => :spec
-
-
-Rake::TestTask.new do |t|
-  t.libs << "test" << "test/bundles"
-  t.test_files = FileList['test/test*.rb']
-  t.verbose = true
-end
-
-
-Spec::Rake::SpecTask.new do |t|
-  t.warning = true
-end
-
+Dir['tasks/**/*.rake'].each { |rake| load rake }
 
 namespace :objc do
   desc "Compiles all Objective-C bundles for testing"
