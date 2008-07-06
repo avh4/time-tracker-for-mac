@@ -1,6 +1,6 @@
 
   * (refactoring) removed updateTotalTime from TTask and TProject.
-  * Upgraded [http://sparkle.andymatuschak.org Sparkle] to version 1.5b3.
+  * Upgraded [http://sparkle.andymatuschak.org Sparkle] to version 1.5b4.
 
 === Version 1.2.2 === 2008-07-03
 
