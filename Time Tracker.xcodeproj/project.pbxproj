@@ -328,7 +328,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "hdiutil create -ov \\\n\t-srcfolder \"$TARGET_BUILD_DIR/Release-$CURRENT_PROJECT_VERSION/\" \\\n\t-volname \"$PROJECT_NAME $CURRENT_PROJECT_VERSION\" \\\n\t\"$TARGET_BUILD_DIR/$PROJECT_NAME-$CURRENT_PROJECT_VERSION.dmg\"\n\necho \"Disk image created at $TARGET_BUILD_DIR/$PROJECT_NAME-$CURRENT_PROJECT_VERSION.dmg\"";
+			shellScript = "hdiutil create -ov -scrub \\\n\t-srcfolder \"$TARGET_BUILD_DIR/Release-$CURRENT_PROJECT_VERSION/\" \\\n\t-volname \"$PROJECT_NAME $CURRENT_PROJECT_VERSION\" \\\n\t\"$TARGET_BUILD_DIR/$PROJECT_NAME-$CURRENT_PROJECT_VERSION.dmg\"\n\necho \"Disk image created at $TARGET_BUILD_DIR/$PROJECT_NAME-$CURRENT_PROJECT_VERSION.dmg\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
