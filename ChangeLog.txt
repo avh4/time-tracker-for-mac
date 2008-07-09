@@ -1,8 +1,15 @@
 === Version 1.2.3 === 2008-07-06
 
   * Fixed the problem where project and task names could not be edited when the
-    timer was running. ([http://tt-jira.avh4.net/browse/TT-2 TT-2])
+    timer was running.
+	([http://tt-jira.avh4.net/browse/TT-2 TT-2])
+  * You can now print the entire Time Tracker window (all three panes at once)
+    using the new "Print Window" function, as requested by Rich Wojtas.
+	([http://tt-jira.avh4.net/browse/TT-24 TT-24])
+  * You can now resize the Projects/Tasks tables relative to each other.
+	([http://tt-jira.avh4.net/browse/TT-23 TT-23])
   * Upgraded [http://sparkle.andymatuschak.org Sparkle] to version 1.5b4.
+    Thanks to Andy Matuschak for maintaining and supporting Sparkle!
     ([http://tt-jira.avh4.net/browse/TT-19 TT-19])
   * (refactoring) removed updateTotalTime from TTask and TProject.
 

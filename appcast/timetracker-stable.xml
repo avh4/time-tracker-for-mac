@@ -9,10 +9,10 @@
 		<language>en</language>
 		<item>
 			<title>Time Tracker 1.2.3</title>
-			<description>http://time-tracker-mac.googlecode.com/files/timetracker-1.2.3.html</description>
-			<sparkle:releaseNotesLink>http://time-tracker-mac.googlecode.com/files/timetracker-1.2.3.html</sparkle:releaseNotesLink>
-			<pubDate>Thu, 06 Jul 2008 14:30:00 -0800</pubDate>
-			<enclosure sparkle:md5Sum="9a75879d81c460ab6b873cfb57412187" url="http://time-tracker-mac.googlecode.com/files/Time Tracker-1.2.3.zip" length="1136035" type="application/octet-stream" sparkle:version="1.2.3"/>
+			<description>http://time-tracker-mac.googlecode.com/files/timetracker-1.2.3-1.html</description>
+			<sparkle:releaseNotesLink>http://time-tracker-mac.googlecode.com/files/timetracker-1.2.3-1.html</sparkle:releaseNotesLink>
+			<pubDate>Thu, 09 Jul 2008 00:00:00 -0800</pubDate>
+			<enclosure sparkle:md5Sum="b122b2afeaf44e103fca5a2d4b35ba2c" url="http://time-tracker-mac.googlecode.com/files/Time Tracker-1.2.3.dmg" length="410633" type="application/octet-stream" sparkle:version="1.2.3"/>
 		</item>
 		<item>
 			<title>Time Tracker 1.2.2</title>
