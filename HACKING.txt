@@ -9,28 +9,44 @@ This file contains information for developing and testing Time Tracker.
 
 2. Update the ChangeLog.txt.
 
-3. Build the Time Tracker.dmg release file:
-    3a. Open the Xcode project.
-    3b. Change the "Active Configuration" to "Release".
-    3c. Change the "Active Target" to "Release Package".
-    3d. Build the target.  This will create "build/Release/Time Tracker-$(CURRENT_PROJECT_VERSION).dmg".
+3. Test the code
+    3a. Run "rake spec" and verify that there are no errors or failures.
+    3b. Run "ruby stories/track_time_story.rb" and verify that there are no
+        failures.
 
-4. Create appcast/timetracker-$(CURRENT_PROJECT_VERSION).html using the information from ChangeLog.txt.
+4. Build the Time Tracker.dmg release file:
+    4a. Open the Xcode project.
+    4b. Change the "Active Configuration" to "Release".
+    4c. Change the "Active Target" to "Release Package".
+    4d. Build the target.  This will create "build/Release/Time Tracker-$(CURRENT_PROJECT_VERSION).dmg".
 
-5. Update appcast/timetracker-stable.xml
+5. If Sparkle or the release file configuration has been changed, test the auto-update system:
+    5a. Install the previous version of Time Tracker.
+    5b. Update and post appcast/timetracker-test.xml
+    5c. Open ~/Library/Preferences/com.slooz.timetracker.plist and change
+        SUFeelURL to the location of timetracker-test.xml  (If the URL contains
+        spaces, replace them with "%20".)
+    5d. Ensure that the old version of Time Tracker can update to the new version.
+    5e. Ensure that the new version of Time Tracker can update to itself.
 
-6. Publish the release:
-    6a. Upload Time Tracker-$(CURRENT_PROJECT_VERSION).dmg to http://time-tracker-mac.googlecode.com
-    6b. Upload timetracker-$(CURRENT_PROJECT_VERSION).html to http://time-tracker-mac.googlecode.com
-    6c. Upload timetracker-stable.xml to http://www.avh4.net/appcast/
+6. Create appcast/timetracker-$(CURRENT_PROJECT_VERSION).html using the information from ChangeLog.txt.
 
-7. Update the website:
-    7a. Update the homepage http://time-tracker-mac.googlecode.com
-    7b. Make the new release the featured download http://time-tracker-mac.googlecode.com
-    7c. Update iusethis.com
-    7d. Update versiontracker.com
+7. Update appcast/timetracker-stable.xml
 
-8. Tag the release with "v$(CURRENT_PROJECT_VERSION)" and push the commit.
+8. Publish the release:
+    8a. Upload Time Tracker-$(CURRENT_PROJECT_VERSION).dmg to
+        http://time-tracker-mac.googlecode.com
+    8b. Upload timetracker-$(CURRENT_PROJECT_VERSION).html to
+        http://time-tracker-mac.googlecode.com
+    8c. Upload timetracker-stable.xml to http://www.avh4.net/appcast/
+
+9. Update the website:
+    9a. Update the homepage http://time-tracker-mac.googlecode.com
+    9b. Make the new release the featured download http://time-tracker-mac.googlecode.com
+    9c. Update iusethis.com
+    9d. Update versiontracker.com
+
+10. Tag the release with "v$(CURRENT_PROJECT_VERSION)" and push the commit.
 
 == Appcast updates with Sparkle ==
 

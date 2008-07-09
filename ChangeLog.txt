@@ -1,6 +1,10 @@
+=== Version 1.2.3 === 2008-07-06
 
-  * (refactoring) removed updateTotalTime from TTask and TProject.
+  * Fixed the problem where project and task names could not be edited when the
+    timer was running. ([http://tt-jira.avh4.net/browse/TT-2 TT-2])
   * Upgraded [http://sparkle.andymatuschak.org Sparkle] to version 1.5b4.
+    ([http://tt-jira.avh4.net/browse/TT-19 TT-19])
+  * (refactoring) removed updateTotalTime from TTask and TProject.
 
 === Version 1.2.2 === 2008-07-03
 
