@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/spec_helper'
 
-require "TProject.bundle"
+require "Application.bundle"
 OSX::ns_import :TProject
 
 describe OSX::TProject do

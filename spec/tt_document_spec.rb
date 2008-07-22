@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/spec_helper'
 
-require "TTDocument.bundle"
+require "Application.bundle"
 OSX::ns_import :TTDocument
 
 describe OSX::TTDocument do

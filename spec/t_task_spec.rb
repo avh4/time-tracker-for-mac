@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/spec_helper'
 
-require "TTask.bundle"
+require "Application.bundle"
 OSX::ns_import :TTask
 
 describe OSX::TTask do
