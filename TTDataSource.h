@@ -7,11 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "TTDocument.h"
 
 
 @interface TTDataSource : NSObject {
 	
 	NSArray *workPeriods;
+	TTDocument *document;
 
 }
 

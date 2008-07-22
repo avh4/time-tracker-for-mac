@@ -21,6 +21,12 @@
 	workPeriods = [wp retain];
 }
 
+- (void) setDocument:(TTDocument *)doc
+{
+	[document release];
+	document = [doc retain];
+}
+
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(int)rowIndex
 {
 	if ([[tableColumn identifier] isEqualToString: @"Date"]) {
@@ -50,9 +56,9 @@
 
 - (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
 {
-	if ([item isKindOfClass:[TTDocument class]])
+	if (item == nil)
 	{
-		return [[item projects] count];
+		return [[document projects] count];
 	}
 	if ([item isKindOfClass:[TProject class]])
 	{
@@ -63,9 +69,9 @@
 
 - (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item
 {
-	if ([item isKindOfClass:[TTDocument class]])
+	if (item == nil)
 	{
-		return [[item projects] objectAtIndex:index];
+		return [[document projects] objectAtIndex:index];
 	}
 	if ([item isKindOfClass:[TProject class]])
 	{
@@ -76,7 +82,7 @@
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item
 {
-	if ([item isKindOfClass:[TTDocument class]])
+	if (item == nil)
 	{
 		return true;
 	}
