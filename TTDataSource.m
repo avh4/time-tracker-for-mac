@@ -101,11 +101,19 @@
 		{
 			return [item name];
 		}
+		if ([item isKindOfClass:[TTask class]])
+		{
+			return [item name];
+		}
 		return nil;
 	}
 	if ([[tableColumn identifier] isEqualToString:@"TotalTime"])
 	{
 		if ([item isKindOfClass:[TProject class]])
+		{
+			return [TimeIntervalFormatter secondsToString: [item totalTime]];
+		}
+		if ([item isKindOfClass:[TTask class]])
 		{
 			return [TimeIntervalFormatter secondsToString: [item totalTime]];
 		}
