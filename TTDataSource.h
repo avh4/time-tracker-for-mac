@@ -10,6 +10,8 @@
 
 
 @interface TTDataSource : NSObject {
+	
+	NSArray *workPeriods;
 
 }
 

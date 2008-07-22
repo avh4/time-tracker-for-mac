@@ -6,18 +6,25 @@ OSX::ns_import :TTDataSource
 describe OSX::TTDataSource do
   
   it "should return Work Date values" do
-    ds = OSX::TTDataSource.alloc.init
+    # Set up constants
+    START_TIME = Time.now
+    
+    # Set up objects
     mockWP = mock("TWorkPeriod")
-    ds.setWorkPeriod(mockWP)
     mockTable = mock("NSTableView")
     mockColumn = mock("NSTableColumn")
+    mockColumn.stub!(:identifier).and_return("Date")
+    ds = OSX::TTDataSource.alloc.init
+    ds.setWorkPeriods( [mockWP] )
     
-    mockWP.should_receive(:startTime).and_return(OSX::NSDate.date)
+    # Set up expectations
+    mockWP.should_receive(:startTime).and_return(START_TIME)
     
+    # Perform the test
     date = ds.tableView_objectValueForTableColumn_row(mockTable, mockColumn, 0)
     
-    date.should == "12/12/08"
-    
+    # Check assertations
+    date.should == START_TIME.strftime("%m/%d/%Y")
   end
   
   it "should return Start time values" do
