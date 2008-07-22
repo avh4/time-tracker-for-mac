@@ -21,11 +21,6 @@
 	workPeriods = [wp retain];
 }
 
-- (void) setDocument:(TTDocument *)doc
-{
-	
-}
-
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(int)rowIndex
 {
 	if ([[tableColumn identifier] isEqualToString: @"Date"]) {
