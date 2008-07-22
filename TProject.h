@@ -18,6 +18,7 @@
 - (void) setName: (NSString *) name;
 
 - (NSMutableArray *) tasks;
+- (void) setTasks:(NSArray *)tasks;
 - (void) addTask: (TTask *) task;
 
 - (int) totalTime;

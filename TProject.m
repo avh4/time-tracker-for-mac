@@ -40,6 +40,12 @@
 	[_tasks addObject: task];
 }
 
+- (void) setTasks:(NSArray *)tasks
+{
+	[_tasks release];
+	_tasks = [[NSMutableArray alloc] initWithArray:tasks];
+}
+
 - (int) totalTime
 {
 	int _totalTime = 0;

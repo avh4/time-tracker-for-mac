@@ -10,6 +10,7 @@
 #import "TWorkPeriod.h"
 #import "TimeIntervalFormatter.h"
 #import "TimeIntervalFormatter.m"
+#import "TTDocument.h"
 
 
 @implementation TTDataSource
@@ -18,6 +19,11 @@
 {
 	[workPeriods release];
 	workPeriods = [wp retain];
+}
+
+- (void) setDocument:(TTDocument *)doc
+{
+	
 }
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(int)rowIndex
@@ -45,6 +51,37 @@
 		return [TimeIntervalFormatter secondsToString: [[workPeriods objectAtIndex: rowIndex] totalTime]];
 	}
 	return nil;
+}
+
+- (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
+{
+	if ([item isKindOfClass:[TTDocument class]])
+	{
+		return [[item projects] count];
+	}
+	if ([item isKindOfClass:[TProject class]])
+	{
+		return [[item tasks] count];
+	}
+	return 0;
+}
+
+- (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item
+{
+	if ([item isKindOfClass:[TProject class]])
+	{
+		return [[item tasks] objectAtIndex:index];
+	}
+	return nil;
+}
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item
+{
+	if ([item isKindOfClass:[TProject class]])
+	{
+		return true;
+	}
+	return false;
 }
 
 @end
