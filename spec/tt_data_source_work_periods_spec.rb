@@ -5,9 +5,17 @@ OSX::ns_import :TTDataSource
 
 describe OSX::TTDataSource do
   
+  # We must define RubyCocoa objects for for certain mock objects
+  # so that we can specify the return type for methods that do not
+  # return objects
+  class MockWorkPeriod < OSX::NSObject
+    objc_method :totalTime, "i@:"
+  end
+  
   TT_WP_COL_DATE = "Date"
   TT_WP_COL_START_TIME = "StartTime"
   TT_WP_COL_END_TIME = "EndTime"
+  TT_WP_COL_DURATION = "Duration"
   
   it "should return Work Date values" do
     # Set up constants
@@ -76,6 +84,26 @@ describe OSX::TTDataSource do
   end
   
   it "should return Duration values" do
+    # Set up constants
+    DURATION = 61
+    DURATION_STRING = "00:01:01"
+    
+    # Set up objects
+    mockWP = MockWorkPeriod.new
+    mockTable = mock("NSTableView")
+    mockColumn = mock("NSTableColumn")
+    mockColumn.stub!(:identifier).and_return(TT_WP_COL_DURATION)
+    ds = OSX::TTDataSource.alloc.init
+    ds.setWorkPeriods( [mockWP] )
+    
+    # Set up expectations
+    mockWP.should_receive(:totalTime).and_return(DURATION)
+    
+    # Perform the test
+    duration = ds.tableView_objectValueForTableColumn_row(mockTable, mockColumn, 0)
+    
+    # Check assertations
+    duration.should == DURATION_STRING
   end
   
 end
