@@ -13,6 +13,18 @@ describe OSX::TTDataSource do
     PROJECT_1.setTasks( [TASK_1_1, TASK_1_2] )
     DOCUMENT.setProjects( [PROJECT_1] )
   end
+  
+  it "should return the tree data for the document" do
+    # Set up objects
+    mockOutline = mock("NSOutlineView")
+    ds = OSX::TTDataSource.alloc.init
+    ds.setDocument( DOCUMENT )
+    
+    # Perform the test and assertations
+    ds.outlineView_numberOfChildrenOfItem(mockOutline, DOCUMENT).should == 1
+    ds.outlineView_child_ofItem(mockOutline, 0, DOCUMENT).should == PROJECT_1
+    ds.outlineView_isItemExpandable(mockOutline, DOCUMENT).should be_true    
+  end
 
   it "should return the tree data for a project" do
     # Set up objects

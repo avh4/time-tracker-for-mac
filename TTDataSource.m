@@ -68,6 +68,10 @@
 
 - (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item
 {
+	if ([item isKindOfClass:[TTDocument class]])
+	{
+		return [[item projects] objectAtIndex:index];
+	}
 	if ([item isKindOfClass:[TProject class]])
 	{
 		return [[item tasks] objectAtIndex:index];
@@ -77,6 +81,10 @@
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item
 {
+	if ([item isKindOfClass:[TTDocument class]])
+	{
+		return true;
+	}
 	if ([item isKindOfClass:[TProject class]])
 	{
 		return true;
