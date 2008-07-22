@@ -7,9 +7,20 @@
 //
 
 #import "TTDataSource.h"
+#import "TWorkPeriod.h"
 
 
 @implementation TTDataSource
+
+- (void) setWorkPeriod: (TWorkPeriod *) wp
+{
+	
+}
+
+- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(int)rowIndex
+{
+	return nil;
+}
 
 @end
 

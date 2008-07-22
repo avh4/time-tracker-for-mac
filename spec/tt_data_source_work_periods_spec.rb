@@ -12,7 +12,7 @@ describe OSX::TTDataSource do
     mockTable = mock("NSTableView")
     mockColumn = mock("NSTableColumn")
     
-    mockWP.should_recieve(:startTime).and_return(OSX::NSDate.date)
+    mockWP.should_receive(:startTime).and_return(OSX::NSDate.date)
     
     date = ds.tableView_objectValueForTableColumn_row(mockTable, mockColumn, 0)
     
