@@ -44,12 +44,16 @@
 			<string>ObjC</string>
 			<key>OUTLETS</key>
 			<dict>
+				<key>dataSource</key>
+				<string>TTDataSource</string>
 				<key>dtpEditWorkPeriodEndTime</key>
 				<string>NSDatePicker</string>
 				<key>dtpEditWorkPeriodStartTime</key>
 				<string>NSDatePicker</string>
 				<key>mainWindow</key>
 				<string>NSWindow</string>
+				<key>ovProjects</key>
+				<string>NSOutlineView</string>
 				<key>panelEditWorkPeriod</key>
 				<string>NSPanel</string>
 				<key>panelIdleNotification</key>
@@ -74,6 +78,14 @@
 			</dict>
 			<key>CLASS</key>
 			<string>SUUpdater</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSObject</string>
+		</dict>
+		<dict>
+			<key>CLASS</key>
+			<string>TTDataSource</string>
 			<key>LANGUAGE</key>
 			<string>ObjC</string>
 			<key>SUPERCLASS</key>

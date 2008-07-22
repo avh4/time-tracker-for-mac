@@ -80,8 +80,7 @@
 	
 	[self updateStartStopState];
 	
-	[tvProjects reloadData];
-	[tvTasks reloadData];
+	[ovProjects reloadData];
 	[tvWorkPeriods reloadData];
 	
 	//[defaults setObject: [NSNumber numberWithInt: totalTime] forKey: @"TotalTime"];
@@ -244,7 +243,8 @@
 	[tvWorkPeriods setTarget: self];
 	[tvWorkPeriods setDoubleAction: @selector(doubleClickWorkPeriod:)];
 	
-	[tvProjects reloadData];
+	[dataSource setDocument:document];
+	[ovProjects reloadData];
 }
 
 - (void) doubleClickWorkPeriod: (id) sender
@@ -265,8 +265,7 @@
 	TWorkPeriod *wp = [[_selTask workPeriods] objectAtIndex: [tvWorkPeriods selectedRow]];
 	[wp setStartTime: [dtpEditWorkPeriodStartTime dateValue]];
 	[wp setEndTime: [dtpEditWorkPeriodEndTime dateValue]];
-	[tvProjects reloadData];
-	[tvTasks reloadData];
+	[ovProjects reloadData];
 	[tvWorkPeriods reloadData];
 	[NSApp stopModal];
 	[panelEditWorkPeriod orderOut: self];
@@ -282,8 +281,7 @@
 	
 	// Redraw just the TotalTime columns so that editing doesn't get cancelled if the user
 	// is currently editing a different cell.
-	[tvProjects setNeedsDisplayInRect:[tvProjects rectOfColumn:[tvProjects columnWithIdentifier:@"TotalTime"]]];
-	[tvTasks setNeedsDisplayInRect:[tvTasks rectOfColumn:[tvTasks columnWithIdentifier:@"TotalTime"]]];
+	[ovProjects setNeedsDisplayInRect:[ovProjects rectOfColumn:[ovProjects columnWithIdentifier:@"TotalTime"]]];
 	
 	[tvWorkPeriods reloadData];
 	
@@ -332,15 +330,6 @@
 
 - (int)numberOfRowsInTableView:(NSTableView *)tableView
 {
-	if (tableView == tvProjects) {
-		return [[document projects] count];
-	}
-	if (tableView == tvTasks) {
-		if (_selProject == nil)
-			return 0;
-		else
-			return [[_selProject tasks] count];
-	}
 	if (tableView == tvWorkPeriods) {
 		if (_selTask == nil)
 			return 0;
@@ -352,24 +341,6 @@
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(int)rowIndex
 {
-	if (tableView == tvProjects) {
-		if ([[tableColumn identifier] isEqualToString: @"ProjectName"]) {
-			return [[[document projects] objectAtIndex: rowIndex] name];
-		}
-		if ([[tableColumn identifier] isEqualToString: @"TotalTime"]) {
-			return [TimeIntervalFormatter secondsToString: [[[document projects] objectAtIndex: rowIndex] totalTime]];
-		}
-	}
-	
-	if (tableView == tvTasks) {
-		if ([[tableColumn identifier] isEqualToString: @"TaskName"]) {
-			return [[[_selProject tasks] objectAtIndex: rowIndex] name];
-		}
-		if ([[tableColumn identifier] isEqualToString: @"TotalTime"]) {
-			return [TimeIntervalFormatter secondsToString: [[[_selProject tasks] objectAtIndex: rowIndex] totalTime]];
-		}
-	}
-	
 	if (tableView == tvWorkPeriods) {
 		if ([[tableColumn identifier] isEqualToString: @"Date"]) {
 			return [[[[_selTask workPeriods] objectAtIndex: rowIndex] startTime] 
@@ -402,10 +373,10 @@
 {
 	TProject *proj = [TProject new];
 	[document addProject:proj];
-	[tvProjects reloadData];
+	[ovProjects reloadData];
 	int index = [[document projects] count] - 1;
-	[tvProjects selectRowIndexes:[NSIndexSet indexSetWithIndex:index] byExtendingSelection:NO];
-	[tvProjects editColumn:[tvProjects columnWithIdentifier:@"ProjectName"] row:index withEvent:nil select:YES];
+	[ovProjects selectRowIndexes:[NSIndexSet indexSetWithIndex:index] byExtendingSelection:NO];
+	[ovProjects editColumn:[ovProjects columnWithIdentifier:@"ProjectName"] row:index withEvent:nil select:YES];
 }
 
 - (IBAction)clickedAddTask:(id)sender
@@ -415,50 +386,50 @@
 	
 	TTask *task = [TTask new];
 	[_selProject addTask: task];
-	[tvTasks reloadData];
+	[ovProjects reloadData];
 	int index = [[_selProject tasks] count] - 1;
-	[tvTasks selectRowIndexes:[NSIndexSet indexSetWithIndex:index] byExtendingSelection:NO];
-	[tvTasks editColumn:[tvTasks columnWithIdentifier:@"TaskName"] row:index withEvent:nil select:YES];
+	[ovProjects selectRowIndexes:[NSIndexSet indexSetWithIndex:index] byExtendingSelection:NO];
+	[ovProjects editColumn:[ovProjects columnWithIdentifier:@"ProjectName"] row:index withEvent:nil select:YES];
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification
 {
-	if ([notification object] == tvProjects) {
-		// Save the last task for the old project
-		if (_selProject != nil) {
-			NSNumber *index = [NSNumber numberWithInt:[tvTasks selectedRow]];
-			[_projects_lastTask setObject:index forKey:[_selProject name]];
-		}
-	
-		// Update the new selection
-		if ([tvProjects selectedRow] == -1) {
-			_selProject = nil;
-		} else {
-			_selProject = [[document projects] objectAtIndex: [tvProjects selectedRow]];
-		}
-
-		[tvTasks deselectAll: self];
-		[tvTasks reloadData];
-		
-		if (_selProject != nil && [[_selProject tasks] count] > 0) {
-			NSNumber *lastTask = [_projects_lastTask objectForKey:[_selProject name]];
-			if (lastTask == nil || [lastTask intValue] == -1) {
-				[tvTasks selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
-			} else {
-				[tvTasks selectRowIndexes:[NSIndexSet indexSetWithIndex:[lastTask intValue]] byExtendingSelection:NO];
-			}
-		}
-	}
-	
-	if ([notification object] == tvTasks) {
-		if ([tvTasks selectedRow] == -1) {
-			_selTask = nil;
-		} else {
-			// assert _selProject != nil
-			_selTask = [[_selProject tasks] objectAtIndex: [tvTasks selectedRow]];
-		}
-		[tvWorkPeriods reloadData];
-	}
+//	if ([notification object] == tvProjects) {
+//		// Save the last task for the old project
+//		if (_selProject != nil) {
+//			NSNumber *index = [NSNumber numberWithInt:[tvTasks selectedRow]];
+//			[_projects_lastTask setObject:index forKey:[_selProject name]];
+//		}
+//	
+//		// Update the new selection
+//		if ([tvProjects selectedRow] == -1) {
+//			_selProject = nil;
+//		} else {
+//			_selProject = [[document projects] objectAtIndex: [tvProjects selectedRow]];
+//		}
+//
+//		[tvTasks deselectAll: self];
+//		[tvTasks reloadData];
+//		
+//		if (_selProject != nil && [[_selProject tasks] count] > 0) {
+//			NSNumber *lastTask = [_projects_lastTask objectForKey:[_selProject name]];
+//			if (lastTask == nil || [lastTask intValue] == -1) {
+//				[tvTasks selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
+//			} else {
+//				[tvTasks selectRowIndexes:[NSIndexSet indexSetWithIndex:[lastTask intValue]] byExtendingSelection:NO];
+//			}
+//		}
+//	}
+//	
+//	if ([notification object] == tvTasks) {
+//		if ([tvTasks selectedRow] == -1) {
+//			_selTask = nil;
+//		} else {
+//			// assert _selProject != nil
+//			_selTask = [[_selProject tasks] objectAtIndex: [tvTasks selectedRow]];
+//		}
+//		[tvWorkPeriods reloadData];
+//	}
 
 }
 
@@ -467,14 +438,14 @@
 	forTableColumn:(NSTableColumn *)tableColumn 
 	row:(int)rowIndex
 {
-	if (tableView == tvProjects) {
-		if ([[tableColumn identifier] isEqualToString: @"ProjectName"])
-			[_selProject setName: obj];
-	}
-	if (tableView == tvTasks) {
-		if ([[tableColumn identifier] isEqualToString: @"TaskName"])
-			[_selTask setName: obj];
-	}
+//	if (tableView == tvProjects) {
+//		if ([[tableColumn identifier] isEqualToString: @"ProjectName"])
+//			[_selProject setName: obj];
+//	}
+//	if (tableView == tvTasks) {
+//		if ([[tableColumn identifier] isEqualToString: @"TaskName"])
+//			[_selTask setName: obj];
+//	}
 }
 
 - (IBAction)clickedDelete:(id)sender
@@ -490,31 +461,29 @@
 		[[_selTask workPeriods] removeObjectAtIndex: [tvWorkPeriods selectedRow]];
 		[tvWorkPeriods deselectAll: self];
 		[tvWorkPeriods reloadData];
-		[tvTasks reloadData];
-		[tvProjects reloadData];
+		[ovProjects reloadData];
 	}
-	if ([mainWindow firstResponder] == tvTasks) {
-		// assert _selTask != nil
-		// assert _selProject != nil
-		if (_selTask == _curTask) {
-			[self stopTimer];
-		}
-		TTask *delTask = _selTask;
-		[tvTasks deselectAll: self];
-		[[_selProject tasks] removeObject: delTask];
-		[tvTasks reloadData];
-		[tvProjects reloadData];
-	}
-	if ([mainWindow firstResponder] == tvProjects) {
-		// assert _selProject != nil
-		if (_selProject == _curProject) {
-			[self stopTimer];
-		}
-		TProject *delProject = _selProject;
-		[tvProjects deselectAll: self];
-		[document removeProject:delProject];
-		[tvProjects reloadData];
-	}
+//	if ([mainWindow firstResponder] == tvTasks) {
+//		// assert _selTask != nil
+//		// assert _selProject != nil
+//		if (_selTask == _curTask) {
+//			[self stopTimer];
+//		}
+//		TTask *delTask = _selTask;
+//		[tvTasks deselectAll: self];
+//		[[_selProject tasks] removeObject: delTask];
+//		[ovProjects reloadData];
+//	}
+//	if ([mainWindow firstResponder] == tvProjects) {
+//		// assert _selProject != nil
+//		if (_selProject == _curProject) {
+//			[self stopTimer];
+//		}
+//		TProject *delProject = _selProject;
+//		[tvProjects deselectAll: self];
+//		[document removeProject:delProject];
+//		[tvProjects reloadData];
+//	}
 }
 
 - (int)idleTime 

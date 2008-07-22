@@ -5,6 +5,7 @@
 #import "TProject.h"
 #import "TTask.h"
 #import "TWorkPeriod.h"
+#import "TTDataSource.h"
 
 @interface MainController : NSObject
 {
@@ -24,9 +25,9 @@
 	NSImage *addProjectToolImage;
 
 	
-    IBOutlet NSTableView *tvProjects;
-    IBOutlet NSTableView *tvTasks;
+    IBOutlet NSOutlineView *ovProjects;
     IBOutlet NSTableView *tvWorkPeriods;
+	IBOutlet TTDataSource *dataSource;
     IBOutlet NSWindow *mainWindow;
     IBOutlet NSPanel *panelEditWorkPeriod;
     IBOutlet NSPanel *panelIdleNotification;
