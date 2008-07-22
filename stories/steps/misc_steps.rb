@@ -1,11 +1,5 @@
-require "TTDocument.bundle"
+require "Application.bundle"
 OSX::ns_import :TTDocument
-require "TProject.bundle"
-OSX::ns_import :TProject
-require "TTask.bundle"
-OSX::ns_import :TTask
-require "TWorkPeriod.bundle"
-OSX::ns_import :TWorkPeriod
 
 steps_for(:misc) do
   
