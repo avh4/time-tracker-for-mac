@@ -93,6 +93,27 @@
 	return false;
 }
 
+- (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
+{
+	if ([[tableColumn identifier] isEqualToString:@"ProjectName"])
+	{
+		if ([item isKindOfClass:[TProject class]])
+		{
+			return [item name];
+		}
+		return nil;
+	}
+	if ([[tableColumn identifier] isEqualToString:@"TotalTime"])
+	{
+		if ([item isKindOfClass:[TProject class]])
+		{
+			return [TimeIntervalFormatter secondsToString: [item totalTime]];
+		}
+		return nil;
+	}
+	return nil;
+}
+
 @end
 
 // This initialization function gets called when we import the Ruby module.

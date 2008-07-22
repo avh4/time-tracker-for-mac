@@ -47,4 +47,49 @@ describe OSX::TTDataSource do
     ds.outlineView_isItemExpandable(mockOutline, TASK_1_1).should be_false
   end
   
+  # Here we are creating a mock object that Obj-C thinks is a subclass
+  # of TProject, but which ignores the Obj-C implementation of TProject.
+  # This trick is used to allow rmock to intercept a method that would normally
+  # be handled by the obj-c class without rmock even knowing about it:
+  #
+  #   def the_method_to_hide
+  #     return super.super.the_method_to_hide
+  #   end
+  #
+  class MockProject < OSX::TProject
+    def name
+      return super.super.name
+    end
+    def totalTime
+      return super.super.totalTime
+    end
+  end
+  
+  it "should return the column data for a project" do
+    # Set up constants
+    TOTAL_TIME = 79
+    
+    # Set up objects
+    mockOutline = mock("NSOutlineView")
+    ds = OSX::TTDataSource.alloc.init
+    
+    COL_NAME = mock("NSTableColumn - ProjectName")
+    COL_NAME.stub!(:identifier).and_return("ProjectName")
+    COL_TOTAL_TIME = mock("NSTableColumn - TotalTime")
+    COL_TOTAL_TIME.stub!(:identifier).and_return("TotalTime")
+    
+    mockProject = MockProject.new
+    mockProject.stub!(:name).and_return("Project 1")
+    mockProject.should_receive(:totalTime).and_return(TOTAL_TIME)
+    
+    # Perform the test and assertations
+    ds.outlineView_objectValueForTableColumn_byItem(mockOutline, COL_NAME, mockProject)\
+      .should == "Project 1"
+    ds.outlineView_objectValueForTableColumn_byItem(mockOutline, COL_TOTAL_TIME, mockProject)\
+      .should == "00:01:19"
+  end
+  
+  it "should return the column data for a task" do
+  end
+  
 end
