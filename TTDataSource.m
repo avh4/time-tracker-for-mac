@@ -9,7 +9,6 @@
 #import "TTDataSource.h"
 #import "TWorkPeriod.h"
 #import "TimeIntervalFormatter.h"
-#import "TimeIntervalFormatter.m"
 
 
 @implementation TTDataSource
