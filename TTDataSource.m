@@ -9,7 +9,6 @@
 #import "TTDataSource.h"
 #import "TWorkPeriod.h"
 #import "TimeIntervalFormatter.h"
-#import "TimeIntervalFormatter.m"
 #import "TTDocument.h"
 
 
@@ -54,7 +53,7 @@
 	return nil;
 }
 
-- (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
+- (int)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
 {
 	if (item == nil)
 	{
@@ -67,7 +66,7 @@
 	return 0;
 }
 
-- (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item
+- (id)outlineView:(NSOutlineView *)outlineView child:(int)index ofItem:(id)item
 {
 	if (item == nil)
 	{
