@@ -17,93 +17,66 @@ describe OSX::TTDataSource do
   TT_WP_COL_END_TIME = "EndTime"
   TT_WP_COL_DURATION = "Duration"
   
-  it "should return Work Date values" do
-    # Set up constants
+  before do
     START_TIME = Time.now
+    END_TIME = START_TIME + 61
+    DURATION = 61
     
+    MOCK_TABLE = mock("NSTableView")
+
+    MOCK_WP = MockWorkPeriod.new
+    MOCK_WP.stub!(:startTime).and_return(START_TIME)
+    MOCK_WP.stub!(:endTime).and_return(END_TIME)
+    MOCK_WP.stub!(:totalTime).and_return(DURATION)
+  end
+  
+  it "should return column values" do
     # Set up objects
-    mockWP = mock("TWorkPeriod")
-    mockTable = mock("NSTableView")
     mockColumn = mock("NSTableColumn")
     mockColumn.stub!(:identifier).and_return(TT_WP_COL_DATE)
     ds = OSX::TTDataSource.alloc.init
-    ds.setWorkPeriods( [mockWP] )
-    
-    # Set up expectations
-    mockWP.should_receive(:startTime).and_return(START_TIME)
+    ds.setWorkPeriods( [MOCK_WP] )
     
     # Perform the test
-    date = ds.tableView_objectValueForTableColumn_row(mockTable, mockColumn, 0)
+    ds.tableView_objectValueForTableColumn_row(MOCK_TABLE, mockColumn, 0)\
+      .should == START_TIME.strftime("%m/%d/%Y")
     
-    # Check assertations
-    date.should == START_TIME.strftime("%m/%d/%Y")
   end
   
   it "should return Start time values" do
-    # Set up constants
-    START_TIME = Time.now
-    
     # Set up objects
-    mockWP = mock("TWorkPeriod")
-    mockTable = mock("NSTableView")
     mockColumn = mock("NSTableColumn")
     mockColumn.stub!(:identifier).and_return(TT_WP_COL_START_TIME)
     ds = OSX::TTDataSource.alloc.init
-    ds.setWorkPeriods( [mockWP] )
-    
-    # Set up expectations
-    mockWP.should_receive(:startTime).and_return(START_TIME)
+    ds.setWorkPeriods( [MOCK_WP] )
     
     # Perform the test
-    date = ds.tableView_objectValueForTableColumn_row(mockTable, mockColumn, 0)
-    
-    # Check assertations
-    date.should == START_TIME.strftime("%H:%M:%S")
+    ds.tableView_objectValueForTableColumn_row(MOCK_TABLE, mockColumn, 0)\
+      .should == START_TIME.strftime("%H:%M:%S")
   end
   
   it "should return End time values" do
-    # Set up constants
-    END_TIME = Time.now
-    
     # Set up objects
-    mockWP = mock("TWorkPeriod")
-    mockTable = mock("NSTableView")
     mockColumn = mock("NSTableColumn")
     mockColumn.stub!(:identifier).and_return(TT_WP_COL_END_TIME)
     ds = OSX::TTDataSource.alloc.init
-    ds.setWorkPeriods( [mockWP] )
-    
-    # Set up expectations
-    mockWP.should_receive(:endTime).and_return(END_TIME)
+    ds.setWorkPeriods( [MOCK_WP] )
     
     # Perform the test
-    date = ds.tableView_objectValueForTableColumn_row(mockTable, mockColumn, 0)
-    
-    # Check assertations
-    date.should == END_TIME.strftime("%H:%M:%S")
+    ds.tableView_objectValueForTableColumn_row(MOCK_TABLE, mockColumn, 0)\
+      .should == END_TIME.strftime("%H:%M:%S")
   end
   
   it "should return Duration values" do
-    # Set up constants
-    DURATION = 61
-    DURATION_STRING = "00:01:01"
-    
     # Set up objects
-    mockWP = MockWorkPeriod.new
-    mockTable = mock("NSTableView")
     mockColumn = mock("NSTableColumn")
     mockColumn.stub!(:identifier).and_return(TT_WP_COL_DURATION)
     ds = OSX::TTDataSource.alloc.init
-    ds.setWorkPeriods( [mockWP] )
-    
-    # Set up expectations
-    mockWP.should_receive(:totalTime).and_return(DURATION)
+    ds.setWorkPeriods( [MOCK_WP] )
     
     # Perform the test
-    duration = ds.tableView_objectValueForTableColumn_row(mockTable, mockColumn, 0)
-    
-    # Check assertations
-    duration.should == DURATION_STRING
+    ds.tableView_objectValueForTableColumn_row(MOCK_TABLE, mockColumn, 0)\
+      .should == "00:01:01"
   end
   
 end
