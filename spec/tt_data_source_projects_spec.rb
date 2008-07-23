@@ -81,7 +81,7 @@ describe OSX::TTDataSource do
     mockOutline = mock("NSOutlineView")
     ds = OSX::TTDataSource.alloc.init
     
-    mockTask = MockTask_.new
+    mockTask = MockTask.new
     mockTask.should_receive(:name).and_return(name)
     mockTask.should_receive(:totalTime).and_return(totalTime)
     

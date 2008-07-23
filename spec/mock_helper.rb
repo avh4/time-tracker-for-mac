@@ -19,10 +19,12 @@ class MockProject < OSX::TProject
 end
 
 # "MockTask" is already defined in t_project_spec.rb
-class MockTask_ < OSX::TTask
+class MockTask < OSX::TTask
   def name
     return super.super.name
   end
+  # This seems to no loger be necessary when extending OSX::TTask rather than OSX::NSObject
+  #objc_method :totalTime, "i@:"
   def totalTime
     return super.super.totalTime
   end
@@ -32,12 +34,5 @@ end
 # so that we can specify the return type for methods that do not
 # return objects
 class MockWorkPeriod < OSX::NSObject
-  objc_method :totalTime, "i@:"
-end
-
-# We must define RubyCocoa objects for for certain mock objects
-# so that we can specify the return type for methods that do not
-# return objects
-class MockTask < OSX::NSObject
   objc_method :totalTime, "i@:"
 end
