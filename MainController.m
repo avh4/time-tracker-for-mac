@@ -324,7 +324,25 @@
 
 - (IBAction)actionExport:(id)sender
 {
+	NSSavePanel *sp;
+	int savePanelResult;
 	
+	sp = [NSSavePanel savePanel];
+	
+	[sp setTitle:@"Export"];
+	[sp setNameFieldLabel:@"Export to:"];
+	[sp setPrompt:@"Export"];
+	
+	[sp setRequiredFileType:@"csv"];
+	
+	savePanelResult = [sp runModalForDirectory:nil file:@"Time Tracker Data.csv"];
+	
+	if (savePanelResult == NSOKButton) {
+		//NSError *err;
+		//NSData *data = [[self dataOfType:@"CSV" error:&err] retain];
+		//[data writeToFile:[sp filename] atomically:YES];
+		//[data release];
+	}
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
