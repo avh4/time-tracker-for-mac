@@ -322,6 +322,11 @@
 	timeSinceSave = 0;
 }
 
+- (IBAction)actionExport:(id)sender
+{
+	
+}
+
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
 {
 	if (timer != nil)
