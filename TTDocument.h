@@ -18,4 +18,6 @@
 - (void) addProject:(TProject *)proj;
 - (void) removeProject:(TProject *)proj;
 
+- (NSData *)dataOfType:(NSString *)aType error:(NSError **)outError;
+
 @end
