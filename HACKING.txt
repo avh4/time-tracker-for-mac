@@ -14,17 +14,17 @@ This file contains information for developing and testing Time Tracker.
     3b. Run "ruby stories/track_time_story.rb" and verify that there are no
         failures.
 
-4. Build the Time Tracker.dmg release file:
+4. Build the Time Tracker.zip release file:
     4a. Open the Xcode project.
     4b. Change the "Active Configuration" to "Release".
     4c. Change the "Active Target" to "Release Package".
-    4d. Build the target.  This will create "build/Release/Time Tracker-$(CURRENT_PROJECT_VERSION).dmg".
+    4d. Build the target.  This will create "build/Release/Time Tracker-$(CURRENT_PROJECT_VERSION).zip".
 
 5. If Sparkle or the release file configuration has been changed, test the auto-update system:
     5a. Install the previous version of Time Tracker.
     5b. Update and post appcast/timetracker-test.xml
     5c. Open ~/Library/Preferences/com.slooz.timetracker.plist and change
-        SUFeelURL to the location of timetracker-test.xml  (If the URL contains
+        SUFeedURL to the location of timetracker-test.xml  (If the URL contains
         spaces, replace them with "%20".)
     5d. Ensure that the old version of Time Tracker can update to the new version.
     5e. Ensure that the new version of Time Tracker can update to itself.

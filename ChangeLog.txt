@@ -1,3 +1,7 @@
+
+  * Added "Export CSV..." option to export Time Tracker data into Excel.
+    Contributed by Rainer Burgstaller.
+
 === Version 1.2.3 === 2008-07-06
 
   * Fixed the problem where project and task names could not be edited when the

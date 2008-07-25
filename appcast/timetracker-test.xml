@@ -13,7 +13,7 @@
 				http://time-tracker-mac.googlecode.com/files/timetracker-1.2.3.html
 			</sparkle:releaseNotesLink>
 			<pubDate>Thu, 06 Jul 2008 14:30:00 -0800</pubDate>
-			<enclosure sparkle:md5Sum="2a8a17e72caafec0585f9067ab784739" url="file:///Users/avh4/Documents/Projects/Time Tracker/git/build/Release/Time Tracker-1.2.3.dmg" type="application/octet-stream" sparkle:version="99.0.0"/>
+			<enclosure sparkle:md5Sum="a9367833dd24f12754daae78056f1ada" url="file:///Users/avh4/Documents/Projects/Time Tracker/git/build/Release/Time Tracker-1.2.3.1.zip" type="application/octet-stream" sparkle:version="99.0.0"/>
 		</item>
 		<item>
 			<title>Time Tracker 1.2.3</title>
@@ -21,34 +21,6 @@
 			<sparkle:releaseNotesLink>http://time-tracker-mac.googlecode.com/files/timetracker-1.2.3.html</sparkle:releaseNotesLink>
 			<pubDate>Thu, 06 Jul 2008 14:30:00 -0800</pubDate>
 			<enclosure sparkle:md5Sum="9a75879d81c460ab6b873cfb57412187" url="http://time-tracker-mac.googlecode.com/files/Time Tracker-1.2.3.zip" length="1136035" type="application/octet-stream" sparkle:version="1.2.3"/>
-		</item>
-		<item>
-			<title>Time Tracker 1.2.2</title>
-			<description>http://time-tracker-mac.googlecode.com/files/timetracker-1.2.2.html</description>
-			<sparkle:releaseNotesLink>http://time-tracker-mac.googlecode.com/files/timetracker-1.2.2.html</sparkle:releaseNotesLink>
-			<pubDate>Thu, 03 Jul 2008 00:00:00 -0800</pubDate>
-			<enclosure sparkle:md5Sum="a0cc75a7a103ae00fc79ee4e775ce944" url="http://time-tracker-mac.googlecode.com/files/Time Tracker-1.2.2.dmg" length="521391" type="application/octet-stream" sparkle:version="1.2.2"/>
-		</item>
-		<item>
-			<title>Time Tracker 1.2.1</title>
-			<description>http://time-tracker-mac.googlecode.com/files/timetracker-1.2.1.html</description>
-			<sparkle:releaseNotesLink>http://time-tracker-mac.googlecode.com/files/timetracker-1.2.1.html</sparkle:releaseNotesLink>
-			<pubDate>Tue, 23 Jan 2007 00:00:00 -0800</pubDate>
-			<enclosure sparkle:md5Sum="1e87a96382c3170588b52711673ec54e" url="http://time-tracker-mac.googlecode.com/files/TimeTracker-1.2.1.dmg" length="132425" type="application/octet-stream" sparkle:version="1.2.1"/>
-		</item>
-		<item>
-			<title>Time Tracker 1.2</title>
-			<description>http://time-tracker-mac.googlecode.com/files/timetracker-1.2.html</description>
-			<sparkle:releaseNotesLink>http://time-tracker-mac.googlecode.com/files/timetracker-1.2.html</sparkle:releaseNotesLink>
-			<pubDate>Sun, 21 Jan 2007 00:00:00 -0800</pubDate>
-			<enclosure sparkle:md5Sum="948702468332a5ec520726f5116a2cf8" url="http://time-tracker-mac.googlecode.com/files/TimeTracker-1.2.dmg" length="127126" type="application/octet-stream" sparkle:version="1.2"/>
-		</item>
-		<item>
-			<title>Time Tracker 1.1</title>
-			<description>http://time-tracker-mac.googlecode.com/files/timetracker-1.1.html</description>
-			<sparkle:releaseNotesLink>http://time-tracker-mac.googlecode.com/files/timetracker-1.1.html</sparkle:releaseNotesLink>
-			<pubDate>Thu, 11 Jan 2007 00:00:00 -0800</pubDate>
-			<enclosure sparkle:md5Sum="e61edc106cfdd2525a7097f2e1b014a6" url="http://time-tracker-mac.googlecode.com/files/TimeTracker-1.1.dmg" length="120024" type="application/octet-stream" sparkle:version="1.1"/>
 		</item>
 	</channel>
 </rss>
