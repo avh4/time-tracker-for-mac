@@ -39,13 +39,13 @@
 		2C9EC93F0905A9F6000651F2 /* TimeIntervalFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EC93E0905A9F6000651F2 /* TimeIntervalFormatter.m */; };
 		2C9EC9540905ABAE000651F2 /* TWorkPeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EC9530905ABAE000651F2 /* TWorkPeriod.m */; };
 		2CFAEE2D09042FC000131DD6 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CFAEE2C09042FC000131DD6 /* MainController.m */; };
-		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		B163D4080B646240007D0E2C /* AUTHORS.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = B163D4040B646239007D0E2C /* AUTHORS.txt */; };
 		B163D4090B646240007D0E2C /* LICENSE-GPL.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = B163D4050B646239007D0E2C /* LICENSE-GPL.txt */; };
 		B1647AF40E355F64006C450F /* TTDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = B1647AF30E355F64006C450F /* TTDataSource.m */; };
+		B17F35AC0E396422006AB030 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B17F35AA0E396422006AB030 /* MainMenu.xib */; };
 		B19BDFBC0B5C953700465046 /* Time Tracker.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D1107320486CEB800E47090 /* Time Tracker.app */; };
 		B19BDFC50B5C956F00465046 /* ChangeLog.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = B19BDFC10B5C956700465046 /* ChangeLog.txt */; };
 		B19BDFC60B5C956F00465046 /* LICENSE.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = B19BDFC20B5C956700465046 /* LICENSE.txt */; };
@@ -96,7 +96,6 @@
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		2C4528A60909AACB003C0369 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
@@ -127,6 +126,7 @@
 		B163D4050B646239007D0E2C /* LICENSE-GPL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "LICENSE-GPL.txt"; sourceTree = "<group>"; };
 		B1647AF20E355F64006C450F /* TTDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTDataSource.h; sourceTree = "<group>"; };
 		B1647AF30E355F64006C450F /* TTDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTDataSource.m; sourceTree = "<group>"; };
+		B17F35AB0E396422006AB030 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		B19BDFC10B5C956700465046 /* ChangeLog.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChangeLog.txt; sourceTree = SOURCE_ROOT; };
 		B19BDFC20B5C956700465046 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = SOURCE_ROOT; };
 		B1AB15820CEBC9A50025CF12 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
@@ -224,6 +224,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B17F35AA0E396422006AB030 /* MainMenu.xib */,
 				B163D4040B646239007D0E2C /* AUTHORS.txt */,
 				B163D4050B646239007D0E2C /* LICENSE-GPL.txt */,
 				B19BDFC10B5C956700465046 /* ChangeLog.txt */,
@@ -231,7 +232,6 @@
 				2C9DB973090677B20039C62A /* Icon.icns */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
-				29B97318FDCFA39411CA2CEA /* MainMenu.nib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -305,7 +305,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				2C9DD71B0905824F00AA5C6E /* playitem_hl.png in Resources */,
 				2C9DD71C0905824F00AA5C6E /* playitem.png in Resources */,
@@ -316,6 +315,7 @@
 				2C9DB94A090675EB0039C62A /* playtool.png in Resources */,
 				2C9DB94B090675EB0039C62A /* stoptool.png in Resources */,
 				2C9DB974090677B20039C62A /* Icon.icns in Resources */,
+				B17F35AC0E396422006AB030 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,12 +372,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		29B97318FDCFA39411CA2CEA /* MainMenu.nib */ = {
+		B17F35AA0E396422006AB030 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				29B97319FDCFA39411CA2CEA /* English */,
+				B17F35AB0E396422006AB030 /* English */,
 			);
-			name = MainMenu.nib;
+			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
