@@ -463,7 +463,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(NATIVE_ARCH)";
-				CURRENT_PROJECT_VERSION = 1.2.3;
+				CURRENT_PROJECT_VERSION = 1.2.3.1;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 				ZERO_LINK = YES;
 			};
@@ -476,7 +476,7 @@
 					ppc,
 					i386,
 				);
-				CURRENT_PROJECT_VERSION = 1.2.3;
+				CURRENT_PROJECT_VERSION = 1.2.3.1;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Release;
@@ -484,7 +484,7 @@
 		2CFAEE2809042EE900131DD6 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CURRENT_PROJECT_VERSION = 1.2.3;
+				CURRENT_PROJECT_VERSION = 1.2.3.1;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Default;
