@@ -711,6 +711,10 @@
 - (NSDragOperation)tableView:(NSTableView *)aTableView validateDrop:(id < NSDraggingInfo >)info 
 	proposedRow:(int)row proposedDropOperation:(NSTableViewDropOperation)operation
 {
+	if (aTableView == tvProjects && [info draggingSource] == tvProjects)
+	{
+		return NSDragOperationMove;
+	}
 	return NSDragOperationNone;
 }
 

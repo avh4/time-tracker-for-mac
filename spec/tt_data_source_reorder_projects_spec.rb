@@ -27,12 +27,32 @@ describe OSX::MainController do
     
   end
   
-  it "should allow dragging within the table" do
+  it "should reject drags from other sources" do
     mc = OSX::MainController.alloc.init
     mockTableViewProjects = mock("NSTableView Projects")
+    mc.setProjectsTableView(mockTableViewProjects)
     mockDraggingInfo = mock("NSDraggingInfo")
     dropRow = 0
     dropOperation = OSX::NSTableViewDropAbove
+    mockOtherDragSource = mock("Other drag source")
+    
+    mockDraggingInfo.stub!(:draggingSource).and_return(mockOtherDragSource)
+    
+    mc.tableView_validateDrop_proposedRow_proposedDropOperation(
+        mockTableViewProjects, mockDraggingInfo, dropRow, dropOperation
+        ).should equal OSX::NSDragOperationNone
+    
+  end
+  
+  it "should allow dragging within the table" do
+    mc = OSX::MainController.alloc.init
+    mockTableViewProjects = mock("NSTableView Projects")
+    mc.setProjectsTableView(mockTableViewProjects)
+    mockDraggingInfo = mock("NSDraggingInfo")
+    dropRow = 0
+    dropOperation = OSX::NSTableViewDropAbove
+    
+    mockDraggingInfo.stub!(:draggingSource).and_return(mockTableViewProjects)
     
     mc.tableView_validateDrop_proposedRow_proposedDropOperation(
         mockTableViewProjects, mockDraggingInfo, dropRow, dropOperation
