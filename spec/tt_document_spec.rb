@@ -28,4 +28,15 @@ describe OSX::TTDocument do
     doc.removeProject(proj)
     doc.projects.size.should == 0
   end
+  
+  it "should return a project at a given index" do
+    doc = OSX::TTDocument.alloc.init
+    proj1 = mock("Project 1")
+    proj2 = mock("Project 2")
+    doc.addProject(proj1)
+    doc.addProject(proj2)
+    
+    doc.objectInProjectsAtIndex(0).should equal(proj1)
+    doc.objectInProjectsAtIndex(1).should equal(proj2)
+  end
 end
