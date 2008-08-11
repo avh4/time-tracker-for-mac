@@ -34,8 +34,8 @@ describe OSX::MainController do
     rowData = pasteboard.dataForType("TIME_TRACKER_PROJECT_ROWS")
     rowDataUnarchived = OSX::NSKeyedUnarchiver.unarchiveObjectWithData(rowData)
     rowDataUnarchived.isKindOfClass(OSX::NSIndexSet).should be_true
-    rowDataUnarchived.count.should == 1
-    rowDataUnarchived.firstIndex.should == 1
+    rowDataUnarchived.count.should equal(1)
+    rowDataUnarchived.firstIndex.should equal(1)
     
   end
   
@@ -52,7 +52,7 @@ describe OSX::MainController do
     
     mc.tableView_validateDrop_proposedRow_proposedDropOperation(
         mockTableViewProjects, mockDraggingInfo, dropRow, dropOperation
-        ).should equal OSX::NSDragOperationNone
+        ).should equal(OSX::NSDragOperationNone)
     
   end
   
@@ -70,23 +70,46 @@ describe OSX::MainController do
     
     mc.tableView_validateDrop_proposedRow_proposedDropOperation(
         mockTableViewProjects, mockDraggingInfo, dropRow, dropOperation
-        ).should equal OSX::NSDragOperationMove
+        ).should equal(OSX::NSDragOperationMove)
     
   end
   
+  class MockDocument < OSX::NSObject
+    objc_method :objectInProjectsAtIndex, "@@:i"
+    objc_method :moveProject_toIndex, "v@:@i"
+  end
+  
+  
   it "should accept drops when moving rows within the table" do
-    mc = OSX::MainController.alloc.init
     mockTableViewProjects = mock("NSTableView Projects")
+    mockTableViewProjects.stub!(:reloadData)
+    mockDocument = MockDocument.new
+    mockProject = mock("Project 1")
+    mockDocument.stub!(:objectInProjectsAtIndex).with(1).and_return(mockProject)
+    mc = OSX::MainController.alloc.init
     mc.setProjectsTableView(mockTableViewProjects)
+    mc.setDocument(mockDocument)
     mockDraggingInfo = mock("NSDraggingInfo")
+    mockDraggingInfo.stub!(:draggingSource).and_return(mockTableViewProjects)
     dropRow = 0
     dropOperation = OSX::NSTableViewDropAbove
+    
+    dragRows = OSX::NSMutableIndexSet.alloc.init
+    dragRows.addIndex(1)
+    pasteboard = OSX::NSPasteboard.pasteboardWithName("rspec pasteboard")
+    
+    mc.tableView_writeRowsWithIndexes_toPasteboard(
+        mockTableViewProjects, dragRows, pasteboard
+        )
+        
+    mockDraggingInfo.stub!(:draggingPasteboard).and_return(pasteboard)
+    
+
+    mockDocument.should_receive(:moveProject_toIndex).with(mockProject, dropRow)
     
     mc.tableView_acceptDrop_row_dropOperation(
         mockTableViewProjects, mockDraggingInfo, dropRow, dropOperation
         ).should be_true
-    
-    # check that the row has been moved
     
   end
   

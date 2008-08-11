@@ -37,6 +37,17 @@
 	[_projects removeObject:proj];
 }
 
+- (id)objectInProjectsAtIndex:(int)index
+{
+	return [_projects objectAtIndex:index];
+}
+
+- (void)moveProject:(TProject *)proj toIndex:(int)index
+{
+//	[_projects insertObject:proj atIndex:index];
+//	[_projects removeObject:proj];
+}
+
 - (NSData *)dataOfType:(NSString *)aType error:(NSError **)outError
 {
 	NSMutableData* data = [[[NSMutableData alloc] init] autorelease];

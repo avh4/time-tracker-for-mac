@@ -689,6 +689,15 @@
 	tvProjects = [tv retain];
 }
 
+- (void)setDocument:(TTDocument *)aDocument
+{
+	[document release];
+	document = [aDocument retain];
+	[tvProjects reloadData];
+	[tvTasks reloadData];
+	[tvWorkPeriods reloadData];
+}
+
 
 
 
@@ -724,6 +733,15 @@
 - (BOOL)tableView:(NSTableView *)aTableView acceptDrop:(id < NSDraggingInfo >)info 
 	row:(int)row dropOperation:(NSTableViewDropOperation)operation
 {
+	if (aTableView == tvProjects && [info draggingSource] == tvProjects)
+	{
+		NSData *rowsData = [[info draggingPasteboard] dataForType:@"TIME_TRACKER_PROJECT_ROWS"];
+		NSIndexSet *indexSet = [NSKeyedUnarchiver unarchiveObjectWithData:rowsData];
+		
+		int sourceRow = [indexSet firstIndex];
+		[document moveProject:[document objectInProjectsAtIndex:sourceRow] toIndex:row];
+		return YES;
+	}
 	return NO;
 }
 
