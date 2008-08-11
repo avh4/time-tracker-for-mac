@@ -6,6 +6,7 @@ This file contains information for developing and testing Time Tracker.
     1a. Update CURRENT_PROJECT_VERSION for "All Configurations" in the Project Info.
     1b. Update the "Bundle Version" in Info.plist.
     1c. Update "CFBundleVersion" in InfoPlist.strings.
+    1d. Change "Bundle Identifier" in Info.plist back to "com.slooz.timetracker"
 
 2. Update the ChangeLog.txt.
 
