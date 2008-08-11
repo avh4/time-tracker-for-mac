@@ -19,12 +19,14 @@ namespace :objc do
   file "build/bundles/Application.bundle" do
     FileUtils.mkdir_p "build/bundles"
     FileUtils.rm Dir["build/bundles/Application.bundle"]
-    sh "gcc -o build/bundles/Application.bundle -bundle -framework Foundation tasks/Application.m build/bundles/*.o"
+    sh "gcc -o build/bundles/Application.bundle -bundle -framework Cocoa -framework IOKit tasks/Application.m build/bundles/*.o"
   end
   
   # look for Classes/*.m files containing a line "void Init_ClassName"
   # These are the primary classes for bundles; make a bundle for each
   model_file_paths = `find ./*.m -exec grep -l "^void Init_" {} \\;`.split("\n")
+  model_file_paths.push "./MainController.m"
+  
   model_file_paths.each do |path|
     path =~ /\.\/(.*)\.m/
     model_name = $1

@@ -71,4 +71,7 @@
 
 - (BOOL) validateUserInterfaceItem:(id)anItem;
 
+- (void)setProjectsTableView:(NSTableView *)tv;
+- (void)setDocument:(TTDocument *)aDocument;
+
 @end

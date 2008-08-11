@@ -245,6 +245,10 @@
 	[tvWorkPeriods setDoubleAction: @selector(doubleClickWorkPeriod:)];
 	
 	[tvProjects reloadData];
+	
+//	[tvProjects setDraggingSourceOperationMask:NSDragOperationMove forLocal:YES];
+	[tvProjects registerForDraggedTypes:[NSArray arrayWithObjects:@"TIME_TRACKER_PROJECT_ROWS", nil]];
+	
 }
 
 - (void) doubleClickWorkPeriod: (id) sender
@@ -674,6 +678,73 @@
 	[self stopTimer:_lastNonIdleTime];
 	[_lastNonIdleTime release];
 	_lastNonIdleTime = nil;
+}
+
+
+#pragma mark setters
+
+- (void)setProjectsTableView:(NSTableView *)tv
+{
+	[tvProjects release];
+	tvProjects = [tv retain];
+}
+
+- (void)setDocument:(TTDocument *)aDocument
+{
+	[document release];
+	document = [aDocument retain];
+	[tvProjects reloadData];
+	[tvTasks reloadData];
+	[tvWorkPeriods reloadData];
+}
+
+
+
+
+#pragma mark NSTableView delegate methods
+
+- (BOOL)tableView:(NSTableView *)aTableView writeRowsWithIndexes:(NSIndexSet *)rowIndexes 
+	toPasteboard:(NSPasteboard *)pboard
+{
+	if (aTableView == tvProjects)
+	{
+		NSArray *typesArray = [NSArray arrayWithObjects:@"TIME_TRACKER_PROJECT_ROWS", nil];
+		[pboard declareTypes:typesArray owner:self];
+		
+		NSData *rowIndexesArchive = [NSKeyedArchiver archivedDataWithRootObject:rowIndexes];
+	    [pboard setData:rowIndexesArchive forType:@"TIME_TRACKER_PROJECT_ROWS"];
+	
+		return YES;
+	}
+	return NO;
+}
+
+- (NSDragOperation)tableView:(NSTableView *)aTableView validateDrop:(id < NSDraggingInfo >)info 
+	proposedRow:(int)row proposedDropOperation:(NSTableViewDropOperation)operation
+{
+	if (aTableView == tvProjects && [info draggingSource] == tvProjects)
+	{
+		[aTableView setDropRow:row dropOperation:NSTableViewDropAbove];
+		return NSDragOperationMove;
+	}
+	return NSDragOperationNone;
+}
+
+- (BOOL)tableView:(NSTableView *)aTableView acceptDrop:(id < NSDraggingInfo >)info 
+	row:(int)row dropOperation:(NSTableViewDropOperation)operation
+{
+	if (aTableView == tvProjects && [info draggingSource] == tvProjects)
+	{
+		NSData *rowsData = [[info draggingPasteboard] dataForType:@"TIME_TRACKER_PROJECT_ROWS"];
+		NSIndexSet *indexSet = [NSKeyedUnarchiver unarchiveObjectWithData:rowsData];
+		
+		int sourceRow = [indexSet firstIndex];
+		[document moveProject:[document objectInProjectsAtIndex:sourceRow] toIndex:row];
+		
+		[tvProjects reloadData];
+		return YES;
+	}
+	return NO;
 }
 
 

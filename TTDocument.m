@@ -37,6 +37,25 @@
 	[_projects removeObject:proj];
 }
 
+- (id)objectInProjectsAtIndex:(int)index
+{
+	return [_projects objectAtIndex:index];
+}
+
+- (void)moveProject:(TProject *)proj toIndex:(int)index
+{
+	int oldIndex = [_projects indexOfObject:proj];
+	if (oldIndex == NSNotFound)
+	{
+		NSLog(@"TTDocument moveProject:toIndex: project was not found in the projects lists");
+		return;
+	}
+	
+	[_projects insertObject:proj atIndex:index];
+	if (oldIndex >= index) oldIndex++;
+	[_projects removeObjectAtIndex:oldIndex];
+}
+
 - (NSData *)dataOfType:(NSString *)aType error:(NSError **)outError
 {
 	NSMutableData* data = [[[NSMutableData alloc] init] autorelease];

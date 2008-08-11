@@ -17,6 +17,8 @@
 - (void) setProjects:(NSArray *)projs;
 - (void) addProject:(TProject *)proj;
 - (void) removeProject:(TProject *)proj;
+- (id)objectInProjectsAtIndex:(int)index;
+- (void)moveProject:(TProject *)proj toIndex:(int)index;
 
 - (NSData *)dataOfType:(NSString *)aType error:(NSError **)outError;
 
