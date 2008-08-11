@@ -71,4 +71,6 @@
 
 - (BOOL) validateUserInterfaceItem:(id)anItem;
 
+- (void)setProjectsTableView:(NSTableView *)tv;
+
 @end

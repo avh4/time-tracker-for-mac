@@ -676,22 +676,46 @@
 	_lastNonIdleTime = nil;
 }
 
+
+#pragma mark setters
+
+- (void)setProjectsTableView:(NSTableView *)tv
+{
+	[tvProjects release];
+	tvProjects = [tv retain];
+}
+
+
+
+
 #pragma mark NSTableView delegate methods
 
 - (BOOL)tableView:(NSTableView *)aTableView writeRowsWithIndexes:(NSIndexSet *)rowIndexes 
 	toPasteboard:(NSPasteboard *)pboard
 {
+	if (aTableView == tvProjects)
+	{
+		NSArray *typesArray = [NSArray arrayWithObjects:@"TIME_TRACKER_PROJECT_ROWS", nil];
+		[pboard declareTypes:typesArray owner:self];
+		
+		NSData *rowIndexesArchive = [NSKeyedArchiver archivedDataWithRootObject:rowIndexes];
+	    [pboard setData:rowIndexesArchive forType:@"TIME_TRACKER_PROJECT_ROWS"];
+	
+		NSLog(@"%@", rowIndexes);
+		
+		return YES;
+	}
 	return NO;
 }
 
 - (NSDragOperation)tableView:(NSTableView *)aTableView validateDrop:(id < NSDraggingInfo >)info 
-	proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)operation
+	proposedRow:(int)row proposedDropOperation:(NSTableViewDropOperation)operation
 {
 	return NSDragOperationNone;
 }
 
 - (BOOL)tableView:(NSTableView *)aTableView acceptDrop:(id < NSDraggingInfo >)info 
-	row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation
+	row:(int)row dropOperation:(NSTableViewDropOperation)operation
 {
 	return NO;
 }
