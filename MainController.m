@@ -676,5 +676,25 @@
 	_lastNonIdleTime = nil;
 }
 
+#pragma mark NSTableView delegate methods
+
+- (BOOL)tableView:(NSTableView *)aTableView writeRowsWithIndexes:(NSIndexSet *)rowIndexes 
+	toPasteboard:(NSPasteboard *)pboard
+{
+	return NO;
+}
+
+- (NSDragOperation)tableView:(NSTableView *)aTableView validateDrop:(id < NSDraggingInfo >)info 
+	proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)operation
+{
+	return NSDragOperationNone;
+}
+
+- (BOOL)tableView:(NSTableView *)aTableView acceptDrop:(id < NSDraggingInfo >)info 
+	row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation
+{
+	return NO;
+}
+
 
 @end
