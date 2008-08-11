@@ -245,6 +245,10 @@
 	[tvWorkPeriods setDoubleAction: @selector(doubleClickWorkPeriod:)];
 	
 	[tvProjects reloadData];
+	
+//	[tvProjects setDraggingSourceOperationMask:NSDragOperationMove forLocal:YES];
+	[tvProjects registerForDraggedTypes:[NSArray arrayWithObjects:@"TIME_TRACKER_PROJECT_ROWS", nil]];
+	
 }
 
 - (void) doubleClickWorkPeriod: (id) sender
@@ -701,8 +705,6 @@
 		NSData *rowIndexesArchive = [NSKeyedArchiver archivedDataWithRootObject:rowIndexes];
 	    [pboard setData:rowIndexesArchive forType:@"TIME_TRACKER_PROJECT_ROWS"];
 	
-		NSLog(@"%@", rowIndexes);
-		
 		return YES;
 	}
 	return NO;
@@ -713,6 +715,7 @@
 {
 	if (aTableView == tvProjects && [info draggingSource] == tvProjects)
 	{
+		[aTableView setDropRow:row dropOperation:NSTableViewDropAbove];
 		return NSDragOperationMove;
 	}
 	return NSDragOperationNone;

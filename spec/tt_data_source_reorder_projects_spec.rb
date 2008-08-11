@@ -2,6 +2,18 @@ require "Application.bundle"
 
 describe OSX::MainController do
   
+  it "should configure the projects table to accept drops" do
+    mc = OSX::MainController.alloc.init
+    mockTableViewProjects = mock("NSTableView Projects")
+    mc.setProjectsTableView(mockTableViewProjects)
+
+    mockTableViewProjects.stub!(:reloadData)
+    
+    mockTableViewProjects.should_receive(:registerForDraggedTypes)
+
+    mc.awakeFromNib
+  end
+  
   it "should allow table rows to be dragged" do
     mc = OSX::MainController.alloc.init
     mockTableViewProjects = mock("NSTableView Projects")
@@ -44,7 +56,7 @@ describe OSX::MainController do
     
   end
   
-  it "should allow dragging within the table" do
+  it "should validate drops when moving rows within the table" do
     mc = OSX::MainController.alloc.init
     mockTableViewProjects = mock("NSTableView Projects")
     mc.setProjectsTableView(mockTableViewProjects)
@@ -54,9 +66,21 @@ describe OSX::MainController do
     
     mockDraggingInfo.stub!(:draggingSource).and_return(mockTableViewProjects)
     
+    mockTableViewProjects.should_receive(:setDropRow_dropOperation)
+    
     mc.tableView_validateDrop_proposedRow_proposedDropOperation(
         mockTableViewProjects, mockDraggingInfo, dropRow, dropOperation
         ).should equal OSX::NSDragOperationMove
+    
+  end
+  
+  it "should accept drops when moving rows within the table" do
+    mc = OSX::MainController.alloc.init
+    mockTableViewProjects = mock("NSTableView Projects")
+    mc.setProjectsTableView(mockTableViewProjects)
+    mockDraggingInfo = mock("NSDraggingInfo")
+    dropRow = 0
+    dropOperation = OSX::NSTableViewDropAbove
     
     mc.tableView_acceptDrop_row_dropOperation(
         mockTableViewProjects, mockDraggingInfo, dropRow, dropOperation
