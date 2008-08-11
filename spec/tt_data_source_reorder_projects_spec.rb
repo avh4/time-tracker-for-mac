@@ -106,6 +106,7 @@ describe OSX::MainController do
     
 
     mockDocument.should_receive(:moveProject_toIndex).with(mockProject, dropRow)
+    mockTableViewProjects.should_receive(:reloadData)
     
     mc.tableView_acceptDrop_row_dropOperation(
         mockTableViewProjects, mockDraggingInfo, dropRow, dropOperation

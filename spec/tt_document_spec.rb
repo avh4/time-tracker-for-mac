@@ -39,4 +39,18 @@ describe OSX::TTDocument do
     doc.objectInProjectsAtIndex(0).should equal(proj1)
     doc.objectInProjectsAtIndex(1).should equal(proj2)
   end
+  
+  it "should reorder projects" do
+    doc = OSX::TTDocument.alloc.init
+    proj1 = mock("Project 1")
+    proj2 = mock("Project 2")
+    doc.addProject(proj1)
+    doc.addProject(proj2)
+    
+    doc.moveProject_toIndex(proj2, 0)
+    
+    doc.objectInProjectsAtIndex(0).should equal(proj2)
+    doc.objectInProjectsAtIndex(1).should equal(proj1)
+  end
+    
 end

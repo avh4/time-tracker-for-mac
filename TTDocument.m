@@ -44,8 +44,16 @@
 
 - (void)moveProject:(TProject *)proj toIndex:(int)index
 {
-//	[_projects insertObject:proj atIndex:index];
-//	[_projects removeObject:proj];
+	int oldIndex = [_projects indexOfObject:proj];
+	if (oldIndex == NSNotFound)
+	{
+		NSLog(@"TTDocument moveProject:toIndex: project was not found in the projects lists");
+		return;
+	}
+	
+	[_projects insertObject:proj atIndex:index];
+	if (oldIndex >= index) oldIndex++;
+	[_projects removeObjectAtIndex:oldIndex];
 }
 
 - (NSData *)dataOfType:(NSString *)aType error:(NSError **)outError

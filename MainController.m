@@ -740,6 +740,8 @@
 		
 		int sourceRow = [indexSet firstIndex];
 		[document moveProject:[document objectInProjectsAtIndex:sourceRow] toIndex:row];
+		
+		[tvProjects reloadData];
 		return YES;
 	}
 	return NO;
