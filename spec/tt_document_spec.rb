@@ -11,14 +11,14 @@ describe OSX::TTDocument do
   
   it "should have no projects when initialized" do
     doc = OSX::TTDocument.alloc.init
-    doc.projects.size.should == 0
+    doc.projects.size.should equal(0)
   end
   
   it "should allow projects to be added" do
     doc = OSX::TTDocument.alloc.init
     proj = mock("a project")
     doc.addProject(proj)
-    doc.projects.size.should == 1
+    doc.projects.size.should equal(1)
   end
   
   it "should allow projects to be removed" do
@@ -26,7 +26,7 @@ describe OSX::TTDocument do
     proj = mock("a project")
     doc.addProject(proj)
     doc.removeProject(proj)
-    doc.projects.size.should == 0
+    doc.projects.size.should equal(0)
   end
   
   it "should return a project at a given index" do
