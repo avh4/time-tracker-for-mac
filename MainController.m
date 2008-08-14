@@ -14,7 +14,7 @@
 
 - (id) init
 {
-	document = [[TTDocument init] alloc];
+	document = [[TTDocument alloc] init];
 	_selProject = nil;
 	_selTask = nil;
 	_curTask = nil;
