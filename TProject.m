@@ -40,6 +40,25 @@
 	[_tasks addObject: task];
 }
 
+- (id)objectInTasksAtIndex:(int)index
+{
+	return [_tasks objectAtIndex:index];
+}
+
+- (void)moveTask:(TTask *)task toIndex:(int)index
+{
+	int oldIndex = [_tasks indexOfObject:task];
+	if (oldIndex == NSNotFound)
+	{
+		NSLog(@"TProject moveTask:toIndex: task was not found in the tasks lists");
+		return;
+	}
+	
+	[_tasks insertObject:task atIndex:index];
+	if (oldIndex >= index) oldIndex++;
+	[_tasks removeObjectAtIndex:oldIndex];
+}
+
 - (int) totalTime
 {
 	int _totalTime = 0;

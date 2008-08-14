@@ -82,8 +82,8 @@ describe OSX::TProject do
     
     proj.moveTask_toIndex(task2, 0)
     
-    proj.objectInTasksAtIndex(0).should equal(proj2)
-    proj.objectInTasksAtIndex(1).should equal(task2)
+    proj.objectInTasksAtIndex(0).should equal(task2)
+    proj.objectInTasksAtIndex(1).should equal(task1)
   end  
   
 end

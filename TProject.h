@@ -19,6 +19,8 @@
 
 - (NSMutableArray *) tasks;
 - (void) addTask: (TTask *) task;
+- (id)objectInTasksAtIndex:(int)index;
+- (void)moveTask:(TTask *)task toIndex:(int)index;
 
 - (int) totalTime;
 
