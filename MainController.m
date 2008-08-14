@@ -215,7 +215,6 @@
 	[tempMenuItem setToolTip:kOpenGrowlPreferencesTooltip];*/
 
 
-		return;
 	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength] retain];
 	
 	[statusItem setTarget: self];
@@ -470,7 +469,7 @@
 		if ([tvProjects selectedRow] == -1) {
 			_selProject = nil;
 		} else {
-			_selProject = [[document projects] objectAtIndex: [tvProjects selectedRow]];
+			_selProject = [document objectInProjectsAtIndex:[tvProjects selectedRow]];
 		}
 
 		[tvTasks deselectAll: self];
@@ -713,10 +712,15 @@
 	[tvWorkPeriods reloadData];
 }
 
-- (void)setCurrentProject:(TProject *)aProject
+- (TProject *)selectedProject
 {
-	[_curProject release];
-	_curProject = [aProject retain];
+	return _selProject;
+}
+
+- (void)setSelectedProject:(TProject *)aProject
+{
+	[_selProject release];
+	_selProject = [aProject retain];
 }
 
 
@@ -784,7 +788,7 @@
 		NSIndexSet *indexSet = [NSKeyedUnarchiver unarchiveObjectWithData:rowsData];
 		
 		int sourceRow = [indexSet firstIndex];
-		[_curProject moveTask:[_curProject objectInTasksAtIndex:sourceRow] toIndex:row];
+		[_selProject moveTask:[_selProject objectInTasksAtIndex:sourceRow] toIndex:row];
 		
 		[tvTasks reloadData];
 		return YES;

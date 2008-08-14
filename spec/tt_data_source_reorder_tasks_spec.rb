@@ -88,7 +88,7 @@ describe OSX::MainController do
     mockProject.stub!(:objectInTasksAtIndex).with(1).and_return(mockTask)
     mc = OSX::MainController.alloc.init
     mc.setTasksTableView(mockTableViewTasks)
-    mc.setCurrentProject(mockProject)
+    mc.setSelectedProject(mockProject)
     mockDraggingInfo = mock("NSDraggingInfo")
     mockDraggingInfo.stub!(:draggingSource).and_return(mockTableViewTasks)
     dropRow = 0

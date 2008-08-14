@@ -74,6 +74,7 @@
 - (void)setProjectsTableView:(NSTableView *)tv;
 - (void)setTasksTableView:(NSTableView *)tv;
 - (void)setDocument:(TTDocument *)aDocument;
-- (void)setCurrentProject:(TProject *)aProject;
+- (TProject *)selectedProject;
+- (void)setSelectedProject:(TProject *)aProject;
 
 @end
