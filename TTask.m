@@ -37,6 +37,7 @@
 
 - (NSMutableArray *) workPeriods
 {
+	[_workPeriods sortUsingSelector:@selector(compare:)];
 	return _workPeriods;
 }
 

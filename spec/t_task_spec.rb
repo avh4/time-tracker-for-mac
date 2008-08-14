@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/spec_helper'
-
 require "Application.bundle"
-OSX::ns_import :TTask
+
+require 'date'
 
 describe OSX::TTask do
   
@@ -10,6 +10,7 @@ describe OSX::TTask do
   # return objects
   class MockWorkPeriod < OSX::NSObject
     objc_method :totalTime, "i@:"
+    objc_method :compare, "i@:@"
   end
   
   
@@ -60,6 +61,19 @@ describe OSX::TTask do
     wp.stub!(:totalTime).and_return(seconds_later)
     
     task.totalTime.should == seconds_later
+  end
+  
+  it "should always return the work periods in sorted order" do
+    task = OSX::TTask.alloc.init
+    wpEarly = MockWorkPeriod.new
+    wpLater = MockWorkPeriod.new
+    wpEarly.stub!(:compare).with(wpLater).and_return(OSX::NSOrderedAscending)
+    wpLater.stub!(:compare).with(wpEarly).and_return(OSX::NSOrderedDescending)
+    task.addWorkPeriod(wpLater)
+    task.addWorkPeriod(wpEarly)
+    
+    task.workPeriods.objectAtIndex(0).should equal(wpEarly)
+    task.workPeriods.objectAtIndex(1).should equal(wpLater)
   end
   
 end
