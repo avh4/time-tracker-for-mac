@@ -62,4 +62,28 @@ describe OSX::TProject do
     proj.totalTime.should == seconds_later
   end
   
+  it "should return a project at a given index" do
+    proj = OSX::TProject.alloc.init
+    task1 = mock("Task 1")
+    task2 = mock("Task 2")
+    proj.addTask(task1)
+    proj.addTask(task2)
+    
+    proj.objectInTasksAtIndex(0).should equal(task1)
+    proj.objectInTasksAtIndex(1).should equal(task2)
+  end
+  
+  it "should reorder projects" do
+    proj = OSX::TProject.alloc.init
+    task1 = mock("Task 1")
+    task2 = mock("Task 2")
+    proj.addTask(task1)
+    proj.addTask(task2)
+    
+    proj.moveTask_toIndex(task2, 0)
+    
+    proj.objectInTasksAtIndex(0).should equal(proj2)
+    proj.objectInTasksAtIndex(1).should equal(task2)
+  end  
+  
 end
