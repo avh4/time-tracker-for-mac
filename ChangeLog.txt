@@ -1,4 +1,7 @@
 
+  * Fixed a bug where projects could not be created the first time Time
+    Tracker was run on a computer.
+  * Projects and tasks can now be reordered by dragging and dropping them.
   * Added "Export CSV..." option to export Time Tracker data into Excel.
     Contributed by Rainer Burgstaller.
 
