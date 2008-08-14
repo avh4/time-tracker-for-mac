@@ -13,8 +13,8 @@
 
 - (id) init
 {
-	_startTime = nil;
-	_endTime = nil;
+	_startTime = [[NSDate alloc] init];
+	_endTime = [[NSDate alloc] init];
 	return self;
 }
 
@@ -57,6 +57,14 @@
 - (NSDate *) endTime
 {
 	return _endTime;
+}
+
+- (NSComparisonResult)compare:(TWorkPeriod *)wp
+{
+	assert( wp != nil );
+	assert( [wp startTime] != nil );
+	assert( [self startTime] != nil );
+	return [[self startTime] compare:[wp startTime]];
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder

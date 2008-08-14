@@ -26,4 +26,6 @@
 - (NSDate *) startTime;
 - (NSDate *) endTime;
 
+- (NSComparisonResult)compare:(TWorkPeriod *)wp;
+
 @end
