@@ -6,6 +6,10 @@
 #import "TimeIntervalFormatter.h"
 #import "TWorkPeriod.h"
 
+@interface MainController (PrivateMethods)
+- (void)initializeTableViews;
+@end
+
 @implementation MainController
 
 - (id) init
