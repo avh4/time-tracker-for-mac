@@ -11,7 +11,7 @@ describe OSX::MainController do
     
     mockTableViewTasks.should_receive(:registerForDraggedTypes)
 
-    mc.awakeFromNib
+    mc.initializeTableViews
   end
   
   it "should allow table rows to be dragged" do
@@ -74,23 +74,20 @@ describe OSX::MainController do
     
   end
   
-  class MockDocument < OSX::NSObject
-    objc_method :objectInProjectsAtIndex, "@@:i"
-    objc_method :moveProject_toIndex, "v@:@i"
+  class MockProject < OSX::NSObject
+    objc_method :objectInTasksAtIndex, "@@:i"
+    objc_method :moveTask_toIndex, "v@:@i"
   end
   
   
   it "should accept drops when moving rows within the table" do
     mockTableViewTasks = mock("NSTableView Tasks")
     mockTableViewTasks.stub!(:reloadData)
-    mockDocument = MockDocument.new
-    mockProject = mock("Project 1")
+    mockProject = MockProject.new
     mockTask = mock("Task 1.2")
-    mockDocument.stub!(:objectInProjectsAtIndex).with(0).and_return(mockProject)
     mockProject.stub!(:objectInTasksAtIndex).with(1).and_return(mockTask)
     mc = OSX::MainController.alloc.init
     mc.setTasksTableView(mockTableViewTasks)
-    mc.setDocument(mockDocument)
     mc.setCurrentProject(mockProject)
     mockDraggingInfo = mock("NSDraggingInfo")
     mockDraggingInfo.stub!(:draggingSource).and_return(mockTableViewTasks)

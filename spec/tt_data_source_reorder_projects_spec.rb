@@ -11,7 +11,7 @@ describe OSX::MainController do
     
     mockTableViewProjects.should_receive(:registerForDraggedTypes)
 
-    mc.awakeFromNib
+    mc.initializeTableViews
   end
   
   it "should allow table rows to be dragged" do

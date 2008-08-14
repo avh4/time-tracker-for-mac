@@ -148,7 +148,6 @@
 
 - (void)awakeFromNib
 {
-
 	defaults = [NSUserDefaults standardUserDefaults];
 	
 	NSData *theData=[[NSUserDefaults standardUserDefaults] dataForKey:@"ProjectTimes"];
@@ -212,6 +211,7 @@
 	[tempMenuItem setToolTip:kOpenGrowlPreferencesTooltip];*/
 
 
+		return;
 	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength] retain];
 	
 	[statusItem setTarget: self];
@@ -241,14 +241,19 @@
 
 	[self updateStartStopState];
 	
+	[self initializeTableViews];
+}
+
+- (void)initializeTableViews
+{
 	[tvWorkPeriods setTarget: self];
 	[tvWorkPeriods setDoubleAction: @selector(doubleClickWorkPeriod:)];
-	
+
 	[tvProjects reloadData];
-	
+
 //	[tvProjects setDraggingSourceOperationMask:NSDragOperationMove forLocal:YES];
 	[tvProjects registerForDraggedTypes:[NSArray arrayWithObjects:@"TIME_TRACKER_PROJECT_ROWS", nil]];
-	
+	[tvTasks registerForDraggedTypes:[NSArray arrayWithObjects:@"TIME_TRACKER_TASK_ROWS", nil]];
 }
 
 - (void) doubleClickWorkPeriod: (id) sender
@@ -689,6 +694,12 @@
 	tvProjects = [tv retain];
 }
 
+- (void)setTasksTableView:(NSTableView *)tv
+{
+	[tvTasks release];
+	tvTasks = [tv retain];
+}
+
 - (void)setDocument:(TTDocument *)aDocument
 {
 	[document release];
@@ -698,7 +709,11 @@
 	[tvWorkPeriods reloadData];
 }
 
-
+- (void)setCurrentProject:(TProject *)aProject
+{
+	[_curProject release];
+	_curProject = [aProject retain];
+}
 
 
 #pragma mark NSTableView delegate methods
@@ -716,6 +731,16 @@
 	
 		return YES;
 	}
+	if (aTableView == tvTasks)
+	{
+		NSArray *typesArray = [NSArray arrayWithObjects:@"TIME_TRACKER_TASK_ROWS", nil];
+		[pboard declareTypes:typesArray owner:self];
+
+		NSData *rowIndexesArchive = [NSKeyedArchiver archivedDataWithRootObject:rowIndexes];
+		[pboard setData:rowIndexesArchive forType:@"TIME_TRACKER_TASK_ROWS"];
+		
+		return YES;
+	}
 	return NO;
 }
 
@@ -723,6 +748,11 @@
 	proposedRow:(int)row proposedDropOperation:(NSTableViewDropOperation)operation
 {
 	if (aTableView == tvProjects && [info draggingSource] == tvProjects)
+	{
+		[aTableView setDropRow:row dropOperation:NSTableViewDropAbove];
+		return NSDragOperationMove;
+	}
+	if (aTableView == tvTasks && [info draggingSource] == tvTasks)
 	{
 		[aTableView setDropRow:row dropOperation:NSTableViewDropAbove];
 		return NSDragOperationMove;
@@ -742,6 +772,17 @@
 		[document moveProject:[document objectInProjectsAtIndex:sourceRow] toIndex:row];
 		
 		[tvProjects reloadData];
+		return YES;
+	}
+	if (aTableView == tvTasks && [info draggingSource] == tvTasks)
+	{
+		NSData *rowsData = [[info draggingPasteboard] dataForType:@"TIME_TRACKER_TASK_ROWS"];
+		NSIndexSet *indexSet = [NSKeyedUnarchiver unarchiveObjectWithData:rowsData];
+		
+		int sourceRow = [indexSet firstIndex];
+		[_curProject moveTask:[_curProject objectInTasksAtIndex:sourceRow] toIndex:row];
+		
+		[tvTasks reloadData];
 		return YES;
 	}
 	return NO;
