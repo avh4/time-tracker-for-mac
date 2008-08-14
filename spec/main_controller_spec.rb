@@ -4,6 +4,13 @@ require "Application.bundle"
 
 describe OSX::MainController do
   
+  it "should create a blank document when initialized" do
+    mc = OSX::MainController.alloc.init
+    mc.document.should_not be_nil
+    mc.document.projects.should_not be_nil
+    mc.document.projects.size.should equal(0)
+  end
+  
   class MockDocument < OSX::NSObject
     objc_method :objectInProjectsAtIndex, "@@:i"
   end

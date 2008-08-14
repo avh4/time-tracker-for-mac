@@ -703,6 +703,11 @@
 	tvTasks = [tv retain];
 }
 
+- (TTDocument *)document
+{
+	return document;
+}
+
 - (void)setDocument:(TTDocument *)aDocument
 {
 	[document release];

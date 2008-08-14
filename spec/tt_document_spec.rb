@@ -11,6 +11,7 @@ describe OSX::TTDocument do
   
   it "should have no projects when initialized" do
     doc = OSX::TTDocument.alloc.init
+    doc.projects.should_not be_nil
     doc.projects.size.should equal(0)
   end
   
