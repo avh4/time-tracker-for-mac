@@ -35,7 +35,7 @@ This file contains information for developing and testing Time Tracker.
 7. Update appcast/timetracker-stable.xml
 
 8. Publish the release:
-    8a. Upload Time Tracker-$(CURRENT_PROJECT_VERSION).dmg to
+    8a. Upload Time Tracker-$(CURRENT_PROJECT_VERSION).zip to
         http://time-tracker-mac.googlecode.com
     8b. Upload timetracker-$(CURRENT_PROJECT_VERSION).html to
         http://time-tracker-mac.googlecode.com

@@ -8,6 +8,13 @@
 		<description>Most recent changes with links to updates.</description>
 		<language>en</language>
 		<item>
+			<title>Time Tracker 1.2.4</title>
+			<description>http://time-tracker-mac.googlecode.com/files/timetracker-1.2.4.html</description>
+			<sparkle:releaseNotesLink>http://time-tracker-mac.googlecode.com/files/timetracker-1.2.4.html</sparkle:releaseNotesLink>
+			<pubDate>Thu, 14 Aug 2008 00:00:00 -0800</pubDate>
+			<enclosure sparkle:md5Sum="c41fda04858c768c71ca02010ae0d1cc" url="http://time-tracker-mac.googlecode.com/files/Time Tracker-1.2.4.zip" length="410633" type="application/octet-stream" sparkle:version="1.2.4"/>
+		</item>
+		<item>
 			<title>Time Tracker 1.2.3</title>
 			<description>http://time-tracker-mac.googlecode.com/files/timetracker-1.2.3-1.html</description>
 			<sparkle:releaseNotesLink>http://time-tracker-mac.googlecode.com/files/timetracker-1.2.3-1.html</sparkle:releaseNotesLink>
