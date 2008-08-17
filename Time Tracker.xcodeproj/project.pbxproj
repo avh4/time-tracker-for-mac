@@ -121,6 +121,8 @@
 		B1647AF30E355F64006C450F /* TTDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTDataSource.m; sourceTree = "<group>"; };
 		B17F35AB0E396422006AB030 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		B18209200E57EB9100BDC0B8 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B18209390E57EE0100BDC0B8 /* 1337 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = 1337; path = 1337.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B182093C0E57EEA300BDC0B8 /* 1337 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = 1337; path = 1337.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B19BDFC10B5C956700465046 /* ChangeLog.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChangeLog.txt; sourceTree = SOURCE_ROOT; };
 		B19BDFC20B5C956700465046 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = SOURCE_ROOT; };
 		B1AB15820CEBC9A50025CF12 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
@@ -285,6 +287,13 @@
 			buildConfigurationList = 2CFAEE2509042EE900131DD6 /* Build configuration list for PBXProject "Time Tracker" */;
 			compatibilityVersion = "Xcode 2.4";
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+				1337,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Time Tracker */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -364,6 +373,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				089C165DFE840E0CC02AAC07 /* English */,
+				B182093C0E57EEA300BDC0B8 /* 1337 */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -380,6 +390,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				B18209200E57EB9100BDC0B8 /* English */,
+				B18209390E57EE0100BDC0B8 /* 1337 */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
