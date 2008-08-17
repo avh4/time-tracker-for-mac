@@ -11,9 +11,12 @@
 
 @implementation TTask
 
+#define ENCODER_KEY_NAME @"TName"
+#define ENCODER_KEY_WORK_PERIODS @"TWorkPeriods"
+
 - (id) init
 {
-	[self setName: @"Untitled"];
+	[self setName:NSLocalizedString(@"New Task", @"Initial name for a newly created task")];
 	_workPeriods = [NSMutableArray new];
 	return self;
 }
@@ -56,8 +59,8 @@
 {
     //[super encodeWithCoder:coder];
     if ( [coder allowsKeyedCoding] ) {
-        [coder encodeObject:_name forKey:@"TName"];
-        [coder encodeObject:_workPeriods forKey:@"TWorkPeriods"];
+        [coder encodeObject:_name forKey:ENCODER_KEY_NAME];
+        [coder encodeObject:_workPeriods forKey:ENCODER_KEY_WORK_PERIODS];
     } else {
         [coder encodeObject:_name];
 		[coder encodeObject:_workPeriods];
@@ -70,8 +73,8 @@
     //self = [super initWithCoder:coder];
     if ( [coder allowsKeyedCoding] ) {
         // Can decode keys in any order
-        _name = [[coder decodeObjectForKey:@"TName"] retain];
-        _workPeriods = [[NSMutableArray arrayWithArray: [coder decodeObjectForKey:@"TWorkPeriods"]] retain];
+        _name = [[coder decodeObjectForKey:ENCODER_KEY_NAME] retain];
+        _workPeriods = [[NSMutableArray arrayWithArray: [coder decodeObjectForKey:ENCODER_KEY_WORK_PERIODS]] retain];
     } else {
         // Must decode keys in same order as encodeWithCoder:
         _name = [[coder decodeObject] retain];
