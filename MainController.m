@@ -12,6 +12,26 @@
 
 @implementation MainController
 
+#define TOOLBAR_IDENTIFIER @"TimeTrackerToolbar"
+#define TOOLBAR_ITEM_START_STOP @"Startstop"
+#define TOOLBAR_ITEM_ADD_PROJECT @"AddProject"
+#define TOOLBAR_ITEM_ADD_TASK @"AddTask"
+
+#define DEFAULTS_KEY_PROJECT_DATA @"ProjectTimes"
+
+#define PBOARD_TYPE_PROJECT_ROWS @"TIME_TRACKER_PROJECT_ROWS"
+#define PBOARD_TYPE_TASK_ROWS @"TIME_TRACKER_TASK_ROWS"
+
+#define TABLE_COLUMN_TOTAL_TIME @"TotalTime"
+#define TABLE_COLUMN_PROJECT_NAME @"ProjectName"
+#define TABLE_COLUMN_TASK_NAME @"TaskName"
+#define TABLE_COLUMN_DATE @"Date"
+#define TABLE_COLUMN_START_TIME @"StartTime"
+#define TABLE_COLUMN_END_TIME @"EndTime"
+#define TABLE_COLUMN_DURATION @"Duration"
+
+#define DATA_TYPE_CSV @"CSV"
+
 - (id) init
 {
 	document = [[TTDocument alloc] init];
@@ -88,8 +108,6 @@
 	[tvTasks reloadData];
 	[tvWorkPeriods reloadData];
 	
-	//[defaults setObject: [NSNumber numberWithInt: totalTime] forKey: @"TotalTime"];
-	
 	// assert timer == nil
 	// assert _curProject == nil
 	// assert _curTask == nil
@@ -107,26 +125,26 @@
 {
 	NSToolbarItem *toolbarItem = [[[NSToolbarItem alloc] initWithItemIdentifier: itemIdentifier] autorelease];
     
-	if ([itemIdentifier isEqual: @"Startstop"]) {
+	if ([itemIdentifier isEqual:TOOLBAR_ITEM_START_STOP]) {
 		startstopToolbarItem = toolbarItem;
 		[toolbarItem setTarget:self];
 		[toolbarItem setAction:@selector(clickedStartStopTimer:)];
 		[self updateStartStopState];
     }
 	
-	if ([itemIdentifier isEqual: @"AddProject"]) {
-		[toolbarItem setLabel:@"New project"];
-		[toolbarItem setPaletteLabel:@"New project"];
-		[toolbarItem setToolTip:@"New project"];
+	if ([itemIdentifier isEqual:TOOLBAR_ITEM_ADD_PROJECT]) {
+		[toolbarItem setLabel:NSLocalizedString(@"New project", @"Toolbar button label")];
+		[toolbarItem setPaletteLabel:NSLocalizedString(@"New project", nil)];
+		[toolbarItem setToolTip:NSLocalizedString(@"New project", nil)];
 		[toolbarItem setImage: addProjectToolImage];
 		[toolbarItem setTarget:self];
 		[toolbarItem setAction:@selector(clickedAddProject:)];
     }
 	
-	if ([itemIdentifier isEqual: @"AddTask"]) {
-		[toolbarItem setLabel:@"New task"];
-		[toolbarItem setPaletteLabel:@"New task"];
-		[toolbarItem setToolTip:@"New task"];
+	if ([itemIdentifier isEqual:TOOLBAR_ITEM_ADD_TASK]) {
+		[toolbarItem setLabel:NSLocalizedString(@"New task", "Toolbar button label")];
+		[toolbarItem setPaletteLabel:NSLocalizedString(@"New task", nil)];
+		[toolbarItem setToolTip:NSLocalizedString(@"New task", nil)];
 		[toolbarItem setImage: addTaskToolImage];
 		[toolbarItem setTarget:self];
 		[toolbarItem setAction:@selector(clickedAddTask:)];
@@ -137,12 +155,16 @@
 
 - (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar *)toolbar
 {
-	return [NSArray arrayWithObjects: @"Startstop", NSToolbarSeparatorItemIdentifier, @"AddProject", @"AddTask", nil];
+	return [NSArray arrayWithObjects:
+			TOOLBAR_ITEM_START_STOP, NSToolbarSeparatorItemIdentifier,
+			TOOLBAR_ITEM_ADD_PROJECT, TOOLBAR_ITEM_ADD_TASK, nil];
 }
 
 - (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar *)toolbar
 {
-	return [NSArray arrayWithObjects: @"Startstop", NSToolbarSeparatorItemIdentifier, @"AddProject", @"AddTask", nil];
+	return [NSArray arrayWithObjects:
+			TOOLBAR_ITEM_START_STOP, NSToolbarSeparatorItemIdentifier,
+			TOOLBAR_ITEM_ADD_PROJECT, TOOLBAR_ITEM_ADD_TASK, nil];
 }
 
 - (NSArray *)toolbarSelectableItemIdentifiers:(NSToolbar *)toolbar
@@ -154,7 +176,7 @@
 {
 	defaults = [NSUserDefaults standardUserDefaults];
 	
-	NSData *theData=[[NSUserDefaults standardUserDefaults] dataForKey:@"ProjectTimes"];
+	NSData *theData=[[NSUserDefaults standardUserDefaults] dataForKey:DEFAULTS_KEY_PROJECT_DATA];
 	if (theData != nil)
 	{
 		NSMutableArray *projects = (NSMutableArray *)[NSMutableArray arrayWithArray: [NSUnarchiver unarchiveObjectWithData:theData]];
@@ -163,12 +185,10 @@
 	
 	_projects_lastTask = [[NSMutableDictionary alloc] initWithCapacity:[[document projects] count]];
 	
-	//NSNumber *numTotalTime = [defaults objectForKey: @"TotalTime"];
-	
 	/*NSZone *menuZone = [NSMenu menuZone];
 	NSMenu *m = [[NSMenu allocWithZone:menuZone] init];
 
-	startStopMenuItem = (NSMenuItem *)[m addItemWithTitle:@"Start" action:@selector(clickedStartStopTimer:) keyEquivalent:@""];
+	startStopMenuItem = (NSMenuItem *)[m addItemWithTitle:NSLocalizedString(@"Start", nil) action:@selector(clickedStartStopTimer:) keyEquivalent:@""];
 	[startStopMenuItem setTarget:self];
 	[startStopMenuItem setTag:1];*/
 
@@ -220,25 +240,23 @@
 	[statusItem setTarget: self];
 	[statusItem setAction: @selector (clickedStartStopTimer:)];
 
-	NSBundle *bundle = [NSBundle mainBundle];
+	playItemImage = [[NSImage imageNamed:@"playitem.png"] retain];
+	playItemHighlightImage = [[NSImage imageNamed:@"playitem_hl.png"] retain];
+	stopItemImage = [[NSImage imageNamed:@"stopitem.png"] retain];
+	stopItemHighlightImage = [[NSImage imageNamed:@"stopitem_hl.png"] retain];
 
-	playItemImage = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"playitem" ofType:@"png"]];
-	playItemHighlightImage = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"playitem_hl" ofType:@"png"]];
-	stopItemImage = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"stopitem" ofType:@"png"]];
-	stopItemHighlightImage = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"stopitem_hl" ofType:@"png"]];
-
-	playToolImage = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"playtool" ofType:@"png"]];
-	stopToolImage = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"stoptool" ofType:@"png"]];
-	addTaskToolImage = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"addtasktool" ofType:@"png"]];
-	addProjectToolImage = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"addprojecttool" ofType:@"png"]];
+	playToolImage = [[NSImage imageNamed:@"playtool.png"] retain];
+	stopToolImage = [[NSImage imageNamed:@"stoptool.png"] retain];
+	addTaskToolImage = [[NSImage imageNamed:@"addtasktool.png"] retain];
+	addProjectToolImage = [[NSImage imageNamed:@"addprojecttool.png"] retain];
 
 	//[statusItem setMenu:m]; // retains m
-	[statusItem setToolTip:@"Time Tracker"];
+	[statusItem setToolTip:[[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString*)kCFBundleNameKey]];
 	[statusItem setHighlightMode:NO];
 
 	//[m release];		
 	
-	NSToolbar *toolbar = [[NSToolbar alloc] initWithIdentifier: @"TimeTrackerToolbar"];
+	NSToolbar *toolbar = [[NSToolbar alloc] initWithIdentifier:TOOLBAR_IDENTIFIER];
 	[toolbar setDelegate: self];
 	[mainWindow setToolbar: toolbar];	
 
@@ -255,8 +273,8 @@
 	[tvProjects reloadData];
 
 //	[tvProjects setDraggingSourceOperationMask:NSDragOperationMove forLocal:YES];
-	[tvProjects registerForDraggedTypes:[NSArray arrayWithObjects:@"TIME_TRACKER_PROJECT_ROWS", nil]];
-	[tvTasks registerForDraggedTypes:[NSArray arrayWithObjects:@"TIME_TRACKER_TASK_ROWS", nil]];
+	[tvProjects registerForDraggedTypes:[NSArray arrayWithObjects:PBOARD_TYPE_PROJECT_ROWS, nil]];
+	[tvTasks registerForDraggedTypes:[NSArray arrayWithObjects:PBOARD_TYPE_TASK_ROWS, nil]];
 }
 
 - (void) doubleClickWorkPeriod: (id) sender
@@ -294,8 +312,8 @@
 	
 	// Redraw just the TotalTime columns so that editing doesn't get cancelled if the user
 	// is currently editing a different cell.
-	[tvProjects setNeedsDisplayInRect:[tvProjects rectOfColumn:[tvProjects columnWithIdentifier:@"TotalTime"]]];
-	[tvTasks setNeedsDisplayInRect:[tvTasks rectOfColumn:[tvTasks columnWithIdentifier:@"TotalTime"]]];
+	[tvProjects setNeedsDisplayInRect:[tvProjects rectOfColumn:[tvProjects columnWithIdentifier:TABLE_COLUMN_TOTAL_TIME]]];
+	[tvTasks setNeedsDisplayInRect:[tvTasks rectOfColumn:[tvTasks columnWithIdentifier:TABLE_COLUMN_TOTAL_TIME]]];
 	
 	[tvWorkPeriods reloadData];
 	
@@ -329,7 +347,7 @@
 - (void)saveData
 {
 	NSData *theData=[NSArchiver archivedDataWithRootObject:[document projects]];
-	[[NSUserDefaults standardUserDefaults] setObject:theData forKey:@"ProjectTimes"];
+	[[NSUserDefaults standardUserDefaults] setObject:theData forKey:DEFAULTS_KEY_PROJECT_DATA];
 	[[NSUserDefaults standardUserDefaults] synchronize];
 	timeSinceSave = 0;
 }
@@ -341,17 +359,18 @@
 	
 	sp = [NSSavePanel savePanel];
 	
-	[sp setTitle:@"Export"];
-	[sp setNameFieldLabel:@"Export to:"];
-	[sp setPrompt:@"Export"];
+	[sp setTitle:NSLocalizedString(@"Export", @"Title of the data export window")];
+	[sp setNameFieldLabel:NSLocalizedString(@"Export to:", @"Label for the filename field in the data export window")];
+	[sp setPrompt:NSLocalizedString(@"Export", nil)];
 	
 	[sp setRequiredFileType:@"csv"];
 	
-	savePanelResult = [sp runModalForDirectory:nil file:@"Time Tracker Data.csv"];
+	NSString *defaultFileName = [NSString stringWithFormat:@"%@.csv", NSLocalizedString(@"Time Tracker Data", @"Default filename for exporting data")];
+	savePanelResult = [sp runModalForDirectory:nil file:defaultFileName];
 	
 	if (savePanelResult == NSOKButton) {
 		NSError *err;
-		NSData *data = [[document dataOfType:@"CSV" error:&err] retain];
+		NSData *data = [[document dataOfType:DATA_TYPE_CSV error:&err] retain];
 		[data writeToFile:[sp filename] atomically:YES];
 		[data release];
 	}
@@ -388,35 +407,35 @@
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(int)rowIndex
 {
 	if (tableView == tvProjects) {
-		if ([[tableColumn identifier] isEqualToString: @"ProjectName"]) {
+		if ([[tableColumn identifier] isEqualToString:TABLE_COLUMN_PROJECT_NAME]) {
 			return [[[document projects] objectAtIndex: rowIndex] name];
 		}
-		if ([[tableColumn identifier] isEqualToString: @"TotalTime"]) {
+		if ([[tableColumn identifier] isEqualToString:TABLE_COLUMN_TOTAL_TIME]) {
 			return [TimeIntervalFormatter secondsToString: [[[document projects] objectAtIndex: rowIndex] totalTime]];
 		}
 	}
 	
 	if (tableView == tvTasks) {
-		if ([[tableColumn identifier] isEqualToString: @"TaskName"]) {
+		if ([[tableColumn identifier] isEqualToString:TABLE_COLUMN_TASK_NAME]) {
 			return [[[_selProject tasks] objectAtIndex: rowIndex] name];
 		}
-		if ([[tableColumn identifier] isEqualToString: @"TotalTime"]) {
+		if ([[tableColumn identifier] isEqualToString:TABLE_COLUMN_TOTAL_TIME]) {
 			return [TimeIntervalFormatter secondsToString: [[[_selProject tasks] objectAtIndex: rowIndex] totalTime]];
 		}
 	}
 	
 	if (tableView == tvWorkPeriods) {
-		if ([[tableColumn identifier] isEqualToString: @"Date"]) {
+		if ([[tableColumn identifier] isEqualToString:TABLE_COLUMN_DATE]) {
 			return [[[[_selTask workPeriods] objectAtIndex: rowIndex] startTime] 
 				descriptionWithCalendarFormat: @"%m/%d/%Y"
 				timeZone: nil locale: nil];
 		}
-		if ([[tableColumn identifier] isEqualToString: @"StartTime"]) {
+		if ([[tableColumn identifier] isEqualToString:TABLE_COLUMN_START_TIME]) {
 			return [[[[_selTask workPeriods] objectAtIndex: rowIndex] startTime] 
 				descriptionWithCalendarFormat: @"%H:%M:%S"
 				timeZone: nil locale: nil];
 		}
-		if ([[tableColumn identifier] isEqualToString: @"EndTime"]) {
+		if ([[tableColumn identifier] isEqualToString:TABLE_COLUMN_END_TIME]) {
 			NSDate *endTime = [[[_selTask workPeriods] objectAtIndex: rowIndex] endTime];
 			if (endTime == nil)
 				return @"";
@@ -425,7 +444,7 @@
 					descriptionWithCalendarFormat: @"%H:%M:%S"
 					timeZone: nil locale: nil];
 		}
-		if ([[tableColumn identifier] isEqualToString: @"Duration"]) {
+		if ([[tableColumn identifier] isEqualToString:TABLE_COLUMN_DURATION]) {
 			return [TimeIntervalFormatter secondsToString: [[[_selTask workPeriods] objectAtIndex: rowIndex] totalTime]];
 		}
 	}
@@ -440,7 +459,7 @@
 	[tvProjects reloadData];
 	int index = [[document projects] count] - 1;
 	[tvProjects selectRowIndexes:[NSIndexSet indexSetWithIndex:index] byExtendingSelection:NO];
-	[tvProjects editColumn:[tvProjects columnWithIdentifier:@"ProjectName"] row:index withEvent:nil select:YES];
+	[tvProjects editColumn:[tvProjects columnWithIdentifier:TABLE_COLUMN_PROJECT_NAME] row:index withEvent:nil select:YES];
 }
 
 - (IBAction)clickedAddTask:(id)sender
@@ -453,7 +472,7 @@
 	[tvTasks reloadData];
 	int index = [[_selProject tasks] count] - 1;
 	[tvTasks selectRowIndexes:[NSIndexSet indexSetWithIndex:index] byExtendingSelection:NO];
-	[tvTasks editColumn:[tvTasks columnWithIdentifier:@"TaskName"] row:index withEvent:nil select:YES];
+	[tvTasks editColumn:[tvTasks columnWithIdentifier:TABLE_COLUMN_TASK_NAME] row:index withEvent:nil select:YES];
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification
@@ -503,11 +522,11 @@
 	row:(int)rowIndex
 {
 	if (tableView == tvProjects) {
-		if ([[tableColumn identifier] isEqualToString: @"ProjectName"])
+		if ([[tableColumn identifier] isEqualToString:TABLE_COLUMN_PROJECT_NAME])
 			[_selProject setName: obj];
 	}
 	if (tableView == tvTasks) {
-		if ([[tableColumn identifier] isEqualToString: @"TaskName"])
+		if ([[tableColumn identifier] isEqualToString:TABLE_COLUMN_TASK_NAME])
 			[_selTask setName: obj];
 	}
 }
@@ -649,9 +668,9 @@
 	if (timer == nil) {
 		// Timer is stopped: show the Start button
 		if (startstopToolbarItem != nil) {
-			[startstopToolbarItem setLabel:@"Start"];
-			[startstopToolbarItem setPaletteLabel:@"Start"];
-			[startstopToolbarItem setToolTip:@"Start timer"];
+			[startstopToolbarItem setLabel:NSLocalizedString(@"Start", "Short version of the 'start the timer' action")];
+			[startstopToolbarItem setPaletteLabel:NSLocalizedString(@"Start", nil)];
+			[startstopToolbarItem setToolTip:NSLocalizedString(@"Start Timer", "Phrase version of the 'start the timer' action")];
 			[startstopToolbarItem setImage: playToolImage];
 		}
 		
@@ -660,12 +679,12 @@
 		[statusItem setAlternateImage:playItemHighlightImage];
 		
 		// assert startMenuItem != nil
-		[startMenuItem setTitle:@"Start Timer"];
+		[startMenuItem setTitle:NSLocalizedString(@"Start Timer", nil)];
 	} else {
 		if (startstopToolbarItem != nil) {
-			[startstopToolbarItem setLabel:@"Stop"];
-			[startstopToolbarItem setPaletteLabel:@"Stop"];
-			[startstopToolbarItem setToolTip:@"Stop timer"];
+			[startstopToolbarItem setLabel:NSLocalizedString(@"Stop", "Short version of the 'stop the timer' action")];
+			[startstopToolbarItem setPaletteLabel:NSLocalizedString(@"Stop", nil)];
+			[startstopToolbarItem setToolTip:NSLocalizedString(@"Stop Timer", "Phrase version of the 'stop the timer' action")];
 			[startstopToolbarItem setImage: stopToolImage];
 		}
 		
@@ -674,7 +693,7 @@
 		[statusItem setAlternateImage:stopItemHighlightImage];
 		
 		// assert startMenuItem != nil
-		[startMenuItem setTitle:@"Stop Timer"];
+		[startMenuItem setTitle:NSLocalizedString(@"Stop Timer", nil)];
 	}
 	
 }
@@ -736,21 +755,21 @@
 {
 	if (aTableView == tvProjects)
 	{
-		NSArray *typesArray = [NSArray arrayWithObjects:@"TIME_TRACKER_PROJECT_ROWS", nil];
+		NSArray *typesArray = [NSArray arrayWithObjects:PBOARD_TYPE_PROJECT_ROWS, nil];
 		[pboard declareTypes:typesArray owner:self];
 		
 		NSData *rowIndexesArchive = [NSKeyedArchiver archivedDataWithRootObject:rowIndexes];
-	    [pboard setData:rowIndexesArchive forType:@"TIME_TRACKER_PROJECT_ROWS"];
+	    [pboard setData:rowIndexesArchive forType:PBOARD_TYPE_PROJECT_ROWS];
 	
 		return YES;
 	}
 	if (aTableView == tvTasks)
 	{
-		NSArray *typesArray = [NSArray arrayWithObjects:@"TIME_TRACKER_TASK_ROWS", nil];
+		NSArray *typesArray = [NSArray arrayWithObjects:PBOARD_TYPE_TASK_ROWS, nil];
 		[pboard declareTypes:typesArray owner:self];
 
 		NSData *rowIndexesArchive = [NSKeyedArchiver archivedDataWithRootObject:rowIndexes];
-		[pboard setData:rowIndexesArchive forType:@"TIME_TRACKER_TASK_ROWS"];
+		[pboard setData:rowIndexesArchive forType:PBOARD_TYPE_TASK_ROWS];
 		
 		return YES;
 	}
@@ -778,7 +797,7 @@
 {
 	if (aTableView == tvProjects && [info draggingSource] == tvProjects)
 	{
-		NSData *rowsData = [[info draggingPasteboard] dataForType:@"TIME_TRACKER_PROJECT_ROWS"];
+		NSData *rowsData = [[info draggingPasteboard] dataForType:PBOARD_TYPE_PROJECT_ROWS];
 		NSIndexSet *indexSet = [NSKeyedUnarchiver unarchiveObjectWithData:rowsData];
 		
 		int sourceRow = [indexSet firstIndex];
@@ -789,7 +808,7 @@
 	}
 	if (aTableView == tvTasks && [info draggingSource] == tvTasks)
 	{
-		NSData *rowsData = [[info draggingPasteboard] dataForType:@"TIME_TRACKER_TASK_ROWS"];
+		NSData *rowsData = [[info draggingPasteboard] dataForType:PBOARD_TYPE_TASK_ROWS];
 		NSIndexSet *indexSet = [NSKeyedUnarchiver unarchiveObjectWithData:rowsData];
 		
 		int sourceRow = [indexSet firstIndex];
