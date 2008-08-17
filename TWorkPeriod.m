@@ -11,6 +11,9 @@
 
 @implementation TWorkPeriod
 
+#define ENCODER_KEY_START_TIME @"WPStartTime"
+#define ENCODER_KEY_END_TIME @"WPEndTime"
+
 - (id) init
 {
 	_startTime = [[NSDate alloc] init];
@@ -71,8 +74,8 @@
 {
     //[super encodeWithCoder:coder];
     if ( [coder allowsKeyedCoding] ) {
-        [coder encodeObject:_startTime forKey:@"WPStartTime"];
-        [coder encodeObject:_endTime forKey:@"WPEndTime"];
+        [coder encodeObject:_startTime forKey:ENCODER_KEY_START_TIME];
+        [coder encodeObject:_endTime forKey:ENCODER_KEY_END_TIME];
     } else {
         [coder encodeObject:_startTime];
 		[coder encodeObject:_endTime];
@@ -85,8 +88,8 @@
     //self = [super initWithCoder:coder];
     if ( [coder allowsKeyedCoding] ) {
         // Can decode keys in any order
-        _startTime = [[coder decodeObjectForKey:@"WPStartTime"] retain];
-        _endTime = [[coder decodeObjectForKey:@"WPEndTime"] retain];
+        _startTime = [[coder decodeObjectForKey:ENCODER_KEY_START_TIME] retain];
+        _endTime = [[coder decodeObjectForKey:ENCODER_KEY_END_TIME] retain];
     } else {
         // Must decode keys in same order as encodeWithCoder:
         _startTime = [[coder decodeObject] retain];
