@@ -11,9 +11,12 @@
 
 @implementation TProject
 
+#define ENCODER_KEY_NAME @"PName"
+#define ENCODER_KEY_TASKS @"PTasks"
+
 - (id) init
 {
-	[self setName: @"Untitled"];
+	[self setName:NSLocalizedString(@"New Project", @"Initial name for a newly created project")];
 	_tasks = [NSMutableArray new];
 	return self;
 }
@@ -73,8 +76,8 @@
 {
     //[super encodeWithCoder:coder];
     if ( [coder allowsKeyedCoding] ) {
-        [coder encodeObject:_name forKey:@"PName"];
-        [coder encodeObject:_tasks forKey:@"PTasks"];
+        [coder encodeObject:_name forKey:ENCODER_KEY_NAME];
+        [coder encodeObject:_tasks forKey:ENCODER_KEY_TASKS];
     } else {
         [coder encodeObject:_name];
 		[coder encodeObject:_tasks];
@@ -87,8 +90,8 @@
     //self = [super initWithCoder:coder];
     if ( [coder allowsKeyedCoding] ) {
         // Can decode keys in any order
-        _name = [[coder decodeObjectForKey:@"TName"] retain];
-        _tasks = [[NSMutableArray arrayWithArray: [coder decodeObjectForKey:@"PTasks"]] retain];
+        _name = [[coder decodeObjectForKey:ENCODER_KEY_NAME] retain];
+        _tasks = [[NSMutableArray arrayWithArray: [coder decodeObjectForKey:ENCODER_KEY_TASKS]] retain];
     } else {
         // Must decode keys in same order as encodeWithCoder:
         _name = [[coder decodeObject] retain];
