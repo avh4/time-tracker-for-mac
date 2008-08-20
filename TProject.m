@@ -72,6 +72,17 @@
 	return _totalTime;
 }
 
+- (int)totalTimeInRangeFrom:(NSDate *)from to:(NSDate *)to
+{
+	int ret = 0;
+	for (TTask *t in _tasks)
+	{
+		ret += [t totalTimeInRangeFrom:from to:to];
+	}
+	return ret;
+}
+
+
 - (void)encodeWithCoder:(NSCoder *)coder
 {
     //[super encodeWithCoder:coder];

@@ -3,6 +3,8 @@ require File.dirname(__FILE__) + '/spec_helper'
 require "Application.bundle"
 OSX::ns_import :TProject
 
+require 'time'
+
 describe OSX::TProject do
   
   # We must define RubyCocoa objects for for certain mock objects
@@ -10,6 +12,7 @@ describe OSX::TProject do
   # return objects
   class MockTask < OSX::NSObject
     objc_method :totalTime, "i@:"
+    objc_method :totalTimeInRangeFrom_to, "i@:@@"
   end
   
   
@@ -47,6 +50,21 @@ describe OSX::TProject do
     proj.totalTime.should == seconds[0] + seconds[1]
   end
   
+  it "should sum the time of multiple work periods in a specific date range" do
+    rangeStart = Time.parse("2008-10-10 00:00")
+    rangeEnd = Time.parse("2008-10-11 00:00")
+    seconds = [10*60, 55*60 + 5]
+    proj = OSX::TProject.alloc.init
+    
+    tasks = [MockTask.new, MockTask.new]
+    tasks[0].stub!(:totalTimeInRangeFrom_to).and_return(seconds[0])
+    tasks[1].stub!(:totalTimeInRangeFrom_to).and_return(seconds[1])
+    
+    proj.addTask(tasks[0])
+    proj.addTask(tasks[1])
+    
+    proj.totalTimeInRangeFrom_to(rangeStart, rangeEnd).should == seconds[0] + seconds[1]
+  end
   it "should sum the time correctly after the timer has updated a task" do
     seconds = 10*60
     seconds_later = 20*60
