@@ -62,6 +62,11 @@
 	return _endTime;
 }
 
+- (int)totalTimeInRangeFrom:(NSDate *)from to:(NSDate *)to
+{
+	return _totalTime;
+}
+
 - (NSComparisonResult)compare:(TWorkPeriod *)wp
 {
 	assert( wp != nil );

@@ -28,4 +28,6 @@
 
 - (NSComparisonResult)compare:(TWorkPeriod *)wp;
 
+- (int)totalTimeInRangeFrom:(NSDate *)from to:(NSDate *)to;
+
 @end
