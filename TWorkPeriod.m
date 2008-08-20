@@ -64,7 +64,22 @@
 
 - (int)totalTimeInRangeFrom:(NSDate *)from to:(NSDate *)to
 {
-	return _totalTime;
+	int ret = 0;
+	NSDate *start = [self startTime];
+	NSDate *end = [self endTime];
+	if (start == nil || end == nil) return 0;
+	
+	if ([start compare:from] == NSOrderedAscending)
+	{
+		start = from;
+	}
+	if ([end compare:to] == NSOrderedDescending)
+	{
+		end = to;
+	}
+	ret = (int)[end timeIntervalSinceDate: start];
+	if (ret < 0) return 0;
+	return ret;
 }
 
 - (NSComparisonResult)compare:(TWorkPeriod *)wp
