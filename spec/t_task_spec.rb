@@ -11,6 +11,7 @@ describe OSX::TTask do
   class MockWorkPeriod < OSX::NSObject
     objc_method :totalTime, "i@:"
     objc_method :compare, "i@:@"
+    objc_method :totalTimeInRangeFrom_to, "i@:@@"
   end
   
   
@@ -77,22 +78,24 @@ describe OSX::TTask do
   end
   
   it "should return the work periods in a specified time interval" do
-    rangeStart = Time.parse("2008-10-10 00:00")
-    rangeEnd = Time.parse("2008-10-11 00:00")
+    rangeStart = Time.parse("2008-10-11 00:00")
+    rangeEnd = Time.parse("2008-10-12 00:00")
     
     task = OSX::TTask.alloc.init
     wpBefore = MockWorkPeriod.new
-    wpBefore.stub!(:startTime).and_return(Time.parse("2008-10-10 10:30"))
-    wpBefore.stub!(:endTime).and_return(Time.parse("2008-10-10 11:30"))
+    wpBefore.stub!(:totalTimeInRangeFrom_to).and_return(0)
     wpDuring = MockWorkPeriod.new
-    wpDuring.stub!(:startTime).and_return(Time.parse("2008-10-11 10:30"))
-    wpDuring.stub!(:endTime).and_return(Time.parse("2008-10-11 12:00"))
+    wpDuring.stub!(:totalTimeInRangeFrom_to).and_return(5400)
     wpAfter = MockWorkPeriod.new
-    wpAfter.stub!(:startTime).and_return(Time.parse("2008-10-12 10:30"))
-    wpAfter.stub!(:endTime).and_return(Time.parse("2008-10-12 12:30"))
+    wpAfter.stub!(:totalTimeInRangeFrom_to).and_return(0)
     
-    task.workPeriodsInRangeFrom_to(rangeStart, rangeEnd).should equal([wpDuring])
-    task.totalTimeInRangeFrom_to(rangeStart, rangeEnd).should equal(wpDuring.totalTime)
+    task.addWorkPeriod(wpBefore);
+    task.addWorkPeriod(wpDuring);
+    task.addWorkPeriod(wpAfter);
+    
+    task.workPeriodsInRangeFrom_to(rangeStart, rangeEnd).size.should equal(1)
+    task.workPeriodsInRangeFrom_to(rangeStart, rangeEnd).objectAtIndex(0).should equal(wpDuring)
+    task.totalTimeInRangeFrom_to(rangeStart, rangeEnd).should equal(5400)
   end
   
 end
