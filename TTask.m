@@ -54,6 +54,17 @@
 	return _totalTime;
 }
 
+- (NSArray *)workPeriodsInRangeFrom:(NSDate *)from to:(NSDate *)to
+{
+	return nil;
+}
+
+- (int)totalTimeInRangeFrom:(NSDate *)from to:(NSDate *)to
+{
+	return 0;
+}
+
+
 
 - (void)encodeWithCoder:(NSCoder *)coder
 {

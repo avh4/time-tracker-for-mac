@@ -76,4 +76,23 @@ describe OSX::TTask do
     task.workPeriods.objectAtIndex(1).should equal(wpLater)
   end
   
+  it "should return the work periods in a specified time interval" do
+    rangeStart = Time.parse("2008-10-10 00:00")
+    rangeEnd = Time.parse("2008-10-11 00:00")
+    
+    task = OSX::TTask.alloc.init
+    wpBefore = MockWorkPeriod.new
+    wpBefore.stub!(:startTime).and_return(Time.parse("2008-10-10 10:30"))
+    wpBefore.stub!(:endTime).and_return(Time.parse("2008-10-10 11:30"))
+    wpDuring = MockWorkPeriod.new
+    wpDuring.stub!(:startTime).and_return(Time.parse("2008-10-11 10:30"))
+    wpDuring.stub!(:endTime).and_return(Time.parse("2008-10-11 12:00"))
+    wpAfter = MockWorkPeriod.new
+    wpAfter.stub!(:startTime).and_return(Time.parse("2008-10-12 10:30"))
+    wpAfter.stub!(:endTime).and_return(Time.parse("2008-10-12 12:30"))
+    
+    task.workPeriodsInRangeFrom_to(rangeStart, rangeEnd).should equal([wpDuring])
+    task.totalTimeInRangeFrom_to(rangeStart, rangeEnd).should equal(wpDuring.totalTime)
+  end
+  
 end

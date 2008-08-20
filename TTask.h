@@ -22,5 +22,8 @@
 
 - (int) totalTime;
 
+- (NSArray *)workPeriodsInRangeFrom:(NSDate *)from to:(NSDate *)to;
+- (int)totalTimeInRangeFrom:(NSDate *)from to:(NSDate *)to;
+
 
 @end
