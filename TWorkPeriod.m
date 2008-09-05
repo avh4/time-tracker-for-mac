@@ -21,6 +21,14 @@
 	return self;
 }
 
+- (id)initWithStartTime:(NSDate *)startTime endTime:(NSDate *)endTime
+{
+	_startTime = [[NSDate alloc] initWithDate:startTime];
+	_endTime = [[NSDate alloc] initWithDate:endTime];
+	return self;
+}
+
+
 - (void) setStartTime: (NSDate *) startTime
 {
 	[startTime retain];

@@ -15,6 +15,9 @@
 	NSDate *_endTime;
 }
 
+- (id)init;
+- (id)initWithStartTime:(NSDate *)starttime endTime:(NSDate *)endTime;
+
 - (void) setStartTime: (NSDate *) startTime;
 - (void) setEndTime: (NSDate *) endTime;
 

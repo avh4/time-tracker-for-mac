@@ -13,6 +13,8 @@
 	NSMutableArray *_projects;
 }
 
+- (id)init;
+
 - (NSArray *) projects;
 - (void) setProjects:(NSArray *)projs;
 - (void) addProject:(TProject *)proj;

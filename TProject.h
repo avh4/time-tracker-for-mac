@@ -14,6 +14,9 @@
 	NSMutableArray *_tasks;
 }
 
+- (id)init;
+- (id)initWithName:(NSString *)name;
+
 - (NSString *) name;
 - (void) setName: (NSString *) name;
 

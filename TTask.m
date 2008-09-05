@@ -21,6 +21,14 @@
 	return self;
 }
 
+- (id)initWithName:(NSString *)name
+{
+	[self init];
+	[self setName:name];
+	return self;
+}
+
+
 - (NSString *) name
 {
 	return _name;
