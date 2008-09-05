@@ -57,8 +57,10 @@
 - (NSArray *)workPeriodsInRangeFrom:(NSDate *)from to:(NSDate *)to
 {
 	NSMutableArray *ret = [NSMutableArray array];
-	for (TWorkPeriod *wp in _workPeriods)
+	int i;
+	for (i = 0; i < [_workPeriods count]; i++)
 	{
+		TWorkPeriod *wp = [_workPeriods objectAtIndex:i];
 		if ([wp totalTimeInRangeFrom:from to:to] > 0)
 		{
 			[ret addObject:wp];
@@ -70,8 +72,10 @@
 - (int)totalTimeInRangeFrom:(NSDate *)from to:(NSDate *)to
 {
 	int ret = 0;
-	for (TWorkPeriod *wp in _workPeriods)
+	int i;
+	for (i = 0; i < [_workPeriods count]; i++)
 	{
+		TWorkPeriod *wp = [_workPeriods objectAtIndex:i];
 		ret += [wp totalTimeInRangeFrom:from to:to];
 	}
 	return ret;

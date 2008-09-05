@@ -75,8 +75,10 @@
 - (int)totalTimeInRangeFrom:(NSDate *)from to:(NSDate *)to
 {
 	int ret = 0;
-	for (TTask *t in _tasks)
+	int i;
+	for (i = 0; i < [_tasks count]; i++)
 	{
+		TTask *t = [_tasks objectAtIndex:i];		
 		ret += [t totalTimeInRangeFrom:from to:to];
 	}
 	return ret;
