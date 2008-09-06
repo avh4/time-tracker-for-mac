@@ -25,7 +25,6 @@ namespace :objc do
   # look for Classes/*.m files containing a line "void Init_ClassName"
   # These are the primary classes for bundles; make a bundle for each
   model_file_paths = `find ./*.m`.split("\n")
-  model_file_paths.push "./MainController.m"
   model_file_paths.delete "./main.m"
   
   model_file_paths.each do |path|

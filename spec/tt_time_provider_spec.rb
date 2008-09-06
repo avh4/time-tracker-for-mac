@@ -14,19 +14,19 @@ describe OSX::TTTimeProvider do
     todayStart = rbTimeForNSDate(provider.todayStartTime)
     todayEnd = rbTimeForNSDate(provider.todayEndTime)
     
-    todayStart.year.should == now.year
-    todayStart.month.should == now.month
-    todayStart.day.should == now.day
-    todayStart.hour.should == 0
-    todayStart.min.should == 0
-    todayStart.sec.should == 0
+    check todayStart.year.should == now.year
+    check todayStart.month.should == now.month
+    check todayStart.day.should == now.day
+    check todayStart.hour.should == 0
+    check todayStart.min.should == 0
+    check todayStart.sec.should == 0
     
-    todayEnd.year.should == now.year
-    todayEnd.month.should == now.month
-    todayEnd.day.should == now.day + 1
-    todayEnd.hour.should == 0
-    todayEnd.min.should == 0
-    todayEnd.sec.should == 0
+    check todayEnd.year.should == now.year
+    check todayEnd.month.should == now.month
+    check todayEnd.day.should == now.day + 1
+    check todayEnd.hour.should == 0
+    check todayEnd.min.should == 0
+    check todayEnd.sec.should == 0
   end
   
   it "should return a valid yesterday range" do
@@ -35,19 +35,19 @@ describe OSX::TTTimeProvider do
     rangeStart = rbTimeForNSDate(provider.yesterdayStartTime)
     rangeEnd = rbTimeForNSDate(provider.yesterdayEndTime)
     
-    rangeStart.year.should == now.year
-    rangeStart.month.should == now.month
-    rangeStart.day.should == now.day - 1
-    rangeStart.hour.should == 0
-    rangeStart.min.should == 0
-    rangeStart.sec.should == 0
+    check rangeStart.year.should == now.year
+    check rangeStart.month.should == now.month
+    check rangeStart.day.should == now.day - 1
+    check rangeStart.hour.should == 0
+    check rangeStart.min.should == 0
+    check rangeStart.sec.should == 0
     
-    rangeEnd.year.should == now.year
-    rangeEnd.month.should == now.month
-    rangeEnd.day.should == now.day
-    rangeEnd.hour.should == 0
-    rangeEnd.min.should == 0
-    rangeEnd.sec.should == 0
+    check rangeEnd.year.should == now.year
+    check rangeEnd.month.should == now.month
+    check rangeEnd.day.should == now.day
+    check rangeEnd.hour.should == 0
+    check rangeEnd.min.should == 0
+    check rangeEnd.sec.should == 0
   end
   
   it "should return a valid this week range" do
@@ -58,12 +58,12 @@ describe OSX::TTTimeProvider do
 
     puts rangeStart
     puts rangeEnd
-    rangeStart.strftime("%Y %U %H:%M:%S").should == now.strftime("%Y %U 00:00:00")
-    rangeStart.wday.should == 0
+    check rangeStart.strftime("%Y %U %H:%M:%S").should == now.strftime("%Y %U 00:00:00")
+    check rangeStart.wday.should == 0
     
-    rangeEnd.strftime("%Y %H:%M:%S").should == now.strftime("%Y 00:00:00")
-    rangeEnd.strftime("%U").to_i.should == now.strftime("%U").to_i + 1
-    rangeEnd.wday.should == 0
+    check rangeEnd.strftime("%Y %H:%M:%S").should == now.strftime("%Y 00:00:00")
+    check rangeEnd.strftime("%U").to_i.should == now.strftime("%U").to_i + 1
+    check rangeEnd.wday.should == 0
   end
   
 end

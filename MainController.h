@@ -66,6 +66,7 @@
 - (IBAction)filterToAll:(id)sender;
 - (IBAction)filterToToday:(id)sender;
 - (IBAction)filterToYesterday:(id)sender;
+- (IBAction)filterToThisWeek:(id)sender;
 
 - (void) timerFunc: (NSTimer *) timer;
 - (void) stopTimer:(NSDate*)endTime;

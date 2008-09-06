@@ -881,6 +881,12 @@
 	[self setFilterStartTime:[provider yesterdayStartTime] endTime:[provider yesterdayEndTime]];
 }
 
+- (IBAction)filterToThisWeek:(id)sender
+{
+	TTTimeProvider *provider = [[[TTTimeProvider alloc] init] autorelease];
+	[self setFilterStartTime:[provider thisWeekStartTime] endTime:[provider thisWeekEndTime]];
+}
+
 
 
 @end
