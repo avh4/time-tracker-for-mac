@@ -25,6 +25,14 @@ When /I set the filter to "Today"/ do
   @controller.setFilterStartTime_endTime(@today, @today + 1.days)
 end
 
-Then /I will see today.s totals for all tasks and projects/ do
+Then /I will see today.s totals for all projects/ do
   @controller.totalTimeForProject(@p1).should == 1.hour + 45.minutes
+end
+
+Then /I will see today.s totals for all tasks/ do
+  @controller.totalTimeForTask(@t11).should == 1.hour + 45.minutes
+end
+
+Then /I will only see today.s work periods/ do
+  @controller.workPeriodsForTask(@t11).length.should == 2
 end

@@ -428,6 +428,19 @@
 	}
 }
 
+- (NSTimeInterval)totalTimeForTask:(TTask *)task
+{
+	if (filterStartTime == nil)
+	{
+		return [task totalTime];
+	}
+	else
+	{
+		assert(filterEndTime != nil);
+		return [task totalTimeInRangeFrom:filterStartTime to:filterEndTime];
+	}
+}
+
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(int)rowIndex
 {
 	if (tableView == tvProjects) {
@@ -441,11 +454,12 @@
 	}
 	
 	if (tableView == tvTasks) {
+		TTask *t = [[_selProject tasks] objectAtIndex:rowIndex];
 		if ([[tableColumn identifier] isEqualToString:TABLE_COLUMN_TASK_NAME]) {
-			return [[[_selProject tasks] objectAtIndex: rowIndex] name];
+			return [t name];
 		}
 		if ([[tableColumn identifier] isEqualToString:TABLE_COLUMN_TOTAL_TIME]) {
-			return [TimeIntervalFormatter secondsToString: [[[_selProject tasks] objectAtIndex: rowIndex] totalTime]];
+			return [TimeIntervalFormatter secondsToString:[self totalTimeForTask:t]];
 		}
 	}
 	
@@ -779,6 +793,7 @@
 	filterStartTime = [startTime copy];
 	filterEndTime = [endTime copy];
 	[tvProjects reloadData];
+	[tvTasks reloadData];
 }
 
 - (void)clearFilter
@@ -788,6 +803,7 @@
 	filterStartTime = nil;
 	filterEndTime = nil;
 	[tvProjects reloadData];
+	[tvTasks reloadData];
 }
 
 
