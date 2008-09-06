@@ -861,4 +861,18 @@
 }
 
 
+- (IBAction)filterToAll:(id)sender
+{
+	[self clearFilter];
+	[tvProjects reloadData];
+}
+
+- (IBAction)filterToToday:(id)sender
+{
+	[self setFilterStartTime:[NSDate date] endTime:[NSDate date]];
+	[tvProjects reloadData];
+}
+
+
+
 @end

@@ -63,6 +63,9 @@
 - (IBAction)clickedCountIdleTimeNo:(id)sender;
 - (IBAction)actionExport:(id)sender;
 
+- (IBAction)filterToAll:(id)sender;
+- (IBAction)filterToToday:(id)sender;
+
 - (void) timerFunc: (NSTimer *) timer;
 - (void) stopTimer:(NSDate*)endTime;
 - (void) stopTimer;
