@@ -13,12 +13,26 @@
 
 - (NSDate *)todayStartTime
 {
-	return [NSDate date];
+	NSDate *now = [NSDate date];
+	NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+	NSDateComponents *todayStartComps = [gregorian 
+		components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit
+		fromDate:now];
+	NSDate *todayStart = [gregorian dateFromComponents:todayStartComps];
+	return todayStart;
 }
 
 - (NSDate *)todayEndTime
 {
-	return [NSDate date];
+	NSDate *now = [NSDate date];
+	NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+	NSDateComponents *todayEndComps = [gregorian 
+		components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit
+		fromDate:now];
+	NSDate *todayEnd = [gregorian dateFromComponents:todayEndComps];
+	todayEnd = [todayEnd addTimeInterval:60*60*24];
+	NSLog(@"%@", todayEnd);
+	return todayEnd;
 }
 
 @end

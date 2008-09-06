@@ -13,20 +13,21 @@ describe OSX::TTTimeProvider do
     now = Time.new
     todayStart = rbTimeForNSDate(provider.todayStartTime)
     todayEnd = rbTimeForNSDate(provider.todayEndTime)
+    puts todayEnd
     
     todayStart.year.should == now.year
     todayStart.month.should == now.month
     todayStart.day.should == now.day
     todayStart.hour.should == 0
-    todayStart.minute.should == 0
-    todayStart.second.should == 0
+    todayStart.min.should == 0
+    todayStart.sec.should == 0
     
     todayEnd.year.should == now.year
     todayEnd.month.should == now.month
     todayEnd.day.should == now.day + 1
     todayEnd.hour.should == 0
-    todayEnd.minute.should == 0
-    todayEnd.second.should == 0
+    todayEnd.min.should == 0
+    todayEnd.sec.should == 0
   end
   
 end
