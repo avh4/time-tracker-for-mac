@@ -52,9 +52,9 @@
 	return _workPeriods;
 }
 
-- (int) totalTime
+- (NSTimeInterval) totalTime
 {
-	int _totalTime = 0;
+	NSTimeInterval _totalTime = 0;
 	int i;
 	for (i = 0; i < [_workPeriods count]; i++) {
 		_totalTime += [[_workPeriods objectAtIndex: i] totalTime];
@@ -77,9 +77,9 @@
 	return ret;
 }
 
-- (int)totalTimeInRangeFrom:(NSDate *)from to:(NSDate *)to
+- (NSTimeInterval)totalTimeInRangeFrom:(NSDate *)from to:(NSDate *)to
 {
-	int ret = 0;
+	NSTimeInterval ret = 0;
 	int i;
 	for (i = 0; i < [_workPeriods count]; i++)
 	{

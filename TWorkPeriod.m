@@ -23,8 +23,8 @@
 
 - (id)initWithStartTime:(NSDate *)startTime endTime:(NSDate *)endTime
 {
-	_startTime = [[NSDate alloc] initWithDate:startTime];
-	_endTime = [[NSDate alloc] initWithDate:endTime];
+	_startTime = [startTime copy];
+	_endTime = [endTime copy];
 	return self;
 }
 
@@ -55,8 +55,9 @@
 	_totalTime = (int) timeInterval;
 }
 
-- (int) totalTime
+- (NSTimeInterval) totalTime
 {
+	[self updateTotalTime];
 	return _totalTime;
 }
 
@@ -70,9 +71,9 @@
 	return _endTime;
 }
 
-- (int)totalTimeInRangeFrom:(NSDate *)from to:(NSDate *)to
+- (NSTimeInterval)totalTimeInRangeFrom:(NSDate *)from to:(NSDate *)to
 {
-	int ret = 0;
+	NSTimeInterval ret = 0;
 	NSDate *start = [self startTime];
 	NSDate *end = [self endTime];
 	if (start == nil || end == nil) return 0;
@@ -85,7 +86,7 @@
 	{
 		end = to;
 	}
-	ret = (int)[end timeIntervalSinceDate: start];
+	ret = [end timeIntervalSinceDate: start];
 	if (ret < 0) return 0;
 	return ret;
 }

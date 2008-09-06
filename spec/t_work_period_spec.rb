@@ -43,28 +43,28 @@ describe OSX::TWorkPeriod do
       wp = OSX::TWorkPeriod.alloc.init
       wp.setStartTime(Time.parse("2008-10-10 12:00"))
       wp.setEndTime(Time.parse("2008-10-10 12:30"))
-      wp.totalTimeInRangeFrom_to(@rangeStart, @rangeEnd).should equal(30*60)
+      wp.totalTimeInRangeFrom_to(@rangeStart, @rangeEnd).should == 30*60
     end
     
     it "should calculate total time within a specified range (overlaping the start)" do
       wp = OSX::TWorkPeriod.alloc.init
       wp.setStartTime(Time.parse("2008-10-09 12:00"))
       wp.setEndTime(Time.parse("2008-10-10 00:30"))
-      wp.totalTimeInRangeFrom_to(@rangeStart, @rangeEnd).should equal(30*60)
+      wp.totalTimeInRangeFrom_to(@rangeStart, @rangeEnd).should == 30*60
     end
     
     it "should calculate total time within a specified range (overlaping the end)" do
       wp = OSX::TWorkPeriod.alloc.init
       wp.setStartTime(Time.parse("2008-10-10 23:30"))
       wp.setEndTime(Time.parse("2008-10-11 12:30"))
-      wp.totalTimeInRangeFrom_to(@rangeStart, @rangeEnd).should equal(30*60)
+      wp.totalTimeInRangeFrom_to(@rangeStart, @rangeEnd).should == 30*60
     end
     
     it "should calculate total time within a specified range (outside the range)" do
       wp = OSX::TWorkPeriod.alloc.init
       wp.setStartTime(Time.parse("2008-10-11 12:00"))
       wp.setEndTime(Time.parse("2008-10-11 12:30"))
-      wp.totalTimeInRangeFrom_to(@rangeStart, @rangeEnd).should equal(0)
+      wp.totalTimeInRangeFrom_to(@rangeStart, @rangeEnd).should == 0
     end
     
   end

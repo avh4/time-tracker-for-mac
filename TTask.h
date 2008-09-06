@@ -23,10 +23,9 @@
 - (void) addWorkPeriod: (TWorkPeriod *) workPeriod;
 - (NSMutableArray *) workPeriods;
 
-- (int) totalTime;
-
+- (NSTimeInterval)totalTime;
+- (NSTimeInterval)totalTimeInRangeFrom:(NSDate *)from to:(NSDate *)to;
 - (NSArray *)workPeriodsInRangeFrom:(NSDate *)from to:(NSDate *)to;
-- (int)totalTimeInRangeFrom:(NSDate *)from to:(NSDate *)to;
 
 
 @end

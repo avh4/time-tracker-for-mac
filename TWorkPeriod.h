@@ -10,7 +10,7 @@
 
 
 @interface TWorkPeriod : NSObject <NSCoding> {
-	int _totalTime;
+	NSTimeInterval _totalTime;
 	NSDate *_startTime;
 	NSDate *_endTime;
 }
@@ -23,7 +23,7 @@
 
 - (void) updateTotalTime;
 
-- (int) totalTime;
+- (NSTimeInterval) totalTime;
 - (void) updateTotalTime;
 
 - (NSDate *) startTime;
@@ -31,6 +31,6 @@
 
 - (NSComparisonResult)compare:(TWorkPeriod *)wp;
 
-- (int)totalTimeInRangeFrom:(NSDate *)from to:(NSDate *)to;
+- (NSTimeInterval)totalTimeInRangeFrom:(NSDate *)from to:(NSDate *)to;
 
 @end

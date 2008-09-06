@@ -9,9 +9,9 @@ describe OSX::TTask do
   # so that we can specify the return type for methods that do not
   # return objects
   class MockWorkPeriod < OSX::NSObject
-    objc_method :totalTime, "i@:"
+    objc_method :totalTime, "d@:"
     objc_method :compare, "i@:@"
-    objc_method :totalTimeInRangeFrom_to, "i@:@@"
+    objc_method :totalTimeInRangeFrom_to, "d@:@@"
   end
   
   
@@ -95,7 +95,7 @@ describe OSX::TTask do
     
     task.workPeriodsInRangeFrom_to(rangeStart, rangeEnd).size.should equal(1)
     task.workPeriodsInRangeFrom_to(rangeStart, rangeEnd).objectAtIndex(0).should equal(wpDuring)
-    task.totalTimeInRangeFrom_to(rangeStart, rangeEnd).should equal(5400)
+    task.totalTimeInRangeFrom_to(rangeStart, rangeEnd).should == 5400
   end
   
 end

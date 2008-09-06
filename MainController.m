@@ -43,7 +43,17 @@
 	timer = nil;
 	timeSinceSave = 0;
 	
+	filterStartTime = nil;
+	filterEndTime = nil;
+	
 	return self;
+}
+
+- (void)dealloc
+{
+	[filterStartTime release];
+	[filterEndTime release];
+	[super dealloc];
 }
 
 - (IBAction)clickedStartStopTimer:(id)sender
@@ -404,14 +414,20 @@
 	return 0;
 }
 
+- (NSTimeInterval)totalTimeForProject:(TProject *)project
+{
+	return [project totalTime];
+}
+
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(int)rowIndex
 {
 	if (tableView == tvProjects) {
+		TProject *p = [[document projects] objectAtIndex:rowIndex];
 		if ([[tableColumn identifier] isEqualToString:TABLE_COLUMN_PROJECT_NAME]) {
-			return [[[document projects] objectAtIndex: rowIndex] name];
+			return [p name];
 		}
 		if ([[tableColumn identifier] isEqualToString:TABLE_COLUMN_TOTAL_TIME]) {
-			return [TimeIntervalFormatter secondsToString: [[[document projects] objectAtIndex: rowIndex] totalTime]];
+			return [TimeIntervalFormatter secondsToString:[self totalTimeForProject:p]];
 		}
 	}
 	
@@ -745,6 +761,22 @@
 {
 	[_selProject release];
 	_selProject = [aProject retain];
+}
+
+- (void)setFilterStartTime:(NSDate *)startTime endTime:(NSDate *)endTime
+{
+	[filterStartTime release];
+	[filterEndTime release];
+	filterStartTime = [startTime copy];
+	filterEndTime = [endTime copy];
+}
+
+- (void)clearFilter
+{
+	[filterStartTime release];
+	[filterEndTime release];
+	filterStartTime = nil;
+	filterEndTime = nil;
 }
 
 

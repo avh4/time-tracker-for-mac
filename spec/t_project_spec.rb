@@ -11,8 +11,8 @@ describe OSX::TProject do
   # so that we can specify the return type for methods that do not
   # return objects
   class MockTask < OSX::NSObject
-    objc_method :totalTime, "i@:"
-    objc_method :totalTimeInRangeFrom_to, "i@:@@"
+    objc_method :totalTime, "d@:"
+    objc_method :totalTimeInRangeFrom_to, "d@:@@"
   end
   
   

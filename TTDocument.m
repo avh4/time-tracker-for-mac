@@ -91,7 +91,7 @@
 				[data appendData:[@"," dataUsingEncoding:NSASCIIStringEncoding]];
 				
 				// Duration (seconds)
-				[data appendData:[[NSString stringWithFormat:@"%d", [wp totalTime]] dataUsingEncoding:NSASCIIStringEncoding]];
+				[data appendData:[[NSString stringWithFormat:@"%.f", [wp totalTime]] dataUsingEncoding:NSASCIIStringEncoding]];
 				[data appendData:[@"," dataUsingEncoding:NSASCIIStringEncoding]];
 				
 				// Project

@@ -48,6 +48,9 @@
 	
 	NSDate *_lastNonIdleTime;
 	int timeSinceSave;
+	
+	NSDate *filterStartTime;
+	NSDate *filterEndTime;
 }
 
 // actions
@@ -77,5 +80,11 @@
 - (void)setDocument:(TTDocument *)aDocument;
 - (TProject *)selectedProject;
 - (void)setSelectedProject:(TProject *)aProject;
+
+- (void)clearFilter;
+- (void)setFilterStartTime:(NSDate *)startTime endTime:(NSDate *)endTime;
+
+// Data source methods
+- (NSTimeInterval)totalTimeForProject:(TProject *)project;
 
 @end

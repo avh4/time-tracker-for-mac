@@ -5,6 +5,6 @@ Feature: View daily totals
   
   Scenario: View today's totals
 	Given I have recorded my data in Time Tracker
-	When set the filter to "Today"
+	When I set the filter to "Today"
 	Then I will see today's totals for all tasks and projects
 	

@@ -25,7 +25,7 @@
 - (id)objectInTasksAtIndex:(int)index;
 - (void)moveTask:(TTask *)task toIndex:(int)index;
 
-- (int) totalTime;
-- (int)totalTimeInRangeFrom:(NSDate *)from to:(NSDate *)to;
+- (NSTimeInterval)totalTime;
+- (NSTimeInterval)totalTimeInRangeFrom:(NSDate *)from to:(NSDate *)to;
 
 @end
