@@ -22,4 +22,13 @@
 - (NSDate *)thisWeekStartTime;
 - (NSDate *)thisWeekEndTime;
 
+- (NSDate *)lastWeekStartTime;
+- (NSDate *)lastWeekEndTime;
+
+- (NSDate *)thisMonthStartTime;
+- (NSDate *)thisMonthEndTime;
+
+- (NSDate *)lastMonthStartTime;
+- (NSDate *)lastMonthEndTime;
+
 @end

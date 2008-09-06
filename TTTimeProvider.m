@@ -82,5 +82,81 @@
 	return rangeEnd;
 }
 
+- (NSDate *)lastWeekStartTime
+{
+	NSDate *now = [NSDate date];
+	NSCalendar *gregorian = [NSCalendar currentCalendar];
+	NSDateComponents *rangeStartComps = [gregorian 
+		components:NSYearCalendarUnit|NSWeekCalendarUnit|NSWeekdayCalendarUnit
+		fromDate:now];
+	[rangeStartComps setWeekday:[gregorian firstWeekday]];
+	NSDate *rangeStart = [gregorian dateFromComponents:rangeStartComps];
+	rangeStart = [rangeStart addTimeInterval:-60*60*24*7];
+	return rangeStart;
+}
+
+- (NSDate *)lastWeekEndTime
+{
+	NSDate *now = [NSDate date];
+	NSCalendar *gregorian = [NSCalendar currentCalendar];
+	NSDateComponents *rangeEndComps = [gregorian 
+		components:NSYearCalendarUnit|NSWeekCalendarUnit|NSWeekdayCalendarUnit
+		fromDate:now];
+	[rangeEndComps setWeekday:[gregorian firstWeekday]];
+	NSDate *rangeEnd = [gregorian dateFromComponents:rangeEndComps];
+	return rangeEnd;
+}
+
+- (NSDate *)thisMonthStartTime
+{
+	NSDate *now = [NSDate date];
+	NSCalendar *gregorian = [NSCalendar currentCalendar];
+	NSDateComponents *rangeStartComps = [gregorian 
+		components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit
+		fromDate:now];
+	[rangeStartComps setDay:1];
+	NSDate *rangeStart = [gregorian dateFromComponents:rangeStartComps];
+	return rangeStart;
+}
+
+- (NSDate *)thisMonthEndTime
+{
+	NSDate *now = [NSDate date];
+	NSCalendar *gregorian = [NSCalendar currentCalendar];
+	NSDateComponents *rangeEndComps = [gregorian 
+		components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit
+		fromDate:now];
+	[rangeEndComps setDay:1];
+	[rangeEndComps setMonth:[rangeEndComps month]+1];
+	NSDate *rangeEnd = [gregorian dateFromComponents:rangeEndComps];
+	return rangeEnd;
+}
+
+- (NSDate *)lastMonthStartTime
+{
+	NSDate *now = [NSDate date];
+	NSCalendar *gregorian = [NSCalendar currentCalendar];
+	NSDateComponents *rangeStartComps = [gregorian 
+		components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit
+		fromDate:now];
+	[rangeStartComps setDay:1];
+	[rangeStartComps setMonth:[rangeStartComps month]-1];
+	NSDate *rangeStart = [gregorian dateFromComponents:rangeStartComps];
+	return rangeStart;
+}
+
+- (NSDate *)lastMonthEndTime
+{
+	NSDate *now = [NSDate date];
+	NSCalendar *gregorian = [NSCalendar currentCalendar];
+	NSDateComponents *rangeEndComps = [gregorian 
+		components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit
+		fromDate:now];
+	[rangeEndComps setDay:1];
+	NSDate *rangeEnd = [gregorian dateFromComponents:rangeEndComps];
+	return rangeEnd;
+}
+
+
 
 @end

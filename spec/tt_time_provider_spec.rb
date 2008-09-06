@@ -56,14 +56,57 @@ describe OSX::TTTimeProvider do
     rangeStart = rbTimeForNSDate(provider.thisWeekStartTime)
     rangeEnd = rbTimeForNSDate(provider.thisWeekEndTime)
 
-    puts rangeStart
-    puts rangeEnd
     check rangeStart.strftime("%Y %U %H:%M:%S").should == now.strftime("%Y %U 00:00:00")
     check rangeStart.wday.should == 0
     
     check rangeEnd.strftime("%Y %H:%M:%S").should == now.strftime("%Y 00:00:00")
     check rangeEnd.strftime("%U").to_i.should == now.strftime("%U").to_i + 1
     check rangeEnd.wday.should == 0
+  end
+  
+  it "should return a valid last week range" do
+    provider = OSX::TTTimeProvider.alloc.init
+    now = Time.new
+    rangeStart = rbTimeForNSDate(provider.lastWeekStartTime)
+    rangeEnd = rbTimeForNSDate(provider.lastWeekEndTime)
+
+    check rangeStart.strftime("%Y %H:%M:%S").should == now.strftime("%Y 00:00:00")
+    check rangeStart.strftime("%U").to_i.should == now.strftime("%U").to_i - 1
+    check rangeStart.wday.should == 0
+    
+    check rangeEnd.strftime("%Y %H:%M:%S").should == now.strftime("%Y 00:00:00")
+    check rangeEnd.strftime("%U").to_i.should == now.strftime("%U").to_i
+    check rangeEnd.wday.should == 0
+  end
+  
+  it "should return a valid this month range" do
+    provider = OSX::TTTimeProvider.alloc.init
+    now = Time.new
+    rangeStart = rbTimeForNSDate(provider.thisMonthStartTime)
+    rangeEnd = rbTimeForNSDate(provider.thisMonthEndTime)
+
+    check rangeStart.strftime("%Y %H:%M:%S").should == now.strftime("%Y 00:00:00")
+    check rangeStart.month.should == now.month
+    check rangeStart.day.should == 1
+    
+    check rangeEnd.strftime("%Y %H:%M:%S").should == now.strftime("%Y 00:00:00")
+    check rangeEnd.month.should == now.month + 1
+    check rangeEnd.day.should == 1
+  end
+  
+  it "should return a valid last month range" do
+    provider = OSX::TTTimeProvider.alloc.init
+    now = Time.new
+    rangeStart = rbTimeForNSDate(provider.lastMonthStartTime)
+    rangeEnd = rbTimeForNSDate(provider.lastMonthEndTime)
+
+    check rangeStart.strftime("%Y %H:%M:%S").should == now.strftime("%Y 00:00:00")
+    check rangeStart.month.should == now.month - 1
+    check rangeStart.day.should == 1
+    
+    check rangeEnd.strftime("%Y %H:%M:%S").should == now.strftime("%Y 00:00:00")
+    check rangeEnd.month.should == now.month
+    check rangeEnd.day.should == 1
   end
   
 end
