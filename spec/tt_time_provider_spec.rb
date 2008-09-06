@@ -13,7 +13,6 @@ describe OSX::TTTimeProvider do
     now = Time.new
     todayStart = rbTimeForNSDate(provider.todayStartTime)
     todayEnd = rbTimeForNSDate(provider.todayEndTime)
-    puts todayEnd
     
     todayStart.year.should == now.year
     todayStart.month.should == now.month
@@ -28,6 +27,27 @@ describe OSX::TTTimeProvider do
     todayEnd.hour.should == 0
     todayEnd.min.should == 0
     todayEnd.sec.should == 0
+  end
+  
+  it "should return a valid yesterday range" do
+    provider = OSX::TTTimeProvider.alloc.init
+    now = Time.new
+    rangeStart = rbTimeForNSDate(provider.yesterdayStartTime)
+    rangeEnd = rbTimeForNSDate(provider.yesterdayEndTime)
+    
+    rangeStart.year.should == now.year
+    rangeStart.month.should == now.month
+    rangeStart.day.should == now.day - 1
+    rangeStart.hour.should == 0
+    rangeStart.min.should == 0
+    rangeStart.sec.should == 0
+    
+    rangeEnd.year.should == now.year
+    rangeEnd.month.should == now.month
+    rangeEnd.day.should == now.day
+    rangeEnd.hour.should == 0
+    rangeEnd.min.should == 0
+    rangeEnd.sec.should == 0
   end
   
 end

@@ -16,4 +16,7 @@
 - (NSDate *)todayStartTime;
 - (NSDate *)todayEndTime;
 
+- (NSDate *)yesterdayStartTime;
+- (NSDate *)yesterdayEndTime;
+
 @end
