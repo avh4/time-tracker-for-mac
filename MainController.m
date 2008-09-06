@@ -408,9 +408,21 @@
 	}
 	if (tableView == tvWorkPeriods) {
 		if (_selTask == nil)
+		{
 			return 0;
+		}
 		else
-			return [[_selTask workPeriods] count];
+		{
+			if (filterStartTime == nil)
+			{
+				return [[_selTask workPeriods] count];				
+			}
+			else
+			{
+				assert(filterEndTime != nil);
+				return [[_selTask workPeriodsInRangeFrom:filterStartTime to:filterEndTime] count];
+			}
+		}
 	}
 	return 0;
 }
@@ -464,18 +476,30 @@
 	}
 	
 	if (tableView == tvWorkPeriods) {
+		NSArray *wps;
+		if (filterStartTime == nil)
+		{
+			wps = [_selTask workPeriods];
+		}
+		else
+		{
+			assert(filterEndTime != nil);
+			wps = [_selTask workPeriodsInRangeFrom:filterStartTime to:filterEndTime];
+		}
+		TWorkPeriod *wp = [wps objectAtIndex:rowIndex];
+		
 		if ([[tableColumn identifier] isEqualToString:TABLE_COLUMN_DATE]) {
-			return [[[[_selTask workPeriods] objectAtIndex: rowIndex] startTime] 
+			return [[wp startTime] 
 				descriptionWithCalendarFormat: @"%m/%d/%Y"
 				timeZone: nil locale: nil];
 		}
 		if ([[tableColumn identifier] isEqualToString:TABLE_COLUMN_START_TIME]) {
-			return [[[[_selTask workPeriods] objectAtIndex: rowIndex] startTime] 
+			return [[wp startTime] 
 				descriptionWithCalendarFormat: @"%H:%M:%S"
 				timeZone: nil locale: nil];
 		}
 		if ([[tableColumn identifier] isEqualToString:TABLE_COLUMN_END_TIME]) {
-			NSDate *endTime = [[[_selTask workPeriods] objectAtIndex: rowIndex] endTime];
+			NSDate *endTime = [wp endTime];
 			if (endTime == nil)
 				return @"";
 			else
@@ -484,7 +508,7 @@
 					timeZone: nil locale: nil];
 		}
 		if ([[tableColumn identifier] isEqualToString:TABLE_COLUMN_DURATION]) {
-			return [TimeIntervalFormatter secondsToString: [[[_selTask workPeriods] objectAtIndex: rowIndex] totalTime]];
+			return [TimeIntervalFormatter secondsToString: [wp totalTime]];
 		}
 	}
 	
@@ -794,6 +818,7 @@
 	filterEndTime = [endTime copy];
 	[tvProjects reloadData];
 	[tvTasks reloadData];
+	[tvWorkPeriods reloadData];
 }
 
 - (void)clearFilter
@@ -804,6 +829,7 @@
 	filterEndTime = nil;
 	[tvProjects reloadData];
 	[tvTasks reloadData];
+	[tvWorkPeriods reloadData];
 }
 
 
