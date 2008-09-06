@@ -19,4 +19,7 @@
 - (NSDate *)yesterdayStartTime;
 - (NSDate *)yesterdayEndTime;
 
+- (NSDate *)thisWeekStartTime;
+- (NSDate *)thisWeekEndTime;
+
 @end

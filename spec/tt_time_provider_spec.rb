@@ -50,4 +50,20 @@ describe OSX::TTTimeProvider do
     rangeEnd.sec.should == 0
   end
   
+  it "should return a valid this week range" do
+    provider = OSX::TTTimeProvider.alloc.init
+    now = Time.new
+    rangeStart = rbTimeForNSDate(provider.thisWeekStartTime)
+    rangeEnd = rbTimeForNSDate(provider.thisWeekEndTime)
+
+    puts rangeStart
+    puts rangeEnd
+    rangeStart.strftime("%Y %U %H:%M:%S").should == now.strftime("%Y %U 00:00:00")
+    rangeStart.wday.should == 0
+    
+    rangeEnd.strftime("%Y %H:%M:%S").should == now.strftime("%Y 00:00:00")
+    rangeEnd.strftime("%U").to_i.should == now.strftime("%U").to_i + 1
+    rangeEnd.wday.should == 0
+  end
+  
 end

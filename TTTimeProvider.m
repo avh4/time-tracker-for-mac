@@ -14,7 +14,7 @@
 - (NSDate *)todayStartTime
 {
 	NSDate *now = [NSDate date];
-	NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+	NSCalendar *gregorian = [NSCalendar currentCalendar];
 	NSDateComponents *todayStartComps = [gregorian 
 		components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit
 		fromDate:now];
@@ -25,7 +25,7 @@
 - (NSDate *)todayEndTime
 {
 	NSDate *now = [NSDate date];
-	NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+	NSCalendar *gregorian = [NSCalendar currentCalendar];
 	NSDateComponents *todayEndComps = [gregorian 
 		components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit
 		fromDate:now];
@@ -37,7 +37,7 @@
 - (NSDate *)yesterdayStartTime
 {
 	NSDate *now = [NSDate date];
-	NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+	NSCalendar *gregorian = [NSCalendar currentCalendar];
 	NSDateComponents *rangeStartComps = [gregorian 
 		components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit
 		fromDate:now];
@@ -49,12 +49,38 @@
 - (NSDate *)yesterdayEndTime
 {
 	NSDate *now = [NSDate date];
-	NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+	NSCalendar *gregorian = [NSCalendar currentCalendar];
 	NSDateComponents *rangeEndComps = [gregorian 
 		components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit
 		fromDate:now];
 	NSDate *rangeEnd = [gregorian dateFromComponents:rangeEndComps];
 	return rangeEnd;
 }
+
+- (NSDate *)thisWeekStartTime
+{
+	NSDate *now = [NSDate date];
+	NSCalendar *gregorian = [NSCalendar currentCalendar];
+	NSDateComponents *rangeStartComps = [gregorian 
+		components:NSYearCalendarUnit|NSWeekCalendarUnit|NSWeekdayCalendarUnit
+		fromDate:now];
+	[rangeStartComps setWeekday:[gregorian firstWeekday]];
+	NSDate *rangeStart = [gregorian dateFromComponents:rangeStartComps];
+	return rangeStart;
+}
+
+- (NSDate *)thisWeekEndTime
+{
+	NSDate *now = [NSDate date];
+	NSCalendar *gregorian = [NSCalendar currentCalendar];
+	NSDateComponents *rangeEndComps = [gregorian 
+		components:NSYearCalendarUnit|NSWeekCalendarUnit|NSWeekdayCalendarUnit
+		fromDate:now];
+	[rangeEndComps setWeekday:[gregorian firstWeekday]];
+	NSDate *rangeEnd = [gregorian dateFromComponents:rangeEndComps];
+	rangeEnd = [rangeEnd addTimeInterval:60*60*24*7];
+	return rangeEnd;
+}
+
 
 @end
