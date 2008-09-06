@@ -416,7 +416,15 @@
 
 - (NSTimeInterval)totalTimeForProject:(TProject *)project
 {
-	return [project totalTime];
+	if (filterStartTime == nil)
+	{
+		return [project totalTime];		
+	}
+	else
+	{
+		assert(filterEndTime != nil);
+		return [project totalTimeInRangeFrom:filterStartTime to:filterEndTime];
+	}
 }
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(int)rowIndex
