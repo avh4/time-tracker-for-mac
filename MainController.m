@@ -5,6 +5,7 @@
 #import "TProject.h"
 #import "TimeIntervalFormatter.h"
 #import "TWorkPeriod.h"
+#import "TTTimeProvider.h"
 
 @interface MainController (PrivateMethods)
 - (void)initializeTableViews;
@@ -869,7 +870,8 @@
 
 - (IBAction)filterToToday:(id)sender
 {
-	[self setFilterStartTime:[NSDate date] endTime:[NSDate date]];
+	TTTimeProvider *provider = [[[TTTimeProvider alloc] init] autorelease];
+	[self setFilterStartTime:[provider todayStartTime] endTime:[provider todayEndTime]];
 	[tvProjects reloadData];
 }
 
