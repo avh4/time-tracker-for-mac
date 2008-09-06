@@ -778,6 +778,7 @@
 	[filterEndTime release];
 	filterStartTime = [startTime copy];
 	filterEndTime = [endTime copy];
+	[tvProjects reloadData];
 }
 
 - (void)clearFilter
@@ -786,6 +787,7 @@
 	[filterEndTime release];
 	filterStartTime = nil;
 	filterEndTime = nil;
+	[tvProjects reloadData];
 }
 
 
@@ -865,14 +867,18 @@
 - (IBAction)filterToAll:(id)sender
 {
 	[self clearFilter];
-	[tvProjects reloadData];
 }
 
 - (IBAction)filterToToday:(id)sender
 {
 	TTTimeProvider *provider = [[[TTTimeProvider alloc] init] autorelease];
 	[self setFilterStartTime:[provider todayStartTime] endTime:[provider todayEndTime]];
-	[tvProjects reloadData];
+}
+
+- (IBAction)filterToYesterday:(id)sender
+{
+	TTTimeProvider *provider = [[[TTTimeProvider alloc] init] autorelease];
+	[self setFilterStartTime:[provider yesterdayStartTime] endTime:[provider yesterdayEndTime]];
 }
 
 
