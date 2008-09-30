@@ -1,6 +1,7 @@
 require File.dirname(__FILE__) + '/spec_helper'
 
 require 'time'
+require 'duration'
 
 describe OSX::TTTimeProvider do
   
@@ -11,6 +12,7 @@ describe OSX::TTTimeProvider do
   it "should return a valid today range" do
     provider = OSX::TTTimeProvider.alloc.init
     now = Time.new
+    tomorrow = now + 1.day
     todayStart = rbTimeForNSDate(provider.todayStartTime)
     todayEnd = rbTimeForNSDate(provider.todayEndTime)
     
@@ -21,9 +23,9 @@ describe OSX::TTTimeProvider do
     check todayStart.min.should == 0
     check todayStart.sec.should == 0
     
-    check todayEnd.year.should == now.year
-    check todayEnd.month.should == now.month
-    check todayEnd.day.should == now.day + 1
+    check todayEnd.year.should == tomorrow.year
+    check todayEnd.month.should == tomorrow.month
+    check todayEnd.day.should == tomorrow.day
     check todayEnd.hour.should == 0
     check todayEnd.min.should == 0
     check todayEnd.sec.should == 0
