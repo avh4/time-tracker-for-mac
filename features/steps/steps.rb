@@ -32,3 +32,7 @@ end
 Then /I will see today.s totals for all tasks/ do
   @controller.totalTimeForTask(@t11).should == 1.hour + 45.minutes
 end
+
+Then /I will only see today.s work periods/ do
+  @controller.countOfWorkPeriodsForTask(@t11).should == 2
+end

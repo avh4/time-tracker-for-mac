@@ -413,15 +413,7 @@
 		}
 		else
 		{
-			if (filterStartTime == nil)
-			{
-				return [[_selTask workPeriods] count];				
-			}
-			else
-			{
-				assert(filterEndTime != nil);
-				return [[_selTask workPeriodsInRangeFrom:filterStartTime to:filterEndTime] count];
-			}
+			return [self countOfWorkPeriodsForTask:_selTask];
 		}
 	}
 	return 0;
@@ -450,6 +442,19 @@
 	{
 		assert(filterEndTime != nil);
 		return [task totalTimeInRangeFrom:filterStartTime to:filterEndTime];
+	}
+}
+
+- (int)countOfWorkPeriodsForTask:(TTask *)task
+{
+	if (filterStartTime == nil)
+	{
+		return [[task workPeriods] count];
+	}
+	else
+	{
+		assert(filterEndTime != nil);
+		return [[task workPeriodsInRangeFrom:filterStartTime to:filterEndTime] count];
 	}
 }
 

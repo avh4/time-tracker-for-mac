@@ -95,5 +95,6 @@
 // Data source methods
 - (NSTimeInterval)totalTimeForProject:(TProject *)project;
 - (NSTimeInterval)totalTimeForTask:(TTask *)task;
+- (int)countOfWorkPeriodsForTask:(TTask *)task;
 
 @end
