@@ -12,8 +12,7 @@ This file contains information for developing and testing Time Tracker.
 
 3. Test the code
     3a. Run "rake spec" and verify that there are no errors or failures.
-    3b. Run "ruby stories/track_time_story.rb" and verify that there are no
-        failures.
+    3b. Run "rake features" and verify that there are no failures or pending steps.
 
 4. Build the Time Tracker.zip release file:
     4a. Open the Xcode project.

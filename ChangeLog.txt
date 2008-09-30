@@ -1,3 +1,7 @@
+=== Version 1.2.5 === 2008-09-30
+
+  * Added basic filtering by day, week and month.
+
 === Version 1.2.4 === 2008-08-14
 
   * Fixed a bug where projects could not be created the first time Time
