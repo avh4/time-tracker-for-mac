@@ -5,6 +5,9 @@ $:.unshift File.dirname(__FILE__) + "/../build/bundles"
 
 require "Application.bundle"
 
+require File.dirname(__FILE__) + '/mocks'
+
+
 # This method is used to prevent warnings on lines like this
 #    some_number.should == 7
 # Instead, use

@@ -1,7 +1,5 @@
 require File.dirname(__FILE__) + '/spec_helper'
 
-require "Application.bundle"
-
 describe OSX::MainController do
   
   it "should create a blank document when initialized" do
@@ -9,17 +7,6 @@ describe OSX::MainController do
     mc.document.should_not be_nil
     mc.document.projects.should_not be_nil
     mc.document.projects.size.should equal(0)
-  end
-  
-  class MockDocument < OSX::NSObject
-    objc_method :objectInProjectsAtIndex, "@@:i"
-  end
-  
-  class MockNSTableView < OSX::NSObject
-    objc_method :selectedRow, "i@:"
-  end
-  
-  class MockProject < OSX::NSObject
   end
   
   it "should update the selected project when the table selection changes" do

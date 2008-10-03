@@ -1,5 +1,4 @@
 require File.dirname(__FILE__) + '/spec_helper'
-require "Application.bundle"
 
 require 'date'
 
