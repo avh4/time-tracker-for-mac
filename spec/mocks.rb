@@ -8,3 +8,7 @@ end
 
 class MockProject < OSX::NSObject
 end
+
+class MockUserInterfaceItem < OSX::NSObject
+  #objc_method :action, "s@:"
+end

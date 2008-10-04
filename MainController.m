@@ -70,6 +70,11 @@
 {
 	// assert timer == nil
 	if (timer != nil) return;
+	
+	if (_selTask == nil)
+	{
+		[self createTask];
+	}
 	// assert _selProject != nil
 	// assert _selTask != nil
 	if (_selTask == nil) return;
@@ -520,6 +525,16 @@
 	return nil;
 }
 
+- (void)createProject
+{
+	TProject *proj = [TProject new];
+	[document addProject:proj];
+	[tvProjects reloadData];
+	int index = [[document projects] count] - 1;
+	[tvProjects selectRowIndexes:[NSIndexSet indexSetWithIndex:index] byExtendingSelection:NO];
+	_selProject = proj;
+}
+
 - (IBAction)clickedAddProject:(id)sender
 {
 	TProject *proj = [TProject new];
@@ -528,6 +543,20 @@
 	int index = [[document projects] count] - 1;
 	[tvProjects selectRowIndexes:[NSIndexSet indexSetWithIndex:index] byExtendingSelection:NO];
 	[tvProjects editColumn:[tvProjects columnWithIdentifier:TABLE_COLUMN_PROJECT_NAME] row:index withEvent:nil select:YES];
+}
+
+- (void)createTask
+{
+	if (_selProject == nil)
+	{
+		[self createProject];
+	}
+	TTask *task = [TTask new];
+	[_selProject addTask:task];
+	[tvTasks reloadData];
+	int index = [[_selProject tasks] count] - 1;
+	[tvTasks selectRowIndexes:[NSIndexSet indexSetWithIndex:index] byExtendingSelection:NO];
+	_selTask = task;
 }
 
 - (IBAction)clickedAddTask:(id)sender
@@ -717,9 +746,7 @@
 - (BOOL) validateUserInterfaceItem:(id)anItem
 {
 	if ([anItem action] == @selector(clickedStartStopTimer:)) {
-		if (timer != nil) return YES;
-		if (_selTask != nil) return YES;
-		return NO;
+		return YES;
 	} else
 	if ([anItem action] == @selector(clickedAddProject:)) {
 		return YES;
@@ -835,6 +862,16 @@
 	[tvProjects reloadData];
 	[tvTasks reloadData];
 	[tvWorkPeriods reloadData];
+}
+
+- (TTask*)activeTask
+{
+	return _curTask;
+}
+
+- (TTask*)selectedTask
+{
+	return _selTask;
 }
 
 

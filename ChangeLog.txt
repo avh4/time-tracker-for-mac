@@ -1,3 +1,7 @@
+=== Version 1.2.6 ===
+
+  * The start/stop buttons are not active even if there are not projects or tasks.
+
 === Version 1.2.5 === 2008-09-30
 
   * Added basic filtering by day, week and month.

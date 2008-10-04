@@ -27,5 +27,39 @@ describe OSX::MainController do
 
     mc.selectedProject.should equal(mockProject)
   end
+
+  it "should enable the start button when a task is selected" do
+    mc = OSX::MainController.alloc.init
+    mockTask = MockUserInterfaceItem.new
+    #mc.setSelectedTask(mockTask)
+    mockInterfaceItem = mock("Star/Stop Interface Item")
+    pending "Don't know how to make the mock return a SEL"
+    #mockInterfaceItem.stub!(:action).and_return(:clickedStartStopTimer_)
+    
+    mc.validateUserInterfaceItem(mockInterfaceItem).should == true
+  end
+  
+  it "should enable the stop button when the timer is running" do
+    mc = OSX::MainController.alloc.init
+    mc.startTimer
+    #mc.setSelectedTask(nil)
+    #mc.setSelectedProject(nil)
+    mockInterfaceItem = mock("Star/Stop Interface Item")
+    pending "Don't know how to make the mock return a SEL"
+    #mockInterfaceItem.stub!(:action).and_return(:clickedStartStopTimer_)
+    
+    mc.validateUserInterfaceItem(mockInterfaceItem).should == true
+  end
+  
+  it "should enable the start button when no task is selected" do
+    mc = OSX::MainController.alloc.init
+    #mc.setSelectedTask(nil)
+    #mc.setSelectedProject(nil)
+    mockInterfaceItem = mock("Star/Stop Interface Item")
+    pending "Don't know how to make the mock return a SEL"
+    #mockInterfaceItem.stub!(:action).and_return(:clickedStartStopTimer_)
+    
+    mc.validateUserInterfaceItem(mockInterfaceItem).should == true
+  end
   
 end
