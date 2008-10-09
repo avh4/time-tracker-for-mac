@@ -31,5 +31,6 @@
 
 - (void)setDpStartTime:(NSDatePicker *)dp;
 - (void)setDpEndTime:(NSDatePicker *)dp;
+- (void)_setWorkPeriod:(TWorkPeriod *)wp;
 
 @end

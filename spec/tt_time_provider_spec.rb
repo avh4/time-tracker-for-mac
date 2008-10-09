@@ -5,11 +5,7 @@ require 'rubygems'
 require 'duration'
 
 describe OSX::TTTimeProvider do
-  
-  def rbTimeForNSDate(d)
-    return Time.parse("" + d.description)
-  end
-  
+    
   it "should return a valid today range" do
     provider = OSX::TTTimeProvider.alloc.init
     now = Time.new

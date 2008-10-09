@@ -7,6 +7,9 @@ require "Application.bundle"
 
 require File.dirname(__FILE__) + '/mocks'
 
+def rbTimeForNSDate(d)
+  return Time.parse("" + d.description)
+end
 
 # This method is used to prevent warnings on lines like this
 #    some_number.should == 7
