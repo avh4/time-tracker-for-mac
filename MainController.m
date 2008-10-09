@@ -293,7 +293,7 @@
 	[tvTasks registerForDraggedTypes:[NSArray arrayWithObjects:PBOARD_TYPE_TASK_ROWS, nil]];
 }
 
-- (void) doubleClickWorkPeriod: (id) sender
+- (void)doubleClickWorkPeriod:(id)sender
 {
 	// assert _selProject != nil
 	// assert _selTask != nil
