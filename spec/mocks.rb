@@ -15,4 +15,5 @@ end
 
 class MockDatePicker < OSX::NSObject
   objc_method :setDateValue, "v@:@"
+  objc_method :setEnabled, "v@:B"
 end

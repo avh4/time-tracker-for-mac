@@ -28,7 +28,21 @@ describe OSX::InspectorController do
   end
   
   it "should display disabled when no work period is set" do
-    pending
+    # Create
+    ic = OSX::InspectorController.alloc.init
+    mockStartPicker = MockDatePicker.new
+    mockEndPicker = MockDatePicker.new
+    ic.dpStartTime = mockStartPicker
+    ic.dpEndTime = mockEndPicker
+    
+    # Mock expectations
+    mockStartPicker.should_receive(:setEnabled).with(false)
+    mockEndPicker.should_receive(:setEnabled).with(false)
+    
+    # Action
+    ic.setWorkPeriod(nil)
+
+    # Verify: mock expectations (above)
   end
   
   it "should update the work period start time" do

@@ -23,9 +23,18 @@
 
 - (void)setWorkPeriod:(TWorkPeriod *)wp
 {
+	[workPeriod release];
 	workPeriod = [wp retain];
-	[dpStartTime setDateValue:[workPeriod startTime]];
-	[dpEndTime setDateValue:[workPeriod endTime]];
+	if (workPeriod != nil)
+	{
+		[dpStartTime setDateValue:[workPeriod startTime]];
+		[dpEndTime setDateValue:[workPeriod endTime]];
+	}
+	else
+	{
+		[dpStartTime setEnabled:NO];
+		[dpEndTime setEnabled:NO];
+	}
 }
 
 #pragma mark view methods
