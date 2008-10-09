@@ -29,6 +29,8 @@
 	{
 		[dpStartTime setDateValue:[workPeriod startTime]];
 		[dpEndTime setDateValue:[workPeriod endTime]];
+		[dpStartTime setEnabled:YES];
+		[dpEndTime setEnabled:YES];
 	}
 	else
 	{

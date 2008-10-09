@@ -12,6 +12,8 @@ describe OSX::InspectorController do
     ic = OSX::InspectorController.alloc.init
     mockStartPicker = MockDatePicker.new
     mockEndPicker = MockDatePicker.new
+    mockStartPicker.stub!(:setEnabled) #permissive
+    mockEndPicker.stub!(:setEnabled) #permissive
     ic.dpStartTime = mockStartPicker
     ic.dpEndTime = mockEndPicker
     mockWP = MockWorkPeriod.new
@@ -49,6 +51,31 @@ describe OSX::InspectorController do
 
     # Verify: mock expectations (above)
   end
+  
+  it "should re-enable the controls after setting a work period" do
+    # Create
+    ic = OSX::InspectorController.alloc.init
+    mockStartPicker = MockDatePicker.new
+    mockEndPicker = MockDatePicker.new
+    mockWorkPeriod = MockWorkPeriod.new
+    mockWorkPeriod.stub!(:startTime) # permissive
+    mockWorkPeriod.stub!(:endTime) # permissive
+    mockStartPicker.stub!(:setDateValue) #permissive
+    mockEndPicker.stub!(:setDateValue) #permissive
+    ic.dpStartTime = mockStartPicker
+    ic.dpEndTime = mockEndPicker
+    ic._setWorkPeriod(nil)
+    
+    # Mock expectations
+    mockStartPicker.should_receive(:setEnabled).with(true)
+    mockEndPicker.should_receive(:setEnabled).with(true)
+    
+    # Action
+    ic.setWorkPeriod(mockWorkPeriod)
+
+    # Verify: mock expectations (above)
+  end
+  
   
   it "should update the work period start and end time" do
     # Constants
