@@ -12,3 +12,7 @@ end
 class MockUserInterfaceItem < OSX::NSObject
   #objc_method :action, "s@:"
 end
+
+class MockDatePicker < OSX::NSObject
+  objc_method :setDateValue, "v@:@"
+end

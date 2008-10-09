@@ -14,6 +14,8 @@
 	
 	IBOutlet NSDatePicker *dpStartTime;
 	IBOutlet NSDatePicker *dpEndTime;
+	
+	TWorkPeriod *workPeriod;
 
 }
 

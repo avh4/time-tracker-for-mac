@@ -11,4 +11,40 @@
 
 @implementation InspectorController
 
+- (void)dealloc
+{
+	[workPeriod release];
+	[dpStartTime release];
+	[dpEndTime release];
+	[super dealloc];
+}
+
+#pragma mark controller methods
+
+- (void)setWorkPeriod:(TWorkPeriod *)wp
+{
+	workPeriod = [wp retain];
+	[dpStartTime setDateValue:[workPeriod startTime]];
+	[dpEndTime setDateValue:[workPeriod endTime]];
+}
+
+#pragma mark view methods
+
+- (void)workPeriodChanged:(id)sender
+{
+	;
+}
+
+#pragma mark protected methods
+
+- (void)setDpStartTime:(NSDatePicker *)dp
+{
+	dpStartTime = [dp retain];
+}
+
+- (void)setDpEndTime:(NSDatePicker *)dp
+{
+	dpEndTime = [dp retain];
+}
+
 @end
