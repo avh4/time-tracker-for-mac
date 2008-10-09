@@ -25,4 +25,9 @@
 
 - (void)workPeriodChanged:(id)sender;
 
+#pragma mark protected methods
+
+- (void)setDpStartTime:(NSDatePicker *)dp;
+- (void)setDpEndTime:(NSDatePicker *)dp;
+
 @end

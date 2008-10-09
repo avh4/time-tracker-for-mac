@@ -18,16 +18,14 @@
 - (id)init;
 - (id)initWithStartTime:(NSDate *)starttime endTime:(NSDate *)endTime;
 
-- (void) setStartTime: (NSDate *) startTime;
-- (void) setEndTime: (NSDate *) endTime;
+- (void)setStartTime:(NSDate *)startTime;
+- (void)setEndTime:(NSDate *)endTime;
 
-- (void) updateTotalTime;
+- (NSTimeInterval)totalTime;
+- (void)updateTotalTime;
 
-- (NSTimeInterval) totalTime;
-- (void) updateTotalTime;
-
-- (NSDate *) startTime;
-- (NSDate *) endTime;
+- (NSDate *)startTime;
+- (NSDate *)endTime;
 
 - (NSComparisonResult)compare:(TWorkPeriod *)wp;
 
