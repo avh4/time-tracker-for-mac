@@ -2,11 +2,25 @@ class MockDocument < OSX::NSObject
   objc_method :objectInProjectsAtIndex, "@@:i"
 end
 
+class MockNSArray < OSX::NSObject
+  objc_method :objectAtIndex, "@@:i"
+end
+
+class MockNSWindow < OSX::NSObject
+end
+
 class MockNSTableView < OSX::NSObject
   objc_method :selectedRow, "i@:"
 end
 
+class MockDocumentController < OSX::NSObject
+  objc_method :workPeriodAtIndex, "v@:i"
+end
+
 class MockProject < OSX::NSObject
+end
+
+class MockTask < OSX::NSObject
 end
 
 # We must define RubyCocoa objects for for certain mock objects

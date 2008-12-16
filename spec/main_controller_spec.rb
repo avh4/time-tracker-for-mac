@@ -62,4 +62,83 @@ describe OSX::MainController do
     mc.validateUserInterfaceItem(mockInterfaceItem).should == true
   end
   
+  it "should create a document controller" do
+    @mc = OSX::MainController.alloc.init
+    @mc.documentController.should_not be_nil
+  end
+  
+  describe "view controller functionality" do 
+    before(:each) do
+      @mc = OSX::MainController.alloc.init
+      @mockDocContr = MockDocumentController.new
+      @mockTVWorkPeriods = MockNSTableView.new
+      @mockMainWindow = MockNSWindow.new
+      @mc.documentController = @mockDocContr
+      @mc.workPeriodsTableView = @mockTVWorkPeriods
+      @mc.mainWindow = @mockMainWindow
+      
+      @mockTVWorkPeriods.stub!(:reloadData)
+      @mockTVWorkPeriods.stub!(:deselectAll)
+    end
+    
+    it "should ask the document controller for the work period when double-clicking" do
+      clickIndex = 3
+      @mockTVWorkPeriods.stub!(:selectedRow).and_return(clickIndex)
+      @mockDocContr.should_receive(:workPeriodAtIndex).with(clickIndex)
+      @mc.doubleClickWorkPeriod(nil)
+    end
+
+    it "should ask the document controller for the work period when closing the change dialog" do
+      clickIndex = 3
+      @mockTVWorkPeriods.stub!(:selectedRow).and_return(clickIndex)
+      @mockDocContr.should_receive(:workPeriodAtIndex).with(clickIndex)
+      @mc.clickedChangeWorkPeriod(nil)
+    end
+
+    it "should ask the document controller for the work period when deleting a work period" do
+      clickIndex = 3
+      @mockMainWindow.stub!(:firstResponder).and_return(@mockTVWorkPeriods)
+      @mockTVWorkPeriods.stub!(:selectedRow).and_return(clickIndex)
+      @mockDocContr.should_receive(:workPeriodAtIndex).with(clickIndex)
+      @mc.clickedDelete(nil)
+    end
+  end
+  
+  describe "document controller functionality" do
+    # this functionality is currently part of MainController, but it would
+    # make sense to move this into a new class that manages the selection
+    # state, similar to NSArrayController
+    before(:each) do
+      @dc = OSX::MainController.alloc.init
+      @mockDoc = MockDocument.new
+      @mockSelTask = MockTask.new
+      @filterStart = mock("filter start time")
+      @filterEnd = mock("filter end time")
+      @filterStart.stub!(:copy).and_return(@filterStart)
+      @filterEnd.stub!(:copy).and_return(@filterEnd)
+      @dc.document = @mockDoc
+      @dc.selectedTask = @mockSelTask
+      
+      @mockSelTask.stub!(:workPeriods)
+      @mockSelTask.stub!(:workPeriodsInRangeFrom_to)
+    end
+    
+    it "should return the work period at a given index" do
+      index = 8
+      mockArray = MockNSArray.new
+      @mockSelTask.should_receive(:workPeriods).and_return(mockArray)
+      mockArray.should_receive(:objectAtIndex).with(index)
+      @dc.workPeriodAtIndex(index)
+    end
+    
+    it "should return the work period at a given index with filters" do
+      index = 8
+      @dc.setFilterStartTime_endTime(@filterStart, @filterEnd)
+      mockArray = MockNSArray.new
+      @mockSelTask.should_receive(:workPeriodsInRangeFrom_to).and_return(mockArray)
+      mockArray.should_receive(:objectAtIndex).with(index)
+      @dc.workPeriodAtIndex(index)
+    end
+  end
+  
 end

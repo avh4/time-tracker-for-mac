@@ -36,24 +36,16 @@
 - (id) init
 {
 	document = [[TTDocument alloc] init];
-	_selProject = nil;
-	_selTask = nil;
-	_curTask = nil;
-	_curProject = nil;
-	_curWorkPeriod = nil;
-	timer = nil;
-	timeSinceSave = 0;
-	
-	filterStartTime = nil;
-	filterEndTime = nil;
-	
+  documentController = [self retain];
 	return self;
 }
 
 - (void)dealloc
 {
+  [mainWindow release];
 	[filterStartTime release];
 	[filterEndTime release];
+  [documentController release];
 	[super dealloc];
 }
 
@@ -293,11 +285,23 @@
 	[tvTasks registerForDraggedTypes:[NSArray arrayWithObjects:PBOARD_TYPE_TASK_ROWS, nil]];
 }
 
+- (TWorkPeriod *)workPeriodAtIndex:(unsigned)index
+{
+  assert(_selTask != nil);
+  if (filterStartTime == nil)
+	{
+		return [[_selTask workPeriods] objectAtIndex:index];
+	}
+	else
+	{
+		assert(filterEndTime != nil);
+		return [[_selTask workPeriodsInRangeFrom:filterStartTime to:filterEndTime] objectAtIndex:index];
+	}  
+}
+
 - (void)doubleClickWorkPeriod:(id)sender
 {
-	// assert _selProject != nil
-	// assert _selTask != nil
-	TWorkPeriod *wp = [[_selTask workPeriods] objectAtIndex: [tvWorkPeriods selectedRow]];
+  TWorkPeriod *wp = [documentController workPeriodAtIndex:[tvWorkPeriods selectedRow]];
 	[dtpEditWorkPeriodStartTime setDateValue: [wp startTime]];
 	[dtpEditWorkPeriodEndTime setDateValue: [wp endTime]];
 	[panelEditWorkPeriod makeKeyAndOrderFront: self];
@@ -308,7 +312,7 @@
 {
 	// assert _selProject != nil
 	// assert _selTask != nil
-	TWorkPeriod *wp = [[_selTask workPeriods] objectAtIndex: [tvWorkPeriods selectedRow]];
+	TWorkPeriod *wp = [documentController workPeriodAtIndex: [tvWorkPeriods selectedRow]];
 	[wp setStartTime: [dtpEditWorkPeriodStartTime dateValue]];
 	[wp setEndTime: [dtpEditWorkPeriodEndTime dateValue]];
 	[tvProjects reloadData];
@@ -486,17 +490,7 @@
 	}
 	
 	if (tableView == tvWorkPeriods) {
-		NSArray *wps;
-		if (filterStartTime == nil)
-		{
-			wps = [_selTask workPeriods];
-		}
-		else
-		{
-			assert(filterEndTime != nil);
-			wps = [_selTask workPeriodsInRangeFrom:filterStartTime to:filterEndTime];
-		}
-		TWorkPeriod *wp = [wps objectAtIndex:rowIndex];
+		TWorkPeriod *wp = [documentController workPeriodAtIndex:rowIndex];
 		
 		if ([[tableColumn identifier] isEqualToString:TABLE_COLUMN_DATE]) {
 			return [[wp startTime] 
@@ -633,12 +627,12 @@
 	if ([mainWindow firstResponder] == tvWorkPeriods) {
 		// assert _selTask != nil
 		// assert _selProject != nil
-		TWorkPeriod *_selWorkPeriod = [[_selTask workPeriods] objectAtIndex:[tvWorkPeriods selectedRow]];
+		TWorkPeriod *_selWorkPeriod = [documentController workPeriodAtIndex:[tvWorkPeriods selectedRow]];
 		// assert _selWorkPeriod != nil
 		if (_selWorkPeriod == _curWorkPeriod) {
 			[self stopTimer];
 		}
-		[[_selTask workPeriods] removeObjectAtIndex: [tvWorkPeriods selectedRow]];
+    [[_selTask workPeriods] removeObject:_selWorkPeriod];
 		[tvWorkPeriods deselectAll: self];
 		[tvWorkPeriods reloadData];
 		[tvTasks reloadData];
@@ -805,6 +799,12 @@
 
 #pragma mark setters
 
+- (void)setMainWindow:(NSWindow *)w
+{
+  [mainWindow release];
+  mainWindow = [w retain];
+}
+
 - (void)setProjectsTableView:(NSTableView *)tv
 {
 	[tvProjects release];
@@ -815,6 +815,12 @@
 {
 	[tvTasks release];
 	tvTasks = [tv retain];
+}
+
+- (void)setWorkPeriodsTableView:(NSTableView *)tv
+{
+  [tvWorkPeriods release];
+  tvWorkPeriods = [tv retain];
 }
 
 - (TTDocument *)document
@@ -831,6 +837,20 @@
 	[tvWorkPeriods reloadData];
 }
 
+- (id)documentController
+{
+  return documentController;
+}
+
+- (void)setDocumentController:(id)aDocumentController
+{
+  if (documentController != aDocumentController)
+  {
+    [documentController release];
+    documentController = [aDocumentController retain];    
+  }
+}
+
 - (TProject *)selectedProject
 {
 	return _selProject;
@@ -842,12 +862,24 @@
 	_selProject = [aProject retain];
 }
 
+- (void)setSelectedTask:(TTask *)aTask
+{
+  [_selTask release];
+  _selTask = [aTask retain];
+}
+
 - (void)setFilterStartTime:(NSDate *)startTime endTime:(NSDate *)endTime
 {
-	[filterStartTime release];
-	[filterEndTime release];
-	filterStartTime = [startTime copy];
-	filterEndTime = [endTime copy];
+  if (filterStartTime != startTime)
+  {
+    [filterStartTime release];
+    filterStartTime = [startTime retain];    
+  }
+  if (filterEndTime != endTime)
+  {
+    [filterEndTime release];
+    filterEndTime = [endTime retain];
+  }
 	[tvProjects reloadData];
 	[tvTasks reloadData];
 	[tvWorkPeriods reloadData];

@@ -39,6 +39,7 @@
 	NSToolbarItem *startstopToolbarItem;
 	
 	TTDocument *document;
+  id documentController;
 	NSMutableDictionary *_projects_lastTask;
 	TProject *_selProject;
 	TTask *_selTask;
@@ -82,12 +83,17 @@
 
 - (BOOL) validateUserInterfaceItem:(id)anItem;
 
+- (void)setMainWindow:(NSWindow *)w;
 - (void)setProjectsTableView:(NSTableView *)tv;
 - (void)setTasksTableView:(NSTableView *)tv;
+- (void)setWorkPeriodsTableView:(NSTableView *)tv;
 - (TTDocument *)document;
 - (void)setDocument:(TTDocument *)aDocument;
+- (id)documentController;
+- (void)setDocumentController:(id)aDocumentController;
 - (TProject *)selectedProject;
 - (void)setSelectedProject:(TProject *)aProject;
+- (void)setSelectedTask:(TTask *)aTask;
 
 - (void)clearFilter;
 - (void)setFilterStartTime:(NSDate *)startTime endTime:(NSDate *)endTime;
