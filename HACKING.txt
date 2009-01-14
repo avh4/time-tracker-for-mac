@@ -4,9 +4,6 @@ This file contains information for developing and testing Time Tracker.
 
 1. Make sure the version number is updated:
     1a. Update CURRENT_PROJECT_VERSION for "All Configurations" in the Project Info.
-    1b. Update the "Bundle Version" in Info.plist.
-    1c. Update "CFBundleVersion" in InfoPlist.strings.
-    1d. Change "Bundle Identifier" in Info.plist back to "com.slooz.timetracker"
 
 2. Update the ChangeLog.txt.
 
@@ -15,10 +12,7 @@ This file contains information for developing and testing Time Tracker.
     3b. Run "rake features" and verify that there are no failures or pending steps.
 
 4. Build the Time Tracker.zip release file:
-    4a. Open the Xcode project.
-    4b. Change the "Active Configuration" to "Release".
-    4c. Change the "Active Target" to "Release Package".
-    4d. Build the target.  This will create "build/Release/Time Tracker-$(CURRENT_PROJECT_VERSION).zip".
+    4a. Run `rake build_release`.  This will create "build/Release/Time Tracker-$(CURRENT_PROJECT_VERSION).zip".
 
 5. If Sparkle or the release file configuration has been changed, test the auto-update system:
     5a. Install the previous version of Time Tracker.
