@@ -1,0 +1,64 @@
+---
+- version: 1.2.6
+  date: nil
+  changes:
+  - The start/stop buttons are not active even if there are not projects or tasks.
+
+- version: 1.2.5
+  date: 2008-09-30
+  changes:
+  - Added basic filtering by day, week and month.
+
+- version: 1.2.4
+  date: 2008-08-14
+  changes:
+  - Fixed a bug where projects could not be created the first time Time Tracker was run on a computer.
+  - Projects and tasks can now be reordered by dragging and dropping them.
+  - Added "Export CSV..." option to export Time Tracker data into Excel.  Contributed by Rainer Burgstaller.
+
+- version: 1.2.3
+  date: 2008-07-06
+  changes:
+  - Fixed the problem where project and task names could not be edited when the timer was running.  ([http://tt-jira.avh4.net/browse/TT-2 TT-2])
+  - You can now print the entire Time Tracker window (all three panes at once) using the new "Print Window" function, as requested by Rich Wojtas.  ([http://tt-jira.avh4.net/browse/TT-24 TT-24])
+  - You can now resize the Projects/Tasks tables relative to each other.  ([http://tt-jira.avh4.net/browse/TT-23 TT-23])
+  - Upgraded [http://sparkle.andymatuschak.org Sparkle] to version 1.5b4.  Thanks to Andy Matuschak for maintaining and supporting Sparkle!  ([http://tt-jira.avh4.net/browse/TT-19 TT-19])
+  - '(refactoring) removed updateTotalTime from TTask and TProject.'
+
+- version: 1.2.2
+  date: 2008-07-03
+  changes:
+  - Added auto-updating support via appcasts using Sparkle 1.5b2.  < http://sparkle.andymatuschak.org/ >
+
+- version: 1.2.1
+  date: 2007-01-22
+  notes: Packaged by Aaron VonderHaar <gruen0aermel@gmail.com>
+  changes:
+  - Fixed bug 19: Re-enable basic print functionality that was present in version 1.1.  Complete printing support will be added in version 1.3.
+
+- version: 1.2
+  date: 2007-01-21
+  notes: Packaged by Aaron VonderHaar <gruen0aermel@gmail.com>
+  changes:
+  - Fixed bug 9: Fixed occasional crashes when deleting tasks.
+  - Fixed bug 10: Added menu items and keyboard shortcuts for starting/stopping the timer and creating new projects and tasks.
+
+- version: 1.1.002
+  date: 2007-01-15
+  notes: NOT OFFICIALLY RELEASED, due to bug 9.  Packaged by Aaron VonderHaar <gruen0aermel@gmail.com>
+  changes:
+  - Fixed bug 5: When adding a new project or task, the new entry is immediately selected for renaming.
+  - Fixed bug 6: When selecting a project, the task that was previoudly selected is reselected.
+  - Fixed bug 2: It is no longer possible to add work periods that are not associated with a task or project.
+
+- version: 1.1
+  date: 2007-01-10
+  notes: 'Packaged by Aaron VonderHaar <gruen0aermel@gmail.com>'
+  changes:
+  - Data is now saved to disk every five minutes when the timer is running.
+  - Data is now saved when the timer is stopped.
+  - Project settings are changed to produce a Universal Binary.
+  - Changed the nib file for more efficient use of space.
+  - Made window resizable.
+  - Window size and position is saved in the system defaults.
+  - Ensures that the display is refreshed when the main window is first loaded (this was not the case when the window size/position was restored).
