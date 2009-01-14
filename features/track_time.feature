@@ -1,4 +1,4 @@
-Story: Track time for multiple projects
+Feature: Track time for multiple projects
 	As a consultant
 	I want to keep track of the time spent on five projects
 	So that I can bill my clients the correct amount
