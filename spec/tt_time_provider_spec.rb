@@ -12,6 +12,7 @@ describe OSX::TTTimeProvider do
     @yesterday = @now.advance(:days => -1)
     @tomorrow = @now.advance(:days => 1)
     @next_month = @now.advance(:months => 1)
+    @last_month = @now.advance(:months => -1)
   end
     
   it "should return a valid today range" do
@@ -100,14 +101,21 @@ describe OSX::TTTimeProvider do
     provider = OSX::TTTimeProvider.alloc.init
     rangeStart = rbTimeForNSDate(provider.lastMonthStartTime)
     rangeEnd = rbTimeForNSDate(provider.lastMonthEndTime)
-
-    check rangeStart.strftime("%Y %H:%M:%S").should == @now.strftime("%Y 00:00:00")
-    check rangeStart.month.should == @now.month - 1
-    check rangeStart.day.should == 1
     
-    check rangeEnd.strftime("%Y %H:%M:%S").should == @now.strftime("%Y 00:00:00")
+    check rangeStart.year.should == @last_month.year
+    check rangeStart.month.should == @last_month.month
+    check rangeStart.day.should == 1
+    check rangeStart.hour.should == 0
+    check rangeStart.min.should == 0
+    check rangeStart.sec.should == 0
+    
+
+    check rangeEnd.year.should == @now.year
     check rangeEnd.month.should == @now.month
     check rangeEnd.day.should == 1
+    check rangeEnd.hour.should == 0
+    check rangeEnd.min.should == 0
+    check rangeEnd.sec.should == 0
   end
   
 end
