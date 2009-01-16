@@ -5,3 +5,4 @@ build
 *.xcodeproj/*.mode2v3
 *.xcodeproj/*.pbxuser
 *.xcodeproj/*.perspectivev3
+ChangeLog.txt

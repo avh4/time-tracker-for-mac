@@ -1,6 +1,6 @@
 ---
 - version: 1.2.6
-  date: nil
+  date:
   changes:
   - The start/stop buttons are not active even if there are not projects or tasks.
 
@@ -34,22 +34,22 @@
   date: 2007-01-22
   notes: Packaged by Aaron VonderHaar <gruen0aermel@gmail.com>
   changes:
-  - Fixed bug 19: Re-enable basic print functionality that was present in version 1.1.  Complete printing support will be added in version 1.3.
+  - "Fixed bug 19: Re-enable basic print functionality that was present in version 1.1.  Complete printing support will be added in version 1.3."
 
 - version: 1.2
   date: 2007-01-21
   notes: Packaged by Aaron VonderHaar <gruen0aermel@gmail.com>
   changes:
-  - Fixed bug 9: Fixed occasional crashes when deleting tasks.
-  - Fixed bug 10: Added menu items and keyboard shortcuts for starting/stopping the timer and creating new projects and tasks.
+  - "Fixed bug 9: Fixed occasional crashes when deleting tasks."
+  - "Fixed bug 10: Added menu items and keyboard shortcuts for starting/stopping the timer and creating new projects and tasks."
 
 - version: 1.1.002
   date: 2007-01-15
   notes: NOT OFFICIALLY RELEASED, due to bug 9.  Packaged by Aaron VonderHaar <gruen0aermel@gmail.com>
   changes:
-  - Fixed bug 5: When adding a new project or task, the new entry is immediately selected for renaming.
-  - Fixed bug 6: When selecting a project, the task that was previoudly selected is reselected.
-  - Fixed bug 2: It is no longer possible to add work periods that are not associated with a task or project.
+  - "Fixed bug 5: When adding a new project or task, the new entry is immediately selected for renaming."
+  - "Fixed bug 6: When selecting a project, the task that was previoudly selected is reselected."
+  - "Fixed bug 2: It is no longer possible to add work periods that are not associated with a task or project."
 
 - version: 1.1
   date: 2007-01-10
