@@ -89,3 +89,39 @@ yaml.each do |release|
     }
   end
 end
+
+task :appcast => "appcast/timetracker-stable.xml"
+task :clean do
+  sh "rm -vf appcast/timetracker-stable.xml"
+end
+file "appcast/timetracker-stable.xml" => ["ChangeLog.yml", "tasks/build_release.rake"] do |t|
+  puts "Generating '#{t.name}'"
+  yaml = YAML.load_file('ChangeLog.yml')
+  file = File.open(t.name, 'w')
+  xml = Builder::XmlMarkup.new(:target => file, :indent => 2)
+
+  xml.instruct!
+  xml.rss(:version => "2.0", 'xmlns:dc' => "http://purl.org/dc/elements/1.1/", 'xmlns:sparkle' => "http://www.andymatuschak.org/xml-namespaces/sparkle") {
+    xml.channel {
+      xml.title("Time Tracker Appcast")
+      xml.link("http://www.avh4.net/appcast/timetracker-stable.xml")
+      xml.description("Most recent changes with links to updates.")
+      xml.language("en")
+      
+      yaml.each do |release|
+        next if release['date'] == nil
+        version = release['version']
+        filetype = release['filetype'] || "zip"
+        xml.item {
+          xml.title("Time Tracker #{version}")
+          xml.description("http://time-tracker-mac.googlecode.com/files/timetracker-#{version}.html")
+          xml.sparkle:releaseNotesLink, "http://time-tracker-mac.googlecode.com/files/timetracker-#{version}.html"
+          xml.pubDate(release['date'].strftime("%a, %d %b %Y %H:%M:%S -0800"))
+          xml.enclosure('sparkle:md5Sum' => "e126ba7cd81fd86c17b58af9ea132de2", :url => "http://time-tracker-mac.googlecode.com/files/Time Tracker-#{version}.#{filetype}", :length => release['filesize'], :type => "application/octet-stream", 'sparkle:version' => release['version'])
+        }    		
+      end
+    }
+  }
+  
+end
+
