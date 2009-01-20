@@ -10,8 +10,15 @@
 
 
 @interface TTTimeProvider : NSObject {
+  
+  NSDate *masterNow;
 
 }
+
+/* setNow can be used in testing to set a pre-determined now value.  setNow:nil to clear it. */
+- (void)setNow:(NSDate *)aNow;
+/* now will return the current time, or the last value passed to setNow if setNow has been called. */
+- (NSDate *)now;
 
 - (NSDate *)todayStartTime;
 - (NSDate *)todayEndTime;

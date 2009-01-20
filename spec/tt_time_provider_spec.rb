@@ -17,22 +17,9 @@ describe OSX::TTTimeProvider do
     
   it "should return a valid today range" do
     provider = OSX::TTTimeProvider.alloc.init
-    todayStart = rbTimeForNSDate(provider.todayStartTime)
-    todayEnd = rbTimeForNSDate(provider.todayEndTime)
-    
-    check todayStart.year.should == @now.year
-    check todayStart.month.should == @now.month
-    check todayStart.day.should == @now.day
-    check todayStart.hour.should == 0
-    check todayStart.min.should == 0
-    check todayStart.sec.should == 0
-    
-    check todayEnd.year.should == @tomorrow.year
-    check todayEnd.month.should == @tomorrow.month
-    check todayEnd.day.should == @tomorrow.day
-    check todayEnd.hour.should == 0
-    check todayEnd.min.should == 0
-    check todayEnd.sec.should == 0
+    provider.setNow( Time.parse "Tue Jan 19 12:10:03 PST 2009" )
+    check rbTimeForNSDate(provider.todayStartTime).should == Time.parse("Tue Jan 19 00:00:00 PST 2009")
+    check rbTimeForNSDate(provider.todayEndTime).should ==   Time.parse("Tue Jan 20 00:00:00 PST 2009")    
   end
   
   it "should return a valid yesterday range" do

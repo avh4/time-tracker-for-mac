@@ -11,9 +11,33 @@
 
 @implementation TTTimeProvider
 
+- (void)setNow:(NSDate *)aNow
+{
+  [masterNow release];
+  masterNow = [aNow retain];
+}
+
+- (NSDate *)now
+{
+  if (masterNow != nil)
+  {
+    return masterNow;
+  }
+  else
+  {
+    return [NSDate date];
+  }
+}
+
+- (void)deallc
+{
+  [masterNow release];
+  [super dealloc];
+}
+
 - (NSDate *)todayStartTime
 {
-	NSDate *now = [NSDate date];
+  NSDate *now = [self now];
 	NSCalendar *gregorian = [NSCalendar currentCalendar];
 	NSDateComponents *todayStartComps = [gregorian 
 		components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit
@@ -24,7 +48,7 @@
 
 - (NSDate *)todayEndTime
 {
-	NSDate *now = [NSDate date];
+  NSDate *now = [self now];
 	NSCalendar *gregorian = [NSCalendar currentCalendar];
 	NSDateComponents *todayEndComps = [gregorian 
 		components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit
