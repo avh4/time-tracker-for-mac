@@ -71,6 +71,7 @@
 - (IBAction)filterToYesterday:(id)sender;
 - (IBAction)filterToThisWeek:(id)sender;
 - (IBAction)filterToLastWeek:(id)sender;
+- (IBAction)filterToWeekBeforeLast:(id)sender;
 - (IBAction)filterToThisMonth:(id)sender;
 - (IBAction)filterToLastMonth:(id)sender;
 

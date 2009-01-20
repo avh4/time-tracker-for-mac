@@ -1016,6 +1016,12 @@
 	[self setFilterStartTime:[provider lastWeekStartTime] endTime:[provider lastWeekEndTime]];
 }
 
+- (IBAction)filterToWeekBeforeLast:(id)sender
+{
+  [documentController setFilterStartTime:[timeProvider weekBeforeLastStartTime]
+	  endTime:[timeProvider weekBeforeLastEndTime]];
+}
+
 - (IBAction)filterToThisMonth:(id)sender
 {
 	TTTimeProvider *provider = [[[TTTimeProvider alloc] init] autorelease];

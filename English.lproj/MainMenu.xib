@@ -2,13 +2,13 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.02">
 	<data>
 		<int key="IBDocument.SystemTarget">1050</int>
-		<string key="IBDocument.SystemVersion">9E17</string>
-		<string key="IBDocument.InterfaceBuilderVersion">670</string>
-		<string key="IBDocument.AppKitVersion">949.33</string>
-		<string key="IBDocument.HIToolboxVersion">352.00</string>
+		<string key="IBDocument.SystemVersion">9G55</string>
+		<string key="IBDocument.InterfaceBuilderVersion">672</string>
+		<string key="IBDocument.AppKitVersion">949.43</string>
+		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="21"/>
+			<integer value="509"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -615,11 +615,7 @@
 							<object class="NSPopUpButtonCell" key="NSCell" id="19589989">
 								<int key="NSCellFlags">-2076049856</int>
 								<int key="NSCellFlags2">2048</int>
-								<object class="NSFont" key="NSSupport">
-									<string key="NSName">LucidaGrande</string>
-									<double key="NSSize">1.200000e+01</double>
-									<int key="NSfFlags">4883</int>
-								</object>
+								<reference key="NSSupport" ref="1040561485"/>
 								<reference key="NSControlView" ref="294379500"/>
 								<int key="NSButtonFlags">-2038284033</int>
 								<int key="NSButtonFlags2">164</int>
@@ -709,6 +705,16 @@
 										<object class="NSMenuItem" id="220642321">
 											<reference key="NSMenu" ref="1052524666"/>
 											<string key="NSTitle">Last week</string>
+											<string key="NSKeyEquiv"/>
+											<int key="NSMnemonicLoc">2147483647</int>
+											<reference key="NSOnImage" ref="983180021"/>
+											<reference key="NSMixedImage" ref="1064789167"/>
+											<string key="NSAction">_popUpItemAction:</string>
+											<reference key="NSTarget" ref="19589989"/>
+										</object>
+										<object class="NSMenuItem" id="412811549">
+											<reference key="NSMenu" ref="1052524666"/>
+											<string key="NSTitle">Week before last</string>
 											<string key="NSKeyEquiv"/>
 											<int key="NSMnemonicLoc">2147483647</int>
 											<reference key="NSOnImage" ref="983180021"/>
@@ -1960,6 +1966,14 @@
 					</object>
 					<int key="connectionID">535</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">filterToWeekBeforeLast:</string>
+						<reference key="source" ref="273646435"/>
+						<reference key="destination" ref="412811549"/>
+					</object>
+					<int key="connectionID">537</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -2838,6 +2852,7 @@
 							<reference ref="220642321"/>
 							<reference ref="1029086810"/>
 							<reference ref="816651060"/>
+							<reference ref="412811549"/>
 						</object>
 						<reference key="parent" ref="19589989"/>
 					</object>
@@ -2903,6 +2918,11 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">532</int>
 						<reference key="object" ref="816651060"/>
+						<reference key="parent" ref="1052524666"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">536</int>
+						<reference key="object" ref="412811549"/>
 						<reference key="parent" ref="1052524666"/>
 					</object>
 				</object>
@@ -3129,6 +3149,7 @@
 					<string>530.IBPluginDependency</string>
 					<string>531.IBPluginDependency</string>
 					<string>532.IBPluginDependency</string>
+					<string>536.IBPluginDependency</string>
 					<string>56.IBPluginDependency</string>
 					<string>56.ImportedFromIB2</string>
 					<string>57.IBPluginDependency</string>
@@ -3198,9 +3219,9 @@
 					<reference ref="5"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="5"/>
-					<string>{{35, 271}, {627, 391}}</string>
+					<string>{{143, 318}, {627, 391}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{35, 271}, {627, 391}}</string>
+					<string>{{143, 318}, {627, 391}}</string>
 					<reference ref="5"/>
 					<reference ref="5"/>
 					<reference ref="5"/>
@@ -3344,7 +3365,8 @@
 					<reference ref="5"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{253, 512}, {180, 173}}</string>
+					<string>{{226, 513}, {182, 193}}</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3388,7 +3410,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">535</int>
+			<int key="maxID">537</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3422,10 +3444,12 @@
 							<string>filterToThisMonth:</string>
 							<string>filterToThisWeek:</string>
 							<string>filterToToday:</string>
+							<string>filterToWeekBeforeLast:</string>
 							<string>filterToYesterday:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -3447,6 +3471,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>documentController</string>
 							<string>dtpEditWorkPeriodEndTime</string>
 							<string>dtpEditWorkPeriodStartTime</string>
 							<string>mainWindow</string>
@@ -3459,6 +3484,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>NSDatePicker</string>
 							<string>NSDatePicker</string>
 							<string>NSWindow</string>

@@ -175,6 +175,13 @@ describe OSX::MainController do
       @mc.filterToYesterday(nil)
     end
     
+    it "should filter to 'week before last'" do
+      @mockTimeProvider.stub!(:weekBeforeLastStartTime).and_return(@mockStart)
+      @mockTimeProvider.stub!(:weekBeforeLastEndTime).and_return(@mockEnd)
+      @mockDocCont.should_receive(:setFilterStartTime_endTime).with(@mockStart, @mockEnd)
+      @mc.filterToWeekBeforeLast(nil)
+    end
+    
   end
   
 end
