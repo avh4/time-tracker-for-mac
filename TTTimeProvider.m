@@ -60,7 +60,7 @@
 
 - (NSDate *)yesterdayStartTime
 {
-	NSDate *now = [NSDate date];
+  NSDate *now = [self now];
 	NSCalendar *gregorian = [NSCalendar currentCalendar];
 	NSDateComponents *rangeStartComps = [gregorian 
 		components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit
@@ -72,7 +72,7 @@
 
 - (NSDate *)yesterdayEndTime
 {
-	NSDate *now = [NSDate date];
+  NSDate *now = [self now];
 	NSCalendar *gregorian = [NSCalendar currentCalendar];
 	NSDateComponents *rangeEndComps = [gregorian 
 		components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit
@@ -83,7 +83,7 @@
 
 - (NSDate *)thisWeekStartTime
 {
-	NSDate *now = [NSDate date];
+  NSDate *now = [self now];
 	NSCalendar *gregorian = [NSCalendar currentCalendar];
 	NSDateComponents *rangeStartComps = [gregorian 
 		components:NSYearCalendarUnit|NSWeekCalendarUnit|NSWeekdayCalendarUnit
@@ -95,7 +95,7 @@
 
 - (NSDate *)thisWeekEndTime
 {
-	NSDate *now = [NSDate date];
+  NSDate *now = [self now];
 	NSCalendar *gregorian = [NSCalendar currentCalendar];
 	NSDateComponents *rangeEndComps = [gregorian 
 		components:NSYearCalendarUnit|NSWeekCalendarUnit|NSWeekdayCalendarUnit
@@ -108,7 +108,7 @@
 
 - (NSDate *)lastWeekStartTime
 {
-	NSDate *now = [NSDate date];
+  NSDate *now = [self now];
 	NSCalendar *gregorian = [NSCalendar currentCalendar];
 	NSDateComponents *rangeStartComps = [gregorian 
 		components:NSYearCalendarUnit|NSWeekCalendarUnit|NSWeekdayCalendarUnit
@@ -121,7 +121,7 @@
 
 - (NSDate *)lastWeekEndTime
 {
-	NSDate *now = [NSDate date];
+  NSDate *now = [self now];
 	NSCalendar *gregorian = [NSCalendar currentCalendar];
 	NSDateComponents *rangeEndComps = [gregorian 
 		components:NSYearCalendarUnit|NSWeekCalendarUnit|NSWeekdayCalendarUnit
@@ -133,7 +133,7 @@
 
 - (NSDate *)thisMonthStartTime
 {
-	NSDate *now = [NSDate date];
+  NSDate *now = [self now];
 	NSCalendar *gregorian = [NSCalendar currentCalendar];
 	NSDateComponents *rangeStartComps = [gregorian 
 		components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit
@@ -145,7 +145,7 @@
 
 - (NSDate *)thisMonthEndTime
 {
-	NSDate *now = [NSDate date];
+  NSDate *now = [self now];
 	NSCalendar *gregorian = [NSCalendar currentCalendar];
 	NSDateComponents *rangeEndComps = [gregorian 
 		components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit
@@ -158,7 +158,7 @@
 
 - (NSDate *)lastMonthStartTime
 {
-	NSDate *now = [NSDate date];
+  NSDate *now = [self now];
 	NSCalendar *gregorian = [NSCalendar currentCalendar];
 	NSDateComponents *rangeStartComps = [gregorian 
 		components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit
@@ -171,7 +171,7 @@
 
 - (NSDate *)lastMonthEndTime
 {
-	NSDate *now = [NSDate date];
+  NSDate *now = [self now];
 	NSCalendar *gregorian = [NSCalendar currentCalendar];
 	NSDateComponents *rangeEndComps = [gregorian 
 		components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit
