@@ -5,7 +5,6 @@
 #import "TProject.h"
 #import "TimeIntervalFormatter.h"
 #import "TWorkPeriod.h"
-#import "TTTimeProvider.h"
 
 @interface MainController (PrivateMethods)
 - (void)initializeTableViews;
@@ -37,6 +36,7 @@
 {
 	document = [[TTDocument alloc] init];
   documentController = [self retain];
+  timeProvider = [[TTTimeProvider alloc] init];
 	return self;
 }
 
@@ -46,6 +46,7 @@
 	[filterStartTime release];
 	[filterEndTime release];
   [documentController release];
+  [timeProvider release];
 	[super dealloc];
 }
 
@@ -851,6 +852,12 @@
   }
 }
 
+- (void)setTimeProvider:(TTTimeProvider *)tp
+{
+  [timeProvider release];
+  timeProvider = [tp retain];
+}
+
 - (TProject *)selectedProject
 {
 	return _selProject;
@@ -982,7 +989,7 @@
 
 - (IBAction)filterToAll:(id)sender
 {
-	[self clearFilter];
+	[documentController clearFilter];
 }
 
 - (IBAction)filterToToday:(id)sender

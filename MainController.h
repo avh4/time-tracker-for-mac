@@ -5,6 +5,7 @@
 #import "TProject.h"
 #import "TTask.h"
 #import "TWorkPeriod.h"
+#import "TTTimeProvider.h"
 
 @interface MainController : NSObject
 {
@@ -40,6 +41,7 @@
 	
 	TTDocument *document;
   id documentController;
+  TTTimeProvider *timeProvider;
 	NSMutableDictionary *_projects_lastTask;
 	TProject *_selProject;
 	TTask *_selTask;
@@ -91,6 +93,7 @@
 - (void)setDocument:(TTDocument *)aDocument;
 - (id)documentController;
 - (void)setDocumentController:(id)aDocumentController;
+- (void)setTimeProvider:(TTTimeProvider *)tp;
 - (TProject *)selectedProject;
 - (void)setSelectedProject:(TProject *)aProject;
 - (void)setSelectedTask:(TTask *)aTask;

@@ -141,4 +141,26 @@ describe OSX::MainController do
     end
   end
   
+  describe "filter actions" do
+    
+    before(:each) do
+      @mc = OSX::MainController.alloc.init
+      @mockDocCont = mock("Document controller")
+      @mockTimeProvider = mock("TTTimeProvider")
+      @mc.documentController = @mockDocCont
+      @mc.timeProvider = @mockTimeProvider
+      
+      @mockDocCont.stub!(:setFilterStartTime_endTime)
+      @mockDocCont.stub!(:clearFilter)
+      @mockStartTime = mock("start time")
+      @mockEndTime = mock("end time")
+    end
+    
+    it "should clear the filter" do
+      @mockDocCont.should_receive(:clearFilter)
+      @mc.filterToAll(nil)
+    end
+    
+  end
+  
 end
