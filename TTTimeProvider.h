@@ -32,6 +32,9 @@
 - (NSDate *)lastWeekStartTime;
 - (NSDate *)lastWeekEndTime;
 
+- (NSDate *)weekBeforeLastStartTime;
+- (NSDate *)weekBeforeLastEndTime;
+
 - (NSDate *)thisMonthStartTime;
 - (NSDate *)thisMonthEndTime;
 

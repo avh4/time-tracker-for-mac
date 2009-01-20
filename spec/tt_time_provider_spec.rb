@@ -35,6 +35,13 @@ describe OSX::TTTimeProvider do
     check rbTimeForNSDate(provider.lastWeekEndTime).should ==   Time.parse("Sun Jan 11 00:00:00 PST 2009")
   end
   
+  it "should return a valid 'week before last' range" do
+    provider = OSX::TTTimeProvider.alloc.init
+    provider.setNow( Time.parse("Mon Jan 12 12:10:03 PST 2009") )
+    check rbTimeForNSDate(provider.weekBeforeLastStartTime).should == Time.parse("Sun Dec 28 00:00:00 PST 2008")
+    check rbTimeForNSDate(provider.weekBeforeLastEndTime).should ==   Time.parse("Sun Jan 4 00:00:00 PST 2009")
+  end
+
   it "should return a valid this month range" do
     provider = OSX::TTTimeProvider.alloc.init
     provider.setNow( Time.parse("Fri Dec 12 12:10:03 PST 2008") )
