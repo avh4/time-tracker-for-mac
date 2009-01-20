@@ -15,6 +15,7 @@ end
 
 class MockDocumentController < OSX::NSObject
   objc_method :workPeriodAtIndex, "v@:i"
+  objc_method :setFilterStartTime_endTime, "v@:@@"
 end
 
 class MockProject < OSX::NSObject

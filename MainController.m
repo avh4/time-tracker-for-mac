@@ -994,14 +994,14 @@
 
 - (IBAction)filterToToday:(id)sender
 {
-	TTTimeProvider *provider = [[[TTTimeProvider alloc] init] autorelease];
-	[self setFilterStartTime:[provider todayStartTime] endTime:[provider todayEndTime]];
+	[documentController setFilterStartTime:[timeProvider todayStartTime]
+	  endTime:[timeProvider todayEndTime]];
 }
 
 - (IBAction)filterToYesterday:(id)sender
 {
-	TTTimeProvider *provider = [[[TTTimeProvider alloc] init] autorelease];
-	[self setFilterStartTime:[provider yesterdayStartTime] endTime:[provider yesterdayEndTime]];
+	[documentController setFilterStartTime:[timeProvider yesterdayStartTime]
+	  endTime:[timeProvider yesterdayEndTime]];
 }
 
 - (IBAction)filterToThisWeek:(id)sender

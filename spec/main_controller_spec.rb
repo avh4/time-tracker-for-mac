@@ -145,20 +145,34 @@ describe OSX::MainController do
     
     before(:each) do
       @mc = OSX::MainController.alloc.init
-      @mockDocCont = mock("Document controller")
+      @mockDocCont = MockDocumentController.new
       @mockTimeProvider = mock("TTTimeProvider")
       @mc.documentController = @mockDocCont
       @mc.timeProvider = @mockTimeProvider
       
       @mockDocCont.stub!(:setFilterStartTime_endTime)
       @mockDocCont.stub!(:clearFilter)
-      @mockStartTime = mock("start time")
-      @mockEndTime = mock("end time")
+      @mockStart = mock("start time")
+      @mockEnd = mock("end time")
     end
     
     it "should clear the filter" do
       @mockDocCont.should_receive(:clearFilter)
       @mc.filterToAll(nil)
+    end
+    
+    it "should filter to today" do
+      @mockTimeProvider.stub!(:todayStartTime).and_return(@mockStart)
+      @mockTimeProvider.stub!(:todayEndTime).and_return(@mockEnd)
+      @mockDocCont.should_receive(:setFilterStartTime_endTime).with(@mockStart, @mockEnd)
+      @mc.filterToToday(nil)
+    end
+    
+    it "should filter to yesterday" do
+      @mockTimeProvider.stub!(:yesterdayStartTime).and_return(@mockStart)
+      @mockTimeProvider.stub!(:yesterdayEndTime).and_return(@mockEnd)
+      @mockDocCont.should_receive(:setFilterStartTime_endTime).with(@mockStart, @mockEnd)
+      @mc.filterToYesterday(nil)
     end
     
   end
