@@ -175,11 +175,39 @@ describe OSX::MainController do
       @mc.filterToYesterday(nil)
     end
     
+    it "should filter to this week" do
+      @mockTimeProvider.stub!(:thisWeekStartTime).and_return(@mockStart)
+      @mockTimeProvider.stub!(:thisWeekEndTime).and_return(@mockEnd)
+      @mockDocCont.should_receive(:setFilterStartTime_endTime).with(@mockStart, @mockEnd)
+      @mc.filterToThisWeek(nil)
+    end
+
+    it "should filter to last week" do
+      @mockTimeProvider.stub!(:lastWeekStartTime).and_return(@mockStart)
+      @mockTimeProvider.stub!(:lastWeekEndTime).and_return(@mockEnd)
+      @mockDocCont.should_receive(:setFilterStartTime_endTime).with(@mockStart, @mockEnd)
+      @mc.filterToLastWeek(nil)
+    end
+
     it "should filter to 'week before last'" do
       @mockTimeProvider.stub!(:weekBeforeLastStartTime).and_return(@mockStart)
       @mockTimeProvider.stub!(:weekBeforeLastEndTime).and_return(@mockEnd)
       @mockDocCont.should_receive(:setFilterStartTime_endTime).with(@mockStart, @mockEnd)
       @mc.filterToWeekBeforeLast(nil)
+    end
+
+    it "should filter to this month" do
+      @mockTimeProvider.stub!(:thisMonthStartTime).and_return(@mockStart)
+      @mockTimeProvider.stub!(:thisMonthEndTime).and_return(@mockEnd)
+      @mockDocCont.should_receive(:setFilterStartTime_endTime).with(@mockStart, @mockEnd)
+      @mc.filterToThisMonth(nil)
+    end
+
+    it "should filter to last month" do
+      @mockTimeProvider.stub!(:lastMonthStartTime).and_return(@mockStart)
+      @mockTimeProvider.stub!(:lastMonthEndTime).and_return(@mockEnd)
+      @mockDocCont.should_receive(:setFilterStartTime_endTime).with(@mockStart, @mockEnd)
+      @mc.filterToLastMonth(nil)
     end
     
   end

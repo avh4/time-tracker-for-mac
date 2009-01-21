@@ -1006,14 +1006,14 @@
 
 - (IBAction)filterToThisWeek:(id)sender
 {
-	TTTimeProvider *provider = [[[TTTimeProvider alloc] init] autorelease];
-	[self setFilterStartTime:[provider thisWeekStartTime] endTime:[provider thisWeekEndTime]];
+	[documentController setFilterStartTime:[timeProvider thisWeekStartTime]
+	  endTime:[timeProvider thisWeekEndTime]];
 }
 
 - (IBAction)filterToLastWeek:(id)sender
 {
-	TTTimeProvider *provider = [[[TTTimeProvider alloc] init] autorelease];
-	[self setFilterStartTime:[provider lastWeekStartTime] endTime:[provider lastWeekEndTime]];
+	[documentController setFilterStartTime:[timeProvider lastWeekStartTime]
+	  endTime:[timeProvider lastWeekEndTime]];
 }
 
 - (IBAction)filterToWeekBeforeLast:(id)sender
@@ -1024,14 +1024,14 @@
 
 - (IBAction)filterToThisMonth:(id)sender
 {
-	TTTimeProvider *provider = [[[TTTimeProvider alloc] init] autorelease];
-	[self setFilterStartTime:[provider thisMonthStartTime] endTime:[provider thisMonthEndTime]];
+	[documentController setFilterStartTime:[timeProvider thisMonthStartTime]
+	  endTime:[timeProvider thisMonthEndTime]];
 }
 
 - (IBAction)filterToLastMonth:(id)sender
 {
-	TTTimeProvider *provider = [[[TTTimeProvider alloc] init] autorelease];
-	[self setFilterStartTime:[provider lastMonthStartTime] endTime:[provider lastMonthEndTime]];
+	[documentController setFilterStartTime:[timeProvider lastMonthStartTime]
+	  endTime:[timeProvider lastMonthEndTime]];
 }
 
 
