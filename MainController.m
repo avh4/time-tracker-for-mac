@@ -806,6 +806,11 @@
   mainWindow = [w retain];
 }
 
+- (NSWindow *)mainWindow
+{
+  return mainWindow;
+}
+
 - (void)setProjectsTableView:(NSTableView *)tv
 {
 	[tvProjects release];

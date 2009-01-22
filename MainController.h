@@ -28,7 +28,7 @@
     IBOutlet NSTableView *tvProjects;
     IBOutlet NSTableView *tvTasks;
     IBOutlet NSTableView *tvWorkPeriods;
-    IBOutlet NSWindow *mainWindow;
+  IBOutlet NSWindow *mainWindow;
     IBOutlet NSPanel *panelEditWorkPeriod;
     IBOutlet NSPanel *panelIdleNotification;
     
@@ -87,6 +87,7 @@
 - (BOOL) validateUserInterfaceItem:(id)anItem;
 
 - (void)setMainWindow:(NSWindow *)w;
+- (NSWindow *)mainWindow;
 - (void)setProjectsTableView:(NSTableView *)tv;
 - (void)setTasksTableView:(NSTableView *)tv;
 - (void)setWorkPeriodsTableView:(NSTableView *)tv;
