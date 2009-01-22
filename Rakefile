@@ -9,6 +9,7 @@ namespace :objc do
 end
 
 task :compile => "objc:compile"
+task :compile_nib => "objc:compile_nib"
 
 task :test => :compile
 task :spec => :compile
@@ -36,6 +37,21 @@ namespace :objc do
     file "build/bundles/#{model_name}.o" => ["./#{model_name}.m", "./#{model_name}.h"] do |t|
       FileUtils.mkdir_p "build/bundles"
       sh "gcc -o build/bundles/#{model_name}.o -c ./#{model_name}.m"
+    end
+
+  end
+
+  nib_files = ["MainMenu"]
+  nib_files.each do |nib_name|
+    nib = "build/nibs/#{nib_name}.nib"
+    xib = "English.lproj/#{nib_name}.xib"
+
+    task :compile_nib => nib
+
+    file nib => xib do
+      FileUtils.mkdir_p "build/nibs"
+      puts "Compiling #{xib} to #{nib}"
+      sh "ibtool --errors --warnings --notices --output-format human-readable-text --compile #{nib} #{xib}"
     end
 
   end

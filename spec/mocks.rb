@@ -43,3 +43,22 @@ class MockDatePicker < OSX::NSObject
   objc_method :setDateValue, "v@:@"
   objc_method :setEnabled, "v@:B"
 end
+
+# The following mocks are used for unarchiving NIB files.
+# See main_menu_xib_spec.rb
+class MockApplication < OSX::NSObject
+  attr_accessor :delegate
+  def initialize
+    self.stub!(:hide)
+    self.stub!(:hideOtherApplications)
+    self.stub!(:orderFrontStandardAboutPanel)
+    self.stub!(:unhideAllApplications)
+    self.stub!(:terminate)
+  end
+end
+
+class OSX::SUUpdater < OSX::NSObject
+  def initialize
+    self.stub!(:checkForUpdates)
+  end
+end
