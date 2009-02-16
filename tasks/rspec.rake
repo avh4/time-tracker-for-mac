@@ -6,5 +6,4 @@ task :spec => :compile
 task :spec => :compile_nib
   
 Spec::Rake::SpecTask.new do |t|
-  t.warning = true
 end

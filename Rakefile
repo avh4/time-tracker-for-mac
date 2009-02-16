@@ -11,10 +11,17 @@ end
 task :compile => "objc:compile"
 task :compile_nib => "objc:compile_nib"
 
-task :test => :compile
+task :test => [:features, :spec]
 task :spec => :compile
 
+task :clean => "objc:clean"
+
 namespace :objc do
+  task :clean do
+    FileUtils.rm_r Dir["build/bundles"]
+    FileUtils.rm_r Dir["build/nibs"]
+  end
+  
   task :compile => "build/bundles/Application.bundle"
   
   file "build/bundles/Application.bundle" do
