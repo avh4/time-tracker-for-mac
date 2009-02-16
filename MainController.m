@@ -5,6 +5,7 @@
 #import "TProject.h"
 #import "TimeIntervalFormatter.h"
 #import "TWorkPeriod.h"
+#import "TTDocumentController.h"
 
 @interface MainController (PrivateMethods)
 - (void)initializeTableViews;
@@ -16,8 +17,6 @@
 #define TOOLBAR_ITEM_START_STOP @"Startstop"
 #define TOOLBAR_ITEM_ADD_PROJECT @"AddProject"
 #define TOOLBAR_ITEM_ADD_TASK @"AddTask"
-
-#define DEFAULTS_KEY_PROJECT_DATA @"ProjectTimes"
 
 #define PBOARD_TYPE_PROJECT_ROWS @"TIME_TRACKER_PROJECT_ROWS"
 #define PBOARD_TYPE_TASK_ROWS @"TIME_TRACKER_TASK_ROWS"
@@ -34,7 +33,7 @@
 
 - (id) init
 {
-	document = [[TTDocumentV1 alloc] init];
+	document = [TTDocumentController loadDocument];
   documentController = [self retain];
   timeProvider = [[TTTimeProvider alloc] init];
 	return self;
@@ -184,13 +183,6 @@
 - (void)awakeFromNib
 {
 	defaults = [NSUserDefaults standardUserDefaults];
-	
-	NSData *theData=[[NSUserDefaults standardUserDefaults] dataForKey:DEFAULTS_KEY_PROJECT_DATA];
-	if (theData != nil)
-	{
-		NSMutableArray *projects = (NSMutableArray *)[NSMutableArray arrayWithArray: [NSUnarchiver unarchiveObjectWithData:theData]];
-		[document setProjects:projects];
-	}
 	
 	_projects_lastTask = [[NSMutableDictionary alloc] initWithCapacity:[[document projects] count]];
 	
@@ -367,9 +359,7 @@
 
 - (void)saveData
 {
-	NSData *theData=[NSArchiver archivedDataWithRootObject:[document projects]];
-	[[NSUserDefaults standardUserDefaults] setObject:theData forKey:DEFAULTS_KEY_PROJECT_DATA];
-	[[NSUserDefaults standardUserDefaults] synchronize];
+  [TTDocumentController saveDocument:document];
 	timeSinceSave = 0;
 }
 

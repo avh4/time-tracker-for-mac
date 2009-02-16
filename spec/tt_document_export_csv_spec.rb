@@ -1,12 +1,9 @@
 require File.dirname(__FILE__) + '/spec_helper'
 
-require "Application.bundle"
-OSX::ns_import :TTDocument
-
-describe OSX::TTDocument do
+describe OSX::TTDocumentV1 do
   
   it "should export an empty CSV file" do
-    doc = OSX::TTDocument.alloc.init
+    doc = OSX::TTDocumentV1.alloc.init
     
     data, error = doc.dataOfType_error("CSV")
     error.should be_nil
@@ -19,7 +16,7 @@ describe OSX::TTDocument do
   end
   
   it "should export a simple CSV file" do
-    doc = OSX::TTDocument.alloc.init
+    doc = OSX::TTDocumentV1.alloc.init
     
     pr1 = mock("Project 1")
     pr2 = mock("Project 2")

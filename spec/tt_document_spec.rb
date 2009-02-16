@@ -1,29 +1,26 @@
 require File.dirname(__FILE__) + '/spec_helper'
 
-require "Application.bundle"
-OSX::ns_import :TTDocument
-
-describe OSX::TTDocument do
+describe OSX::TTDocumentV1 do
   
   it "should exist" do
-    OSX::TTDocument
+    OSX::TTDocumentV1
   end
   
   it "should have no projects when initialized" do
-    doc = OSX::TTDocument.alloc.init
+    doc = OSX::TTDocumentV1.alloc.init
     doc.projects.should_not be_nil
     doc.projects.size.should equal(0)
   end
   
   it "should allow projects to be added" do
-    doc = OSX::TTDocument.alloc.init
+    doc = OSX::TTDocumentV1.alloc.init
     proj = mock("a project")
     doc.addProject(proj)
     doc.projects.size.should equal(1)
   end
   
   it "should allow projects to be removed" do
-    doc = OSX::TTDocument.alloc.init
+    doc = OSX::TTDocumentV1.alloc.init
     proj = mock("a project")
     doc.addProject(proj)
     doc.removeProject(proj)
@@ -31,7 +28,7 @@ describe OSX::TTDocument do
   end
   
   it "should return a project at a given index" do
-    doc = OSX::TTDocument.alloc.init
+    doc = OSX::TTDocumentV1.alloc.init
     proj1 = mock("Project 1")
     proj2 = mock("Project 2")
     doc.addProject(proj1)
@@ -42,7 +39,7 @@ describe OSX::TTDocument do
   end
   
   it "should reorder projects" do
-    doc = OSX::TTDocument.alloc.init
+    doc = OSX::TTDocumentV1.alloc.init
     proj1 = mock("Project 1")
     proj2 = mock("Project 2")
     doc.addProject(proj1)
