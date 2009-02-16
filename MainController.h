@@ -81,6 +81,8 @@
 - (void) startTimer;
 - (int)idleTime;
 - (void) saveData;
+- (void)createProject;
+- (void)createTask;
 
 - (void) updateStartStopState;
 
