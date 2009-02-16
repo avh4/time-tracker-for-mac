@@ -2,7 +2,7 @@ $:.unshift File.dirname(__FILE__) + "/../../build/bundles"
 require "Application.bundle"
 
 Given "a new document" do
-  @doc = OSX::TTDocument.alloc.init
+  @doc = OSX::TTDocumentV1.alloc.init
 end
 
 Given "a new project" do

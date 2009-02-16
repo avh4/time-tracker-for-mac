@@ -1,7 +1,7 @@
 /* MainController */
 
 #import <Cocoa/Cocoa.h>
-#import "TTDocument.h"
+#import "TTDocumentV1.h"
 #import "TProject.h"
 #import "TTask.h"
 #import "TWorkPeriod.h"
@@ -39,7 +39,7 @@
 	
 	NSToolbarItem *startstopToolbarItem;
 	
-	TTDocument *document;
+	TTDocumentV1 *document;
   id documentController;
   TTTimeProvider *timeProvider;
 	NSMutableDictionary *_projects_lastTask;
@@ -91,8 +91,8 @@
 - (void)setProjectsTableView:(NSTableView *)tv;
 - (void)setTasksTableView:(NSTableView *)tv;
 - (void)setWorkPeriodsTableView:(NSTableView *)tv;
-- (TTDocument *)document;
-- (void)setDocument:(TTDocument *)aDocument;
+- (TTDocumentV1 *)document;
+- (void)setDocument:(TTDocumentV1 *)aDocument;
 - (id)documentController;
 - (void)setDocumentController:(id)aDocumentController;
 - (void)setTimeProvider:(TTTimeProvider *)tp;

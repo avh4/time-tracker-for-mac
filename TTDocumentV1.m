@@ -1,15 +1,15 @@
 //
-//  TTDocument.m
+//  TTDocumentV1.m
 //  Time Tracker
 //
 //  Created by Aaron VonderHaar on 7/5/08.
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
-#import "TTDocument.h"
+#import "TTDocumentV1.h"
 
 
-@implementation TTDocument
+@implementation TTDocumentV1
 
 - (id) init
 {
@@ -47,7 +47,7 @@
 	int oldIndex = [_projects indexOfObject:proj];
 	if (oldIndex == NSNotFound)
 	{
-		NSLog(@"TTDocument moveProject:toIndex: project was not found in the projects lists");
+		NSLog(@"TTDocumentV1 moveProject:toIndex: project was not found in the projects lists");
 		return;
 	}
 	
@@ -120,4 +120,4 @@
 // The rbiphonetest test framework automatically generates bundles for 
 // each objective-c class containing the following line. These
 // can be used by your tests.
-void Init_TTDocument() { }
+void Init_TTDocumentV1() { }

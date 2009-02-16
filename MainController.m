@@ -34,7 +34,7 @@
 
 - (id) init
 {
-	document = [[TTDocument alloc] init];
+	document = [[TTDocumentV1 alloc] init];
   documentController = [self retain];
   timeProvider = [[TTTimeProvider alloc] init];
 	return self;
@@ -829,12 +829,12 @@
   tvWorkPeriods = [tv retain];
 }
 
-- (TTDocument *)document
+- (TTDocumentV1 *)document
 {
 	return document;
 }
 
-- (void)setDocument:(TTDocument *)aDocument
+- (void)setDocument:(TTDocumentV1 *)aDocument
 {
 	[document release];
 	document = [aDocument retain];

@@ -9,4 +9,3 @@ Feature: View daily totals
     Then I will see today's totals for all projects
     And I will see today's totals for all tasks
     And I will only see today's work periods
-	

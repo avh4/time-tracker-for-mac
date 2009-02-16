@@ -1,5 +1,5 @@
 //
-//  TTDocument.h
+//  TTDocumentV1.h
 //  Time Tracker
 //
 //  Created by Aaron VonderHaar on 7/5/08.
@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "TProject.h"
 
-@interface TTDocument : NSObject {
+@interface TTDocumentV1 : NSObject {
 	NSMutableArray *_projects;
 }
 
