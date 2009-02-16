@@ -1,4 +1,4 @@
-require "Application.bundle"
+require File.dirname(__FILE__) + '/spec_helper'
 
 describe OSX::MainController do
   

@@ -1,8 +1,6 @@
 require File.dirname(__FILE__) + '/spec_helper'
-
 require 'time'
 require 'rubygems'
-require 'active_support'  # for Time#advance
 require 'duration'
 
 describe OSX::TTTimeProvider do
