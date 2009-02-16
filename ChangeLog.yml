@@ -1,8 +1,10 @@
 ---
 - version: 1.2.6
-  date:
+  date: 2009-02-16
   changes:
-  - The start/stop buttons are not active even if there are not projects or tasks.
+  - Edit work period and Delete work period now work properly when a date range filter is active.
+  - New "week before last" filter.
+  - The start button will create a new project/task if none is selected (or if there are no projects or tasks).
 
 - version: 1.2.5
   date: 2008-09-30
