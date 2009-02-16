@@ -23,24 +23,24 @@ This file contains information for developing and testing Time Tracker.
     5d. Ensure that the old version of Time Tracker can update to the new version.
     5e. Ensure that the new version of Time Tracker can update to itself.
 
-6. Create appcast/timetracker-$(CURRENT_PROJECT_VERSION).html using the information from ChangeLog.txt.
+6. Run `rake appcast` to generate appcast/timetracker-$(CURRENT_PROJECT_VERSION).html
+   and update appcast/timetracker-stable.xml
 
-7. Update appcast/timetracker-stable.xml
-
-8. Publish the release:
-    8a. Upload Time Tracker-$(CURRENT_PROJECT_VERSION).zip to
+7. Publish the release:
+    7a. Run `rake upload`.  You will need to enter your google code username and your googlecode
+        password which is found at http://code.google.com/hosting/settings
+        This will upload Time Tracker-$(CURRENT_PROJECT_VERSION).zip and 
+        timetracker-$(CURRENT_PROJECT_VERSION).html to
         http://time-tracker-mac.googlecode.com
-    8b. Upload timetracker-$(CURRENT_PROJECT_VERSION).html to
-        http://time-tracker-mac.googlecode.com
-    8c. Upload timetracker-stable.xml to http://www.avh4.net/appcast/
+    7b. Upload timetracker-stable.xml to http://www.avh4.net/appcast/
 
-9. Update the website:
-    9a. Update the homepage http://time-tracker-mac.googlecode.com
-    9b. Make the new release the featured download http://time-tracker-mac.googlecode.com
-    9c. Update iusethis.com
-    9d. Update versiontracker.com
+8. Update the website:
+    8a. Update the homepage http://time-tracker-mac.googlecode.com
+    8b. Make the new release the featured download http://time-tracker-mac.googlecode.com
+    8c. Update iusethis.com
+    8d. Update versiontracker.com
 
-10. Tag the release with "v$(CURRENT_PROJECT_VERSION)" and push the commit.
+9. Tag the release with "v$(CURRENT_PROJECT_VERSION)" and push the commit.
 
 == Appcast updates with Sparkle ==
 
