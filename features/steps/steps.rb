@@ -8,7 +8,7 @@ require "Application.bundle"
 
 Given /I have recorded my data in Time Tracker/ do
   @controller = OSX::MainController.alloc.init;
-  @doc = OSX::TTDocument.alloc.init
+  @doc = OSX::TTDocumentV1.alloc.init
   @today = Time.parse("2008-09-01")
   
   @p1 = project = OSX::TProject.alloc.initWithName("Project 1")

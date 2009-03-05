@@ -1,1 +1,0 @@
-void Init_Application() {}
