@@ -33,10 +33,11 @@
 
 - (id) init
 {
-	document = [TTDocumentController loadDocument];
+  document = [TTDocumentController loadDocument];
   documentController = [self retain];
   timeProvider = [[TTTimeProvider alloc] init];
-	return self;
+  timer = [[TTTimer alloc] initWithDelegate:self];
+  return self;
 }
 
 - (void)dealloc
@@ -46,12 +47,13 @@
 	[filterEndTime release];
   [documentController release];
   [timeProvider release];
+  [timer release];
 	[super dealloc];
 }
 
 - (IBAction)clickedStartStopTimer:(id)sender
 {
-	if (timer == nil) {
+  if ([timer isRunning]) {
 		[self startTimer];
 	} else {
 		[self stopTimer];
@@ -60,8 +62,7 @@
 
 - (void)startTimer
 {
-	// assert timer == nil
-	if (timer != nil) return;
+  if ([timer isRunning]) return;
 	
 	if (_selTask == nil)
 	{
@@ -71,8 +72,7 @@
 	// assert _selTask != nil
 	if (_selTask == nil) return;
 	
-	timer = [NSTimer scheduledTimerWithTimeInterval: 1 target: self selector: @selector (timerFunc:)
-					userInfo: nil repeats: YES];
+  [timer start];
 	
 	[self updateStartStopState];
 	
@@ -85,7 +85,7 @@
 	_curProject = _selProject;
 	_curTask = _selTask;
 	
-	// assert timer != nil
+	// assert [timer isRunning]
 	// assert _curProject != nil
 	// assert _curTask != nil
 }
@@ -97,11 +97,9 @@
 
 - (void)stopTimer:(NSDate*)endTime
 {
-	// assert timer != nil
-	if (timer == nil) return;
-	
-	[timer invalidate];
-	timer = nil;
+  if ( ![timer isRunning]) return;
+  
+  [timer stop];
 	
 	[_curWorkPeriod setEndTime:endTime];
 	_curWorkPeriod = nil;
@@ -116,7 +114,7 @@
 	[tvTasks reloadData];
 	[tvWorkPeriods reloadData];
 	
-	// assert timer == nil
+	// assert ![timer isRunning]
 	// assert _curProject == nil
 	// assert _curTask == nil
 }
@@ -315,40 +313,6 @@
 	[panelEditWorkPeriod orderOut: self];
 }
 
-- (void) timerFunc: (NSTimer *) atimer
-{	
-	// assert timer != nil
-	// assert timer == atimer
-	if (timer != atimer) return;
-	
-	[_curWorkPeriod setEndTime: [NSDate date]];
-	
-	// Redraw just the TotalTime columns so that editing doesn't get cancelled if the user
-	// is currently editing a different cell.
-	[tvProjects setNeedsDisplayInRect:[tvProjects rectOfColumn:[tvProjects columnWithIdentifier:TABLE_COLUMN_TOTAL_TIME]]];
-	[tvTasks setNeedsDisplayInRect:[tvTasks rectOfColumn:[tvTasks columnWithIdentifier:TABLE_COLUMN_TOTAL_TIME]]];
-	
-	[tvWorkPeriods reloadData];
-	
-	int idleTime = [self idleTime];
-	if (idleTime == 0) {
-		[_lastNonIdleTime release];
-		_lastNonIdleTime = [[NSDate date] retain];
-	}
-	if (idleTime > 5 * 60) {
-		[timer setFireDate: [NSDate distantFuture]];
-		[NSApp activateIgnoringOtherApps: YES];
-		[NSApp runModalForWindow: panelIdleNotification];
-		[panelIdleNotification orderOut: self];
-	}
-	
-	if (timeSinceSave > 5 * 60) {
-		[self saveData];
-	} else {
-		timeSinceSave++;
-	}
-}
-
 - (void)windowWillClose:(NSNotification *)notification
 {
 	if ([notification object] == mainWindow)
@@ -389,7 +353,7 @@
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
 {
-	if (timer != nil)
+  if ([timer isRunning])
 		[self stopTimer];
 	[self saveData];
 	return NSTerminateNow;
@@ -723,8 +687,7 @@
 
 - (IBAction)clickedCountIdleTimeYes:(id)sender
 {
-	// assert timer != nil
-	[timer setFireDate: [NSDate dateWithTimeIntervalSinceNow: 1]];
+  [timer resume];
 	[NSApp stopModal];
 }
 
@@ -745,13 +708,13 @@
 
 - (void)updateStartStopState
 {
-	if (timer == nil) {
+  if ( ![timer isRunning] ) {
 		// Timer is stopped: show the Start button
 		if (startstopToolbarItem != nil) {
 			[startstopToolbarItem setLabel:NSLocalizedString(@"Start", "Short version of the 'start the timer' action")];
 			[startstopToolbarItem setPaletteLabel:NSLocalizedString(@"Start", nil)];
 			[startstopToolbarItem setToolTip:NSLocalizedString(@"Start Timer", "Phrase version of the 'start the timer' action")];
-			[startstopToolbarItem setImage: playToolImage];
+			[startstopToolbarItem setImage:playToolImage];
 		}
 		
 		// assert statusItem != nil
@@ -765,7 +728,7 @@
 			[startstopToolbarItem setLabel:NSLocalizedString(@"Stop", "Short version of the 'stop the timer' action")];
 			[startstopToolbarItem setPaletteLabel:NSLocalizedString(@"Stop", nil)];
 			[startstopToolbarItem setToolTip:NSLocalizedString(@"Stop Timer", "Phrase version of the 'stop the timer' action")];
-			[startstopToolbarItem setImage: stopToolImage];
+			[startstopToolbarItem setImage:stopToolImage];
 		}
 		
 		// assert statusItem != nil
@@ -780,11 +743,9 @@
 
 - (IBAction)clickedCountIdleTimeNo:(id)sender
 {
-	[NSApp stopModal];
-	// assert _lastNonIdleTime != nil
-	[self stopTimer:_lastNonIdleTime];
-	[_lastNonIdleTime release];
-	_lastNonIdleTime = nil;
+  [NSApp stopModal];
+  [self stopTimer:[timer lastNonIdleTime]];
+  [timer cancel];
 }
 
 
@@ -849,8 +810,20 @@
 
 - (void)setTimeProvider:(TTTimeProvider *)tp
 {
-  [timeProvider release];
-  timeProvider = [tp retain];
+  if (timeProvider != tp)
+  {
+    [timeProvider release];
+    timeProvider = [tp retain];
+  }
+}
+
+- (void)setTimer:(TTTimer *)aTimer
+{
+  if (timer != aTimer)
+  {
+    [aTimer release];
+    timer = [aTimer retain];
+  }
 }
 
 - (TProject *)selectedProject
@@ -908,6 +881,32 @@
 	return _selTask;
 }
 
+#pragma mark TTTimer delegate methods
+
+- (void)timerHasChanged:(NSDate *)date
+{
+  [_curWorkPeriod setEndTime:date];
+  
+  // Redraw just the TotalTime columns so that editing doesn't get cancelled if the user
+  // is currently editing a different cell.
+  [tvProjects setNeedsDisplayInRect:[tvProjects rectOfColumn:[tvProjects columnWithIdentifier:TABLE_COLUMN_TOTAL_TIME]]];
+  [tvTasks setNeedsDisplayInRect:[tvTasks rectOfColumn:[tvTasks columnWithIdentifier:TABLE_COLUMN_TOTAL_TIME]]];
+  
+  [tvWorkPeriods reloadData];
+  
+  if (timeSinceSave > 5 * 60) {
+    [self saveData];
+  } else {
+    timeSinceSave++;
+  }
+}
+
+- (void)timerHasBecomeIdle
+{
+  [NSApp activateIgnoringOtherApps:YES];
+  [NSApp runModalForWindow:panelIdleNotification];
+  [panelIdleNotification orderOut:self];
+}
 
 #pragma mark NSTableView delegate methods
 

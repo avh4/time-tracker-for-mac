@@ -23,19 +23,25 @@ namespace :objc do
     sh "gcc -o build/bundles/Application.bundle -bundle -framework Cocoa -framework IOKit build/bundles/Application.m build/bundles/*.o"
   end
   
-  model_file_paths = `find ./*.m`.split("\n")
-  model_file_paths.delete "./main.m"
+  model_file_paths = []
+  model_file_paths += Dir.glob("*.m")
+  model_file_paths += Dir.glob("Classes/*.m")
+  puts model_file_paths.inspect
+  model_file_paths.delete "main.m"
   
   model_file_paths.each do |path|
-    path =~ /\.\/(.*)\.m/
-    model_name = $1
+    path =~ /^(.*\/)?(.*)\.m/
+    model_dir = $1
+    model_name = $2
+    
+    puts "#{model_dir} ## #{model_name}"
     
     file "build/bundles/Application.bundle" => "build/bundles/#{model_name}.o"
     
-    file "build/bundles/#{model_name}.o" => ["./#{model_name}.m", "./#{model_name}.h"] do |t|
+    file "build/bundles/#{model_name}.o" => ["./#{model_dir}#{model_name}.m", "./#{model_dir}#{model_name}.h"] do |t|
       FileUtils.mkdir_p "build/bundles"
       puts "Building #{model_name}.o"
-      sh "gcc -o build/bundles/#{model_name}.o -c ./#{model_name}.m"
+      sh "gcc -o build/bundles/#{model_name}.o -c ./#{model_dir}#{model_name}.m"
     end
 
   end

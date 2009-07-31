@@ -6,11 +6,11 @@
 #import "TTask.h"
 #import "TWorkPeriod.h"
 #import "TTTimeProvider.h"
+#import "Classes/TTTimer.h"
 
 @interface MainController : NSObject
 {
 	NSUserDefaults *defaults;
-	NSTimer *timer;
 	NSStatusItem *statusItem;
 	
 	NSImage *playItemImage;
@@ -23,15 +23,15 @@
 	NSImage *stopToolImage;
 	NSImage *addTaskToolImage;
 	NSImage *addProjectToolImage;
-
-	
-    IBOutlet NSTableView *tvProjects;
-    IBOutlet NSTableView *tvTasks;
-    IBOutlet NSTableView *tvWorkPeriods;
+  
+  
+  IBOutlet NSTableView *tvProjects;
+  IBOutlet NSTableView *tvTasks;
+  IBOutlet NSTableView *tvWorkPeriods;
   IBOutlet NSWindow *mainWindow;
-    IBOutlet NSPanel *panelEditWorkPeriod;
-    IBOutlet NSPanel *panelIdleNotification;
-    
+  IBOutlet NSPanel *panelEditWorkPeriod;
+  IBOutlet NSPanel *panelIdleNotification;
+  
 	IBOutlet NSDatePicker *dtpEditWorkPeriodStartTime;
 	IBOutlet NSDatePicker *dtpEditWorkPeriodEndTime;
 	
@@ -42,6 +42,7 @@
 	TTDocumentV1 *document;
   id documentController;
   TTTimeProvider *timeProvider;
+  TTTimer *timer;
 	NSMutableDictionary *_projects_lastTask;
 	TProject *_selProject;
 	TTask *_selTask;
@@ -49,7 +50,6 @@
 	TProject *_curProject;
 	TTask *_curTask;
 	
-	NSDate *_lastNonIdleTime;
 	int timeSinceSave;
 	
 	NSDate *filterStartTime;
@@ -75,12 +75,11 @@
 - (IBAction)filterToThisMonth:(id)sender;
 - (IBAction)filterToLastMonth:(id)sender;
 
-- (void) timerFunc: (NSTimer *) timer;
-- (void) stopTimer:(NSDate*)endTime;
-- (void) stopTimer;
-- (void) startTimer;
+- (void)stopTimer:(NSDate*)endTime;
+- (void)stopTimer;
+- (void)startTimer;
 - (int)idleTime;
-- (void) saveData;
+- (void)saveData;
 - (void)createProject;
 - (void)createTask;
 
@@ -88,6 +87,7 @@
 
 - (BOOL) validateUserInterfaceItem:(id)anItem;
 
+// Dependencies
 - (void)setMainWindow:(NSWindow *)w;
 - (NSWindow *)mainWindow;
 - (void)setProjectsTableView:(NSTableView *)tv;
@@ -101,6 +101,7 @@
 - (TProject *)selectedProject;
 - (void)setSelectedProject:(TProject *)aProject;
 - (void)setSelectedTask:(TTask *)aTask;
+- (void)setTimer:(TTTimer *)aTimer;
 
 - (void)clearFilter;
 - (void)setFilterStartTime:(NSDate *)startTime endTime:(NSDate *)endTime;
