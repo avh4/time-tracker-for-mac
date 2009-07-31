@@ -821,7 +821,7 @@
 {
   if (timer != aTimer)
   {
-    [aTimer release];
+    [timer release];
     timer = [aTimer retain];
   }
 }

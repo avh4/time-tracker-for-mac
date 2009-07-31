@@ -34,8 +34,6 @@ namespace :objc do
     model_dir = $1
     model_name = $2
     
-    puts "#{model_dir} ## #{model_name}"
-    
     file "build/bundles/Application.bundle" => "build/bundles/#{model_name}.o"
     
     file "build/bundles/#{model_name}.o" => ["./#{model_dir}#{model_name}.m", "./#{model_dir}#{model_name}.h"] do |t|
