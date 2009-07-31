@@ -10,5 +10,5 @@ end
 require 'rubigen/scripts/destroy'
 
 ARGV.shift if ['--help', '-h'].include?(ARGV[0])
-RubiGen::Base.use_component_sources! [:rbiphonetest, :test_unit]
+RubiGen::Base.use_component_sources! [:apro, :test_unit]
 RubiGen::Scripts::Destroy.new.run(ARGV)
