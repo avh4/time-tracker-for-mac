@@ -30,6 +30,11 @@
 
 #define DATA_TYPE_CSV @"CSV"
 
+- (id) init
+{
+  return [self initWithDocumentLoader:[[TTDocumentLoader alloc] init]];
+}
+
 - (id) initWithDocumentLoader:(TTDocumentLoader *)aDocumentLoader
 {
   documentLoader = [aDocumentLoader retain];

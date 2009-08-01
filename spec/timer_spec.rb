@@ -4,7 +4,7 @@ describe OSX::TTTimer do
   
   describe "initial state" do
     before(:each) do
-      @t = OSX::TTTimer.alloc.init
+      @t = OSX::TTTimer.alloc.initWithDelegate(nil)
     end
     
     it "should not be running" do

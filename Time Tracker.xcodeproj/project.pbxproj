@@ -43,9 +43,10 @@
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		B14346780E723F1200BDCA87 /* TTTimeProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B14346770E723F1200BDCA87 /* TTTimeProvider.m */; };
-		B161D2740F4A05FA00E15256 /* TTDocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = B161D2730F4A05FA00E15256 /* TTDocumentController.m */; };
 		B1647AF40E355F64006C450F /* TTDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = B1647AF30E355F64006C450F /* TTDataSource.m */; };
 		B17F35AC0E396422006AB030 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B17F35AA0E396422006AB030 /* MainMenu.xib */; };
+		B180D2AA102406A3002AFE1E /* TTDocumentLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = B180D2A7102406A3002AFE1E /* TTDocumentLoader.m */; };
+		B180D2AB102406A3002AFE1E /* TTTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = B180D2A9102406A3002AFE1E /* TTTimer.m */; };
 		B18209210E57EB9100BDC0B8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B182091F0E57EB9100BDC0B8 /* Localizable.strings */; };
 		B19BDFBC0B5C953700465046 /* Time Tracker.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D1107320486CEB800E47090 /* Time Tracker.app */; };
 		B1AA733C0E9DAE6F0006F32C /* InspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1AA733B0E9DAE6F0006F32C /* InspectorController.m */; };
@@ -120,13 +121,15 @@
 		8D1107320486CEB800E47090 /* Time Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Time Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B14346760E723F1200BDCA87 /* TTTimeProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTimeProvider.h; sourceTree = "<group>"; };
 		B14346770E723F1200BDCA87 /* TTTimeProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTimeProvider.m; sourceTree = "<group>"; };
-		B161D2720F4A05FA00E15256 /* TTDocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTDocumentController.h; sourceTree = "<group>"; };
-		B161D2730F4A05FA00E15256 /* TTDocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTDocumentController.m; sourceTree = "<group>"; };
 		B163D4040B646239007D0E2C /* AUTHORS.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AUTHORS.txt; sourceTree = "<group>"; };
 		B163D4050B646239007D0E2C /* LICENSE-GPL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "LICENSE-GPL.txt"; sourceTree = "<group>"; };
 		B1647AF20E355F64006C450F /* TTDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTDataSource.h; sourceTree = "<group>"; };
 		B1647AF30E355F64006C450F /* TTDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTDataSource.m; sourceTree = "<group>"; };
 		B17F35AB0E396422006AB030 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		B180D2A6102406A3002AFE1E /* TTDocumentLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTDocumentLoader.h; path = Classes/TTDocumentLoader.h; sourceTree = "<group>"; };
+		B180D2A7102406A3002AFE1E /* TTDocumentLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTDocumentLoader.m; path = Classes/TTDocumentLoader.m; sourceTree = "<group>"; };
+		B180D2A8102406A3002AFE1E /* TTTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTimer.h; path = Classes/TTTimer.h; sourceTree = "<group>"; };
+		B180D2A9102406A3002AFE1E /* TTTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTTimer.m; path = Classes/TTTimer.m; sourceTree = "<group>"; };
 		B18209200E57EB9100BDC0B8 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B18209390E57EE0100BDC0B8 /* 1337 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = 1337; path = 1337.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B182093C0E57EEA300BDC0B8 /* 1337 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = 1337; path = 1337.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -157,6 +160,10 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B180D2A6102406A3002AFE1E /* TTDocumentLoader.h */,
+				B180D2A7102406A3002AFE1E /* TTDocumentLoader.m */,
+				B180D2A8102406A3002AFE1E /* TTTimer.h */,
+				B180D2A9102406A3002AFE1E /* TTTimer.m */,
 				B161D1F50F49FE5800E15256 /* Model */,
 				2C9EC93D0905A9F6000651F2 /* TimeIntervalFormatter.h */,
 				2C9EC93E0905A9F6000651F2 /* TimeIntervalFormatter.m */,
@@ -266,8 +273,6 @@
 		B161D1F50F49FE5800E15256 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B161D2720F4A05FA00E15256 /* TTDocumentController.h */,
-				B161D2730F4A05FA00E15256 /* TTDocumentController.m */,
 				B1CDA84E0E1F65EB009DCA18 /* TTDocumentV1.h */,
 				B1CDA84F0E1F65EB009DCA18 /* TTDocumentV1.m */,
 				2C9EC8D00905A5F2000651F2 /* TTask.h */,
@@ -380,7 +385,8 @@
 				B1647AF40E355F64006C450F /* TTDataSource.m in Sources */,
 				B14346780E723F1200BDCA87 /* TTTimeProvider.m in Sources */,
 				B1AA733C0E9DAE6F0006F32C /* InspectorController.m in Sources */,
-				B161D2740F4A05FA00E15256 /* TTDocumentController.m in Sources */,
+				B180D2AA102406A3002AFE1E /* TTDocumentLoader.m in Sources */,
+				B180D2AB102406A3002AFE1E /* TTTimer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
