@@ -2,15 +2,20 @@ require File.dirname(__FILE__) + '/spec_helper'
 
 describe OSX::MainController do
   
+  before(:each) do
+    @loader = mock("Document Loader")
+    @new_doc = OSX::TTDocumentV1.alloc.init
+    @loader.stub!(:loadDocument).and_return(@new_doc)
+    @mc = OSX::MainController.alloc.initWithDocumentLoader(@loader)
+  end
+  
   it "should create a blank document when initialized" do
-    mc = OSX::MainController.alloc.init
-    mc.document.should_not be_nil
-    mc.document.projects.should_not be_nil
-    mc.document.projects.size.should equal(0)
+    @mc.document.should_not be_nil
+    @mc.document.projects.should_not be_nil
+    @mc.document.projects.size.should equal(0)
   end
   
   it "should update the selected project when the table selection changes" do
-    mc = OSX::MainController.alloc.init
     mockTableView = MockNSTableView.new
     mockNotification = mock("NSNotification")
     mockDocument = MockDocument.new
@@ -20,50 +25,46 @@ describe OSX::MainController do
     mockDocument.stub!(:objectInProjectsAtIndex).with(1).and_return(mockProject)
     mockProject.stub!(:tasks).and_return([])
     
-    mc.setDocument(mockDocument)
-    mc.setProjectsTableView(mockTableView)
+    @mc.setDocument(mockDocument)
+    @mc.setProjectsTableView(mockTableView)
     
-    mc.tableViewSelectionDidChange(mockNotification)
-
-    mc.selectedProject.should equal(mockProject)
+    @mc.tableViewSelectionDidChange(mockNotification)
+    
+    @mc.selectedProject.should equal(mockProject)
   end
-
+  
   it "should enable the start button when a task is selected" do
-    mc = OSX::MainController.alloc.init
     mockTask = MockUserInterfaceItem.new
     #mc.setSelectedTask(mockTask)
     mockInterfaceItem = mock("Star/Stop Interface Item")
     pending "Don't know how to make the mock return a SEL"
     #mockInterfaceItem.stub!(:action).and_return(:clickedStartStopTimer_)
     
-    mc.validateUserInterfaceItem(mockInterfaceItem).should == true
+    @mc.validateUserInterfaceItem(mockInterfaceItem).should == true
   end
   
   it "should enable the stop button when the timer is running" do
-    mc = OSX::MainController.alloc.init
-    mc.startTimer
-    #mc.setSelectedTask(nil)
-    #mc.setSelectedProject(nil)
+    @mc.startTimer
+    #@mc.setSelectedTask(nil)
+    #@mc.setSelectedProject(nil)
     mockInterfaceItem = mock("Star/Stop Interface Item")
     pending "Don't know how to make the mock return a SEL"
     #mockInterfaceItem.stub!(:action).and_return(:clickedStartStopTimer_)
     
-    mc.validateUserInterfaceItem(mockInterfaceItem).should == true
+    @mc.validateUserInterfaceItem(mockInterfaceItem).should == true
   end
   
   it "should enable the start button when no task is selected" do
-    mc = OSX::MainController.alloc.init
-    #mc.setSelectedTask(nil)
-    #mc.setSelectedProject(nil)
+    #@mc.setSelectedTask(nil)
+    #@mc.setSelectedProject(nil)
     mockInterfaceItem = mock("Star/Stop Interface Item")
     pending "Don't know how to make the mock return a SEL"
     #mockInterfaceItem.stub!(:action).and_return(:clickedStartStopTimer_)
     
-    mc.validateUserInterfaceItem(mockInterfaceItem).should == true
+    @mc.validateUserInterfaceItem(mockInterfaceItem).should == true
   end
   
   it "should create a document controller" do
-    @mc = OSX::MainController.alloc.init
     @mc.documentController.should_not be_nil
   end
   

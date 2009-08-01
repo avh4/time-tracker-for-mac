@@ -1,3 +1,5 @@
+task :build => "objc:compile"
+
 namespace :objc do
   desc "Compiles all Objective-C bundles for testing"
   
@@ -26,7 +28,6 @@ namespace :objc do
   model_file_paths = []
   model_file_paths += Dir.glob("*.m")
   model_file_paths += Dir.glob("Classes/*.m")
-  puts model_file_paths.inspect
   model_file_paths.delete "main.m"
   
   model_file_paths.each do |path|
@@ -38,7 +39,7 @@ namespace :objc do
     
     file "build/bundles/#{model_name}.o" => ["./#{model_dir}#{model_name}.m", "./#{model_dir}#{model_name}.h"] do |t|
       FileUtils.mkdir_p "build/bundles"
-      puts "Building #{model_name}.o"
+      #puts "Building #{model_name}.o"
       sh "gcc -o build/bundles/#{model_name}.o -c ./#{model_dir}#{model_name}.m"
     end
 

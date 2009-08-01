@@ -4,7 +4,36 @@ require "time"
 require "duration"
 
 class FakeTimer
-  
+  @is_running = 0
+  def initialize(delegate)
+    @delegate = delegate
+    @start_time = Time.now
+    @current_time = @start_time
+  end
+  def isRunning
+    return @is_running
+  end
+  def currentTime
+    return @current_time
+  end
+  def start
+    @is_running = 1
+  end
+  def stop
+    @is_running = 0
+  end
+  def advance_time(minutes)
+    @current_time += minutes.to_i.minutes
+    @delegate.timerHasChanged(@current_time)
+  end
+end
+
+class FakeDocumentLoader
+  def loadDocument
+    return OSX::TTDocumentV1.alloc.init
+  end
+  def saveDocument
+  end
 end
 
 $:.unshift File.dirname(__FILE__) + "/../../build/bundles"
@@ -81,14 +110,15 @@ Given /I have recorded my data in Time Tracker/ do
 end
 
 Given /I have started Time Tracker for the first time/ do
-  @controller = OSX::MainController.alloc.init
+  @controller = OSX::MainController.alloc.initWithDocumentLoader(FakeDocumentLoader.new)
   @doc = @controller.document
+  puts @doc.projects.inspect
 end
 
 Given /^Time Tracker is newly installed$/ do
-  @controller = OSX::MainController.alloc.init
+  @controller = OSX::MainController.alloc.initWithDocumentLoader(FakeDocumentLoader.new)
   @doc = @controller.document
-  @timer = FakeTimer.new
+  @timer = FakeTimer.new(@controller)
   @controller.timer = @timer
 end
 
@@ -102,7 +132,18 @@ When /I start the timer/ do
 end
 
 When /^then I wait for 10 minutes to pass$/ do
-  advance_time(10)
+  @timer.advance_time(10)
+end
+
+When /^then I stop the timer$/ do
+  @controller.stopTimer
+end
+
+Then /^I should see a total time of 10 minutes$/ do
+  puts @doc.projects[0].tasks[0].workPeriods[0].startTime
+  puts @doc.projects[0].tasks[0].workPeriods[0].endTime
+  @doc.projects[0].tasks[0].workPeriods[0].totalTime.should == 10.minutes
+  @doc.projects[0].totalTime.should == 10.minutes
 end
 
 Then /I will see today.s totals for all projects/ do

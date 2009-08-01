@@ -5,7 +5,6 @@
 #import "TProject.h"
 #import "TimeIntervalFormatter.h"
 #import "TWorkPeriod.h"
-#import "TTDocumentController.h"
 
 @interface MainController (PrivateMethods)
 - (void)initializeTableViews;
@@ -31,9 +30,10 @@
 
 #define DATA_TYPE_CSV @"CSV"
 
-- (id) init
+- (id) initWithDocumentLoader:(TTDocumentLoader *)aDocumentLoader
 {
-  document = [TTDocumentController loadDocument];
+  documentLoader = [aDocumentLoader retain];
+  document = [documentLoader loadDocument];
   documentController = [self retain];
   timeProvider = [[TTTimeProvider alloc] init];
   timer = [[TTTimer alloc] initWithDelegate:self];
@@ -45,7 +45,11 @@
   [mainWindow release];
 	[filterStartTime release];
 	[filterEndTime release];
-  [documentController release];
+  if (documentController != self)
+  {
+    [documentController release];
+  }
+  [documentLoader release];
   [timeProvider release];
   [timer release];
 	[super dealloc];
@@ -53,7 +57,7 @@
 
 - (IBAction)clickedStartStopTimer:(id)sender
 {
-  if ([timer isRunning]) {
+  if (![timer isRunning]) {
 		[self startTimer];
 	} else {
 		[self stopTimer];
@@ -77,8 +81,8 @@
 	[self updateStartStopState];
 	
 	_curWorkPeriod = [TWorkPeriod new];
-	[_curWorkPeriod setStartTime: [NSDate date]];
-	[_curWorkPeriod setEndTime: [NSDate date]];
+	[_curWorkPeriod setStartTime: [timer currentTime]];
+	[_curWorkPeriod setEndTime: [timer currentTime]];
 	
 	[_selTask addWorkPeriod: _curWorkPeriod];
 	[tvWorkPeriods reloadData];	
@@ -92,16 +96,10 @@
 
 - (void)stopTimer
 {
-	[self stopTimer:[NSDate date]];
-}
-
-- (void)stopTimer:(NSDate*)endTime
-{
   if ( ![timer isRunning]) return;
   
   [timer stop];
 	
-	[_curWorkPeriod setEndTime:endTime];
 	_curWorkPeriod = nil;
 	_curProject = nil;
 	_curTask = nil;
@@ -323,7 +321,7 @@
 
 - (void)saveData
 {
-  [TTDocumentController saveDocument:document];
+  [documentLoader saveDocument:document];
 	timeSinceSave = 0;
 }
 
@@ -617,74 +615,6 @@
 	}
 }
 
-- (int)idleTime 
-{
-  mach_port_t masterPort;
-  io_iterator_t iter;
-  io_registry_entry_t curObj;
-  int res = 0;
-
-  IOMasterPort(MACH_PORT_NULL, &masterPort);
-  
-  IOServiceGetMatchingServices(masterPort,
-                 IOServiceMatching("IOHIDSystem"),
-                 &iter);
-  if (iter == 0) {
-    return 0;
-  }
-  
-  curObj = IOIteratorNext(iter);
-
-  if (curObj == 0) {
-    return 0;
-  }
-
-  CFMutableDictionaryRef properties = 0;
-  CFTypeRef obj;
-
-  if (IORegistryEntryCreateCFProperties(curObj, &properties,
-                   kCFAllocatorDefault, 0) ==
-      KERN_SUCCESS && properties != NULL) {
-
-    obj = CFDictionaryGetValue(properties, CFSTR("HIDIdleTime"));
-    CFRetain(obj);
-  } else {
-    obj = NULL;
-  }
-
-  if (obj) {
-    uint64_t tHandle;
-
-    CFTypeID type = CFGetTypeID(obj);
-
-    if (type == CFDataGetTypeID()) {
-      CFDataGetBytes((CFDataRef) obj,
-           CFRangeMake(0, sizeof(tHandle)),
-           (UInt8*) &tHandle);
-    }  else if (type == CFNumberGetTypeID()) {
-      CFNumberGetValue((CFNumberRef)obj,
-             kCFNumberSInt64Type,
-             &tHandle);
-    } else {
-      return 0;
-    }
-
-    CFRelease(obj);
-
-    // essentially divides by 10^9
-    tHandle >>= 30;
-	res = tHandle;
-  } else {
-	}
-
-  /* Release our resources */
-  IOObjectRelease(curObj);
-  IOObjectRelease(iter);
-  CFRelease((CFTypeRef)properties);
-
-  return res;
-}
-
 - (IBAction)clickedCountIdleTimeYes:(id)sender
 {
   [timer resume];
@@ -744,8 +674,8 @@
 - (IBAction)clickedCountIdleTimeNo:(id)sender
 {
   [NSApp stopModal];
-  [self stopTimer:[timer lastNonIdleTime]];
   [timer cancel];
+  [self stopTimer];
 }
 
 
@@ -824,6 +754,11 @@
     [timer release];
     timer = [aTimer retain];
   }
+}
+
+- (TTTimer *)timer
+{
+  return timer;
 }
 
 - (TProject *)selectedProject

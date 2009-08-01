@@ -21,6 +21,9 @@
 - (void)stop;
 - (void)resume;
 - (void)cancel;
-- (NSDate *)lastNonIdleTime;
+- (NSDate *)currentTime;
+
+// Private methods
+- (int)idleTime;
 
 @end

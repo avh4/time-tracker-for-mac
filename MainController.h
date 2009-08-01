@@ -7,6 +7,7 @@
 #import "TWorkPeriod.h"
 #import "TTTimeProvider.h"
 #import "Classes/TTTimer.h"
+#import "Classes/TTDocumentLoader.h"
 
 @interface MainController : NSObject
 {
@@ -41,6 +42,7 @@
 	
 	TTDocumentV1 *document;
   id documentController;
+  TTDocumentLoader *documentLoader;
   TTTimeProvider *timeProvider;
   TTTimer *timer;
 	NSMutableDictionary *_projects_lastTask;
@@ -55,6 +57,8 @@
 	NSDate *filterStartTime;
 	NSDate *filterEndTime;
 }
+
+- (id) initWithDocumentLoader:(TTDocumentLoader *)aDocumentLoader;
 
 // actions
 - (IBAction)clickedAddProject:(id)sender;
@@ -75,10 +79,8 @@
 - (IBAction)filterToThisMonth:(id)sender;
 - (IBAction)filterToLastMonth:(id)sender;
 
-- (void)stopTimer:(NSDate*)endTime;
 - (void)stopTimer;
 - (void)startTimer;
-- (int)idleTime;
 - (void)saveData;
 - (void)createProject;
 - (void)createTask;
@@ -101,6 +103,7 @@
 - (TProject *)selectedProject;
 - (void)setSelectedProject:(TProject *)aProject;
 - (void)setSelectedTask:(TTask *)aTask;
+- (TTTimer *)timer;
 - (void)setTimer:(TTTimer *)aTimer;
 
 - (void)clearFilter;
