@@ -31,16 +31,15 @@
 - (void)start
 {
   assert(timer == nil);
-  assert(delegate != nil);
   timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self
     selector:@selector(timerFunc:)
     userInfo:nil repeats:YES];
+  [timer retain];
 }
 
 - (void)stop
 {
   assert(timer != nil);
-  assert(delegate != nil);
   [timer invalidate];
   [timer release];
   timer = nil;

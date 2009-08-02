@@ -20,8 +20,9 @@
 - (NSString *) name;
 - (void) setName: (NSString *) name;
 
-- (NSMutableArray *) tasks;
-- (void) addTask: (TTask *) task;
+- (NSMutableArray *)tasks;
+- (void)addTask:(TTask *)task;
+- (void)createTask:(NSString *)name;
 - (id)objectInTasksAtIndex:(int)index;
 - (void)moveTask:(TTask *)task toIndex:(int)index;
 

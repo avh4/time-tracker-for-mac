@@ -105,6 +105,9 @@
 - (void)setSelectedTask:(TTask *)aTask;
 - (TTTimer *)timer;
 - (void)setTimer:(TTTimer *)aTimer;
+- (TProject *)activeProject;
+- (TTask *)activeTask;
+- (TWorkPeriod *)activeWorkPeriod;
 
 - (void)clearFilter;
 - (void)setFilterStartTime:(NSDate *)startTime endTime:(NSDate *)endTime;

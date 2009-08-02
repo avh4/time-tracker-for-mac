@@ -71,7 +71,7 @@
 
 - (void)startTimer
 {
-  if ([timer isRunning]) return;
+  assert(![timer isRunning]);
 	
 	if (_selTask == nil)
 	{
@@ -811,9 +811,20 @@
 	[tvWorkPeriods reloadData];
 }
 
-- (TTask*)activeTask
+
+- (TProject *)activeProject
+{
+  return _curProject;
+}
+
+- (TTask *)activeTask
 {
 	return _curTask;
+}
+
+- (TWorkPeriod *)activeWorkPeriod
+{
+  return _curWorkPeriod;
 }
 
 - (TTask*)selectedTask

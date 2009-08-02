@@ -1,3 +1,7 @@
+# We must define RubyCocoa objects for for certain mock objects
+# so that we can specify the return type for methods that do not
+# return objects
+
 class MockDocument < OSX::NSObject
   objc_method :objectInProjectsAtIndex, "@@:i"
 end
@@ -22,11 +26,10 @@ class MockProject < OSX::NSObject
 end
 
 class MockTask < OSX::NSObject
+  objc_method :totalTime, "d@:"
+  objc_method :totalTimeInRangeFrom_to, "d@:@@"
 end
 
-# We must define RubyCocoa objects for for certain mock objects
-# so that we can specify the return type for methods that do not
-# return objects
 class MockWorkPeriod < OSX::NSObject
   objc_method :totalTime, "d@:"
   objc_method :compare, "i@:@"

@@ -40,14 +40,21 @@
 	_name = name;
 }
 
-- (NSMutableArray *) tasks
+- (NSMutableArray *)tasks
 {
 	return _tasks;
 }
 
-- (void) addTask: (TTask *) task
+- (void)addTask:(TTask *)task
 {
-	[_tasks addObject: task];
+	[_tasks addObject:task];
+}
+
+- (void)createTask:(NSString *)name
+{
+  TTask *task = [[TTask alloc] initWithName:name];
+  [_tasks addObject:task];
+  [task release];
 }
 
 - (id)objectInTasksAtIndex:(int)index

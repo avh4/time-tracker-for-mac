@@ -14,7 +14,7 @@ describe OSX::TTTimer do
   
   describe "when started" do
     before(:each) do
-      @t = OSX::TTTimer.alloc.init
+      @t = OSX::TTTimer.alloc.initWithDelegate(nil)
       @t.start
     end
     
@@ -25,7 +25,7 @@ describe OSX::TTTimer do
   
   describe "when started and stopped shortly after" do
     before(:each) do
-      @t = OSX::TTTimer.alloc.init
+      @t = OSX::TTTimer.alloc.initWithDelegate(nil)
       @t.start
       @t.stop
     end

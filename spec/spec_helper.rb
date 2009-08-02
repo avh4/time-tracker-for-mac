@@ -1,5 +1,9 @@
 require 'spec'
-require "osx/cocoa"
+require 'date'
+require 'time'
+require 'osx/cocoa'
+require 'rubygems'
+require 'duration'
 
 $:.unshift File.dirname(__FILE__) + "/../build/bundles"
 

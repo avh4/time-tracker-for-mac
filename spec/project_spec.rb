@@ -1,15 +1,10 @@
 require File.dirname(__FILE__) + '/spec_helper'
-require 'time'
 
 describe OSX::TProject do
   
   # We must define RubyCocoa objects for for certain mock objects
   # so that we can specify the return type for methods that do not
   # return objects
-  class MockTask < OSX::NSObject
-    objc_method :totalTime, "d@:"
-    objc_method :totalTimeInRangeFrom_to, "d@:@@"
-  end
   
   
   it "should exist" do

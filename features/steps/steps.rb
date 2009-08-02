@@ -3,13 +3,14 @@ require "osx/cocoa"
 require "time"
 require "duration"
 
-class FakeTimer
-  @is_running = 0
+class FakeTimer < OSX::NSObject
   def initialize(delegate)
+    @is_running = 0
     @delegate = delegate
     @start_time = Time.now
     @current_time = @start_time
   end
+  objc_method :isRunning, "B@:"
   def isRunning
     return @is_running
   end
@@ -28,9 +29,25 @@ class FakeTimer
   end
 end
 
-class FakeDocumentLoader
+class BlankDocumentLoader
   def loadDocument
     return OSX::TTDocumentV1.alloc.init
+  end
+  def saveDocument
+  end
+end
+
+class DemoDocumentLoader
+  def loadDocument
+    @doc = OSX::TTDocumentV1.alloc.init
+    @doc.createProject("Time Tracker")
+    @doc.createProject("Website X")
+    @doc.projects[0].createTask("development")
+    @doc.projects[0].createTask("support")
+    @doc.projects[1].createTask("design")
+    @doc.projects[1].createTask("development")
+    @doc.projects[1].createTask("consultation")
+    @doc
   end
   def saveDocument
   end
@@ -110,18 +127,59 @@ Given /I have recorded my data in Time Tracker/ do
 end
 
 Given /I have started Time Tracker for the first time/ do
-  @controller = OSX::MainController.alloc.initWithDocumentLoader(FakeDocumentLoader.new)
+  @controller = OSX::MainController.alloc.initWithDocumentLoader(BlankDocumentLoader.new)
   @doc = @controller.document
   puts @doc.projects.inspect
 end
 
-Given /^Time Tracker is newly installed$/ do
-  @controller = OSX::MainController.alloc.initWithDocumentLoader(FakeDocumentLoader.new)
+def init_time_tracker(document_loader)
+  @controller = OSX::MainController.alloc.initWithDocumentLoader(document_loader)
   @doc = @controller.document
   @timer = FakeTimer.new(@controller)
   @controller.timer = @timer
 end
 
+Given /^Time Tracker is newly installed$/ do
+  init_time_tracker(BlankDocumentLoader.new)
+end
+
+Given /^I have recently used the task "([^\"]*) : ([^\"]*)"$/ do |proj, task|
+  init_time_tracker(DemoDocumentLoader.new)
+  puts @doc
+  puts @controller
+  puts @timer
+  @timer.isRunning.should == 0
+  @controller.selectedProject = @doc.projects[0]
+  @controller.startTimer
+  @controller.stopTimer
+end
+
+def find_project(name)
+  @doc.projects.each do |proj|
+    if proj.name == name
+      return proj
+    end
+  end
+  return nil
+end
+
+def find_task(proj_name, name)
+  find_project(proj_name).tasks.each do |task|
+    if task.name == name
+      return task
+    end
+  end
+  return nil
+end
+
+Given /^the timer is running on task "([^\"]*) : ([^\"]*)"$/ do |proj, task|
+  @controller.stopTimer
+  @controller.selectedProject = find_project(proj)
+  @controller.selectedTask = find_task(proj, task)
+  @controller.startTimer
+  @controller.activeProject.should == find_project(proj)
+  @controller.activeTask.should == find_task(proj, task)
+end
 
 When /I set the filter to "Today"/ do
   @controller.setFilterStartTime_endTime(@today, @today + 1.days)

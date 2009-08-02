@@ -32,6 +32,13 @@
 	[_projects addObject:proj];
 }
 
+- (void)createProject:(NSString *)name
+{
+  TProject *proj = [[TProject alloc] initWithName:name];
+  [_projects addObject:proj];
+  [proj release];
+}
+
 - (void) removeProject:(TProject *)proj
 {
 	[_projects removeObject:proj];
