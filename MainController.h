@@ -14,12 +14,6 @@
 	NSUserDefaults *defaults;
 	NSStatusItem *statusItem;
 	
-	NSImage *playItemImage;
-	NSImage *playItemHighlightImage;
-	
-	NSImage *stopItemImage;
-	NSImage *stopItemHighlightImage;
-
 	NSImage *playToolImage;
 	NSImage *stopToolImage;
 	NSImage *addTaskToolImage;
@@ -37,6 +31,7 @@
 	IBOutlet NSDatePicker *dtpEditWorkPeriodEndTime;
 	
 	IBOutlet NSMenuItem *startMenuItem;
+  IBOutlet NSMenu *statusItemMenu;
 	
 	NSToolbarItem *startstopToolbarItem;
 	

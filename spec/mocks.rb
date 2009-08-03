@@ -47,6 +47,10 @@ class MockDatePicker < OSX::NSObject
   objc_method :setEnabled, "v@:B"
 end
 
+class MockApplicationState < OSX::NSObject
+  objc_method :isTimerRunning, "B@:"
+end
+
 # The following mocks are used for unarchiving NIB files.
 # See main_menu_xib_spec.rb
 class MockApplication < OSX::NSObject

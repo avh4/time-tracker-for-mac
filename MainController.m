@@ -57,6 +57,7 @@
   [documentLoader release];
   [timeProvider release];
   [timer release];
+  [statusItemMenu release];
 	[super dealloc];
 }
 
@@ -235,29 +236,13 @@
 	tempMenuItem = (NSMenuItem *)[m addItemWithTitle:kOpenGrowlPreferences action:@selector(openGrowlPreferences:) keyEquivalent:@""];
 	[tempMenuItem setTarget:self];
 	[tempMenuItem setToolTip:kOpenGrowlPreferencesTooltip];*/
-
-
-	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength] retain];
-	
-	[statusItem setTarget: self];
-	[statusItem setAction: @selector (clickedStartStopTimer:)];
-
-	playItemImage = [[NSImage imageNamed:@"playitem.png"] retain];
-	playItemHighlightImage = [[NSImage imageNamed:@"playitem_hl.png"] retain];
-	stopItemImage = [[NSImage imageNamed:@"stopitem.png"] retain];
-	stopItemHighlightImage = [[NSImage imageNamed:@"stopitem_hl.png"] retain];
-
+  
+  
 	playToolImage = [[NSImage imageNamed:@"playtool.png"] retain];
 	stopToolImage = [[NSImage imageNamed:@"stoptool.png"] retain];
 	addTaskToolImage = [[NSImage imageNamed:@"addtasktool.png"] retain];
 	addProjectToolImage = [[NSImage imageNamed:@"addprojecttool.png"] retain];
-
-	//[statusItem setMenu:m]; // retains m
-	[statusItem setToolTip:[[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString*)kCFBundleNameKey]];
-	[statusItem setHighlightMode:NO];
-
-	//[m release];		
-	
+  
 	NSToolbar *toolbar = [[NSToolbar alloc] initWithIdentifier:TOOLBAR_IDENTIFIER];
 	[toolbar setDelegate: self];
 	[mainWindow setToolbar: toolbar];	
@@ -652,10 +637,6 @@
 			[startstopToolbarItem setImage:playToolImage];
 		}
 		
-		// assert statusItem != nil
-		[statusItem setImage:playItemImage];
-		[statusItem setAlternateImage:playItemHighlightImage];
-		
 		// assert startMenuItem != nil
 		[startMenuItem setTitle:NSLocalizedString(@"Start Timer", nil)];
 	} else {
@@ -665,10 +646,6 @@
 			[startstopToolbarItem setToolTip:NSLocalizedString(@"Stop Timer", "Phrase version of the 'stop the timer' action")];
 			[startstopToolbarItem setImage:stopToolImage];
 		}
-		
-		// assert statusItem != nil
-		[statusItem setImage:stopItemImage];
-		[statusItem setAlternateImage:stopItemHighlightImage];
 		
 		// assert startMenuItem != nil
 		[startMenuItem setTitle:NSLocalizedString(@"Stop Timer", nil)];

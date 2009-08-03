@@ -1,15 +1,16 @@
 require 'spec'
 require 'date'
 require 'time'
-require 'osx/cocoa'
 require 'rubygems'
 require 'duration'
 
+require 'osx/cocoa'
 $:.unshift File.dirname(__FILE__) + "/../build/bundles"
-
 require "Application.bundle"
+OSX.require_framework File.expand_path(File.dirname(__FILE__) + '/../lib/GoogleToolboxForMac.framework')
 
 require File.dirname(__FILE__) + '/mocks'
+require File.dirname(__FILE__) + "/../lib/matchers/look_like"
 
 def rbTimeForNSDate(d)
   return Time.parse("" + d.description)

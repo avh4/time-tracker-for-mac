@@ -1,14 +1,20 @@
 require "spec"
-require "osx/cocoa"
 require "time"
 require "duration"
+require File.dirname(__FILE__) + "/../../lib/matchers/look_like"
+
+require "osx/cocoa"
+$:.unshift File.dirname(__FILE__) + "/../../build/bundles"
+require "Application.bundle"
+OSX.require_framework File.expand_path(File.dirname(__FILE__) + '/../../lib/GoogleToolboxForMac.framework')
 
 class FakeTimer < OSX::NSObject
-  def initialize(delegate)
-    @is_running = 0
-    @delegate = delegate
+  def initWithDelegate(del)
+    @is_running = false
     @start_time = Time.now
     @current_time = @start_time
+    @delegate = del
+    self
   end
   objc_method :isRunning, "B@:"
   def isRunning
@@ -18,10 +24,10 @@ class FakeTimer < OSX::NSObject
     return @current_time
   end
   def start
-    @is_running = 1
+    @is_running = true
   end
   def stop
-    @is_running = 0
+    @is_running = false
   end
   def advance_time(minutes)
     @current_time += minutes.to_i.minutes
@@ -52,9 +58,6 @@ class DemoDocumentLoader
   def saveDocument
   end
 end
-
-$:.unshift File.dirname(__FILE__) + "/../../build/bundles"
-require "Application.bundle"
 
 def advance_time(min)
   wp = OSX::TWorkPeriod.alloc.init
@@ -135,7 +138,7 @@ end
 def init_time_tracker(document_loader)
   @controller = OSX::MainController.alloc.initWithDocumentLoader(document_loader)
   @doc = @controller.document
-  @timer = FakeTimer.new(@controller)
+  @timer = FakeTimer.alloc.initWithDelegate(@controller)
   @controller.timer = @timer
 end
 
@@ -145,10 +148,6 @@ end
 
 Given /^I have recently used the task "([^\"]*) : ([^\"]*)"$/ do |proj, task|
   init_time_tracker(DemoDocumentLoader.new)
-  puts @doc
-  puts @controller
-  puts @timer
-  @timer.isRunning.should == 0
   @controller.selectedProject = @doc.projects[0]
   @controller.startTimer
   @controller.stopTimer
