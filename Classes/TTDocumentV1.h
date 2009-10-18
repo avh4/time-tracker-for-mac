@@ -6,7 +6,7 @@
 //  Copyright 2008 Aaron VonderHaar. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 #import "TProject.h"
 
 @interface TTDocumentV1 : NSObject {

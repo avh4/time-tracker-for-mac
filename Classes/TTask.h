@@ -6,7 +6,7 @@
 //  Copyright 2005 Ivan Dramaliev, 2009 Aaron VonderHaar. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 #import "TWorkPeriod.h"
 
 @interface TTask : NSObject <NSCoding> {

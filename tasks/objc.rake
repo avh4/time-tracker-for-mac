@@ -22,13 +22,11 @@ namespace :objc do
     FileUtils.mkdir_p "build/bundles"
     FileUtils.rm Dir["build/bundles/Application.bundle"]
     puts "Building Application.bundle"
-    sh "gcc -o build/bundles/Application.bundle -bundle -framework Cocoa -framework IOKit build/bundles/Application.m build/bundles/*.o"
+    sh "gcc -o build/bundles/Application.bundle -lobjc -framework Foundation -bundle build/bundles/Application.m build/bundles/*.o"
   end
   
   model_file_paths = []
-  model_file_paths += Dir.glob("*.m")
   model_file_paths += Dir.glob("Classes/*.m")
-  model_file_paths.delete "main.m"
   
   model_file_paths.each do |path|
     path =~ /^(.*\/)?(.*)\.m/

@@ -8,11 +8,11 @@
 #import "TTTimeProvider.h"
 #import "Classes/TTTimer.h"
 #import "Classes/TTDocumentLoader.h"
+#import "Classes/TTStatusItemController.h"
 
 @interface MainController : NSObject
 {
 	NSUserDefaults *defaults;
-	NSStatusItem *statusItem;
 	
 	NSImage *playToolImage;
 	NSImage *stopToolImage;
@@ -32,7 +32,8 @@
 	
 	IBOutlet NSMenuItem *startMenuItem;
   IBOutlet NSMenu *statusItemMenu;
-	
+  
+  TTStatusItemController *statusItemController;
 	NSToolbarItem *startstopToolbarItem;
 	
 	TTDocumentV1 *document;

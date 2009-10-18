@@ -247,7 +247,11 @@
 	[toolbar setDelegate: self];
 	[mainWindow setToolbar: toolbar];	
 
+  statusItemController = [[TTStatusItemController alloc] init];
+  //[statusItemController setApplicationModel:]
+  
 	[self updateStartStopState];
+  //[statusItemController update];
 	
 	[self initializeTableViews];
 }
