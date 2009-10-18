@@ -1,9 +1,12 @@
 require "spec/rake/spectask"
+gem 'ci_reporter'
+require 'ci/reporter/rake/rspec'
 
 task :default => :spec
 
 task :spec => :compile
 task :spec => :compile_nib
+task :spec => 'ci:setup:rspec'
   
 Spec::Rake::SpecTask.new do |t|
 end
