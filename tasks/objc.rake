@@ -4,8 +4,8 @@ namespace :objc do
   desc "Compiles all Objective-C bundles for testing"
   
   task :clean do
-    FileUtils.rm_r Dir["build/bundles"]
-    FileUtils.rm_r Dir["build/nibs"]
+    FileUtils.rm_r Dir["build/bundles"], :verbose => true
+    FileUtils.rm_r Dir["build/nibs"], :verbose => true
   end
   
   task :compile => "build/bundles/Application.bundle"
@@ -26,7 +26,7 @@ namespace :objc do
   end
   
   model_file_paths = []
-  model_file_paths += Dir.glob("Classes/*.m")
+  model_file_paths += Dir.glob("src/objc/*.m")
   
   model_file_paths.each do |path|
     path =~ /^(.*\/)?(.*)\.m/
@@ -43,7 +43,8 @@ namespace :objc do
 
   end
 
-  nib_files = ["MainMenu"]
+  nib_files = []
+  task :compile_nib
   nib_files.each do |nib_name|
     nib = "build/nibs/#{nib_name}.nib"
     xib = "English.lproj/#{nib_name}.xib"

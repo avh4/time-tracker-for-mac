@@ -3,7 +3,7 @@
 //  Time Tracker
 //
 //  Created by Aaron VonderHaar on 7/21/08.
-//  Copyright 2008 __MyCompanyName__. All rights reserved.
+//  Copyright 2008 Aaron VonderHaar. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
