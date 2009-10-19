@@ -6,20 +6,19 @@
 //
 
 #import "TTStatusItemController.h"
-#import "AVImage.h"
 
 @implementation TTStatusItemController
 
-- (id)init
+- (id)initWithStatusItem:(id<NIStatusItem>)aStatusItem resources:(id<TTResources>)aResources
 {
   self = [super init];
-  statusItem = [[NSStatusItem alloc] init];
+  statusItem = [aStatusItem retain];
   //statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength] retain];
   
-  playItemImage = [[AVImage imageNamed:@"playitem.png"] retain];
-  playItemHighlightImage = [[AVImage imageNamed:@"playitem_hl.png"] retain];
-  stopItemImage = [[AVImage imageNamed:@"stopitem.png"] retain];
-  stopItemHighlightImage = [[AVImage imageNamed:@"stopitem_hl.png"] retain];
+  playItemImage = [[aResources playItemImage] retain];//[[NSImage imageNamed:@"playitem.png"] retain];
+  //playItemHighlightImage = [[NSImage imageNamed:@"playitem_hl.png"] retain];
+  stopItemImage = [[aResources stopItemImage] retain];//[[NSImage imageNamed:@"stopitem.png"] retain];
+  //stopItemHighlightImage = [[NSImage imageNamed:@"stopitem_hl.png"] retain];
   
   //[statusItem setTarget: self];
   //[statusItem setMenu:statusItemMenu];
@@ -50,24 +49,14 @@
   {
     [statusItem setImage:playItemImage];
     image = playItemImage;
-    [statusItem setAlternateImage:playItemHighlightImage];
+    //[statusItem setAlternateImage:playItemHighlightImage];
   }
   else
   {
     [statusItem setImage:stopItemImage];
     image = stopItemImage;
-    [statusItem setAlternateImage:stopItemHighlightImage];
+    //[statusItem setAlternateImage:stopItemHighlightImage];
   }
-}
-
-- (NSImage *)image
-{
-  return image;
-}
-
-- (NSStatusItem *)statusItem
-{
-  return statusItem;
 }
 
 - (void)setApplicationState:(TTApplicationState *)anAppState

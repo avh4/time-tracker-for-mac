@@ -6,9 +6,9 @@
 #import "TTask.h"
 #import "TWorkPeriod.h"
 #import "TTTimeProvider.h"
-#import "Classes/TTTimer.h"
-#import "Classes/TTDocumentLoader.h"
-#import "Classes/TTStatusItemController.h"
+#import "TTTimer.h"
+#import "TTDocumentLoader.h"
+#import "TTStatusItemController.h"
 
 @interface MainController : NSObject
 {

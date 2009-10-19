@@ -10,7 +10,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "../Classes/TTDocumentV1.h"
+#import "TTDocumentV1.h"
 
 @interface TTDocumentLoader : NSObject {
 
