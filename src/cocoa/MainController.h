@@ -10,7 +10,7 @@
 #import "TTDocumentLoader.h"
 #import "TTStatusItemController.h"
 
-@interface MainController : NSObject
+@interface MainController : NSObject <TTResources>
 {
 	NSUserDefaults *defaults;
 	

@@ -13,5 +13,6 @@
 - (id<NIStatusItem>)retain;
 - (void)release;
 - (void)setImage:(id<NIImage>)image;
+- (void)setTitle:(NSString*)title;
 
 @end

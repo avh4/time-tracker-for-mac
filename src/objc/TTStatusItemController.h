@@ -24,10 +24,10 @@
   id<NIImage> stopItemHighlightImage;
 }
 
-- (id)initWithStatusItem:(id<NIStatusItem>)aStatusItem resources:(id<TTResources>)aResources;
+- (id)initWithStatusItem:(id<NIStatusItem>)aStatusItem 
+               resources:(id<TTResources>)aResources
+        applicationState:(TTApplicationState*)anAppState;
 
 - (void)update;
-
-- (void)setApplicationState:(TTApplicationState *)anAppState;
 
 @end

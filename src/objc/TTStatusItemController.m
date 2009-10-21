@@ -9,11 +9,13 @@
 
 @implementation TTStatusItemController
 
-- (id)initWithStatusItem:(id<NIStatusItem>)aStatusItem resources:(id<TTResources>)aResources
+- (id)initWithStatusItem:(id<NIStatusItem>)aStatusItem 
+               resources:(id<TTResources>)aResources
+        applicationState:(TTApplicationState*)anAppState
 {
   self = [super init];
   statusItem = [aStatusItem retain];
-  //statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength] retain];
+  appState = [anAppState retain];
   
   playItemImage = [[aResources playItemImage] retain];//[[NSImage imageNamed:@"playitem.png"] retain];
   //playItemHighlightImage = [[NSImage imageNamed:@"playitem_hl.png"] retain];
@@ -45,26 +47,21 @@
 - (void)update
 {
   assert(appState != nil);
+  assert(playItemImage != nil);
+  assert(stopItemImage != nil);
   if (![appState isTimerRunning])
   {
     [statusItem setImage:playItemImage];
+    [statusItem setTitle:@"Start"];
     image = playItemImage;
     //[statusItem setAlternateImage:playItemHighlightImage];
   }
   else
   {
     [statusItem setImage:stopItemImage];
+    [statusItem setTitle:@"Stop"];
     image = stopItemImage;
     //[statusItem setAlternateImage:stopItemHighlightImage];
-  }
-}
-
-- (void)setApplicationState:(TTApplicationState *)anAppState
-{
-  if (appState != anAppState)
-  {
-    [appState release];
-    appState = [anAppState retain];
   }
 }
 

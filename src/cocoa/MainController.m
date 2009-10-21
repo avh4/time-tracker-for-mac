@@ -5,6 +5,7 @@
 #import "TProject.h"
 #import "TimeIntervalFormatter.h"
 #import "TWorkPeriod.h"
+#import "AVImage.h"
 
 @interface MainController (PrivateMethods)
 - (void)initializeTableViews;
@@ -187,7 +188,7 @@
 	defaults = [NSUserDefaults standardUserDefaults];
 	
 	_projects_lastTask = [[NSMutableDictionary alloc] initWithCapacity:[[document projects] count]];
-	
+  
 	/*NSZone *menuZone = [NSMenu menuZone];
 	NSMenu *m = [[NSMenu allocWithZone:menuZone] init];
 
@@ -247,13 +248,18 @@
 	[toolbar setDelegate: self];
 	[mainWindow setToolbar: toolbar];	
 
-  statusItemController = [[TTStatusItemController alloc] init];
-  //[statusItemController setApplicationModel:]
+  TTApplicationState* appState = [[TTApplicationState alloc] init];
+  NSStatusItem *statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength];
+  statusItemController = [[TTStatusItemController alloc] 
+                            initWithStatusItem:statusItem  
+                            resources:self
+                          applicationState:appState];
   
 	[self updateStartStopState];
-  //[statusItemController update];
+  [statusItemController update];
 	
 	[self initializeTableViews];
+  
 }
 
 - (void)initializeTableViews
@@ -959,6 +965,19 @@
 	[documentController setFilterStartTime:[timeProvider lastMonthStartTime]
 	  endTime:[timeProvider lastMonthEndTime]];
 }
+
+#pragma mark TTResources methods
+
+- (id<NIImage>)playItemImage
+{
+  return [[AVImage imageNamed:@"playitem"] autorelease];
+}
+
+- (id<NIImage>)stopItemImage
+{
+  return [[AVImage imageNamed:@"stopitem"] autorelease];
+}
+
 
 
 @end
