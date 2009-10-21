@@ -9,8 +9,8 @@ describe OSX::TTStatusItemController do
     @mockResources.stub!(:stopItemImage).and_return("Stop Item Image")
     @mockStatusItem = mock("Status Item")
     @mockStatusItem.stub!(:setImage)
-    @sic = OSX::TTStatusItemController.alloc.initWithStatusItem_resources @mockStatusItem, @mockResources
-    @sic.applicationState = @appState
+    @mockStatusItem.stub!(:setTitle)
+    @sic = OSX::TTStatusItemController.alloc.initWithStatusItem_resources_applicationState @mockStatusItem, @mockResources, @appState
   end
   
   it "should be a start button when the timer is stopped" do
